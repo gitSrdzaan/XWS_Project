@@ -18,9 +18,9 @@ public class RentAdvert {
 	@Column(nullable = false)
 	private Date advertEndDate;
 	
-	/**
-	 * TODO: Cjenovnik/Cenovnik
-	 */
+	
+	@Column(nullable=false)
+	private PriceList priceList;
 	
 	
 	
@@ -29,6 +29,78 @@ public class RentAdvert {
 	
 	public RentAdvert() {
 		
+	}
+
+
+
+
+
+
+	public Car getCar() {
+		return car;
+	}
+
+
+
+
+
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
+
+
+
+
+
+	public Date getAdvertStartDate() {
+		return advertStartDate;
+	}
+
+
+
+
+
+
+	public void setAdvertStartDate(Date advertStartDate) {
+		this.advertStartDate = advertStartDate;
+	}
+
+
+
+
+
+
+	public Date getAdvertEndDate() {
+		return advertEndDate;
+	}
+
+
+
+
+
+
+	public void setAdvertEndDate(Date advertEndDate) {
+		this.advertEndDate = advertEndDate;
+	}
+
+
+
+
+
+
+	public PriceList getPriceList() {
+		return priceList;
+	}
+
+
+
+
+
+
+	public void setPriceList(PriceList priceList) {
+		this.priceList = priceList;
 	}
 	
 }

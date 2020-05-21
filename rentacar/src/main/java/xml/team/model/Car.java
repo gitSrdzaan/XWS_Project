@@ -1,5 +1,7 @@
 package xml.team.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -31,7 +33,7 @@ public class Car {
 	private Integer carMileage;//kilometraza do sada
 	
 	@Column(nullable = false)
-	private String carComment;
+	private List<String> carComment;
 	
 	@Column(nullable = false)
 	private Integer carGrade;
@@ -91,6 +93,14 @@ public class Car {
 		this.transmission = transmission;
 	}
 
+	public List<String> getCarComment() {
+		return carComment;
+	}
+
+	public void setCarComment(List<String> carComment) {
+		this.carComment = carComment;
+	}
+
 	public String getCarClass() {
 		return carClass;
 	}
@@ -123,13 +133,6 @@ public class Car {
 		this.carRegistration = carRegistration;
 	}
 
-	public String getCarComment() {
-		return carComment;
-	}
-
-	public void setCarComment(String carComment) {
-		this.carComment = carComment;
-	}
 
 	public Integer getCarGrade() {
 		return carGrade;
