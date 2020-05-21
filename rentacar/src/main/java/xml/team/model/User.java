@@ -27,6 +27,9 @@ public class User {
 	private String username;
 	
 	@Column(nullable = false)
+	private String email;
+	
+	@Column(nullable = false)
 	private String password;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -91,6 +94,14 @@ public class User {
 
 	public void setUserCars(Set<Car> userCars) {
 		this.userCars = userCars;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
