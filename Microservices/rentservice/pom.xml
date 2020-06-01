@@ -8,7 +8,7 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>xws.microservis</groupId>
+	<groupId>xws.microservice</groupId>
 	<artifactId>rentservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>rentservice</name>
