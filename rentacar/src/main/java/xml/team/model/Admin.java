@@ -17,7 +17,7 @@ public class Admin {
 	private String password;
 	
 	public Admin() {
-		
+		// eo radim
 	}
 	
 	
