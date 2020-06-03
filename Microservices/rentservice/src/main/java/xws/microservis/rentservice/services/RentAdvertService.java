@@ -16,7 +16,7 @@ public class RentAdvertService {
 	
 	
 	//pronalazenje reklame
-	public RentAdvertDTO findRentAdver(Long id) {
+	public RentAdvertDTO findRentAdvert(Long id) {
 		RentAdvert ra = repository.findById(id).orElse(null);
 		if(ra == null) {
 			throw new NoSuchElementException();
