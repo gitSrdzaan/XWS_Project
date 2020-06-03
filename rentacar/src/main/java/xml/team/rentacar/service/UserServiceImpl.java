@@ -1,11 +1,7 @@
 package xml.team.rentacar.service;
 
-import java.sql.Date;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import xml.team.model.PriceList;
 import xml.team.model.User;
 import xml.team.rentacar.repository.UserRepository;
 
@@ -60,14 +55,20 @@ public class UserServiceImpl {
 	        userRepository.delete(user);
 	    }
 	 
-	   /* @Override
-	    public User create(NewUserDto newUserDto) {
+	    public User create(UserDTO UserDTO) {
 	        User user = new User();
-	        user.setName(newUserDto.getName());
-	        user.setDescription(newUserDto.getDescription());
-	        user.setAdmin(userService.findByUsername(newUserDto.getUserEmail()));
+	        user.setId(UserDTO.getId());
+	        user.setName(UserDTO.getName());
+	        user.setSurname(UserDTO.getSurname());
+	        user.setDriversLicence(UserDTO.getDriversLicence());
+	        user.setUsername(UserDTO.getUsername());
+	        user.setEmail(UserDTO.getEmail());
+	        user.setPassword(UserDTO.getPassword());
+	        user.setUserCars(UserDTO.getUserCars());
+			
+	        
 	        return user;
-	    }*/
+	    }
 	 
 	 
 		public List<User> findAll() {
