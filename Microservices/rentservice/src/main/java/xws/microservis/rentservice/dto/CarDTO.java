@@ -49,6 +49,7 @@ public class CarDTO {
 		this.longitude = car.getLongitude();
 		this.latitude = car.getLatitude();
 		this.kidsSeats = car.getKidsSeats();
+		
 	}
 	
 	public Long getId() {
