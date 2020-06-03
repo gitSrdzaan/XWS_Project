@@ -30,8 +30,18 @@ public class UserServiceImpl {
 	    	return userRepository.findById(id).get();
 	    }
 	 
-	    public User save(User user) {
-	        return userRepository.save(user);
+	    public User save(User u) {
+	    	User user= new User();
+	        user.setName(u.getName());
+	        user.setSurname(u.getSurname());
+	        user.setDriversLicence(u.getDriversLicence());
+	        user.setUsername(u.getUsername());
+	        user.setPassword(u.getPassword());
+	        user.setEmail(u.getEmail());
+	        user.setUserCars(u.getUserCars());
+	        
+	         userRepository.save(user);
+	         return user;
 	    }
 	 
 	    public User update(User u) {
@@ -48,7 +58,8 @@ public class UserServiceImpl {
 	 
 	        
 	 
-	        return userRepository.save(user);
+	        userRepository.save(user);
+	        return user;
 	    }
 	 
 	    public void delete(User user) {

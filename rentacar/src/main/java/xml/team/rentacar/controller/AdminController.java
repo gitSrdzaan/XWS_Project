@@ -2,7 +2,7 @@ package xml.team.rentacar.controller;
 
 import java.util.List;
 
-import org.apache.catalina.User;
+import xml.team.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,13 +53,35 @@ public class AdminController {
     
     @PostMapping("addUser")
     public ResponseEntity<?> addUser (@RequestBody User user)  {
-        return null;
+    	User u = (User) userService.findById(((xml.team.model.User) user).getId());
+    	if (u==null) {
+    		try {
+    			  u = userService.save(user);
+    			  return new ResponseEntity(u,HttpStatus.OK);
+    			}
+    			catch(Exception e) {
+    			  return new ResponseEntity("Unexpected error",HttpStatus.BAD_REQUEST);
+    			}
+    	
+    	}else {
+    		return new ResponseEntity("User already added",HttpStatus.BAD_REQUEST);
+    	}
     }
 
    
     @PutMapping("updateUser/{id}")
     public ResponseEntity<?> updateUser (@RequestBody User user, @PathVariable Long id) {
-        return null;
+    	User u = (User) userService.findById(id);
+    	if(u==null) {
+    		return new ResponseEntity("No user with that id",HttpStatus.OK);
+    	}else {
+    		try {
+    		u=userService.update(user);
+    		return new ResponseEntity(u,HttpStatus.OK);
+    		}catch(Exception e) {
+    			return new ResponseEntity("Unexpected error",HttpStatus.BAD_REQUEST);
+    		}
+    	}
     }
 
     
