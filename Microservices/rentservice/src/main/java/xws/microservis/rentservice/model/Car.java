@@ -20,10 +20,13 @@ public class Car {
 	@Column(nullable = false)
 	private String carModel;
 	
-	@Column(nullable = false)
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "carfuel_id")
 	private CarFuel carFuel;
 	
-	@Column(nullable = false)
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "transmission_id")
 	private Transmission transmission;
 	
 	@Column(nullable = false)
