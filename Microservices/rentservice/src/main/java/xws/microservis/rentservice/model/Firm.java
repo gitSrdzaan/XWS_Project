@@ -48,11 +48,7 @@ public class Firm {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="users")
 	private List<User> firmUsers;
-	
-	
-	
-	
-	
+
 	public Firm() {
 		
 	}
