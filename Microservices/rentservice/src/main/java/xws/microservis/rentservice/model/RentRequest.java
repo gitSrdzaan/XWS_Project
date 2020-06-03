@@ -24,6 +24,9 @@ public class RentRequest {
 	@Column
 	private Date reservationEnd;
 	
+	@Column
+	private RentRequestStatus status;
+	
 	
 	public RentRequest() {
 		
@@ -77,6 +80,16 @@ public class RentRequest {
 
 	public void setReservationEnd(Date reservationEnd) {
 		this.reservationEnd = reservationEnd;
+	}
+
+
+	public RentRequestStatus getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(RentRequestStatus status) {
+		this.status = status;
 	}
 	
 	

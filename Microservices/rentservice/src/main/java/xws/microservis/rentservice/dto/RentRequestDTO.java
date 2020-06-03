@@ -5,6 +5,7 @@ import java.util.Date;
 
 import xws.microservis.rentservice.model.RentAdvert;
 import xws.microservis.rentservice.model.RentRequest;
+import xws.microservis.rentservice.model.RentRequestStatus;
 import xws.microservis.rentservice.model.User;
 
 public class RentRequestDTO {
@@ -14,6 +15,7 @@ public class RentRequestDTO {
 	private User advertSender;
 	private Date reservationStart;
 	private Date reservationEnd;
+	private RentRequestStatus status;
 	
 	public RentRequestDTO (RentRequest rr) {
 		this.id = rr.getId();
@@ -21,6 +23,7 @@ public class RentRequestDTO {
 		this.reservationStart = rr.getReservationStart();
 		this.reservationEnd = rr.getReservationEnd();
 		this.rentAdvert = rr.getRentAdvert();
+		this.status = rr.getStatus();
 	}
 
 	public Long getId() {
@@ -61,6 +64,14 @@ public class RentRequestDTO {
 
 	public void setReservationEnd(Date reservationEnd) {
 		this.reservationEnd = reservationEnd;
+	}
+
+	public RentRequestStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(RentRequestStatus status) {
+		this.status = status;
 	}
 	
 	
