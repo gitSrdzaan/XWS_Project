@@ -1,17 +1,10 @@
 package xml.team.rentacar.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.catalina.User;
-import org.aspectj.weaver.loadtime.Agent;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,39 +15,64 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import xml.team.rentacar.service.UserDTO;
+import xml.team.rentacar.service.UserServiceImpl;
+
 @RestController
 @RequestMapping(value = "/user")
 public class AdminController {
  
+	@Autowired
+	private UserServiceImpl userService;
 	
-    @GetMapping()
+	
+    @GetMapping("getAllUsers")
     public ResponseEntity<?> getAllUsers()  {
-    	return null;
+    	List<xml.team.model.User> users = userService.findAll();
+    	if(users==null) {
+    		return new ResponseEntity("No users",HttpStatus.BAD_REQUEST);
+    	}else {
+    		return new  ResponseEntity(users,HttpStatus.OK);
+    	}
     			
     }
 
     
-    @GetMapping("/{id}")
+    @GetMapping("getSingleUser/{id}")
     public ResponseEntity<?> getSingleUser(@PathVariable Long id)  {
-        return null;
+    	User user = (User) userService.findById(id);
+    	if(user==null) {
+    		return new ResponseEntity("No user found",HttpStatus.BAD_REQUEST);
+    	}else {
+    		return new ResponseEntity(user,HttpStatus.OK);
+    	}
+    	
+        
     }
 
     
-    @PostMapping()
+    @PostMapping("addUser")
     public ResponseEntity<?> addUser (@RequestBody User user)  {
         return null;
     }
 
    
-    @PutMapping("/{id}")
+    @PutMapping("updateUser/{id}")
     public ResponseEntity<?> updateUser (@RequestBody User user, @PathVariable Long id) {
         return null;
     }
 
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("deleteUser/{id}")
     public ResponseEntity<?> deleteUser (@PathVariable Long id) {
-        return null;
+    	User user = (User) userService.findById(id);
+    	if(user==null) {
+    		return new ResponseEntity("No user found",HttpStatus.BAD_REQUEST);
+    	}else {
+    		userService.deleteById(id);
+    		return new ResponseEntity("User deleted",HttpStatus.OK);
+    	}
+    	
     }
     
     

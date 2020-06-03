@@ -186,9 +186,9 @@ public class UserServiceImpl {
 
 
 
-	public void deleteById(Long arg0) {
+	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
-		
+		userRepository.deleteById(id);
 	}
 
 
