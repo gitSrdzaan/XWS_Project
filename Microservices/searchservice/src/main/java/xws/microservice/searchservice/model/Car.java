@@ -36,6 +36,7 @@ public class Car {
 	private Integer carMileage;//kilometraza do sada
 	
 	@Column(nullable = false)
+	@ElementCollection(targetClass = String.class)
 	private List<String> carComment;
 	
 	@Column(nullable = false)

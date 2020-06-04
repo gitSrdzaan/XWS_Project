@@ -1,18 +1,14 @@
-package xml.team.rentacar.repository;
+package xws.microservice.searchservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import xml.team.rentacar.model.User;
- 
+import xws.microservice.searchservice.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	
- 
-    //User findByUsername(String username);
- 
-    //Optional<Hotel> findByAddress(String address);
- 
-   
+	
+	
+
 }

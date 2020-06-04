@@ -1,8 +1,18 @@
-package xml.team.model;
+package xml.team.rentacar.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Car {
@@ -35,8 +45,9 @@ public class Car {
 	@Column(nullable = false)
 	private Integer carMileage;//kilometraza do sada
 	
-	@Column(nullable = false)
-	private List<String> carComment;
+    @Column
+    @ElementCollection(targetClass = String.class)
+	private List<String> carComment = new ArrayList<String>();
 	
 	@Column(nullable = false)
 	private Integer carGrade;

@@ -1,4 +1,4 @@
-package xml.team.model;
+package xml.team.rentacar.model;
 
 import java.util.Date;
 

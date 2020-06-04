@@ -2,8 +2,8 @@ package xml.team.rentacar.service;
 
 import java.util.Set;
 
-import xml.team.model.Car;
-import xml.team.model.User;
+import xml.team.rentacar.model.Car;
+import xml.team.rentacar.model.User;
 
 public class UserDTO {
 	
