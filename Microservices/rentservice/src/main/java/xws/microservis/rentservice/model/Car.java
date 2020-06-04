@@ -2,7 +2,17 @@ package xws.microservis.rentservice.model;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import xws.microservis.rentservice.dto.CarDTO;
 
 @Entity
 public class Car {
@@ -59,6 +69,7 @@ public class Car {
 	public Car() {
 		
 	}
+	
 
 	public Long getId() {
 		return id;
@@ -163,6 +174,26 @@ public class Car {
 
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
+	}
+	
+	public Car createFromDTO(CarDTO carDTO) {
+		
+		this.id = carDTO.getId();
+		this.carClass = carDTO.getCarClass();
+		this.carComment = carDTO.getCarComment();
+		this.carFuel = carDTO.getCarFuel();
+		this.carGrade = carDTO.getCarGrade();
+		this.carMark = carDTO.getCarMark();
+		this.carMileage = carDTO.getCarMileage();
+		this.carRegistration = carDTO.getCarRegistration();
+		this.kidsSeats = carDTO.getKidsSeats();
+		this.transmission = carDTO.getTransmission();
+		this.latitude = carDTO.getLatitude();
+		this.longitude = carDTO.getLongitude();
+		this.carModel = carDTO.getCarModel();
+		
+		
+		return this;
 	}
 	
 }
