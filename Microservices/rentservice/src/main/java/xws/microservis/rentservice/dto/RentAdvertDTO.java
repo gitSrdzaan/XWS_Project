@@ -8,18 +8,28 @@ import xws.microservis.rentservice.model.RentAdvert;
 
 public class RentAdvertDTO {
 
+	private Long id;
 	private Car car;
 	private Date advertStartDate;
 	private Date advertEndDate;
 	private PriceList priceList;
 	
 	public RentAdvertDTO(RentAdvert ra) {
+		this.id = ra.getId();
 		this.car = ra.getCar();
 		this.advertStartDate = ra.getAdvertStartDate();
 		this.advertEndDate = ra.getAdvertEndDate();
 		this.priceList = ra.getPriceList();
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Car getCar() {
 		return car;
 	}
