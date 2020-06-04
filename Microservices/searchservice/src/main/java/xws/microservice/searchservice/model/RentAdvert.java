@@ -8,6 +8,11 @@ import javax.persistence.*;
 @Entity
 public class RentAdvert {
 
+	
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private Long id;
+	
 	@OneToOne
 	@JoinColumn
 	private Car car;
@@ -19,7 +24,8 @@ public class RentAdvert {
 	private Date advertEndDate;
 	
 	
-	@Column(nullable=false)
+	@OneToOne
+	@JoinColumn
 	private PriceList priceList;
 	
 	

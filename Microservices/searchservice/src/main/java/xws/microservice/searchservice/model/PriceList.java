@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class PriceList {
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column
@@ -20,9 +21,9 @@ public class PriceList {
 	@Column
 	private Double priceCDW;
 	
-	//Intervali za popust
-	
-	private HashMap<Integer , Integer> saleIntervals ; 
+	/***
+	 * TODO: Implementirati izracunavanje popusta
+	 */
 	
 	
 	public PriceList() {
@@ -70,12 +71,4 @@ public class PriceList {
 	}
 
 
-	public HashMap<Integer, Integer> getSaleIntervals() {
-		return saleIntervals;
-	}
-
-
-	public void setSaleIntervals(HashMap<Integer, Integer> saleIntervals) {
-		this.saleIntervals = saleIntervals;
-	}
 }
