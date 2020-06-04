@@ -1,15 +1,18 @@
 package xws.microservis.rentservice.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import xws.microservis.rentservice.dto.RentRequestBundleDTO;
 import xws.microservis.rentservice.dto.RentRequestDTO;
 import xws.microservis.rentservice.model.RentRequest;
 import xws.microservis.rentservice.model.RentRequestBundle;
+import xws.microservis.rentservice.model.RentRequestStatus;
 import xws.microservis.rentservice.repository.RentRequestBundleRepository;
 import xws.microservis.rentservice.repository.RentRequestRepository;
 
@@ -108,6 +111,21 @@ public class RentRequestService {
 		
 		
 	}
+	
+	public RentRequestDTO setRentRequestStatus(Date start,Date end, RentRequestStatus status,Long id) {
+    	
+		RentRequest rr = rentRepository.findById(id).orElse(null);
+		rr.setReservationStart(start);
+		rr.setReservationEnd(end);
+		rr.setStatus(status);
+        
+        
+ 
+        
+ 
+        rentRepository.save(rr);
+        return new RentRequestDTO(rr);
+    }
 	
 	
 	
