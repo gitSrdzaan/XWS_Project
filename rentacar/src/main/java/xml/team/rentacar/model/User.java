@@ -1,8 +1,17 @@
-package xml.team.model;
+package xml.team.rentacar.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -34,10 +43,17 @@ public class User {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="cars")
-	private Set<Car> userCars;
+	private Set<Car> userCars = new HashSet<Car>();
 	
 	public User() {
-		
+		//super();
+		this.name="";
+		this.surname="";
+		this.driversLicence="";
+		this.username="";
+		this.email="";
+		this.password="";
+		this.userCars= new HashSet<Car>();
 	}
 
 	public Long getId() {

@@ -3,16 +3,13 @@ package xml.team.rentacar.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import xml.team.rentacar.model.User;
- 
+import xml.team.rentacar.model.Codebook;
+
+
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface CodeBookRepository extends JpaRepository<Codebook, Long>{
 	
- 
+	 
     //User findByUsername(String username);
- 
-    //Optional<Hotel> findByAddress(String address);
- 
-   
 }
