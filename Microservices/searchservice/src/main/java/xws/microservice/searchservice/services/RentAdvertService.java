@@ -1,5 +1,8 @@
 package xws.microservice.searchservice.services;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,22 @@ public class RentAdvertService {
 		
 		return new RentAdvertDTO(rentAdvert);
 		
+	}
+	
+	public List<RentAdvert> searchRentAdvert(double longitude, double latitude, Date advertStartDate, Date advertEndDate) {
+		
+		List<RentAdvert> rentAdvert = repository.findAll();
+		List<RentAdvert> returnList = new ArrayList<RentAdvert>();
+
+		
+		for(RentAdvert ra : rentAdvert) {
+			if(ra.getCar().getLongitude() == longitude && ra.getCar().getLatitude() == latitude && ra.getAdvertStartDate() == advertStartDate && ra.getAdvertEndDate() == advertEndDate) {
+				returnList.add(ra);
+			
+			}
+		}
+
+		return returnList;
 	}
 	
 }

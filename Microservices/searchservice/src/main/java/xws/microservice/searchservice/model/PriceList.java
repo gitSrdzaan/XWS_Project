@@ -12,13 +12,13 @@ public class PriceList {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(nullable = false)
 	private Double pricePerDay;
 	
-	@Column
+	@Column(nullable = false)
 	private Double pricePerKilometer;
 	
-	@Column
+	@Column(nullable = false)
 	private Double priceCDW;
 	
 	/***

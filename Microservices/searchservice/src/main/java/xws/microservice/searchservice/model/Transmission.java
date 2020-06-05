@@ -12,7 +12,8 @@ public class Transmission {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column
+	
+	@Column(nullable = false)
 	private String transmission;
 	
 	public Transmission() {
