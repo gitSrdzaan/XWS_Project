@@ -43,6 +43,12 @@ public class CarDTO {
 		this.kidsSeats = car.getKidsSeats();
 		
 	}
+	
+
+	public CarDTO() {
+		super();
+	}
+
 
 	public Long getId() {
 		return id;

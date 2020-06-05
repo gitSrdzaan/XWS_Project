@@ -22,6 +22,14 @@ public class RentAdvertDTO {
 		this.priceList = rentAdvert.getPriceList();
 	}
 	
+	
+	
+	public RentAdvertDTO() {
+		super();
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
