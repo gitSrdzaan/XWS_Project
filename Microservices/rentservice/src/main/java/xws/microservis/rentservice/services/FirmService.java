@@ -32,9 +32,9 @@ public class FirmService {
 		
 	}
 	
-	public FirmDTO findFirmByCar(CarDTO carDTO) throws NoSuchElementException {
+	public FirmDTO findFirmByCar(Car car) throws NoSuchElementException {
 		ArrayList<Firm> firmList = (ArrayList<Firm>)repository.findAll();
-		Car car = carRepository.findById(carDTO.getId()).orElse(null);
+		
 		
 		if(car == null) {
 			throw new NoSuchElementException("Firma nema auto");

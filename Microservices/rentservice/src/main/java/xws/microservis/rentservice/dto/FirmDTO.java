@@ -16,8 +16,8 @@ public class FirmDTO {
 	private String firmCity;
 	private String firmCountry;
 	private String firmAdress;
-	private Set<Car> firmCars;
-	private List<User> firmUsers;
+	private Set<Long> firmCars_Id;
+	private List<Long> firmUsers_Id;
 	
 	public FirmDTO(Firm firm) {
 		this.id = firm.getId();
@@ -26,8 +26,13 @@ public class FirmDTO {
 		this.firmCity = firm.getFirmCity();
 		this.firmAdress = firm.getFirmAdress();
 		this.firmCountry = firm.getFirmCountry();
-		this.firmCars = firm.getFirmCars();
-		this.firmUsers = firm.getFirmUsers();
+		for(Car car : firm.getFirmCars()) {
+			this.firmCars_Id.add(car.getId());
+		}
+		for(User user : firm.getFirmUsers()) {
+			this.firmUsers_Id.add(user.getId());
+		}
+		
 	}
 
 	public Long getId() {
@@ -78,20 +83,20 @@ public class FirmDTO {
 		this.firmAdress = firmAdress;
 	}
 
-	public Set<Car> getFirmCars() {
-		return firmCars;
+	public Set<Long> getFirmCars() {
+		return firmCars_Id;
 	}
 
-	public void setFirmCars(Set<Car> firmCars) {
-		this.firmCars = firmCars;
+	public void setFirmCars(Set<Long> firmCars) {
+		this.firmCars_Id = firmCars;
 	}
 
-	public List<User> getFirmUsers() {
-		return firmUsers;
+	public List<Long> getFirmUsers() {
+		return firmUsers_Id;
 	}
 
-	public void setFirmUsers(List<User> firmUsers) {
-		this.firmUsers = firmUsers;
+	public void setFirmUsers(List<Long> firmUsers) {
+		this.firmUsers_Id = firmUsers;
 	}
 
 }
