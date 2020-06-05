@@ -71,7 +71,7 @@ public class RentRequestController {
 	
 	
 	
-	@PostMapping(path = "/kreiranjeZahtjeva")
+	@PostMapping(path = "/kreiranjeZahtjeva",consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createRentRequest(@RequestBody RentRequestDTO rrDTO) {
 		
 		if(rrDTO != null) {
@@ -86,7 +86,7 @@ public class RentRequestController {
 		return new ResponseEntity<>("Los zahtjev za rentiranje",HttpStatus.BAD_REQUEST);
 	}
 	
-	@PostMapping(path = "/kreiranjeBundleZahtjeva")
+	@PostMapping(path = "/kreiranjeBundleZahtjeva",consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createBundleRequest(@RequestBody List<RentRequestDTO> listRRDTO){
 		RentRequestBundle rrb = new RentRequestBundle();
 		if(listRRDTO != null || listRRDTO.size()>0) {
@@ -107,7 +107,7 @@ public class RentRequestController {
 
 	}
 	
-	@PostMapping(path = "/setRentRequestStatus")
+	@PostMapping(path = "/setRentRequestStatus", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> setRentRequestStatus(@RequestBody RentRequestDTO rentRDTO) {
 		RentRequestDTO rrDTO = rentRService.findRentRequest(rentRDTO.getId());
 		
