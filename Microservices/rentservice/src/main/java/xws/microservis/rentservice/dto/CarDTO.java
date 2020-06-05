@@ -12,8 +12,8 @@ public class CarDTO {
 	private String carRegistration;
 	private String carMark;
 	private String carModel;
-	private CarFuel carFuel;
-	private Transmission transmission;
+	private Long carFuel_Id;
+	private Long transmission_Id;
 	private String carClass;
 	private Integer carMileage;//kilometraza do sada
 	
@@ -33,8 +33,8 @@ public class CarDTO {
 		this.carClass = car.getCarClass();
 		this.carMark = car.getCarMark();
 		this.carModel = car.getCarModel();
-		this.carFuel =car.getCarFuel();
-		this.transmission = car.getTransmission();
+		this.carFuel_Id =car.getCarFuel().getId();
+		this.transmission_Id = car.getTransmission().getId();
 		this.carMileage = car.getCarMileage();
 		this.carComment = car.getCarComment();
 		this.carGrade = car.getCarGrade();
@@ -76,20 +76,20 @@ public class CarDTO {
 		this.carModel = carModel;
 	}
 
-	public CarFuel getCarFuel() {
-		return carFuel;
+	public Long getCarFuel() {
+		return carFuel_Id;
 	}
 
 	public void setCarFuel(CarFuel carFuel) {
-		this.carFuel = carFuel;
+		this.carFuel_Id = carFuel.getId();
 	}
 
-	public Transmission getTransmission() {
-		return transmission;
+	public Long getTransmission() {
+		return transmission_Id;
 	}
 
 	public void setTransmission(Transmission transmission) {
-		this.transmission = transmission;
+		this.transmission_Id = transmission.getId();
 	}
 
 	public String getCarClass() {

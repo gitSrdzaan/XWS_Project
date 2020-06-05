@@ -2,27 +2,24 @@ package xws.microservis.rentservice.dto;
 
 import java.util.Date;
 
-
-import xws.microservis.rentservice.model.RentAdvert;
 import xws.microservis.rentservice.model.RentRequest;
 import xws.microservis.rentservice.model.RentRequestStatus;
-import xws.microservis.rentservice.model.User;
 
 public class RentRequestDTO {
 
 	private Long id;
-	private RentAdvert rentAdvert;
-	private User advertSender;
+	private Long rentAdvert_Id;
+	private Long advertSender_Id;
 	private Date reservationStart;
 	private Date reservationEnd;
 	private RentRequestStatus status;
 	
 	public RentRequestDTO (RentRequest rr) {
 		this.id = rr.getId();
-		this.advertSender = rr.getAdvertSender();
+		this.advertSender_Id = rr.getAdvertSender().getId();
 		this.reservationStart = rr.getReservationStart();
 		this.reservationEnd = rr.getReservationEnd();
-		this.rentAdvert = rr.getRentAdvert();
+		this.rentAdvert_Id = rr.getRentAdvert().getId();
 		this.status = rr.getStatus();
 	}
 
@@ -34,20 +31,21 @@ public class RentRequestDTO {
 		this.id = id;
 	}
 
-	public RentAdvert getRentAdvert() {
-		return rentAdvert;
+	
+	public Long getRentAdvert_Id() {
+		return rentAdvert_Id;
 	}
 
-	public void setRentAdvert(RentAdvert rentAdvert) {
-		this.rentAdvert = rentAdvert;
+	public void setRentAdvert_Id(Long rentAdvert_Id) {
+		this.rentAdvert_Id = rentAdvert_Id;
 	}
 
-	public User getAdvertSender() {
-		return advertSender;
+	public Long getAdvertSender_Id() {
+		return advertSender_Id;
 	}
 
-	public void setAdvertSender(User advertSender) {
-		this.advertSender = advertSender;
+	public void setAdvertSender_Id(Long advertSender_Id) {
+		this.advertSender_Id = advertSender_Id;
 	}
 
 	public Date getReservationStart() {

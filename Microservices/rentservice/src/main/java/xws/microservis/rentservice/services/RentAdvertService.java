@@ -16,13 +16,22 @@ public class RentAdvertService {
 	
 	
 	//pronalazenje reklame
-	public RentAdvertDTO findRentAdvert(Long id) {
+	public RentAdvertDTO findRentAdvertDTO(Long id) {
 		RentAdvert ra = repository.findById(id).orElse(null);
 		if(ra == null) {
 			throw new NoSuchElementException();
 		}
 		
 		return new RentAdvertDTO(ra);
+	}
+	
+	public RentAdvert findRentAdvert(Long id) {
+		RentAdvert ra = repository.findById(id).orElse(null);
+		if(ra == null) {
+			throw new NoSuchElementException();
+		}
+		
+		return ra;
 	}
 	
 	

@@ -1,6 +1,5 @@
 package xws.microservis.rentservice.controller;
 
-import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -8,15 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import xws.microservis.rentservice.dto.CarDTO;
 import xws.microservis.rentservice.dto.FirmDTO;
-import xws.microservis.rentservice.dto.RentAdvertDTO;
 import xws.microservis.rentservice.dto.RentRequestDTO;
+import xws.microservis.rentservice.model.Car;
+import xws.microservis.rentservice.model.RentAdvert;
 import xws.microservis.rentservice.model.RentRequestBundle;
 import xws.microservis.rentservice.model.RentRequestStatus;
 import xws.microservis.rentservice.services.CarService;
@@ -44,11 +44,20 @@ public class RentRequestController {
 	}
 	
 	
-	@GetMapping(path = "/pronalezenjeVlasnika")
-	public ResponseEntity<?> findOwner(@RequestBody RentAdvertDTO raDTO){
-		CarDTO cDTO = carService.findCar(raDTO.getCar().getId());
+	@GetMapping(path = "/pronalezenjeVlasnika/{rentAdvertId}")
+	public ResponseEntity<?> findOwner(@PathVariable Long rentAdvertId){
+		RentAdvert ra = new RentAdvert();
 		try {
-			FirmDTO fDTO = firmService.findFirmByCar(cDTO);
+		 ra = rentAService.findRentAdvert(rentAdvertId);
+		}
+		catch(NoSuchElementException e) {
+			return new ResponseEntity<>("GRESKA Oglas ne postoji", HttpStatus.BAD_REQUEST);
+		}
+		
+		Car car = ra.getCar();
+		
+		try {
+			FirmDTO fDTO = firmService.findFirmByCar(car);
 			if(fDTO == null) {
 				return new ResponseEntity<>("GRESKA Auto nije firmin", HttpStatus.BAD_REQUEST);
 			}

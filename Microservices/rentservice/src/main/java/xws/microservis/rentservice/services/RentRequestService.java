@@ -13,22 +13,29 @@ import xws.microservis.rentservice.dto.RentRequestDTO;
 import xws.microservis.rentservice.model.RentRequest;
 import xws.microservis.rentservice.model.RentRequestBundle;
 import xws.microservis.rentservice.model.RentRequestStatus;
+import xws.microservis.rentservice.repository.RentAdvertRepository;
 import xws.microservis.rentservice.repository.RentRequestBundleRepository;
 import xws.microservis.rentservice.repository.RentRequestRepository;
+import xws.microservis.rentservice.repository.UserRepository;
 
 @Service
 public class RentRequestService {
 
 	@Autowired
-	private RentRequestRepository rentRepository;
+	private RentRequestRepository rentRRepository;
 	
 	@Autowired
 	private RentRequestBundleRepository bundleRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private RentAdvertRepository rentARepository;
+	
 	//pronalazenje zahtjeva
 	public RentRequestDTO findRentRequest(Long id) {
 		
-		RentRequest rr = rentRepository.findById(id).orElse(null);
+		RentRequest rr = rentRRepository.findById(id).orElse(null);
 		
 		if(rr == null) {
 			throw new NoSuchElementException();
@@ -43,13 +50,13 @@ public class RentRequestService {
 		RentRequest rr = new RentRequest();
 		try {
 			rr.setId(rrDTO.getId());
-			rr.setAdvertSender(rrDTO.getAdvertSender());
-			rr.setRentAdvert(rrDTO.getRentAdvert());
+			rr.setAdvertSender(userRepository.findById(rrDTO.getAdvertSender_Id()).orElse(null));
+			rr.setRentAdvert(rentARepository.findById(rrDTO.getRentAdvert_Id()).orElse(null));
 			rr.setReservationStart(rrDTO.getReservationStart());
 			rr.setReservationEnd(rrDTO.getReservationEnd());
 			rr.setStatus(rrDTO.getStatus());
 			
-			rentRepository.save(rr);
+			rentRRepository.save(rr);
 			
 		}
 		catch(Exception e) {
@@ -64,7 +71,10 @@ public class RentRequestService {
 		RentRequestBundle rrb = new RentRequestBundle();
 		try {
 			rrb.setId(rrbDTO.getId());
-			rrb.setRentRequest(rrbDTO.getRentRequestList());
+			for(Long rr_Id  : rrbDTO.getRentRequestList_Id()) {
+				rrb.getRentRequest().add(rentRRepository.findById(rr_Id).orElse(null));
+			}
+			
 			
 			bundleRepository.save(rrb);
 		}
@@ -97,8 +107,8 @@ public class RentRequestService {
 		for (RentRequestDTO rrDTO : listRR) {
 			RentRequest rr = new RentRequest();
 			rr.setId(rrDTO.getId());
-			rr.setAdvertSender(rrDTO.getAdvertSender());
-			rr.setRentAdvert(rrDTO.getRentAdvert());
+			rr.setAdvertSender(userRepository.findById(rrDTO.getAdvertSender_Id()).orElse(null));
+			rr.setRentAdvert(rentARepository.findById(rrDTO.getRentAdvert_Id()).orElse(null));
 			rr.setReservationStart(rrDTO.getReservationStart());
 			rr.setReservationEnd(rrDTO.getReservationEnd());
 			rr.setStatus(rrDTO.getStatus());
@@ -114,7 +124,7 @@ public class RentRequestService {
 	
 	public RentRequestDTO setRentRequestStatus(Date start,Date end, RentRequestStatus status,Long id) {
     	
-		RentRequest rr = rentRepository.findById(id).orElse(null);
+		RentRequest rr = rentRRepository.findById(id).orElse(null);
 		rr.setReservationStart(start);
 		rr.setReservationEnd(end);
 		rr.setStatus(status);
@@ -123,7 +133,7 @@ public class RentRequestService {
  
         
  
-        rentRepository.save(rr);
+        rentRRepository.save(rr);
         return new RentRequestDTO(rr);
     }
 	

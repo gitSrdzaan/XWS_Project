@@ -181,13 +181,13 @@ public class Car {
 		this.id = carDTO.getId();
 		this.carClass = carDTO.getCarClass();
 		this.carComment = carDTO.getCarComment();
-		this.carFuel = carDTO.getCarFuel();
+		//this.carFuel = carDTO.getCarFuel()el();
 		this.carGrade = carDTO.getCarGrade();
 		this.carMark = carDTO.getCarMark();
 		this.carMileage = carDTO.getCarMileage();
 		this.carRegistration = carDTO.getCarRegistration();
 		this.kidsSeats = carDTO.getKidsSeats();
-		this.transmission = carDTO.getTransmission();
+		//this.transmission = carDTO.getTransmission();
 		this.latitude = carDTO.getLatitude();
 		this.longitude = carDTO.getLongitude();
 		this.carModel = carDTO.getCarModel();

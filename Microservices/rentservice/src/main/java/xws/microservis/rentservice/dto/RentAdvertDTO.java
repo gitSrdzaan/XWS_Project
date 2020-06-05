@@ -2,24 +2,23 @@ package xws.microservis.rentservice.dto;
 
 import java.util.Date;
 
-import xws.microservis.rentservice.model.Car;
-import xws.microservis.rentservice.model.PriceList;
+
 import xws.microservis.rentservice.model.RentAdvert;
 
 public class RentAdvertDTO {
 
 	private Long id;
-	private Car car;
+	private Long car_Id;
 	private Date advertStartDate;
 	private Date advertEndDate;
-	private PriceList priceList;
+	private Long priceList_Id;
 	
 	public RentAdvertDTO(RentAdvert ra) {
 		this.id = ra.getId();
-		this.car = ra.getCar();
+		this.car_Id = ra.getCar().getId();
 		this.advertStartDate = ra.getAdvertStartDate();
 		this.advertEndDate = ra.getAdvertEndDate();
-		this.priceList = ra.getPriceList();
+		this.priceList_Id = ra.getPriceList().getId();
 	}
 	
 	public Long getId() {
@@ -30,12 +29,23 @@ public class RentAdvertDTO {
 		this.id = id;
 	}
 
-	public Car getCar() {
-		return car;
+	
+	public Long getCar_Id() {
+		return car_Id;
 	}
-	public void setCar(Car car) {
-		this.car = car;
+
+	public void setCar_Id(Long car_Id) {
+		this.car_Id = car_Id;
 	}
+
+	public Long getPriceList_Id() {
+		return priceList_Id;
+	}
+
+	public void setPriceList_Id(Long priceList_Id) {
+		this.priceList_Id = priceList_Id;
+	}
+
 	public Date getAdvertStartDate() {
 		return advertStartDate;
 	}
@@ -48,10 +58,5 @@ public class RentAdvertDTO {
 	public void setAdvertEndDate(Date advertEndDate) {
 		this.advertEndDate = advertEndDate;
 	}
-	public PriceList getPriceList() {
-		return priceList;
-	}
-	public void setPriceList(PriceList priceList) {
-		this.priceList = priceList;
-	}
+
 }
