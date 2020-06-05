@@ -19,7 +19,8 @@ public class RentAdvert {
 	private Date advertEndDate;
 	
 	
-	@Column(nullable=false)
+	@OneToOne
+	@JoinColumn(name = "priceList_id")
 	private PriceList priceList;
 	
 	
