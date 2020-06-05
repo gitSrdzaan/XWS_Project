@@ -2,6 +2,8 @@ package xws.microservis.rentservice.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import xws.microservis.rentservice.model.RentRequest;
 import xws.microservis.rentservice.model.RentRequestStatus;
 
@@ -10,7 +12,9 @@ public class RentRequestDTO {
 	private Long id;
 	private Long rentAdvert_Id;
 	private Long advertSender_Id;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date reservationStart;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date reservationEnd;
 	private RentRequestStatus status;
 	

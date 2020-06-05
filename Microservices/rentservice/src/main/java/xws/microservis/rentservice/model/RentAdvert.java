@@ -23,10 +23,10 @@ public class RentAdvert {
 	@JoinColumn
 	private Car car;
 	
-	@Column(nullable = false)
+	@Column()
 	private Date advertStartDate;
 	
-	@Column(nullable = false)
+	@Column()
 	private Date advertEndDate;
 	
 	
