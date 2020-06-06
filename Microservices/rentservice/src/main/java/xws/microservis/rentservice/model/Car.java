@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import xws.microservis.rentservice.dto.CarDTO;
@@ -62,6 +63,8 @@ public class Car {
 	private Integer kidsSeats;
 	
 	//Slika automobila
+	
+	
 	
 	
 	
