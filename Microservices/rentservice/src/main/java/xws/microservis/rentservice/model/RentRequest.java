@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "rent_request")
 public class RentRequest {
 
 	@Id
@@ -26,6 +27,11 @@ public class RentRequest {
 	
 	@Column
 	private RentRequestStatus status;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "bundle_id", nullable = true)
+	private RentRequestBundle rentRequestBundle;
+	
 	
 	
 	public RentRequest() {

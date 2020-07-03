@@ -2,7 +2,16 @@ package xml.team.rentacar.model;
 
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+
 
 @Entity
 public class RentRequest {
@@ -23,6 +32,9 @@ public class RentRequest {
 	
 	private Date reservationEnd;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "bundle_id", nullable = true)
+	private RentRequestBundle rentRequestBundle;
 	
 	public RentRequest() {
 		
