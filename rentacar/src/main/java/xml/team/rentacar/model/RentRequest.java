@@ -7,8 +7,16 @@ import javax.persistence.*;
 @Entity
 public class RentRequest {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@OneToOne
+	@JoinColumn(name = "rentAdvert_id")
 	private RentAdvert rentAdvert;
 	
+	@OneToOne
+	@JoinColumn(name = "user_id")
 	private User advertSender;
 	
 	private Date reservationStart;

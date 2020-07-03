@@ -8,6 +8,10 @@ import javax.persistence.*;
 @Entity
 public class RentAdvert {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
 	@OneToOne
 	@JoinColumn
 	private Car car;

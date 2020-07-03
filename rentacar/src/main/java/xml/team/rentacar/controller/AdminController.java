@@ -102,7 +102,8 @@ public class AdminController {
     }
     
     @PostMapping("addInCodebook/{id}/{s1}/{s2}/{s3}/{s4}")
-    public ResponseEntity<?> addInCodebook (@PathVariable Long id, @PathVariable String s1, @PathVariable String s2, @PathVariable String s3,@PathVariable String s4)  {
+    public ResponseEntity<?> addInCodebook (@PathVariable Long id, 
+    		@PathVariable String s1, @PathVariable String s2, @PathVariable String s3,@PathVariable String s4)  {
     	
     	Codebook c = codebookService.getOne(id);
     	if (c==null) {
@@ -115,7 +116,8 @@ public class AdminController {
     }
     
     @DeleteMapping("deleteFromCodebook/{id}/{s1}/{s2}/{s3}/{s4}")
-    public ResponseEntity<?> deleteFromCodebook(@PathVariable Long id, @PathVariable String s1, @PathVariable String s2, @PathVariable String s3,@PathVariable String s4)  {
+    public ResponseEntity<?> deleteFromCodebook(@PathVariable Long id, 
+    		@PathVariable String s1, @PathVariable String s2, @PathVariable String s3,@PathVariable String s4)  {
     	
     	Codebook c = codebookService.getOne(id);
     	if (c==null) {
