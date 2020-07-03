@@ -24,11 +24,20 @@ public class Car {
 	@Column(nullable = false)
 	private String carRegistration;
 	
-	@Column(nullable = false)
-	private String carMark;
+	//@Column(nullable = false)
+	//private String carMark;
 	
-	@Column(nullable = false)
-	private String carModel;
+	@OneToOne
+	@JoinColumn
+	private CarMark carMark;
+	
+	@OneToOne
+	@JoinColumn
+	private CarModel carModel;
+	
+	@OneToOne
+	@JoinColumn
+	private CarClass carClass;
 	
 	
 	@OneToOne(fetch = FetchType.EAGER)
@@ -39,8 +48,7 @@ public class Car {
 	@JoinColumn(name = "transmission_id")
 	private Transmission transmission;
 	
-	@Column(nullable = false)
-	private String carClass;
+	
 	
 	@Column(nullable = false)
 	private Integer carMileage;//kilometraza do sada
@@ -78,21 +86,7 @@ public class Car {
 		this.id = id;
 	}
 
-	public String getCarMark() {
-		return carMark;
-	}
-
-	public void setCarMark(String carMark) {
-		this.carMark = carMark;
-	}
-
-	public String getCarModel() {
-		return carModel;
-	}
-
-	public void setCarModel(String carModel) {
-		this.carModel = carModel;
-	}
+	
 
 	public CarFuel getCarFuel() {
 		return carFuel;
@@ -118,13 +112,7 @@ public class Car {
 		this.carComment = carComment;
 	}
 
-	public String getCarClass() {
-		return carClass;
-	}
-
-	public void setCarClass(String carClass) {
-		this.carClass = carClass;
-	}
+	
 
 	public Integer getCarMileage() {
 		return carMileage;

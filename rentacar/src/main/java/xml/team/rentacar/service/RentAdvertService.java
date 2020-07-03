@@ -10,4 +10,6 @@ public class RentAdvertService {
 
 	@Autowired
 	private RentAdvertRepository rentARepository;
+	
+	
 }
