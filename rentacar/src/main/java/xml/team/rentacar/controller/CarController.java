@@ -1,15 +1,19 @@
 package xml.team.rentacar.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import xml.team.rentacar.model.Car;
+import xml.team.rentacar.model.CarMark;
 import xml.team.rentacar.service.CarService;
 
 @RestController
@@ -20,7 +24,7 @@ public class CarController {
 	private CarService carService;
 	
 	
-	@GetMapping(value = "/svi")
+	@GetMapping(path = "/svi")
 	public ResponseEntity<?> findAll(){
 		List<Car> cars = carService.findAll();
 		if (cars == null) {
@@ -28,6 +32,22 @@ public class CarController {
 		}
 		
 		return new ResponseEntity<>(cars,HttpStatus.OK);
+	}
+	
+	@PostMapping(path = "/novi", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> addCar(@RequestBody Car car){
+		ArrayList<CarMark> markList = carService.findMark(car.getCarMark());
+		
+		
+		try {
+			carService.addCar(car);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("Greska pri dodavanju automobila",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }
