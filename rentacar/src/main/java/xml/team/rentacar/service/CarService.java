@@ -84,4 +84,16 @@ public class CarService {
 		
 		return cc;
 	}
+
+	public Car findCar(Long carID) {
+		// TODO Auto-generated method stub
+		
+		Car car = repository.findById(carID).orElse(null);
+		
+		if(car == null) {
+			return null;
+		}
+		
+		return car;
+	}
 }

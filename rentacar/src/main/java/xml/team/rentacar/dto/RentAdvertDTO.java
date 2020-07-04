@@ -6,29 +6,23 @@ import xml.team.rentacar.model.RentAdvert;
 
 public class RentAdvertDTO {
 
-	private CarDTO carDTO;
+	private Long carID;
 	private Date advertStartDate;
 	private Date advertEndDate;
-	private PriceListDTO priceListDTO;
+	private Long priceListID;
 	
 	public RentAdvertDTO() {
 		
 	}
 	
 	public RentAdvertDTO(RentAdvert ra) {
-		this.carDTO = new CarDTO(ra.getCar());
+		//this.carDTO = new CarDTO(ra.getCar());
 		this.advertStartDate = ra.getAdvertStartDate();
 		this.advertEndDate = ra.getAdvertEndDate();
-		this.priceListDTO = new PriceListDTO(ra.getPriceList());
+		//this.priceListDTO = new PriceListDTO(ra.getPriceList());
 	}
 
-	public CarDTO getCarDTO() {
-		return carDTO;
-	}
-
-	public void setCarDTO(CarDTO carDTO) {
-		this.carDTO = carDTO;
-	}
+	
 
 	public Date getAdvertStartDate() {
 		return advertStartDate;
@@ -46,13 +40,23 @@ public class RentAdvertDTO {
 		this.advertEndDate = advertEndDate;
 	}
 
-	public PriceListDTO getPriceListDTO() {
-		return priceListDTO;
+	public Long getCarID() {
+		return carID;
 	}
 
-	public void setPriceListDTO(PriceListDTO priceListDTO) {
-		this.priceListDTO = priceListDTO;
+	public void setCarID(Long carID) {
+		this.carID = carID;
 	}
+
+	public Long getPriceListID() {
+		return priceListID;
+	}
+
+	public void setPriceListID(Long priceListID) {
+		this.priceListID = priceListID;
+	}
+
+	
 	
 	
 	
