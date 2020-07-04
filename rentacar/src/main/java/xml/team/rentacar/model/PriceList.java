@@ -1,8 +1,12 @@
 package xml.team.rentacar.model;
 
 import java.util.HashMap;
+import java.util.Map;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 @Entity
@@ -22,12 +26,12 @@ public class PriceList {
 	
 	//Intervali za popust
 	@Column
-    @ElementCollection(targetClass = Integer.class)
-	private HashMap<Integer , Integer> saleIntervals ; 
+    @ElementCollection
+	private Map<Integer , Integer> saleIntervals ; 
 	
 	
 	public PriceList() {
-		
+		this.saleIntervals = new HashMap<Integer,Integer>();
 	}
 
 
@@ -72,7 +76,7 @@ public class PriceList {
 
 
 	public HashMap<Integer, Integer> getSaleIntervals() {
-		return saleIntervals;
+		return (HashMap<Integer,Integer>)saleIntervals;
 	}
 
 

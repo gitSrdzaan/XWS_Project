@@ -13,4 +13,5 @@ public interface CarMarkRepository extends JpaRepository<CarMark, Long> {
 	public List<CarMark> findByMark(String mark);
 	
 	
+	
 }

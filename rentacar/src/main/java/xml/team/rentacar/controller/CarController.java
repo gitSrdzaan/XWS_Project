@@ -1,6 +1,5 @@
 package xml.team.rentacar.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import xml.team.rentacar.model.Car;
+import xml.team.rentacar.model.CarClass;
 import xml.team.rentacar.model.CarMark;
+import xml.team.rentacar.model.CarModel;
 import xml.team.rentacar.service.CarService;
 
 @RestController
@@ -36,7 +37,22 @@ public class CarController {
 	
 	@PostMapping(path = "/novi", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addCar(@RequestBody Car car){
-		ArrayList<CarMark> markList = carService.findMark(car.getCarMark());
+		CarMark mark = carService.findMark(car.getCarMark());
+		if(mark == null) {
+			return new ResponseEntity<>("Marka automobila nije izabrana",HttpStatus.BAD_REQUEST);
+		}
+		CarModel model = carService.modelExsits(mark, car.getCarModel());
+		if(model == null) {
+			return new ResponseEntity<>("Model automobila nije izabrana",HttpStatus.BAD_REQUEST);
+
+		}
+		CarClass cc = carService.classExsits(model, car.getCarClass());
+		if( cc == null) {
+			return new ResponseEntity<>("Klasa automobila nije izabrana",HttpStatus.BAD_REQUEST);
+
+		}
+		
+		
 		
 		
 		try {

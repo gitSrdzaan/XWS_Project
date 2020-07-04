@@ -19,7 +19,7 @@ public class CarMark {
 	private Long id;
 	
 	
-	@Column
+	@Column(unique = true)
 	private String mark;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mark")
