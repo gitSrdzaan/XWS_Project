@@ -6,13 +6,11 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 
 @Entity
 public class Car {
@@ -24,40 +22,29 @@ public class Car {
 	@Column(nullable = false)
 	private String carRegistration;
 	
-	//@Column(nullable = false)
-	//private String carMark;
-	
-	@OneToOne
-	@JoinColumn
-	private CarMark carMark;
-	
-	@OneToOne
-	@JoinColumn
-	private CarModel carModel;
-	
-	@OneToOne
-	@JoinColumn
-	private CarClass carClass;
-	
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "carfuel_id")
-	private CarFuel carFuel;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "transmission_id")
-	private Transmission transmission;
-	
-	
+	@Column(nullable = false)
+	private String carMark;
 	
 	@Column(nullable = false)
+	private String carModel;
+	
+	@Column(nullable = false)
+	private String carClass;
+	
+	@Column(nullable = false)
+	private String carFuel;
+	
+	@Column(nullable = false)
+	private String transmission;
+	
+	@Column(nullable = true)
 	private Integer carMileage;//kilometraza do sada
 	
     @Column
     @ElementCollection(targetClass = String.class)
 	private List<String> carComment = new ArrayList<String>();
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer carGrade;
 	
 	private double longitude;
@@ -66,7 +53,7 @@ public class Car {
 	
 	//Cjenovnik
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer kidsSeats;
 	
 	//Slika automobila
@@ -86,21 +73,44 @@ public class Car {
 		this.id = id;
 	}
 
-	
 
-	public CarFuel getCarFuel() {
+	public String getCarMark() {
+		return carMark;
+	}
+
+	public void setCarMark(String carMark) {
+		this.carMark = carMark;
+	}
+
+	public String getCarModel() {
+		return carModel;
+	}
+
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
+
+	public String getCarClass() {
+		return carClass;
+	}
+
+	public void setCarClass(String carClass) {
+		this.carClass = carClass;
+	}
+
+	public String getCarFuel() {
 		return carFuel;
 	}
 
-	public void setCarFuel(CarFuel carFuel) {
+	public void setCarFuel(String carFuel) {
 		this.carFuel = carFuel;
 	}
 
-	public Transmission getTransmission() {
+	public String getTransmission() {
 		return transmission;
 	}
 
-	public void setTransmission(Transmission transmission) {
+	public void setTransmission(String transmission) {
 		this.transmission = transmission;
 	}
 
@@ -111,8 +121,6 @@ public class Car {
 	public void setCarComment(List<String> carComment) {
 		this.carComment = carComment;
 	}
-
-	
 
 	public Integer getCarMileage() {
 		return carMileage;

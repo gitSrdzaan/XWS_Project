@@ -30,7 +30,7 @@ public class CarModel {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "model")
 	private List<CarClass> listCarClass;
-	//git token
+	
 	public CarModel() {
 		this.listCarClass = new ArrayList<CarClass>();
 	}
@@ -50,5 +50,6 @@ public class CarModel {
 	public void setModel(String model) {
 		this.model = model;
 	}
+	
 	
 }

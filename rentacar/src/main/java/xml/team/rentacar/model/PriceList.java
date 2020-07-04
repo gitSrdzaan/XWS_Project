@@ -21,7 +21,8 @@ public class PriceList {
 	private Double priceCDW;
 	
 	//Intervali za popust
-	
+	@Column
+    @ElementCollection(targetClass = Integer.class)
 	private HashMap<Integer , Integer> saleIntervals ; 
 	
 	

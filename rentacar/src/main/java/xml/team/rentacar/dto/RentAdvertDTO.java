@@ -2,6 +2,8 @@ package xml.team.rentacar.dto;
 
 import java.util.Date;
 
+import xml.team.rentacar.model.RentAdvert;
+
 public class RentAdvertDTO {
 
 	private CarDTO carDTO;
@@ -11,6 +13,13 @@ public class RentAdvertDTO {
 	
 	public RentAdvertDTO() {
 		
+	}
+	
+	public RentAdvertDTO(RentAdvert ra) {
+		this.carDTO = new CarDTO(ra.getCar());
+		this.advertStartDate = ra.getAdvertStartDate();
+		this.advertEndDate = ra.getAdvertEndDate();
+		this.priceListDTO = new PriceListDTO(ra.getPriceList());
 	}
 
 	public CarDTO getCarDTO() {
