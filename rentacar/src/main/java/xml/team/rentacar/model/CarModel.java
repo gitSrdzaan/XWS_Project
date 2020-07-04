@@ -30,7 +30,7 @@ public class CarModel {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "model")
 	private List<CarClass> listCarClass;
-	
+	//konsturktro
 	public CarModel() {
 		this.listCarClass = new ArrayList<CarClass>();
 	}
