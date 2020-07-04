@@ -54,13 +54,14 @@ public class CarService {
 
 	public CarMark findMark(String carMark) {
 		// TODO Auto-generated method stub
-		
-		ArrayList<CarMark> markList = (ArrayList<CarMark>) markRepository.findByMark(carMark);
-		if(markList == null) {
+		System.out.println(carMark);
+		CarMark mark = markRepository.findMark(carMark);
+		//ArrayList<CarMark> markList = (ArrayList<CarMark>) markRepository.findByMark(carMark);
+		if(mark == null) {
 			return null;
 		}
 		//vraca prvog, jer je unique polja i moze biti samo jedna vrijednost
-		return markList.get(0);
+		return mark;
 		
 	}
 

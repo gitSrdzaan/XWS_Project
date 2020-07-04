@@ -40,7 +40,7 @@ public class Car {
 	@Column(nullable = true)
 	private Integer carMileage;//kilometraza do sada
 	
-    @Column
+    @Column(nullable = true)
     @ElementCollection(targetClass = String.class)
 	private List<String> carComment = new ArrayList<String>();
 	
