@@ -67,7 +67,7 @@ public class RentAdvertController {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Greska pri uspsivanja oglasa", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>("Greska pri upisivanja oglasa", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		return new ResponseEntity<>(HttpStatus.OK);

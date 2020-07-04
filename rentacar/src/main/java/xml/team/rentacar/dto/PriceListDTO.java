@@ -21,6 +21,11 @@ public class PriceListDTO {
 	
 	private HashMap<Integer , Integer> saleIntervals ; 
 	
+	private Long firmID;
+	
+	public PriceListDTO() {
+		
+	}
 	
 	public PriceListDTO(PriceList priceList) {
 		// TODO Auto-generated constructor stub
@@ -79,6 +84,14 @@ public class PriceListDTO {
 
 	public void setSaleIntervals(HashMap<Integer, Integer> saleIntervals) {
 		this.saleIntervals = saleIntervals;
+	}
+
+	public Long getFirmID() {
+		return firmID;
+	}
+
+	public void setFirmID(Long firmID) {
+		this.firmID = firmID;
 	}
 
 }

@@ -6,7 +6,10 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -29,7 +32,14 @@ public class PriceList {
     @ElementCollection
 	private Map<Integer , Integer> saleIntervals ; 
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name= "firm_id")
+	private Firm firm;
 	
+	
+	
+
+
 	public PriceList() {
 		this.saleIntervals = new HashMap<Integer,Integer>();
 	}
@@ -82,5 +92,13 @@ public class PriceList {
 
 	public void setSaleIntervals(HashMap<Integer, Integer> saleIntervals) {
 		this.saleIntervals = saleIntervals;
+	}
+	public Firm getFirm() {
+		return firm;
+	}
+
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
 	}
 }

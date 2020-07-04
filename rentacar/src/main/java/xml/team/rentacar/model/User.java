@@ -42,7 +42,7 @@ public class User {
 	private String password;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="cars")
+	@JoinColumn(name="user_cars")
 	private Set<Car> userCars = new HashSet<Car>();
 	
 	public User() {

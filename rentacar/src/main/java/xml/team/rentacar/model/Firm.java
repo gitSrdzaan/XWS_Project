@@ -1,5 +1,6 @@
 package xml.team.rentacar.model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,12 +40,10 @@ public class Firm {
 	private String firmAdress;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="cars")
-	private Set<Car> firmCars;
+	@JoinColumn(name="firm_cars")
+	private Set<Car> firmCars = new HashSet<Car>();
 	
-	/**
-	 * TODO:provjeriti sta je JoinColumn 
-	 * */
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="users")
 	private List<User> firmUsers;
