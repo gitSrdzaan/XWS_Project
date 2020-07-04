@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import xml.team.rentacar.model.Firm;
 import xml.team.rentacar.model.PriceList;
 import xml.team.rentacar.repository.FirmRepository;
 import xml.team.rentacar.repository.PriceListRepository;
-
+@Service
 public class PriceListService {
 
 	@Autowired

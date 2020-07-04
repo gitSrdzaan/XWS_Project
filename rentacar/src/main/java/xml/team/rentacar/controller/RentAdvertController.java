@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import xml.team.rentacar.dto.RentAdvertDTO;
 import xml.team.rentacar.model.Car;
+import xml.team.rentacar.model.Firm;
 import xml.team.rentacar.model.PriceList;
 import xml.team.rentacar.model.RentAdvert;
 import xml.team.rentacar.service.CarService;
+import xml.team.rentacar.service.FirmService;
 import xml.team.rentacar.service.PriceListService;
 import xml.team.rentacar.service.RentAdvertService;
 
@@ -33,9 +36,12 @@ public class RentAdvertController {
 	private PriceListService priceService;
 	
 	
-	@GetMapping(value="/svi")
-	public ResponseEntity<?> findAllRentAdvert(){
-		ArrayList<RentAdvert> raList = rentService.findAll();
+	
+	
+	@GetMapping(value="/svi/{firmID}")
+	public ResponseEntity<?> findAllRentAdvert(@PathVariable Long firmID){
+		
+		ArrayList<RentAdvert> raList = rentService.findFirmsAllRentAdvert(firmID);
 		
 		if(raList == null) {
 			return new ResponseEntity<>("Greska u izlistavanju oglasa", HttpStatus.NOT_ACCEPTABLE);

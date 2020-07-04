@@ -41,14 +41,15 @@ public class PriceListController {
 	}
 	
 	@PostMapping(value = "/novi", consumes = "application/json", produces = "application/json")
-	public ResponseEntity addPriceList(@RequestBody PriceListDTO plDTO) {
+	public ResponseEntity<?> addPriceList(@RequestBody PriceListDTO plDTO) {
 		Firm firm = firmService.findFirm(plDTO.getFirmID());
 		if(firm == null) {
-			return new ResponseEntity("Firma ne postoji", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Firma ne postoji", HttpStatus.BAD_REQUEST);
 		}
 		
 		try {
 			PriceList pl = new PriceList();
+			pl.setId(plDTO.getId());
 			pl.setFirm(firm);
 			pl.setPriceCDW(plDTO.getPriceCDW());
 			pl.setPricePerDay(plDTO.getPricePerDay());
@@ -58,10 +59,10 @@ public class PriceListController {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Greska pri upisu cjenovnika",HttpStatus.INTERNAL_SERVER_ERROR));
+			return new ResponseEntity<>("Greska pri upisu cjenovnika",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		return new ResponseEntitu<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
 }

@@ -27,7 +27,9 @@ public class RentAdvert {
 	@JoinColumn(name = "priceList_id")
 	private PriceList priceList;
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "firm")
+	private Firm firm;
 	
 	
 	
