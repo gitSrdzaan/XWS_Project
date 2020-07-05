@@ -10,8 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class CarModel {
@@ -28,7 +29,12 @@ public class CarModel {
 	@JoinColumn(name = "mark_id")
 	private CarMark mark;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "model")
+	@ManyToMany
+	@JoinTable(
+			name = "model_class",
+			joinColumns = @JoinColumn(name = "model_id"),
+			inverseJoinColumns = @JoinColumn(name = "car_class_id")
+			)
 	private List<CarClass> listCarClass;
 	
 	public CarModel() {
@@ -49,6 +55,22 @@ public class CarModel {
 
 	public void setModel(String model) {
 		this.model = model;
+	}
+
+	public CarMark getMark() {
+		return mark;
+	}
+
+	public void setMark(CarMark mark) {
+		this.mark = mark;
+	}
+
+	public List<CarClass> getListCarClass() {
+		return listCarClass;
+	}
+
+	public void setListCarClass(List<CarClass> listCarClass) {
+		this.listCarClass = listCarClass;
 	}
 	
 	
