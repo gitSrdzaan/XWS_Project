@@ -44,5 +44,13 @@ public class CarMark {
 	public void setMark(String mark) {
 		this.mark = mark;
 	}
+
+	public List<CarModel> getListModel() {
+		return listModel;
+	}
+
+	public void setListModel(List<CarModel> listModel) {
+		this.listModel = listModel;
+	}
 	
 }

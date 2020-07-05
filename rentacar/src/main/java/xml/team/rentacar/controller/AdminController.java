@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import xml.team.rentacar.model.CarMark;
+import xml.team.rentacar.model.CarModel;
 import xml.team.rentacar.model.Codebook;
 import xml.team.rentacar.model.User;
+import xml.team.rentacar.service.CarService;
 import xml.team.rentacar.service.CodebookService;
 import xml.team.rentacar.service.UserServiceImpl;
 
@@ -29,6 +32,8 @@ public class AdminController {
 	@Autowired
 	private CodebookService codebookService;
 	
+	@Autowired
+	private CarService carService;
 	
     @GetMapping("getAllUsers")
     public ResponseEntity<?> getAllUsers()  {
@@ -99,6 +104,46 @@ public class AdminController {
     		return new ResponseEntity("User deleted",HttpStatus.OK);
     	}
     	
+    }
+    /**
+     * TODO : odrzavanje sifrarnika
+     * */
+    
+    @PostMapping(value = "nova/marka", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> addNewCarMark(@RequestBody CarMark carMark) {
+    	CarMark mark = carService.findMark(carMark.getMark());
+    	if(mark != null) {
+    		return new ResponseEntity<>("Marka automobila vec postoji", HttpStatus.BAD_REQUEST);
+    	}
+    	
+    	try {
+    		carService.addMark(carMark);
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    		return new ResponseEntity<>("Greska pri upisu marke automobila", HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+    	
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    
+    @PostMapping(value = "novi/model/{markID}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> addNewCarModel(@RequestBody CarModel carModel,@PathVariable Long markID) {
+    	CarMark mark = carService.findMark(markID);
+    	if(mark != null) {
+    		return new ResponseEntity<>("Marka automobila nije izabrana", HttpStatus.BAD_REQUEST);
+    	}
+    	
+    	try {
+    		carService.addModel(mark, carModel);
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    		return new ResponseEntity<>("Greska pri upisu modela automobila", HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+    	
+    	return new ResponseEntity<>(HttpStatus.OK);
     }
     
     @PostMapping("addInCodebook/{id}/{s1}/{s2}/{s3}/{s4}")

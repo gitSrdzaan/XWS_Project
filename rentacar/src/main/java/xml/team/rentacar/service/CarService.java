@@ -60,7 +60,17 @@ public class CarService {
 		if(mark == null) {
 			return null;
 		}
-		//vraca prvog, jer je unique polja i moze biti samo jedna vrijednost
+		return mark;
+		
+	}
+	
+	public CarMark findMark(Long id) {
+		// TODO Auto-generated method stub
+		//System.out.println(carMark);
+		CarMark mark = markRepository.findById(id).orElse(null);
+		if(mark == null) {
+			return null;
+		}
 		return mark;
 		
 	}
@@ -95,5 +105,40 @@ public class CarService {
 		}
 		
 		return car;
+	}
+
+	public void addMark(CarMark carMark) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			markRepository.save(carMark);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("Upis nove marke automobila nije uspio");
+		}
+		
+	}
+
+	public void addModel(CarMark mark, CarModel carModel) throws Exception {
+		// TODO Auto-generated method stub
+		mark.getListModel().add(carModel);
+		carModel.setMark(mark);
+		try {
+			modelRepository.save(carModel);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("Greska pri upisu novog modela");
+		}
+		
+		try {
+			markRepository.save(mark);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("Greska pri azuraranja marke automobila sa novim modelom");
+		}
+		
+		
 	}
 }

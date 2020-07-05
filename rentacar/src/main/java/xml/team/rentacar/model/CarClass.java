@@ -42,6 +42,14 @@ public class CarClass {
 	public void setCarClass(String carClass) {
 		this.carClass = carClass;
 	}
+
+	public CarModel getModel() {
+		return model;
+	}
+
+	public void setModel(CarModel model) {
+		this.model = model;
+	}
 	
 	
 	

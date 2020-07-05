@@ -50,6 +50,22 @@ public class CarModel {
 	public void setModel(String model) {
 		this.model = model;
 	}
+
+	public CarMark getMark() {
+		return mark;
+	}
+
+	public void setMark(CarMark mark) {
+		this.mark = mark;
+	}
+
+	public List<CarClass> getListCarClass() {
+		return listCarClass;
+	}
+
+	public void setListCarClass(List<CarClass> listCarClass) {
+		this.listCarClass = listCarClass;
+	}
 	
 	
 }
