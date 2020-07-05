@@ -1,13 +1,14 @@
 package xml.team.rentacar.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class CarClass {
@@ -16,12 +17,11 @@ public class CarClass {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(unique = true)
 	private String carClass;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "model_id")
-	private CarModel model;
+	@ManyToMany(mappedBy = "listCarClass")
+	private List<CarModel> listCarModel = new ArrayList<CarModel>();
 	
 	public CarClass() {
 		
@@ -43,13 +43,15 @@ public class CarClass {
 		this.carClass = carClass;
 	}
 
-	public CarModel getModel() {
-		return model;
+	public List<CarModel> getListCarModel() {
+		return listCarModel;
 	}
 
-	public void setModel(CarModel model) {
-		this.model = model;
+	public void setListCarModel(List<CarModel> listCarModel) {
+		this.listCarModel = listCarModel;
 	}
+
+	
 	
 	
 	

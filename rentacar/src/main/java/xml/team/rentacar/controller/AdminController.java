@@ -1,5 +1,6 @@
 package xml.team.rentacar.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import xml.team.rentacar.model.CarClass;
+import xml.team.rentacar.model.CarFuel;
 import xml.team.rentacar.model.CarMark;
 import xml.team.rentacar.model.CarModel;
 import xml.team.rentacar.model.Codebook;
+import xml.team.rentacar.model.Transmission;
 import xml.team.rentacar.model.User;
 import xml.team.rentacar.service.CarService;
 import xml.team.rentacar.service.CodebookService;
@@ -127,16 +131,35 @@ public class AdminController {
     	return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    
-    @PostMapping(value = "novi/model/{markID}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> addNewCarModel(@RequestBody CarModel carModel,@PathVariable Long markID) {
-    	CarMark mark = carService.findMark(markID);
-    	if(mark != null) {
-    		return new ResponseEntity<>("Marka automobila nije izabrana", HttpStatus.BAD_REQUEST);
+    @PostMapping(value = "nova/klasa", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> addNewCarClass(@RequestBody CarClass cc){
+    	try {
+    		carService.addClass(cc);
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    		return new ResponseEntity<>("Greska pri upisu klase automobila", HttpStatus.INTERNAL_SERVER_ERROR);
     	}
     	
+    	return new ResponseEntity<>(HttpStatus.OK);
+    	
+    	
+    }
+    
+    @PostMapping(value = "novi/model/{markID}/{classID}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> addNewCarModel(@RequestBody CarModel carModel,@PathVariable Long markID, @PathVariable Long classID) {
+    	CarMark mark = carService.findMark(markID);
+    	if(mark == null) {
+    		return new ResponseEntity<>("Marka automobila nije izabrana", HttpStatus.BAD_REQUEST);
+    	}
+    	CarClass cc = carService.findCarClass(classID);
+    	if(cc == null) {
+    		return new ResponseEntity<>("Klasa automobila nije izabrana", HttpStatus.BAD_REQUEST);
+    	}
+    	
+    	
     	try {
-    		carService.addModel(mark, carModel);
+    		carService.addModel(mark, carModel, cc);
     	}
     	catch(Exception e) {
     		e.printStackTrace();
@@ -145,6 +168,77 @@ public class AdminController {
     	
     	return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping(value ="novi/prenos",consumes = "application/json", produces = "application/json" )
+    public ResponseEntity<?> addNewTranssmission(@RequestBody Transmission tran){
+    	try {
+    		carService.addTransmission(tran);
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    		return new ResponseEntity<>("Greska pri unos nove transmisije", HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+    	
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+
+    @PostMapping(value ="novo/gorivo",consumes = "application/json", produces = "application/json" )
+    public ResponseEntity<?> addNewCarFuel(@RequestBody CarFuel cf){
+    	try {
+    		carService.addCarFuel(cf);
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    		return new ResponseEntity<>("Greska pri unos novog goriva", HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+    	
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @GetMapping(value = "svi/marke")
+    public ResponseEntity<?> findAllCarMarks(){
+    	ArrayList<CarMark> listMark = carService.findAllCarMarks();
+    	if(listMark == null) {
+    		return new ResponseEntity<>("Lista marki automobila prazna", HttpStatus.NO_CONTENT);
+    	}
+    	
+    	return new ResponseEntity<>(listMark,HttpStatus.OK);
+    	
+    	
+    }
+    
+    @GetMapping(value = "svi/klase")
+    public ResponseEntity<?> findAllCarClasses(){
+    	ArrayList<CarClass> listClass = carService.findAllCarClasses();
+    	if(listClass == null) {
+    		return new ResponseEntity<>("Lista klasi automobila prazna", HttpStatus.NO_CONTENT);
+    	}
+    	
+    	return new ResponseEntity<>(listClass,HttpStatus.OK);
+    	
+    	
+    }
+    
+    
+
+    @GetMapping(value = "svi/modeli")
+    public ResponseEntity<?> findAllCarModels(){
+    	ArrayList<CarModel> listModel = carService.findAllCarModels();
+    	if(listModel == null) {
+    		return new ResponseEntity<>("Lista modeli automobila prazna", HttpStatus.NO_CONTENT);
+    	}
+    	
+    	return new ResponseEntity<>(listModel,HttpStatus.OK);
+    	
+    	
+    }
+    
+    
+    
+    /**
+     * @author Artukov
+     * */
     
     @PostMapping("addInCodebook/{id}/{s1}/{s2}/{s3}/{s4}")
     public ResponseEntity<?> addInCodebook (@PathVariable Long id, 

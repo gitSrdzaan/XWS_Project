@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import xml.team.rentacar.dto.RentAdvertDTO;
 import xml.team.rentacar.model.Car;
-import xml.team.rentacar.model.Firm;
 import xml.team.rentacar.model.PriceList;
 import xml.team.rentacar.model.RentAdvert;
 import xml.team.rentacar.service.CarService;
-import xml.team.rentacar.service.FirmService;
 import xml.team.rentacar.service.PriceListService;
 import xml.team.rentacar.service.RentAdvertService;
+
 
 @RestController
 @RequestMapping(value = "/oglas")
