@@ -49,11 +49,11 @@ public class CarController {
 			return new ResponseEntity<>("Model automobila nije izabrana",HttpStatus.BAD_REQUEST);
 
 		}
-		CarClass cc = carService.classExsits(model, carDTO.getCarClass());
-		if( cc == null) {
-			return new ResponseEntity<>("Klasa automobila nije izabrana",HttpStatus.BAD_REQUEST);
+		//CarClass cc = carService.classExsits(model, carDTO.getCarClass());
+		//if( cc == null) {
+			//return new ResponseEntity<>("Klasa automobila nije izabrana",HttpStatus.BAD_REQUEST);
 
-		}
+		//}
 		
 		
 		try {
@@ -66,7 +66,6 @@ public class CarController {
 			car.setTransmission(carDTO.getTransmission());
 			car.setCarRegistration(carDTO.getCarRegistration());
 			car.setCarMileage(carDTO.getCarMileage());
-			car.setCarComment(carDTO.getCarComment());
 			car.setCarGrade(carDTO.getCarGrade());
 			car.setKidsSeats(carDTO.getKidsSeats());
 			car.setLatitude(carDTO.getLatitude());
