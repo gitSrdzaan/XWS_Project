@@ -1,4 +1,5 @@
 package xml.team.rentacar.model;
+import org.springframework.ws.server.MessageDispatcher;
 
 import java.util.HashSet;
 import java.util.List;
@@ -38,16 +39,7 @@ public class Firm {
 	
 	@Column(nullable = false)
 	private String firmAdress;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="firm_cars")
-	private Set<Car> firmCars = new HashSet<Car>();
-	
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="users")
-	private List<User> firmUsers;
-	
+
 	
 	
 	
@@ -104,21 +96,6 @@ public class Firm {
 		this.firmAdress = firmAdress;
 	}
 
-	public Set<Car> getFirmCars() {
-		return firmCars;
-	}
-
-	public void setFirmCars(Set<Car> firmCars) {
-		this.firmCars = firmCars;
-	}
-
-	public List<User> getFirmUsers() {
-		return firmUsers;
-	}
-
-	public void setFirmUsers(List<User> firmUsers) {
-		this.firmUsers = firmUsers;
-	}
 
 
 

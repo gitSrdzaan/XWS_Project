@@ -3,13 +3,7 @@ package xml.team.rentacar.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 
 @Entity
@@ -35,7 +29,6 @@ public class PriceList {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name= "firm_id")
 	private Firm firm;
-	
 	
 	
 

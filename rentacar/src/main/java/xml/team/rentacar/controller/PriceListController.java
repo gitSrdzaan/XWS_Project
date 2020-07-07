@@ -53,7 +53,7 @@ public class PriceListController {
 			pl.setFirm(firm);
 			pl.setPriceCDW(plDTO.getPriceCDW());
 			pl.setPricePerDay(plDTO.getPricePerDay());
-			pl.setPricePerKilometer(pl.getPricePerKilometer());
+			pl.setPricePerKilometer(plDTO.getPricePerKilometer());
 			pl.setSaleIntervals(plDTO.getSaleIntervals());
 			priceListService.addNewPriceList(pl);
 		}

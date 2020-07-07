@@ -40,10 +40,10 @@ public class Car {
 	@Column(nullable = true)
 	private Integer carMileage;//kilometraza do sada
 	
-    @Column(nullable = true)
-    @ElementCollection(targetClass = String.class)
-	private List<String> carComment = new ArrayList<String>();
-	
+   /* *
+   TODO: make COMMENT CLASS and connect to car @OneToMany
+	*/
+
 	@Column(nullable = true)
 	private Integer carGrade;
 	
@@ -112,14 +112,6 @@ public class Car {
 
 	public void setTransmission(String transmission) {
 		this.transmission = transmission;
-	}
-
-	public List<String> getCarComment() {
-		return carComment;
-	}
-
-	public void setCarComment(List<String> carComment) {
-		this.carComment = carComment;
 	}
 
 	public Integer getCarMileage() {
