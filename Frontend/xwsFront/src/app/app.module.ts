@@ -8,9 +8,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginCompComponent } from './login-comp/login-comp.component';
+import { RegisterCompComponent } from './register-comp/register-comp.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent],
+  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent, RegisterCompComponent],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
