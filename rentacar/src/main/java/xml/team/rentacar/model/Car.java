@@ -46,11 +46,11 @@ public class Car {
 
 	@Column(nullable = true)
 	private Integer carGrade;
-	
+	/*
 	private double longitude;
 	
 	private double latitude;
-	
+	*/
 	//Cjenovnik
 	
 	@Column(nullable = true)
@@ -146,7 +146,7 @@ public class Car {
 	public void setCarGrade(Integer carGrade) {
 		this.carGrade = carGrade;
 	}
-
+/*
 	public double getLongitude() {
 		return longitude;
 	}
@@ -162,5 +162,5 @@ public class Car {
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	
+	*/
 }

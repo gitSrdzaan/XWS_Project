@@ -68,8 +68,11 @@ public class CarController {
 			car.setCarMileage(carDTO.getCarMileage());
 			car.setCarGrade(carDTO.getCarGrade());
 			car.setKidsSeats(carDTO.getKidsSeats());
+			/*
 			car.setLatitude(carDTO.getLatitude());
 			car.setLongitude(carDTO.getLongitude());
+
+			 */
 			carService.addCar(car);
 		}
 		catch(Exception e) {

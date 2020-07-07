@@ -37,8 +37,40 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         wsdl11Definition.setSchema(rentAdvertSchema);
         return wsdl11Definition;
 
+    }
+
+    @Bean(name="pricelist")
+    public DefaultWsdl11Definition defaultWsdl11DefinitionPriceList(XsdSchema priceListSchema){
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("PriceListPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://rentacar.com/rentadvert/xws");
+        wsdl11Definition.setSchema(priceListSchema);
+        return wsdl11Definition;
 
     }
+
+    @Bean(name="car")
+    public DefaultWsdl11Definition defaultWsdl11DefinitionCar(XsdSchema carSchema){
+
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("CarPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://rentacar.com/rentadvert/xws");
+        wsdl11Definition.setSchema(carSchema);
+        return wsdl11Definition;
+    }
+
+    @Bean
+    public XsdSchema priceListSchema(){
+        return new SimpleXsdSchema(new ClassPathResource("pricelist.xsd"));
+    }
+
+    @Bean
+    public XsdSchema carSchema(){
+        return  new SimpleXsdSchema(new ClassPathResource("car.xsd"));
+    }
+
 
     @Bean
     public XsdSchema rentAdvertSchema(){
