@@ -58,7 +58,7 @@ public class CarController {
 		
 		try {
 			Car car = new Car();
-			car.setId(carDTO.getId());
+			//car.setId(carDTO.getId());
 			car.setCarMark(carDTO.getCarMark());
 			car.setCarModel(carDTO.getCarModel());
 			car.setCarClass(carDTO.getCarClass());
