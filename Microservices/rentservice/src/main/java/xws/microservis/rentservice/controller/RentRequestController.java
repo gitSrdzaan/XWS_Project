@@ -15,17 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import xws.microservis.rentservice.dto.FirmDTO;
 import xws.microservis.rentservice.dto.RentRequestDTO;
-import xws.microservis.rentservice.model.Car;
-import xws.microservis.rentservice.model.RentAdvert;
-import xws.microservis.rentservice.model.RentRequestBundle;
-import xws.microservis.rentservice.model.RentRequestStatus;
+import xws.microservis.rentservice.model.*;
 import xws.microservis.rentservice.services.CarService;
 import xws.microservis.rentservice.services.FirmService;
 import xws.microservis.rentservice.services.RentAdvertService;
 import xws.microservis.rentservice.services.RentRequestService;
 
 @RestController
-@RequestMapping(value = "/iznajmljivanje")
+@RequestMapping(value = "/rent")
 public class RentRequestController {
 
 	@Autowired
@@ -36,15 +33,9 @@ public class RentRequestController {
 	private FirmService firmService;
 	@Autowired
 	private CarService carService;
-	
-	
-	@GetMapping(path = "/helloworld")
-	public ResponseEntity<?> helloWorld(){
-		return new ResponseEntity<> ("HelloWorld iznajmljivanje service", HttpStatus.OK);
-	}
-	
-	
-	@GetMapping(path = "/pronalezenjeVlasnika/{rentAdvertId}")
+
+
+	@GetMapping(path = "/vlasnik/{rentAdvertId}")
 	public ResponseEntity<?> findOwner(@PathVariable Long rentAdvertId){
 		RentAdvert ra = new RentAdvert();
 		try {
@@ -53,25 +44,23 @@ public class RentRequestController {
 		catch(NoSuchElementException e) {
 			return new ResponseEntity<>("GRESKA Oglas ne postoji", HttpStatus.BAD_REQUEST);
 		}
+
+		Firm firm = rentAService.findFirm(ra);
 		
-		Car car = ra.getCar();
-		
-		try {
-			FirmDTO fDTO = firmService.findFirmByCar(car);
-			if(fDTO == null) {
-				return new ResponseEntity<>("GRESKA Auto nije firmin", HttpStatus.BAD_REQUEST);
-			}
-			return new ResponseEntity<> (fDTO,HttpStatus.OK);
+		if(firm == null){
+			return new ResponseEntity<>("Greska firma nije pronadjena",HttpStatus.NOT_FOUND);
 		}
-		catch(NoSuchElementException e) {
-			return new ResponseEntity<>("GRESKA Auto ne postoji u bazi", HttpStatus.BAD_REQUEST);
-		}	
+		FirmDTO firmDTO = new FirmDTO(firm);
+
+		return new ResponseEntity<> (firmDTO,HttpStatus.OK);
+		
+
 		
 	}
 	
 	
 	
-	@PostMapping(path = "/kreiranjeZahtjeva",consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/novi",consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createRentRequest(@RequestBody RentRequestDTO rrDTO) {
 		
 		if(rrDTO != null) {
@@ -86,7 +75,7 @@ public class RentRequestController {
 		return new ResponseEntity<>("Los zahtjev za rentiranje",HttpStatus.BAD_REQUEST);
 	}
 	
-	@PostMapping(path = "/kreiranjeBundleZahtjeva",consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/novi/bundle",consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createBundleRequest(@RequestBody List<RentRequestDTO> listRRDTO){
 		RentRequestBundle rrb = new RentRequestBundle();
 		if(listRRDTO != null || listRRDTO.size()>0) {

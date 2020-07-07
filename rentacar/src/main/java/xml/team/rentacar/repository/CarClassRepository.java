@@ -14,7 +14,8 @@ public interface CarClassRepository extends JpaRepository<CarClass, Long> {
 
 	public List<CarClass> findByCarClass(String carClass);
 
-	@Query(value = "SELECT * FROM car_class c WHERE c.model_id = :model_id and c.car_class = :car_class ", nativeQuery= true)
+	@Query(value = "SELECT c.* FROM car_class c INNER JOIN model_class mc ON c.id = mc.car_class_id "
+			+ " WHERE mc.model_id = :model_id and c.car_class = :car_class ", nativeQuery= true)
 	public CarClass findByModelAndClass(@Param("model_id")Long id,@Param("car_class") String carClass);
 	
 	

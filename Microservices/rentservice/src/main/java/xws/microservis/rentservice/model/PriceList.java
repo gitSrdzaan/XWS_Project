@@ -1,6 +1,7 @@
 package xws.microservis.rentservice.model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -22,10 +23,18 @@ public class PriceList {
 	private Double priceCDW;
 	
 	//Intervali za popust
-	
-	private HashMap<Integer , Integer> saleIntervals ; 
-	
-	
+
+	@Column
+	@ElementCollection
+	private Map<Integer , Integer> saleIntervals = new HashMap<Integer,Integer>() ;
+
+
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name= "firm_id")
+	private Firm firm;
+
+
 	public PriceList() {
 		
 	}
@@ -72,11 +81,19 @@ public class PriceList {
 
 
 	public HashMap<Integer, Integer> getSaleIntervals() {
-		return saleIntervals;
+		return (HashMap<Integer, Integer>) saleIntervals;
 	}
 
 
 	public void setSaleIntervals(HashMap<Integer, Integer> saleIntervals) {
 		this.saleIntervals = saleIntervals;
+	}
+
+	public Firm getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
 	}
 }

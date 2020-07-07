@@ -43,14 +43,14 @@ public class Car {
 	@Column(nullable = false)
 	private String carClass;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer carMileage;//kilometraza do sada
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@ElementCollection(targetClass = String.class)
 	private List<String> carComment;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer carGrade;
 	
 	private double longitude;
@@ -59,12 +59,14 @@ public class Car {
 	
 	//Cjenovnik
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer kidsSeats;
 	
 	//Slika automobila
 	
-	
+	/**
+	 * TODO: veza firme i auta da se obezbjedi
+	 * */
 	
 	
 	

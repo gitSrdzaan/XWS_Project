@@ -28,7 +28,7 @@ public class RentRequest {
 	@Column
 	private RentRequestStatus status;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "bundle_id", nullable = true)
 	private RentRequestBundle rentRequestBundle;
 	
