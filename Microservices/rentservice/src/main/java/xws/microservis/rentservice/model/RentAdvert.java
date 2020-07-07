@@ -1,15 +1,9 @@
 package xws.microservis.rentservice.model;
 
+import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 
 @Entity
@@ -34,7 +28,14 @@ public class RentAdvert {
 	@JoinColumn(name = "pricelist_id")
 	private PriceList priceList;
 
-	
+	@ManyToOne
+	@JoinColumn(name = "firm")
+	private Firm firm;
+
+	@ManyToMany(mappedBy = "rentAdvertList")
+	private Collection<Chart> charts;
+
+
 	public RentAdvert() {
 		
 	}
@@ -84,5 +85,23 @@ public class RentAdvert {
 	public void setPriceList(PriceList priceList) {
 		this.priceList = priceList;
 	}
-	
+
+	public Firm getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
+	}
+
+
+
+
+    public Collection<Chart> getCharts() {
+        return charts;
+    }
+
+    public void setCharts(Collection<Chart> charts) {
+        this.charts = charts;
+    }
 }

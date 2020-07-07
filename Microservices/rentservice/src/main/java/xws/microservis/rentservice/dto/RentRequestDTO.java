@@ -17,7 +17,11 @@ public class RentRequestDTO {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date reservationEnd;
 	private RentRequestStatus status;
-	
+
+	public RentRequestDTO(){
+
+	}
+
 	public RentRequestDTO (RentRequest rr) {
 		this.id = rr.getId();
 		this.advertSender_Id = rr.getAdvertSender().getId();

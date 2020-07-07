@@ -49,9 +49,15 @@ public class RentRequestService {
 	public void saveRentRequest(RentRequestDTO rrDTO) throws Exception {
 		RentRequest rr = new RentRequest();
 		try {
-			rr.setId(rrDTO.getId());
+			//rr.setId(rrDTO.getId());
 			rr.setAdvertSender(userRepository.findById(rrDTO.getAdvertSender_Id()).orElse(null));
+			if(rr.getAdvertSender() == null){
+				throw  new Exception("Korisnik koji salje zahtjev nije validan");
+			}
 			rr.setRentAdvert(rentARepository.findById(rrDTO.getRentAdvert_Id()).orElse(null));
+			if(rr.getRentAdvert() == null){
+				throw new Exception("Oglas nije izabran");
+			}
 			rr.setReservationStart(rrDTO.getReservationStart());
 			rr.setReservationEnd(rrDTO.getReservationEnd());
 			rr.setStatus(rrDTO.getStatus());

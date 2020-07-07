@@ -42,7 +42,9 @@ public class Firm {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="cars")
 	private Set<Car> firmCars;
-	
+
+
+
 	/**
 	 * TODO:provjeriti sta je JoinColumn 
 	 * */
