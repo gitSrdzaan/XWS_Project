@@ -11,9 +11,10 @@ import { LoginCompComponent } from './login-comp/login-comp.component';
 import { RegisterCompComponent } from './register-comp/register-comp.component';
 import { AdvertCompComponent } from './advert-comp/advert-comp.component';
 import { RegistrationCompComponent } from './registration-comp/registration-comp.component';
+import { ShoppingCartCompComponent } from './shopping-cart-comp/shopping-cart-comp.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent, RegisterCompComponent, AdvertCompComponent, RegistrationCompComponent],
+  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent, RegisterCompComponent, AdvertCompComponent, RegistrationCompComponent, ShoppingCartCompComponent],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
