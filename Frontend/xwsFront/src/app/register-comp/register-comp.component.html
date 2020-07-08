@@ -1,226 +1,94 @@
 <link
-  href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
   rel="stylesheet"
   id="bootstrap-css"
 />
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container register">
-  <div class="row">
-    <div class="col-md-3 register-left">
-      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-      <h3>Welcome</h3>
-      <p>You are 30 seconds away from earning your own money!</p>
-      <input type="submit" name="" value="Login" /><br />
-    </div>
-    <div class="col-md-9 register-right">
-      <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            id="home-tab"
-            data-toggle="tab"
-            href="#home"
-            role="tab"
-            aria-controls="home"
-            aria-selected="true"
-            >Employee</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            id="profile-tab"
-            data-toggle="tab"
-            href="#profile"
-            role="tab"
-            aria-controls="profile"
-            aria-selected="false"
-            >Hirer</a
-          >
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div
-          class="tab-pane fade show active"
-          id="home"
-          role="tabpanel"
-          aria-labelledby="home-tab"
-        >
-          <h3 class="register-heading">Apply as a Employee</h3>
-          <div class="row register-form">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="First Name *"
-                  value=""
-                />
+<script
+  type="text/javascript"
+  src="http://www.clubdesign.at/floatlabels.js"
+></script>
+
+<div class="container">
+  <div class="row centered-form">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Please sign up for Bootsnipp <small>It's free!</small>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <form role="form">
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="first_name"
+                    id="first_name"
+                    class="form-control input-sm floatlabel"
+                    placeholder="First Name"
+                  />
+                </div>
               </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Last Name *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Password *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Confirm Password *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <div class="maxl">
-                  <label class="radio inline">
-                    <input type="radio" name="gender" value="male" checked />
-                    <span> Male </span>
-                  </label>
-                  <label class="radio inline">
-                    <input type="radio" name="gender" value="female" />
-                    <span>Female </span>
-                  </label>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="last_name"
+                    id="last_name"
+                    class="form-control input-sm"
+                    placeholder="Last Name"
+                  />
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your Email *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  minlength="10"
-                  maxlength="10"
-                  name="txtEmpPhone"
-                  class="form-control"
-                  placeholder="Your Phone *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <select class="form-control">
-                  <option class="hidden" selected disabled
-                    >Please select your Sequrity Question
-                  </option>
-                  <option>What is your Birthdate?</option>
-                  <option>What is Your old Phone Number</option>
-                  <option>What is your Pet Name?</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter Your Answer *"
-                  value=""
-                />
-              </div>
-              <input type="submit" class="btnRegister" value="Register" />
+
+            <div class="form-group">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="form-control input-sm"
+                placeholder="Email Address"
+              />
             </div>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade show"
-          id="profile"
-          role="tabpanel"
-          aria-labelledby="profile-tab"
-        >
-          <h3 class="register-heading">Apply as a Hirer</h3>
-          <div class="row register-form">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="First Name *"
-                  value=""
-                />
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="form-control input-sm"
+                    placeholder="Password"
+                  />
+                </div>
               </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Last Name *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Email *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  maxlength="10"
-                  minlength="10"
-                  class="form-control"
-                  placeholder="Phone *"
-                  value=""
-                />
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <input
+                    type="password"
+                    name="password_confirmation"
+                    id="password_confirmation"
+                    class="form-control input-sm"
+                    placeholder="Confirm Password"
+                  />
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Password *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Confirm Password *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <select class="form-control">
-                  <option class="hidden" selected disabled
-                    >Please select your Sequrity Question
-                  </option>
-                  <option>What is your Birthdate?</option>
-                  <option>What is Your old Phone Number</option>
-                  <option>What is your Pet Name?</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="`Answer *"
-                  value=""
-                />
-              </div>
-              <input type="submit" class="btnRegister" value="Register" />
-            </div>
-          </div>
+
+            <input
+              type="submit"
+              value="Register"
+              class="btn btn-info btn-block"
+            />
+          </form>
         </div>
       </div>
     </div>
