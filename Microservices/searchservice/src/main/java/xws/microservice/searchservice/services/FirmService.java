@@ -1,5 +1,6 @@
 package xws.microservice.searchservice.services;
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,9 @@ public class FirmService {
 		
 		return new FirmDTO(firm);
 	}
+
+    public ArrayList<Firm> findAllFirmsByPlace(String country, String city) {
+		return (ArrayList<Firm>) repository.findAllByPlace(country,city);
+
+    }
 }

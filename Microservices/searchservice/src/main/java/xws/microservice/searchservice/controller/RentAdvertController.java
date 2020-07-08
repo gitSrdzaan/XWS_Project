@@ -1,21 +1,20 @@
 package xws.microservice.searchservice.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import xws.microservice.searchservice.dto.CarDTO;
 import xws.microservice.searchservice.dto.RentAdvertDTO;
 import xws.microservice.searchservice.model.Car;
+import xws.microservice.searchservice.model.Firm;
 import xws.microservice.searchservice.model.RentAdvert;
+import xws.microservice.searchservice.model.SearchInfo;
 import xws.microservice.searchservice.services.CarService;
 import xws.microservice.searchservice.services.FirmService;
 import xws.microservice.searchservice.services.RentAdvertService;
@@ -30,11 +29,10 @@ public class RentAdvertController {
 	
 	@Autowired
 	private CarService carService;
-	
-	@GetMapping(path = "/helloworld")
-	public ResponseEntity<?> helloWorld(){
-		return new ResponseEntity<> ("HelloWorld iznajmljivanje service", HttpStatus.OK);
-	}
+
+	@Autowired
+	private FirmService firmService;
+
 	
 	@GetMapping(path = "/pretrazivanjeAutomobila/{raId}")
 	public ResponseEntity<?> searchRentAdvert(@PathVariable Long raId){
@@ -73,6 +71,40 @@ public class RentAdvertController {
 
 		*/
 	}
-	
+
+
+	/**
+	 * Ucitavanje podataka korisnika i pretraga za potrebnim oglasima
+	 * */
+	@PostMapping(value ="/podaci", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> searchForRentAdverts(@RequestBody SearchInfo searchInfo){
+		ArrayList<ArrayList<RentAdvert>> returnList = new ArrayList<>();
+
+		ArrayList<Firm> firmArrayList = firmService.findAllFirmsByPlace(searchInfo.getCountry(),searchInfo.getCity());
+
+		if(firmArrayList == null){
+			return new ResponseEntity<>("Lista firmi je prazna za dato mjesto",HttpStatus.BAD_REQUEST);
+		}
+
+		try{
+			for(Firm firm : firmArrayList){
+				ArrayList<RentAdvert> rentAdverts = rentAdvertService.findByDates(
+						searchInfo.getStartDate(),searchInfo.getEndDate(),firm.getId());
+				if(rentAdverts == null){
+					continue;
+				}
+				returnList.add(rentAdverts);
+
+			}
+
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			return new ResponseEntity<>("Greska pri pretrazi oglasa",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+
+		return new ResponseEntity<>(returnList,HttpStatus.OK);
+	}
 	
 }
