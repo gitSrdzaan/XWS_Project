@@ -2,22 +2,22 @@ package xml.team.rentacar.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
+import javax.persistence.*;
 
 
 @Entity
 public class RentRequest {
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@OneToOne
@@ -35,6 +35,12 @@ public class RentRequest {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "bundle_id", nullable = true)
 	private RentRequestBundle rentRequestBundle;
+
+
+
+
+	@Column(name = "status")
+	private RentRequestStatus status;
 	
 	public RentRequest() {
 		
@@ -79,6 +85,13 @@ public class RentRequest {
 	public void setReservationEnd(Date reservationEnd) {
 		this.reservationEnd = reservationEnd;
 	}
-	
+
+	public RentRequestStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(RentRequestStatus status) {
+		this.status = status;
+	}
 	
 }
