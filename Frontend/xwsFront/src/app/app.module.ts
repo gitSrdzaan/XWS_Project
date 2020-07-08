@@ -10,9 +10,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginCompComponent } from './login-comp/login-comp.component';
 import { RegisterCompComponent } from './register-comp/register-comp.component';
 import { AdvertCompComponent } from './advert-comp/advert-comp.component';
+import { RegistrationCompComponent } from './registration-comp/registration-comp.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent, RegisterCompComponent, AdvertCompComponent],
+  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent, RegisterCompComponent, AdvertCompComponent, RegistrationCompComponent],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
