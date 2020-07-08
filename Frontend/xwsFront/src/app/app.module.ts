@@ -13,9 +13,10 @@ import { AdvertCompComponent } from './advert-comp/advert-comp.component';
 import { RegistrationCompComponent } from './registration-comp/registration-comp.component';
 import { ShoppingCartCompComponent } from './shopping-cart-comp/shopping-cart-comp.component';
 import { SearchComponentComponent } from './search-component/search-component.component';
+import { IndexCompComponent } from './index-comp/index-comp.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent, RegisterCompComponent, AdvertCompComponent, RegistrationCompComponent, ShoppingCartCompComponent, SearchComponentComponent],
+  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent, RegisterCompComponent, AdvertCompComponent, RegistrationCompComponent, ShoppingCartCompComponent, SearchComponentComponent, IndexCompComponent],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
