@@ -27,38 +27,42 @@ public class RentAdvert {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pricelist_id")
 	private PriceList priceList;
+
+	@ManyToOne
+	@JoinColumn(name = "firm")
+	private Firm firm;
+
+	private Double priceForRent;
 	
-	
-	
-	
-	
-	
+
+	public RentAdvert() {
+		
+	}
+
 	public Long getId() {
 		return id;
 	}
 
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
 
-
-
-
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
+	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 
-
-
-
-
-	public RentAdvert() {
-		
+	public Firm getFirm() {
+		return firm;
 	}
 
-
-
-
-
+	public void setFirm(Firm firm) {
+		this.firm = firm;
+	}
 
 	public Car getCar() {
 		return car;

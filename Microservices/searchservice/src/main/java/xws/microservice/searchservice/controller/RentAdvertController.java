@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import xws.microservice.searchservice.dto.CarDTO;
 import xws.microservice.searchservice.dto.RentAdvertDTO;
-import xws.microservice.searchservice.model.Car;
-import xws.microservice.searchservice.model.Firm;
-import xws.microservice.searchservice.model.RentAdvert;
-import xws.microservice.searchservice.model.SearchInfo;
+import xws.microservice.searchservice.model.*;
 import xws.microservice.searchservice.services.CarService;
 import xws.microservice.searchservice.services.FirmService;
 import xws.microservice.searchservice.services.RentAdvertService;
@@ -78,7 +75,7 @@ public class RentAdvertController {
 	 * */
 	@PostMapping(value ="/podaci", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> searchForRentAdverts(@RequestBody SearchInfo searchInfo){
-		ArrayList<ArrayList<RentAdvert>> returnList = new ArrayList<>();
+		ArrayList<RentAdvert> returnList = new ArrayList<>();
 
 		ArrayList<Firm> firmArrayList = firmService.findAllFirmsByPlace(searchInfo.getCountry(),searchInfo.getCity());
 
@@ -88,12 +85,18 @@ public class RentAdvertController {
 
 		try{
 			for(Firm firm : firmArrayList){
-				ArrayList<RentAdvert> rentAdverts = rentAdvertService.findByDates(
-						searchInfo.getStartDate(),searchInfo.getEndDate(),firm.getId());
+				ArrayList<RentAdvert> rentAdverts = getAllAccessableRentAdverts(firm,searchInfo);
 				if(rentAdverts == null){
 					continue;
 				}
-				returnList.add(rentAdverts);
+				for(RentAdvert iterRentAdvert : rentAdverts){
+					RentAdvert rentAdvert = computeAdvancedSearch(iterRentAdvert,searchInfo);
+					if(rentAdvert == null){
+						continue;
+					}
+					returnList.add(rentAdvert);
+				}
+
 
 			}
 
@@ -106,5 +109,96 @@ public class RentAdvertController {
 
 		return new ResponseEntity<>(returnList,HttpStatus.OK);
 	}
-	
+
+	/**
+	 * Svi oglasi koji zadovoljavaju kriterijume  pretrage
+	 * */
+	private ArrayList<RentAdvert> getAllAccessableRentAdverts(Firm firm, SearchInfo searchInfo){
+		return rentAdvertService.findByDates(
+				searchInfo.getStartDate(),searchInfo.getEndDate(),firm.getId());
+	}
+
+	/**
+	 * Oglas koji zadovoljava kirerijum napredne pretrage
+	 * */
+	private RentAdvert computeAdvancedSearch(RentAdvert rentAdvert, SearchInfo searchInfo){
+
+		if(searchInfo.getCarMark() != null ){
+			if(rentAdvert.getCar().getCarMark() != searchInfo.getCarMark() ){
+				return null;
+			}
+		}
+		if(searchInfo.getCarModel() != null){
+			if(rentAdvert.getCar().getCarModel() != searchInfo.getCarModel() ){
+				return null;
+			}
+		}
+		if(searchInfo.getCarClass() != null){
+			if(rentAdvert.getCar().getCarClass() != searchInfo.getCarClass() ){
+				return null;
+			}
+		}
+		if(searchInfo.getCarFuel() != null){
+			if(rentAdvert.getCar().getCarFuel().getFuel() != searchInfo.getCarFuel()){
+				return null;
+			}
+		}
+		if(searchInfo.getTransmission() != null){
+			if(rentAdvert.getCar().getTransmission().getTransmission() != searchInfo.getTransmission() ){
+				return null;
+			}
+		}
+		if(searchInfo.getKidsSeats() != null){
+			if(rentAdvert.getCar().getKidsSeats() < searchInfo.getKidsSeats()){
+				return null;
+			}
+		}
+		if(searchInfo.getCarMileage() != null){
+			if(rentAdvert.getCar().getCarMileage() > searchInfo.getCarMileage()){
+				return null;
+			}
+		}
+
+
+		rentAdvert.setPriceForRent(computePriceOfRent(rentAdvert,searchInfo));
+		if((rentAdvert.getPriceForRent() < searchInfo.getPriceLowerBound()) ||
+				(rentAdvert.getPriceForRent() > searchInfo.getPriceUpperBound())){
+			return null;
+		}
+
+
+		return rentAdvert;
+
+	}
+	/**
+	 * Racunanje cijene oglasa za izadavanje
+	 * */
+	private Double computePriceOfRent(RentAdvert rentAdvert, SearchInfo searchInfo) {
+
+		Double retPrice = 0.0;
+		PriceList priceList = rentAdvert.getPriceList();
+
+		//cijena za sve dane
+		Long daysTime = searchInfo.getEndDate().getTime() - searchInfo.getStartDate().getTime();
+		Integer days = Math.toIntExact(daysTime / (1000 * 60 * 60 * 24));
+		retPrice = priceList.getPricePerDay()*days;
+
+		//cijena za stetu
+		if(searchInfo.isEnableCDW()){
+			retPrice += priceList.getPriceCDW();
+		}
+
+		//cijena po kilometrazi
+		if(searchInfo.getIntendingMileage() !=  null){
+			if(rentAdvert.getCar().getMaxAllowedMileage() != 0){
+				retPrice += priceList.getPricePerKilometer() *
+						(searchInfo.getIntendingMileage() - rentAdvert.getCar().getMaxAllowedMileage());
+			}
+		}
+
+
+		return retPrice;
+	}
+
+
 }

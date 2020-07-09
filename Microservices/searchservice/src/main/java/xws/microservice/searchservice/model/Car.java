@@ -34,6 +34,9 @@ public class Car {
 	
 	@Column(nullable = false)
 	private Integer carMileage;//kilometraza do sada
+
+	@Column
+	private Integer maxAllowedMileage;
 	
 	@Column(nullable = false)
 	@ElementCollection(targetClass = String.class)
@@ -118,6 +121,14 @@ public class Car {
 
 	public Integer getCarMileage() {
 		return carMileage;
+	}
+
+	public Integer getMaxAllowedMileage() {
+		return maxAllowedMileage;
+	}
+
+	public void setMaxAllowedMileage(Integer maxAllowedMileage) {
+		this.maxAllowedMileage = maxAllowedMileage;
 	}
 
 	public void setCarMileage(Integer carMileage) {
