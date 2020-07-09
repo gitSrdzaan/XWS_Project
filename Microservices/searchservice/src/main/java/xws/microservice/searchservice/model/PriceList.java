@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class PriceList {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -20,6 +20,11 @@ public class PriceList {
 	
 	@Column(nullable = false)
 	private Double priceCDW;
+
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name= "firm_id")
+	private Firm firm;
 	
 	/***
 	 * TODO: Implementirati izracunavanje popusta
@@ -30,6 +35,13 @@ public class PriceList {
 		
 	}
 
+	public Firm getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
+	}
 
 	public Long getId() {
 		return id;
