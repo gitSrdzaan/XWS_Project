@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://rentacar.com/rentadvert/xws"
+           targetNamespace="http://rentacar.com/rentadvert/xws" elementFormDefault="qualified">
+
+    <xs:element name="getPriceListRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPriceListResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="priceList" type="tns:priceList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="priceList">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="pricePerDay" type="xs:double" minOccurs="0"/>
+            <xs:element name="pricePerKilometer" type="xs:double" minOccurs="0"/>
+            <xs:element name="priceCDW" type="xs:double" minOccurs="0"/>
+            <xs:element name="owner" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
+

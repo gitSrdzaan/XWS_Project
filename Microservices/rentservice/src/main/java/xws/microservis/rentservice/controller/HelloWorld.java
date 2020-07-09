@@ -11,7 +11,7 @@ import xws.microservis.rentservice.soap.SoapClient;
 @RequestMapping(value = "/a")
 public class HelloWorld {
 
-    @Autowired
+
     private SoapClient soapClient;
 
 	@GetMapping

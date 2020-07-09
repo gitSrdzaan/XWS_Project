@@ -89,15 +89,33 @@
 					<generatePackage>com.example.consumingwebservice.wsdl</generatePackage>
 					<schemas>
 						<schema>
-							<url>http://localhost:8080/ws/pricelist.wsdl</url>
+							<url>http://localhost:8095/ws/pricelist.wsdl</url>
 						</schema>
 						<schema>
-							<url>http://localhost:8080/ws/car.wsdl</url>
+							<url>http://localhost:8095/ws/car.wsdl</url>
 						</schema>
 						<schema>
-							<url>http://localhost:8080/ws/rentadvert.wsdl</url>
+							<url>http://localhost:8095/ws/rentadvert.wsdl</url>
 						</schema>
 					</schemas>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.5.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sources>
+						<source>${project.basedir}/src/main/resources/rentrequest.xsd</source>
+					</sources>
 				</configuration>
 			</plugin>
 		</plugins>

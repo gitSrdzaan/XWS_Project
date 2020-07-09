@@ -7,6 +7,7 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 public class SoapClient extends WebServiceGatewaySupport {
 
 
+
     public GetRentAdvertResponse getRentAdvert(Long id){
 
         GetRentAdvertRequest request = new GetRentAdvertRequest();
@@ -15,6 +16,8 @@ public class SoapClient extends WebServiceGatewaySupport {
         GetRentAdvertResponse response = (GetRentAdvertResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/ws/rentadvert" , request ,
                         new SoapActionCallback("http://rentacar.com/rentadvert/xws/GetRentAdvertRequest"));
+
+        System.out.println("RESPONSE: " + response.getRentAdvert().getOwner());
 
         return response;
     }
