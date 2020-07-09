@@ -13,7 +13,7 @@ public class RentAdvert {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "car_id")
 	private Car car;
 	
@@ -24,7 +24,7 @@ public class RentAdvert {
 	private Date advertEndDate;
 	
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pricelist_id")
 	private PriceList priceList;
 
@@ -32,6 +32,7 @@ public class RentAdvert {
 	@JoinColumn(name = "firm")
 	private Firm firm;
 
+	@Column(nullable = true)
 	private Double priceForRent;
 	
 

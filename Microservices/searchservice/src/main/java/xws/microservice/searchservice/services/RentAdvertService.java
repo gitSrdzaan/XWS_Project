@@ -35,13 +35,13 @@ public class RentAdvertService {
 		List<RentAdvert> returnList = new ArrayList<RentAdvert>();
 
 		
-		for(RentAdvert ra : rentAdvert) {
+		/*for(RentAdvert ra : rentAdvert) {
 			if(ra.getCar().getLongitude() == longitude && ra.getCar().getLatitude() == latitude && ra.getAdvertStartDate() == advertStartDate && ra.getAdvertEndDate() == advertEndDate) {
 				returnList.add(ra);
 			
 			}
 		}
-
+*/
 		return returnList;
 	}
 
