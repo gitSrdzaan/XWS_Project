@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import xws.microservis.rentservice.model.Chart;
 import xws.microservis.rentservice.repository.ChartRepository;
 
+import java.util.ArrayList;
+
 @Service
 public class ChartService {
 
@@ -34,6 +36,10 @@ public class ChartService {
             e.printStackTrace();
             throw  new Exception("Korpa nije modifikovana");
         }
+    }
+
+    public ArrayList<Chart> getAllCharts() {
+        return (ArrayList<Chart>) repository.findAll();
     }
 }
 

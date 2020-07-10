@@ -24,9 +24,11 @@ public class PriceList {
 	
 	//Intervali za popust
 
+	/*
 	@Column
 	@ElementCollection
 	private Map<Integer , Integer> saleIntervals = new HashMap<Integer,Integer>() ;
+	*/
 
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -83,13 +85,27 @@ public class PriceList {
 	}
 
 
-	public HashMap<Integer, Integer> getSaleIntervals() {
+	/*public HashMap<Integer, Integer> getSaleIntervals() {
 		return (HashMap<Integer, Integer>) saleIntervals;
 	}
 
 
 	public void setSaleIntervals(HashMap<Integer, Integer> saleIntervals) {
 		this.saleIntervals = saleIntervals;
+	}*/
+
+
+
+	/*public void setSaleIntervals(Map<Integer, Integer> saleIntervals) {
+		this.saleIntervals = saleIntervals;
+	}*/
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Firm getFirm() {
@@ -98,17 +114,5 @@ public class PriceList {
 
 	public void setFirm(Firm firm) {
 		this.firm = firm;
-	}
-
-	public void setSaleIntervals(Map<Integer, Integer> saleIntervals) {
-		this.saleIntervals = saleIntervals;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 }

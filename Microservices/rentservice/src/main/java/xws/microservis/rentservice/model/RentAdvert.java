@@ -2,6 +2,7 @@ package xws.microservis.rentservice.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -24,7 +25,7 @@ public class RentAdvert {
 	private Date advertEndDate;
 	
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pricelist_id")
 	private PriceList priceList;
 
@@ -36,8 +37,8 @@ public class RentAdvert {
 	@JoinColumn(name = "user", nullable = true)
 	private User user;
 
-	@ManyToMany(mappedBy = "rentAdvertList")
-	private Collection<Chart> charts;
+	@ManyToMany(mappedBy = "rentAdvertList", fetch = FetchType.EAGER)
+	private List<Chart> charts;
 
 
 	public RentAdvert() {
@@ -101,11 +102,11 @@ public class RentAdvert {
 
 
 
-    public Collection<Chart> getCharts() {
+    public List<Chart> getCharts() {
         return charts;
     }
 
-    public void setCharts(Collection<Chart> charts) {
+    public void setCharts(List<Chart> charts) {
         this.charts = charts;
     }
 }

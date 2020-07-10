@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import xws.microservis.rentservice.model.Chart;
 import xws.microservis.rentservice.model.RentAdvert;
 import xws.microservis.rentservice.services.ChartService;
+import xws.microservis.rentservice.services.RentAdvertService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,16 @@ public class ChartController {
 
     @Autowired
     private ChartService chartService;
+
+    @Autowired
+    private RentAdvertService rentAdvertService;
+
+    @GetMapping(value = "/svi")
+    public ResponseEntity<?> getAll(){
+        ArrayList<Chart> chartArrayList = chartService.getAllCharts();
+        return new ResponseEntity<>(chartArrayList,HttpStatus.OK);
+
+    }
 
     @GetMapping(value = "/izlistaj/{chartId}")
     public ResponseEntity<?> getAllRentAdverts(@PathVariable Long chartId){
@@ -48,8 +59,18 @@ public class ChartController {
 
     @PutMapping(value = "/dodaj/{chartID}",  produces = "application/json", consumes = "application/json" )
     public ResponseEntity<?> addTOChartNewAdvert(@RequestBody RentAdvert ra,@PathVariable Long chartID){
+
         Chart chart = chartService.getChart(chartID);
-        chart.getRentAdvertList().add(ra);
+        if(chart == null){
+
+            chart = new Chart();
+        }
+        RentAdvert temp = rentAdvertService.findRentAdvert(ra.getId());
+        if(temp == null){
+
+        }
+
+        chart.getRentAdvertList().add(temp);
         try{
             chartService.saveChart(chart);
         }
