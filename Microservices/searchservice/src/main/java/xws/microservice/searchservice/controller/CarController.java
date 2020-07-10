@@ -1,6 +1,9 @@
 package xws.microservice.searchservice.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,5 +39,61 @@ public class CarController {
 			
 		}
 		
+	}
+
+	@GetMapping(value = "/marke")
+	public ResponseEntity<?> getAllMarks(){
+		ArrayList<Car> carArrayList = carService.getAll();
+		Set<String> carMarks = new HashSet<String>();
+
+		for( Car car : carArrayList ){
+			carMarks.add(car.getCarMark());
+		}
+
+		return new ResponseEntity<>(carMarks, HttpStatus.OK);
+
+	}
+
+	@GetMapping(value = "/modeli")
+	public ResponseEntity<?> getAllModels(){
+		ArrayList<Car> carArrayList = carService.getAll();
+		Set<String> carModels= new HashSet<String>();
+
+		for( Car car : carArrayList ){
+			carModels.add(car.getCarModel());
+		}
+
+		return new ResponseEntity<>(carModels, HttpStatus.OK);
+	}
+
+
+	@GetMapping(value = "/klase")
+	public ResponseEntity<?> getAllCarClasses(){
+		ArrayList<Car> carArrayList = carService.getAll();
+		Set<String> carClasses= new HashSet<String>();
+
+		for( Car car : carArrayList ){
+			carClasses.add(car.getCarClass());
+		}
+
+		return new ResponseEntity<>(carClasses, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/prenos")
+	public ResponseEntity<?> getAllCarTransmission(){
+
+		HashSet<String> transmissionSet = carService.getAllTransmission();
+
+		return new ResponseEntity<>(transmissionSet,HttpStatus.OK);
+
+	}
+
+	@GetMapping(value = "/gorivo")
+	public ResponseEntity<?> getAllCarFuel(){
+
+		HashSet<String> carFuelSet = carService.getAllCarFuel();
+
+		return new ResponseEntity<>(carFuelSet,HttpStatus.OK);
+
 	}
 }

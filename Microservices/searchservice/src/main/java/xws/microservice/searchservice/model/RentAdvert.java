@@ -29,11 +29,11 @@ public class RentAdvert {
 	private PriceList priceList;
 
 	@ManyToOne
-	@JoinColumn(name = "firm")
+	@JoinColumn(name = "firm", nullable = true)
 	private Firm firm;
 
 	@ManyToOne
-	@JoinColumn(name = "user")
+	@JoinColumn(name = "user", nullable = true)
 	private User user;
 
 	@Column(nullable = true)

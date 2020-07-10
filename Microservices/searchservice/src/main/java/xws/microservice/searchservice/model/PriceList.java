@@ -23,8 +23,12 @@ public class PriceList {
 
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name= "firm_id")
+	@JoinColumn(name= "firm_id", nullable = true)
 	private Firm firm;
+
+	@ManyToOne(fetch   = FetchType.EAGER)
+	@JoinColumn(name = "user_id", nullable = true)
+	private User user;
 	
 	/***
 	 * TODO: Implementirati izracunavanje popusta
@@ -82,5 +86,11 @@ public class PriceList {
 		this.priceCDW = priceCDW;
 	}
 
+	public User getUser() {
+		return user;
+	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

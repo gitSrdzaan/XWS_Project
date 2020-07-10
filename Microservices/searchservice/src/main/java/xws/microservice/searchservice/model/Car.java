@@ -19,8 +19,7 @@ public class Car {
 	
 	@Column(nullable = false)
 	private String carModel;
-	
-	
+
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "carfuel_id")
 	private CarFuel carFuel;
@@ -58,16 +57,13 @@ public class Car {
 	//Slika automobila
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "firm_id")
+    @JoinColumn(name = "firm")
     private Firm firm;
 
-    public Firm getFirm() {
-        return firm;
-    }
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user")
+	private User user;
 
-    public void setFirm(Firm firm) {
-        this.firm = firm;
-    }
 
     public Car() {
 
@@ -185,5 +181,19 @@ public class Car {
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}*/
-	
+	public Firm getFirm() {
+	return firm;
+}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
