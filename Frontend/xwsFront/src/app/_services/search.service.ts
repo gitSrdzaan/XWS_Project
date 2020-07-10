@@ -28,6 +28,12 @@ export class SearchService {
           transmission: { id: 1, transmission: 'Manual' },
           kidsSeats: 0,
         },
+        advertEndDate: null,
+        advertStartDate: null,
+        firm: null,
+        priceForRent: null,
+        priceList: null,
+        user: null,
       },
       {
         id: 2,
@@ -43,6 +49,12 @@ export class SearchService {
           transmission: { id: 1, transmission: 'Automatic' },
           kidsSeats: 2,
         },
+        advertEndDate: null,
+        advertStartDate: null,
+        firm: null,
+        priceForRent: null,
+        priceList: null,
+        user: null,
       },
       {
         id: 3,
@@ -58,6 +70,12 @@ export class SearchService {
           transmission: { id: 1, transmission: 'Automatic' },
           kidsSeats: 0,
         },
+        advertEndDate: null,
+        advertStartDate: null,
+        firm: null,
+        priceForRent: null,
+        priceList: null,
+        user: null,
       },
     ];
     return of(mocked);
