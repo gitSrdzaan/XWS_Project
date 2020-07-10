@@ -38,7 +38,7 @@ public class Firm {
 	@Column(nullable = false)
 	private String firmAdress;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="cars")
 	private Set<Car> firmCars;
 	

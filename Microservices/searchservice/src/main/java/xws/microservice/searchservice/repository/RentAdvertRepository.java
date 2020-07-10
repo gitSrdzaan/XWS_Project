@@ -14,8 +14,7 @@ import java.util.List;
 @Repository
 public interface RentAdvertRepository extends JpaRepository<RentAdvert, Long>{
 
-    @Query(value = "SELECT * FROM rent_advert ra   WHERE ra.firm = :firmID and ra.advert_start_date >= :startDate" +
-            "and ra.advert_end_date <= :endDate"
+    @Query(value = "SELECT * FROM rent_advert ra   WHERE ra.firm = :firmID AND ra.advert_start_date <= :startDate AND ra.advert_end_date >= :endDate"
             ,nativeQuery = true)
     List<RentAdvert> findByStartEndDate(
             @Param("startDate") Date startDate,@Param("endDate") Date endDate,@Param("firmID") Long firmID);

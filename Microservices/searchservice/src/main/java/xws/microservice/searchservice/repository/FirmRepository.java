@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface FirmRepository extends JpaRepository<Firm, Long> {
 
-    @Query(value ="SELECT * FROM firm f WHERE f.country = :country and f.city = :city ",nativeQuery = true)
+    @Query(value ="SELECT * FROM firm f WHERE f.firm_country = :country and f.firm_city = :city ",nativeQuery = true)
     List<Firm> findAllByPlace(@Param("country") String country, @Param("city") String city);
 }

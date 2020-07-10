@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Car {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -35,19 +35,20 @@ public class Car {
 	@Column(nullable = false)
 	private Integer carMileage;//kilometraza do sada
 
-	@Column
+	@Column(nullable = true)
 	private Integer maxAllowedMileage;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@ElementCollection(targetClass = String.class)
 	private List<String> carComment;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer carGrade;
-	
+
+	/*@Column(nullable = true)
 	private double longitude;
-	
-	private double latitude;
+	@Column(nullable = true)
+	private double latitude;*/
 	
 	//Cjenovnik
 	
@@ -55,12 +56,21 @@ public class Car {
 	private Integer kidsSeats;
 	
 	//Slika automobila
-	
-	
-	
-	
-	public Car() {
-		
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "firm_id")
+    private Firm firm;
+
+    public Firm getFirm() {
+        return firm;
+    }
+
+    public void setFirm(Firm firm) {
+        this.firm = firm;
+    }
+
+    public Car() {
+
 	}
 
 	public Long getId() {
@@ -159,7 +169,7 @@ public class Car {
 	public void setCarGrade(Integer carGrade) {
 		this.carGrade = carGrade;
 	}
-
+/*
 	public double getLongitude() {
 		return longitude;
 	}
@@ -174,6 +184,6 @@ public class Car {
 
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
-	}
+	}*/
 	
 }

@@ -75,9 +75,17 @@ public class RentAdvertController {
 	 * */
 	@PostMapping(value ="/podaci", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> searchForRentAdverts(@RequestBody SearchInfo searchInfo){
+		if(searchInfo == null){
+			System.out.println("sranje neko");
+		}
+		System.out.println(searchInfo.getStartDate() + "\n"+ searchInfo.getEndDate());
 		ArrayList<RentAdvert> returnList = new ArrayList<>();
 
 		ArrayList<Firm> firmArrayList = firmService.findAllFirmsByPlace(searchInfo.getCountry(),searchInfo.getCity());
+
+		if(firmArrayList.size() == 0){
+			System.out.println("firmu nasao");
+		}
 
 		if(firmArrayList == null){
 			return new ResponseEntity<>("Lista firmi je prazna za dato mjesto",HttpStatus.BAD_REQUEST);
@@ -87,11 +95,14 @@ public class RentAdvertController {
 			for(Firm firm : firmArrayList){
 				ArrayList<RentAdvert> rentAdverts = getAllAccessableRentAdverts(firm,searchInfo);
 				if(rentAdverts == null){
+					System.out.println("reklame nije nasao");
 					continue;
 				}
 				for(RentAdvert iterRentAdvert : rentAdverts){
+					System.out.println(iterRentAdvert.getCar().getCarClass());
 					RentAdvert rentAdvert = computeAdvancedSearch(iterRentAdvert,searchInfo);
 					if(rentAdvert == null){
+						System.out.println("naprdna reklamu nije nassao");
 						continue;
 					}
 					returnList.add(rentAdvert);
@@ -124,27 +135,29 @@ public class RentAdvertController {
 	private RentAdvert computeAdvancedSearch(RentAdvert rentAdvert, SearchInfo searchInfo){
 
 		if(searchInfo.getCarMark() != null ){
-			if(rentAdvert.getCar().getCarMark() != searchInfo.getCarMark() ){
+			/*System.out.println("pretraga marka /t"+searchInfo.getCarMark());
+			System.out.println("pretraga marka /t"+rentAdvert.getCar().getCarMark());*/
+			if(!rentAdvert.getCar().getCarMark().equals(searchInfo.getCarMark())){
 				return null;
 			}
 		}
 		if(searchInfo.getCarModel() != null){
-			if(rentAdvert.getCar().getCarModel() != searchInfo.getCarModel() ){
+			if(!rentAdvert.getCar().getCarModel().equals(searchInfo.getCarModel())){
 				return null;
 			}
 		}
 		if(searchInfo.getCarClass() != null){
-			if(rentAdvert.getCar().getCarClass() != searchInfo.getCarClass() ){
+			if(!rentAdvert.getCar().getCarClass().equals(searchInfo.getCarClass())   ){
 				return null;
 			}
 		}
 		if(searchInfo.getCarFuel() != null){
-			if(rentAdvert.getCar().getCarFuel().getFuel() != searchInfo.getCarFuel()){
+			if(!rentAdvert.getCar().getCarFuel().getFuel().equals(searchInfo.getCarFuel())){
 				return null;
 			}
 		}
 		if(searchInfo.getTransmission() != null){
-			if(rentAdvert.getCar().getTransmission().getTransmission() != searchInfo.getTransmission() ){
+			if(!rentAdvert.getCar().getTransmission().getTransmission().equals(searchInfo.getTransmission()) ){
 				return null;
 			}
 		}
@@ -161,10 +174,19 @@ public class RentAdvertController {
 
 
 		rentAdvert.setPriceForRent(computePriceOfRent(rentAdvert,searchInfo));
-		if((rentAdvert.getPriceForRent() < searchInfo.getPriceLowerBound()) ||
-				(rentAdvert.getPriceForRent() > searchInfo.getPriceUpperBound())){
-			return null;
+
+
+		if(searchInfo.getPriceLowerBound() != null ){
+			if(rentAdvert.getPriceForRent() < searchInfo.getPriceLowerBound()){
+				return null;
+			}
 		}
+		if(searchInfo.getPriceUpperBound() != null){
+			if(rentAdvert.getPriceForRent() > searchInfo.getPriceUpperBound()){
+				return null;
+			}
+		}
+
 
 
 		return rentAdvert;
