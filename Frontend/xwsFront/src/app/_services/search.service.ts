@@ -2,22 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import RentAdvert from '../_model/rentAdvert.model';
 import { of } from 'rxjs';
+import SearchInfo from '../_model/searchInfo.model';
 
 @Injectable()
 export class SearchService {
   constructor(private http: HttpClient) {}
 
-  searchLocation(country, city, startDate, endDate) {
+  search(searchInfo: SearchInfo) {
     //replace this with real api
     //something like this
-    /*
-    return this.http.post<any>("ADD_URL/podaci", {
-      country: country,
-      city: city,
-      startDate: startDate,
-      endDate: startDate,
-    });
-    */
+    //return this.http.post<any>("ADD_URL/podaci", searchInfo);
+
     const mocked: RentAdvert[] = [
       {
         id: 1,
