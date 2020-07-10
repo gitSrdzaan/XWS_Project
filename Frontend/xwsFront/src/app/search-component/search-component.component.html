@@ -25,34 +25,107 @@
         </mat-form-field>
 
         <mat-form-field class="form-field">
+          <mat-label>Start date</mat-label>
           <input
             matInput
-            [ngxMatDatetimePicker]="picker"
-            placeholder="Taking date"
-            formControlName="takingDate"
+            [matDatepicker]="picker"
+            formControlName="startDate"
           />
           <mat-datepicker-toggle
             matSuffix
             [for]="picker"
           ></mat-datepicker-toggle>
-          <ngx-mat-datetime-picker #picker [showSeconds]="false">
-          </ngx-mat-datetime-picker>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Start date</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="endDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <br />
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carMark"
+            formControlName="carMark"
+            placeholder="Car mark"
+          />
         </mat-form-field>
 
         <mat-form-field class="form-field">
           <input
             matInput
-            [ngxMatDatetimePicker]="picker2"
-            placeholder="Returning date"
-            formControlName="returningDate"
+            name="carModel"
+            formControlName="carModel"
+            placeholder="Car model"
           />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker2"
-          ></mat-datepicker-toggle>
-          <ngx-mat-datetime-picker #picker2 [showSeconds]="false">
-          </ngx-mat-datetime-picker>
         </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carClass"
+            formControlName="carClass"
+            placeholder="Car class"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="transmission"
+            formControlName="transmission"
+            placeholder="Transmission"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carFuel"
+            formControlName="carFuel"
+            placeholder="Fuel"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            type="number"
+            name="carMileage"
+            formControlName="carMileage"
+            placeholder="Mileage"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            type="number"
+            name="kidsSeats"
+            formControlName="kidsSeats"
+            placeholder="Kids seats"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            type="number"
+            name="intendingMileage"
+            formControlName="intendingMileage"
+            placeholder="Intending mileage"
+          />
+        </mat-form-field>
+
+        <br />
 
         <button mat-raised-button color="primary" (click)="submitForm()">
           Search
