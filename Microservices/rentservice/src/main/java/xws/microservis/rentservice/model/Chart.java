@@ -11,11 +11,9 @@ public class Chart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-
-
-    @Column
-    private Long user_id;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    private User client;
 
     @ManyToMany
     @JoinTable(name = "rent_advert_chart",
@@ -45,12 +43,11 @@ public class Chart {
         this.rentAdvertList = rentAdvertList;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public User getClient() {
+        return client;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setClient(User client) {
+        this.client = client;
     }
-
 }

@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -19,9 +19,6 @@ public class User {
 	
 	@Column(nullable = false)
 	private String driversLicence;
-	
-	/*@Column(nullable = false)
-	private String drivingExpericence;*/
 	
 	@Column(nullable = false)
 	private String username;
@@ -35,6 +32,15 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="cars")
 	private Set<Car> userCars;
+
+	@Column(nullable = false)
+	private String userCity;
+
+	@Column(nullable = false)
+	private String userCountry;
+
+	@Column(nullable = false)
+	private String userAdress;
 	
 	public User() {
 		
@@ -104,4 +110,27 @@ public class User {
 		this.email = email;
 	}
 
+	public String getUserCity() {
+		return userCity;
+	}
+
+	public void setUserCity(String userCity) {
+		this.userCity = userCity;
+	}
+
+	public String getUserCountry() {
+		return userCountry;
+	}
+
+	public void setUserCountry(String userCountry) {
+		this.userCountry = userCountry;
+	}
+
+	public String getUserAdress() {
+		return userAdress;
+	}
+
+	public void setUserAdress(String userAdress) {
+		this.userAdress = userAdress;
+	}
 }

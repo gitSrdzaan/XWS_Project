@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 public class RentRequestBundle {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "rentRequestBundle")

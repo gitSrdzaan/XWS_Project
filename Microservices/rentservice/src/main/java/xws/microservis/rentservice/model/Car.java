@@ -19,7 +19,7 @@ import xws.microservis.rentservice.dto.CarDTO;
 public class Car {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -45,6 +45,9 @@ public class Car {
 	
 	@Column(nullable = true)
 	private Integer carMileage;//kilometraza do sada
+
+	@Column(nullable = true)
+	private Integer maxAllowedMileage;
 	
 	@Column(nullable = true)
 	@ElementCollection(targetClass = String.class)
@@ -53,9 +56,9 @@ public class Car {
 	@Column(nullable = true)
 	private Integer carGrade;
 	
-	private double longitude;
+	/*private double longitude;
 	
-	private double latitude;
+	private double latitude;*/
 	
 	//Cjenovnik
 	
@@ -67,7 +70,13 @@ public class Car {
 	/**
 	 * TODO: veza firme i auta da se obezbjedi
 	 * */
-	
+	@ManyToOne
+	@JoinColumn(name = "firm_id")
+	private Firm firm;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	
 	
@@ -165,7 +174,7 @@ public class Car {
 		this.carGrade = carGrade;
 	}
 
-	public double getLongitude() {
+	/*public double getLongitude() {
 		return longitude;
 	}
 
@@ -179,7 +188,7 @@ public class Car {
 
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
-	}
+	}*/
 	
 	public Car createFromDTO(CarDTO carDTO) {
 		
@@ -193,12 +202,35 @@ public class Car {
 		this.carRegistration = carDTO.getCarRegistration();
 		this.kidsSeats = carDTO.getKidsSeats();
 		//this.transmission = carDTO.getTransmission();
-		this.latitude = carDTO.getLatitude();
-		this.longitude = carDTO.getLongitude();
+		/*this.latitude = carDTO.getLatitude();
+		this.longitude = carDTO.getLongitude();*/
 		this.carModel = carDTO.getCarModel();
 		
 		
 		return this;
 	}
-	
+
+	public Firm getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getMaxAllowedMileage() {
+		return maxAllowedMileage;
+	}
+
+	public void setMaxAllowedMileage(Integer maxAllowedMileage) {
+		this.maxAllowedMileage = maxAllowedMileage;
+	}
 }

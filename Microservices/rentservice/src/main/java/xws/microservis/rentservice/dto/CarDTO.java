@@ -38,8 +38,8 @@ public class CarDTO {
 		this.carMileage = car.getCarMileage();
 		this.carComment = car.getCarComment();
 		this.carGrade = car.getCarGrade();
-		this.longitude = car.getLongitude();
-		this.latitude = car.getLatitude();
+	/*	this.longitude = car.getLongitude();
+		this.latitude = car.getLatitude();*/
 		this.kidsSeats = car.getKidsSeats();
 		
 	}

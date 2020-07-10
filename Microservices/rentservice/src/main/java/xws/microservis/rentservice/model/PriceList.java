@@ -29,10 +29,13 @@ public class PriceList {
 	private Map<Integer , Integer> saleIntervals = new HashMap<Integer,Integer>() ;
 
 
-
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name= "firm_id")
+	@JoinColumn(name= "firm_id", nullable = true)
 	private Firm firm;
+
+	@ManyToOne(fetch   = FetchType.EAGER)
+	@JoinColumn(name = "user_id", nullable = true)
+	private User user;
 
 
 	public PriceList() {
@@ -95,5 +98,17 @@ public class PriceList {
 
 	public void setFirm(Firm firm) {
 		this.firm = firm;
+	}
+
+	public void setSaleIntervals(Map<Integer, Integer> saleIntervals) {
+		this.saleIntervals = saleIntervals;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

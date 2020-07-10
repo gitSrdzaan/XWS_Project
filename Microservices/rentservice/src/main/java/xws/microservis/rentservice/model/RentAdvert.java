@@ -17,10 +17,10 @@ public class RentAdvert {
 	@JoinColumn
 	private Car car;
 	
-	@Column()
+	@Column
 	private Date advertStartDate;
 	
-	@Column()
+	@Column
 	private Date advertEndDate;
 	
 	
@@ -29,8 +29,12 @@ public class RentAdvert {
 	private PriceList priceList;
 
 	@ManyToOne
-	@JoinColumn(name = "firm")
+	@JoinColumn(name = "firm", nullable = true)
 	private Firm firm;
+
+	@ManyToOne
+	@JoinColumn(name = "user", nullable = true)
+	private User user;
 
 	@ManyToMany(mappedBy = "rentAdvertList")
 	private Collection<Chart> charts;
