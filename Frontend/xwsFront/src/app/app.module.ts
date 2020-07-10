@@ -14,17 +14,71 @@ import { RegistrationCompComponent } from './registration-comp/registration-comp
 import { ShoppingCartCompComponent } from './shopping-cart-comp/shopping-cart-comp.component';
 import { SearchComponentComponent } from './search-component/search-component.component';
 import { IndexCompComponent } from './index-comp/index-comp.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { SearchService } from './_services/search.service';
+import { CarService } from './_services/car.service';
+import { AuthService } from './_services/authentication.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatSortModule } from '@angular/material/sort';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatTimepickerModule,
+  NgxMatNativeDateModule,
+} from '@angular-material-components/datetime-picker';
 
 @NgModule({
-  declarations: [AppComponent, HeaderCompComponent, LoginCompComponent, RegisterCompComponent, AdvertCompComponent, RegistrationCompComponent, ShoppingCartCompComponent, SearchComponentComponent, IndexCompComponent],
+  declarations: [
+    AppComponent,
+    HeaderCompComponent,
+    LoginCompComponent,
+    RegisterCompComponent,
+    AdvertCompComponent,
+    RegistrationCompComponent,
+    ShoppingCartCompComponent,
+    SearchComponentComponent,
+    IndexCompComponent,
+  ],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    MatCardModule,
+    MatTableModule,
+    HttpClientModule,
+    MatSortModule,
+    MatToolbarModule,
   ],
-  providers: [],
+  providers: [
+    SearchService,
+    CarService,
+    AuthService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   bootstrap: [AppComponent],
 })
 //export class AppBootstrapModule {}

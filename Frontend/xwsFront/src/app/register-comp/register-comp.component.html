@@ -1,96 +1,88 @@
-<link
-  href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-  rel="stylesheet"
-  id="bootstrap-css"
-/>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<app-header-comp></app-header-comp>
+<mat-card class="mat-elevation-z10">
+  <mat-toolbar color="primary">
+    <h2>
+      Register
+    </h2>
+  </mat-toolbar>
 
-<script
-  type="text/javascript"
-  src="http://www.clubdesign.at/floatlabels.js"
-></script>
+  <form [formGroup]="registerForm" class="register-form">
+    <mat-form-field>
+      <input
+        name="firstName"
+        matInput
+        placeholder="First name"
+        formControlName="firstName"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'firstName')">
+        First name is required
+      </mat-error>
+    </mat-form-field>
 
-<div class="container">
-  <div class="row centered-form">
-    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            Please sign up for Bootsnipp <small>It's free!</small>
-          </h3>
-        </div>
-        <div class="panel-body">
-          <form role="form">
-            <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="first_name"
-                    id="first_name"
-                    class="form-control input-sm floatlabel"
-                    placeholder="First Name"
-                  />
-                </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="last_name"
-                    id="last_name"
-                    class="form-control input-sm"
-                    placeholder="Last Name"
-                  />
-                </div>
-              </div>
-            </div>
+    <mat-form-field>
+      <input
+        name="lastName"
+        matInput
+        placeholder="Last name"
+        formControlName="lastName"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'lastName')">
+        Last name is required
+      </mat-error>
+    </mat-form-field>
 
-            <div class="form-group">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                class="form-control input-sm"
-                placeholder="Email Address"
-              />
-            </div>
+    <mat-form-field>
+      <input
+        name="email"
+        matInput
+        placeholder="Email"
+        formControlName="email"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'email')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.hasError('email', 'email')">
+        Email is not valid
+      </mat-error>
+    </mat-form-field>
 
-            <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    class="form-control input-sm"
-                    placeholder="Password"
-                  />
-                </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input
-                    type="password"
-                    name="password_confirmation"
-                    id="password_confirmation"
-                    class="form-control input-sm"
-                    placeholder="Confirm Password"
-                  />
-                </div>
-              </div>
-            </div>
+    <mat-form-field>
+      <input
+        name="password"
+        matInput
+        placeholder="Password"
+        formControlName="password1"
+        type="password"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'password1')">
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.hasError('minlength', 'password1')">
+        Password must be at least 6 characters long
+      </mat-error>
+    </mat-form-field>
 
-            <input
-              type="submit"
-              value="Register"
-              class="btn btn-info btn-block"
-            />
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <mat-form-field>
+      <input
+        name="confirmPassword"
+        matInput
+        formControlName="password2"
+        placeholder="Confirm password"
+        [errorStateMatcher]="matcher"
+        type="password"
+      />
+      <mat-error *ngIf="registerForm.hasError('notSame')">
+        Passwords do not match
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="register()"
+      [disabled]="!registerForm.valid"
+    >
+      Register
+    </button>
+  </form>
+</mat-card>

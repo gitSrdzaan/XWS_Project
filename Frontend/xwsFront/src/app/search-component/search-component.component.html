@@ -1,71 +1,154 @@
-<!--Blue select-->
+<app-header-comp></app-header-comp>
 <div align="center" valign="middle">
-  <div>
-    <select
-      class="mdb-select md-form colorful-select dropdown-primary"
-      searchable="Search here.."
-    >
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-      <option value="4">Option 4</option>
-      <option value="5">Option 5</option>
-    </select>
+  <mat-card class="basic-card">
+    <mat-card-title>
+      Search cars
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="searchForm" class="search-form">
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="country"
+            formControlName="country"
+            placeholder="Country"
+          />
+        </mat-form-field>
 
-    <label class="mdb-main-label">Example label</label>
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="city"
+            formControlName="city"
+            placeholder="City"
+          />
+        </mat-form-field>
 
-    <select class="mdb-select" searchable="Search here..">
-      <option value="1" disabled selected>Choose your option</option>
-      <option
-        value="2"
-        data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-1.jpg"
-        class="rounded-circle"
-      >
-        example 1</option
-      >
-      <option
-        value="3"
-        data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
-        class="rounded-circle"
-      >
-        example 2</option
-      >
-      <option
-        value="4"
-        data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-3.jpg"
-        class="rounded-circle"
-      >
-        example 1</option
-      >
-    </select>
-  </div>
-  <div></div>
-  <p>UOPAAAAA</p>
-  <div>
-    <select
-      class="mdb-select md-form colorful-select dropdown-primary"
-      multiple
-      searchable="Search here.."
-    >
-      <option value="" disabled selected>Choose your country</option>
-      <option value="1">USA</option>
-      <option value="2">Germany</option>
-      <option value="3">France</option>
-      <option value="3">Poland</option>
-      <option value="3">Japan</option>
-    </select>
-    <label class="mdb-main-label">Label example</label>
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            [ngxMatDatetimePicker]="picker"
+            placeholder="Taking date"
+            formControlName="takingDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker [showSeconds]="false">
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
 
-    <select class="mdb-select" multiple searchable="Search here..">
-      <optgroup label="team 1">
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-      </optgroup>
-      <optgroup label="team 2">
-        <option value="3">Option 3</option>
-        <option value="4">Option 4</option>
-      </optgroup>
-    </select>
-  </div>
-  <button>Search</button>
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            [ngxMatDatetimePicker]="picker2"
+            placeholder="Returning date"
+            formControlName="returningDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker2 [showSeconds]="false">
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="submitForm()">
+          Search
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <table mat-table [dataSource]="advertList" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.id }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carMark">
+      <th mat-header-cell *matHeaderCellDef>Mark</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carMark }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carModel">
+      <th mat-header-cell *matHeaderCellDef>Model</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carModel }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fuel">
+      <th mat-header-cell *matHeaderCellDef>Fuel</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carFuel.fuel }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="transmission">
+      <th mat-header-cell *matHeaderCellDef>Transmission</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.transmission.transmission }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="class">
+      <th mat-header-cell *matHeaderCellDef>Class</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carClass }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mileage">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        (click)="sortMileage()"
+      >
+        Mileage
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carMileage }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="kids">
+      <th mat-header-cell *matHeaderCellDef>Kids seats</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.kidsSeats }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carGrade">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        (click)="sortGrade()"
+      >
+        Grade
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carGrade }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button (click)="details(element.car.id)">
+          Details
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>
