@@ -21,7 +21,7 @@ public class CarController {
 	@Autowired
 	private CarService carService;
 
-	@GetMapping(path = "/prikazAutomobila/{CarId}")
+	@GetMapping(path = "/prikaz/{CarId}")
 	public ResponseEntity<?> findCar(@PathVariable Long CarId){
 		CarDTO carDTO = new CarDTO();
 		

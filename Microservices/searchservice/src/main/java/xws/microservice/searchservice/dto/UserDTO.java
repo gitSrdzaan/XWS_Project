@@ -5,6 +5,8 @@ import java.util.Set;
 import xws.microservice.searchservice.model.Car;
 import xws.microservice.searchservice.model.User;
 
+import javax.persistence.Column;
+
 public class UserDTO {
 	
 	private Long id;
@@ -15,6 +17,15 @@ public class UserDTO {
 	private String email;
 	private String password;
 	private Set<Car> userCars;
+
+
+	private String userCity;
+
+
+	private String userCountry;
+
+
+	private String userAdress;
 	
 	public UserDTO(User user) {
 		this.id = user.getId();
@@ -25,6 +36,10 @@ public class UserDTO {
 		this.email = user.getEmail();
 		this.password = user.getPassword();
 		this.userCars = user.getUserCars();
+
+		this.userCity = user.getUserCity();
+		this.userCountry = user.getUserCountry();
+		this.userAdress = user.getUserAdress();
 	}
 
 	public Long getId() {
@@ -91,5 +106,27 @@ public class UserDTO {
 		this.userCars = userCars;
 	}
 
-	
+	public String getUserCity() {
+		return userCity;
+	}
+
+	public void setUserCity(String userCity) {
+		this.userCity = userCity;
+	}
+
+	public String getUserCountry() {
+		return userCountry;
+	}
+
+	public void setUserCountry(String userCountry) {
+		this.userCountry = userCountry;
+	}
+
+	public String getUserAdress() {
+		return userAdress;
+	}
+
+	public void setUserAdress(String userAdress) {
+		this.userAdress = userAdress;
+	}
 }
