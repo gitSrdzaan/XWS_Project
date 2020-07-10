@@ -36,6 +36,7 @@ import {
   NgxMatTimepickerModule,
   NgxMatNativeDateModule,
 } from '@angular-material-components/datetime-picker';
+import { CarDetailsComponent } from './car-details/car-details.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {
     ShoppingCartCompComponent,
     SearchComponentComponent,
     IndexCompComponent,
+    CarDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,7 @@ import {
     SearchService,
     CarService,
     AuthService,
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-US' },
   ],
   bootstrap: [AppComponent],
 })

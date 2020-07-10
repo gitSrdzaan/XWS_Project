@@ -21,44 +21,35 @@ export class SearchComponentComponent implements OnInit {
     private router: Router
   ) {
     this.searchForm = this.formBuilder.group({
-      country: [''],
-      city: [''],
-      takingDate: [],
-      returningDate: [],
+      country: [null],
+      city: [null],
+      startDate: [],
+      endDate: [],
+      carMark: [null],
+      carModel: [null],
+      carClass: [null],
+      transmission: [null],
+      carFuel: [null],
+      carMileage: [null],
+      kidsSeats: [null],
+      intendingMileage: [null],
     });
   }
 
   ngOnInit(): void {}
 
   submitForm() {
-    let searchObject = JSON.parse(JSON.stringify(this.searchForm.value));
-    let takingDateTime = searchObject.takingDate
-      ? new Date(searchObject.takingDate)
-      : null;
-    let returningDateTime = searchObject.returningDate
-      ? new Date(searchObject.returningDate)
-      : null;
-    if (takingDateTime) {
-      takingDateTime.setSeconds(0);
-      searchObject.takingDate = takingDateTime.toISOString();
-    }
-    if (returningDateTime) {
-      returningDateTime.setSeconds(0);
-      searchObject.returningDate = returningDateTime.toISOString();
-    }
+    let searchObject = this.searchForm.value;
+    if (searchObject.startDate)
+      searchObject.startDate = formatDate(searchObject.startDate);
+
+    if (searchObject.endDate)
+      searchObject.endDate = formatDate(searchObject.endDate);
 
     console.log(searchObject);
-
-    this.searchService
-      .searchLocation(
-        searchObject.country,
-        searchObject.city,
-        searchObject.takingDate,
-        searchObject.returningDate
-      )
-      .subscribe((response) => {
-        this.advertList = new MatTableDataSource<RentAdvert>(response);
-      });
+    this.searchService.search(searchObject).subscribe((response) => {
+      this.advertList = new MatTableDataSource<RentAdvert>(response);
+    });
     this.displayedColumns = [
       'id',
       'carMark',
@@ -88,6 +79,18 @@ export class SearchComponentComponent implements OnInit {
   }
 
   details(id) {
-    this.router.navigate(['/advert', id]);
+    this.router.navigate(['/car', id]);
   }
+}
+
+function formatDate(date) {
+  var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [day, month, year].join('-');
 }
