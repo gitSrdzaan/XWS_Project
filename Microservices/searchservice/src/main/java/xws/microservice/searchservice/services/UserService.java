@@ -1,5 +1,6 @@
 package xws.microservice.searchservice.services;
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class UserService {
 	
 		return new UserDTO(user);
 	}
-	
+
+	public ArrayList<User> findUsersByLocation(String country, String city) {
+
+		return (ArrayList<User>) repository.findByCountryAndCity(country,city);
+
+	}
 }

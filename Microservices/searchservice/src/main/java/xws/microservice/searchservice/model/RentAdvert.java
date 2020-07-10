@@ -32,6 +32,10 @@ public class RentAdvert {
 	@JoinColumn(name = "firm")
 	private Firm firm;
 
+	@ManyToOne
+	@JoinColumn(name = "user")
+	private User user;
+
 	@Column(nullable = true)
 	private Double priceForRent;
 	

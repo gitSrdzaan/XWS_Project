@@ -30,6 +30,9 @@ public class RentAdvertController {
 	@Autowired
 	private FirmService firmService;
 
+	@Autowired
+	private UserService userService;
+
 	
 	@GetMapping(path = "/pretrazivanjeAutomobila/{raId}")
 	public ResponseEntity<?> searchRentAdvert(@PathVariable Long raId){
@@ -75,17 +78,13 @@ public class RentAdvertController {
 	 * */
 	@PostMapping(value ="/podaci", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> searchForRentAdverts(@RequestBody SearchInfo searchInfo){
-		if(searchInfo == null){
-			System.out.println("sranje neko");
-		}
-		System.out.println(searchInfo.getStartDate() + "\n"+ searchInfo.getEndDate());
+
+
 		ArrayList<RentAdvert> returnList = new ArrayList<>();
 
 		ArrayList<Firm> firmArrayList = firmService.findAllFirmsByPlace(searchInfo.getCountry(),searchInfo.getCity());
 
-		if(firmArrayList.size() == 0){
-			System.out.println("firmu nasao");
-		}
+
 
 		if(firmArrayList == null){
 			return new ResponseEntity<>("Lista firmi je prazna za dato mjesto",HttpStatus.BAD_REQUEST);
@@ -95,14 +94,47 @@ public class RentAdvertController {
 			for(Firm firm : firmArrayList){
 				ArrayList<RentAdvert> rentAdverts = getAllAccessableRentAdverts(firm,searchInfo);
 				if(rentAdverts == null){
-					System.out.println("reklame nije nasao");
+
 					continue;
 				}
 				for(RentAdvert iterRentAdvert : rentAdverts){
-					System.out.println(iterRentAdvert.getCar().getCarClass());
+
 					RentAdvert rentAdvert = computeAdvancedSearch(iterRentAdvert,searchInfo);
 					if(rentAdvert == null){
-						System.out.println("naprdna reklamu nije nassao");
+
+						continue;
+					}
+					returnList.add(rentAdvert);
+				}
+
+
+			}
+
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			return new ResponseEntity<>("Greska pri pretrazi oglasa",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		/**
+		 * lista user oglasa
+		 * */
+		ArrayList<User> userArrayList = userService.findUsersByLocation(searchInfo.getCountry(),searchInfo.getCity());
+
+		if(userArrayList == null){
+			return new ResponseEntity<>("Lista firmi je prazna za dato mjesto",HttpStatus.BAD_REQUEST);
+		}
+		try{
+			for(User user : userArrayList){
+				ArrayList<RentAdvert> rentAdverts = getAllAccessableRentAdvertsUser(user,searchInfo);
+				if(rentAdverts == null){
+
+					continue;
+				}
+				for(RentAdvert iterRentAdvert : rentAdverts){
+					RentAdvert rentAdvert = computeAdvancedSearch(iterRentAdvert,searchInfo);
+					if(rentAdvert == null){
+
 						continue;
 					}
 					returnList.add(rentAdvert);
@@ -119,6 +151,14 @@ public class RentAdvertController {
 
 
 		return new ResponseEntity<>(returnList,HttpStatus.OK);
+	}
+
+	/**
+	 * Svi oglasi usera koji zadovoljavaju kriterijume pretrage
+	 * */
+	private ArrayList<RentAdvert> getAllAccessableRentAdvertsUser(User user, SearchInfo searchInfo) {
+		return rentAdvertService.findByDatesUser(
+				searchInfo.getStartDate(),searchInfo.getEndDate(),user.getId());
 	}
 
 	/**

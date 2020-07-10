@@ -49,4 +49,8 @@ public class RentAdvertService {
 
 		return (ArrayList<RentAdvert>) repository.findByStartEndDate(startDate,endDate,firmId);
     }
+
+    public ArrayList<RentAdvert> findByDatesUser(Date startDate, Date endDate, Long userID) {
+		return (ArrayList<RentAdvert>) repository.findByStartEndDateUser(startDate,endDate,userID);
+    }
 }
