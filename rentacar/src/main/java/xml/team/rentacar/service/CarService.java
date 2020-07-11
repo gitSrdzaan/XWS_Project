@@ -98,13 +98,21 @@ public class CarService {
 
 	public CarClass classExsits(CarModel carModel, String carClass) {
 		// TODO Auto-generated method stub
-		CarClass cc = classRepository.findByModelAndClass(carModel.getId(),carClass);
-		
-		if(cc == null) {
+
+		try{
+			CarClass cc = classRepository.findByModelAndClass(carModel.getId(),carClass);
+			if(cc == null) {
+				return null;
+			}
+
+			return cc;
+		}
+		catch(Exception e){
+			e.printStackTrace();
 			return null;
 		}
 		
-		return cc;
+
 	}
 
 	public Car findCar(Long carID) {

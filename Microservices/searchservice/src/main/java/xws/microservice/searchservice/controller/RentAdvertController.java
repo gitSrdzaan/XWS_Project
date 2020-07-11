@@ -171,8 +171,10 @@ public class RentAdvertController {
 			}
 		}
 		if(searchInfo.getCarMileage() != null){
-			if(rentAdvert.getCar().getCarMileage() > searchInfo.getCarMileage()){
-				return null;
+			if(rentAdvert.getCar().getCarMileage() != null){
+				if(rentAdvert.getCar().getCarMileage() > searchInfo.getCarMileage()){
+					return null;
+				}
 			}
 		}
 
@@ -216,7 +218,7 @@ public class RentAdvertController {
 
 		//cijena po kilometrazi
 		if(searchInfo.getIntendingMileage() !=  null){
-			if(rentAdvert.getCar().getMaxAllowedMileage() != 0){
+			if(rentAdvert.getCar().getMaxAllowedMileage() != 0 && rentAdvert.getCar().getMaxAllowedMileage() != null){
 				retPrice += priceList.getPricePerKilometer() *
 						(searchInfo.getIntendingMileage() - rentAdvert.getCar().getMaxAllowedMileage());
 			}

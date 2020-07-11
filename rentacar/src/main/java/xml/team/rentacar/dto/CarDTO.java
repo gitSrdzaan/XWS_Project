@@ -36,15 +36,18 @@ public class CarDTO {
 	
 	
 	private Integer carMileage;//kilometraza do sada
+
+	private Integer maxAllowedMileage;
 	
    
 	private List<String> carComment = new ArrayList<String>();
 	
 
 	private Integer carGrade;
-	
-	
-private double longitude;
+
+
+
+	private double longitude;
 	
 	private double latitude;
 	
@@ -166,7 +169,11 @@ private double longitude;
 		this.kidsSeats = kidsSeats;
 	}
 
-	
-	
-	
+	public Integer getMaxAllowedMileage() {
+		return maxAllowedMileage;
+	}
+
+	public void setMaxAllowedMileage(Integer maxAllowedMileage) {
+		this.maxAllowedMileage = maxAllowedMileage;
+	}
 }
