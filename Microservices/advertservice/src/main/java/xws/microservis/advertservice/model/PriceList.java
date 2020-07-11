@@ -24,6 +24,10 @@ public class PriceList {
 	/***
 	 * ТОDO: intervali za popust impelementacija
 	 */
+
+	@ManyToOne
+	@JoinColumn
+	private User user;
 	
 	
 	public PriceList() {
@@ -70,4 +74,11 @@ public class PriceList {
 		this.priceCDW = priceCDW;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

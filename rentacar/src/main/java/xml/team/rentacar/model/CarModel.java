@@ -25,7 +25,7 @@ public class CarModel {
 	@Column
 	private String model;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mark_id")
 	private CarMark mark;
 	

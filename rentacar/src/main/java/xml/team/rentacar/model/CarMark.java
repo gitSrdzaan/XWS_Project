@@ -22,7 +22,7 @@ public class CarMark {
 	@Column(unique = true)
 	private String mark;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mark")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "mark")
 	private List<CarModel> listModel;
 	
 	public CarMark() {
