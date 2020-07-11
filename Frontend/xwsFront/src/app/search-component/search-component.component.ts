@@ -61,6 +61,7 @@ export class SearchComponentComponent implements OnInit {
       'mileage',
       'kids',
       'details',
+      'cart',
     ];
   }
   sortGrade() {
@@ -80,6 +81,16 @@ export class SearchComponentComponent implements OnInit {
 
   details(id) {
     this.router.navigate(['/car', id]);
+  }
+
+  addToCart(advert) {
+    console.log(advert);
+    let myCart = JSON.parse(localStorage.getItem('myCart'));
+    if (myCart === null) myCart = [];
+    if (!myCart.some((item) => item.id === advert.id)) {
+      myCart.push(advert);
+      localStorage.setItem('myCart', JSON.stringify(myCart));
+    }
   }
 }
 

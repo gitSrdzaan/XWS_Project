@@ -27,9 +27,11 @@ import { MatTableModule } from '@angular/material/table';
 import { SearchService } from './_services/search.service';
 import { CarService } from './_services/car.service';
 import { AuthService } from './_services/authentication.service';
+import { RentService } from './_services/rent.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatChipsModule } from '@angular/material/chips';
 
 import {
   NgxMatDatetimePickerModule,
@@ -74,11 +76,13 @@ import { CarDetailsComponent } from './car-details/car-details.component';
     HttpClientModule,
     MatSortModule,
     MatToolbarModule,
+    MatChipsModule,
   ],
   providers: [
     SearchService,
     CarService,
     AuthService,
+    RentService,
     { provide: MAT_DATE_LOCALE, useValue: 'en-US' },
   ],
   bootstrap: [AppComponent],
