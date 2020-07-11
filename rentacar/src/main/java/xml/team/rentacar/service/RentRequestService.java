@@ -178,4 +178,13 @@ public class RentRequestService {
 		}
 
 	}
+
+    public RentRequestBundle findRentRequestBundle(Long bundleId) {
+
+		return bundleRepository.findById(bundleId).orElse(null);
+    }
+
+	public ArrayList<RentRequestBundle> getAllBundle() {
+		return (ArrayList<RentRequestBundle>) bundleRepository.findAll();
+	}
 }

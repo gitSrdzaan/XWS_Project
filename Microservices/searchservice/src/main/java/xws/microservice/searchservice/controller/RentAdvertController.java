@@ -164,8 +164,10 @@ public class RentAdvertController {
 			}
 		}
 		if(searchInfo.getKidsSeats() != null){
-			if(rentAdvert.getCar().getKidsSeats() < searchInfo.getKidsSeats()){
-				return null;
+			if(rentAdvert.getCar().getKidsSeats() != null){
+				if(rentAdvert.getCar().getKidsSeats() < searchInfo.getKidsSeats()){
+					return null;
+				}
 			}
 		}
 		if(searchInfo.getCarMileage() != null){

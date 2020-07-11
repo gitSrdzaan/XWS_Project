@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xml.team.rentacar.dto.RentRequestDTO;
 import xml.team.rentacar.model.RentRequest;
+import xml.team.rentacar.model.RentRequestBundle;
 import xml.team.rentacar.model.RentRequestStatus;
 import xml.team.rentacar.service.RentRequestService;
 
@@ -26,6 +27,13 @@ public class RentRequestController {
         ArrayList<RentRequest> rentRequestArrayList =  rentRequestService.getAll();
 
         return new ResponseEntity<>(rentRequestArrayList,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/svi/bundle")
+    public ResponseEntity<?> getAllRequestsBundle(){
+        ArrayList<RentRequestBundle> rentRequestBundles = rentRequestService.getAllBundle();
+
+        return new ResponseEntity<>(rentRequestBundles,HttpStatus.OK);
     }
 
     @GetMapping(value="/neodobreni")
@@ -75,7 +83,52 @@ public class RentRequestController {
      * TODO: odobravanje ili odbijanje budnle zahtjeva
      * */
 
+    @PutMapping(value ="odbijanje/bundle/{bundleId}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> deniedBundleRequest(@PathVariable Long bundleId){
+        RentRequestBundle rrb = rentRequestService.findRentRequestBundle(bundleId);
+        if(rrb == null){
+            return  new ResponseEntity<>("Greska pri odbijanju bundle zahtjeva", HttpStatus.BAD_REQUEST);
+        }
 
+        ArrayList<RentRequest> rentRequests = (ArrayList<RentRequest>) rrb.getRentRequest();
+        for(RentRequest rentRequest : rentRequests){
+            rentRequest.setStatus(RentRequestStatus.DENIED);
+        }
+        rrb.setRentRequest(rentRequests);
+        try{
+            rentRequestService.saveRentRequestBundle(rrb);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return  new ResponseEntity<>("Greska pri uspisivanju odbijenog bundle zahtjeva", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    @PutMapping(value ="odobreni/bundle/{bundleId}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> acceptedBundleRequest(@PathVariable Long bundleId){
+        RentRequestBundle rrb = rentRequestService.findRentRequestBundle(bundleId);
+        if(rrb == null){
+            return  new ResponseEntity<>("Greska pri odbijanju bundle zahtjeva", HttpStatus.BAD_REQUEST);
+        }
+
+        ArrayList<RentRequest> rentRequests = (ArrayList<RentRequest>) rrb.getRentRequest();
+        for(RentRequest rentRequest : rentRequests){
+            rentRequest.setStatus(RentRequestStatus.PAID);
+        }
+        rrb.setRentRequest(rentRequests);
+        try{
+            rentRequestService.saveRentRequestBundle(rrb);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return  new ResponseEntity<>("Greska pri uspisivanju odbijenog bundle zahtjeva", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 }
