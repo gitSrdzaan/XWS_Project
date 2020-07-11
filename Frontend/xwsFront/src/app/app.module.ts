@@ -25,6 +25,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { SearchService } from './_services/search.service';
+import { UserService } from './_services/user.service';
 import { CarService } from './_services/car.service';
 import { AuthService } from './_services/authentication.service';
 import { RentService } from './_services/rent.service';
@@ -32,6 +33,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import {
   NgxMatDatetimePickerModule,
@@ -39,6 +42,9 @@ import {
   NgxMatNativeDateModule,
 } from '@angular-material-components/datetime-picker';
 import { CarDetailsComponent } from './car-details/car-details.component';
+import { CarsComponent } from './cars/cars.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +58,9 @@ import { CarDetailsComponent } from './car-details/car-details.component';
     SearchComponentComponent,
     IndexCompComponent,
     CarDetailsComponent,
+    CarsComponent,
+    UserProfileComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,12 +86,15 @@ import { CarDetailsComponent } from './car-details/car-details.component';
     MatSortModule,
     MatToolbarModule,
     MatChipsModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
   ],
   providers: [
     SearchService,
     CarService,
     AuthService,
     RentService,
+    UserService,
     { provide: MAT_DATE_LOCALE, useValue: 'en-US' },
   ],
   bootstrap: [AppComponent],

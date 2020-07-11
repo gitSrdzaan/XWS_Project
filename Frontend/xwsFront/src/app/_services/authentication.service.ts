@@ -1,28 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
-  login(email: string, password: string) {
-    return of(new Object());
+  login(loginDTO) {
+    return this.http.post<any>('http://localhost:8080/auth/login', loginDTO);
   }
 
-  register(
-    firstName: string,
-    lastName: string,
-    email: string,
-    password1: string,
-    password2: string
-  ) {
-    return of({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password1,
-    });
+  register(registerUserDTO) {
+    return this.http.post<any>(
+      'http://localhost:8080/auth/register',
+      registerUserDTO
+    );
+  }
+
+  verify() {
+    let token = localStorage.getItem('token');
+    if (token == null) this.router.navigate(['/login']);
+    this.http.get<any>(`http://localhost:8080/auth/verify/${token}`).subscribe(
+      (response) => {
+        if (response === true) {
+          this.snackBar.open('You have valid token', '', {
+            duration: 2000,
+          });
+        }
+      },
+      (error) => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      }
+    );
   }
 
   profile() {

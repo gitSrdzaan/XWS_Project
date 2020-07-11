@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MyErrorStateMatcher } from '../_helpers/myErrorStateMatcher';
+import { AuthService } from '../_services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-comp',
@@ -11,11 +13,11 @@ export class RegisterCompComponent implements OnInit {
   registerForm: FormGroup;
   matcher = new MyErrorStateMatcher();
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
     this.registerForm = new FormGroup(
       {
-        firstName: new FormControl('', Validators.required),
-        lastName: new FormControl('', Validators.required),
+        name: new FormControl('', Validators.required),
+        surname: new FormControl('', Validators.required),
         email: new FormControl('', [Validators.required, Validators.email]),
         password1: new FormControl('', [
           Validators.required,
@@ -25,6 +27,11 @@ export class RegisterCompComponent implements OnInit {
           Validators.required,
           Validators.minLength(6),
         ]),
+        address: new FormControl('', Validators.required),
+        city: new FormControl('', Validators.required),
+        state: new FormControl('', Validators.required),
+        phoneNumber: new FormControl(''),
+        company: new FormControl(''),
       },
       { validators: this.checkPasswords }
     );
@@ -33,8 +40,12 @@ export class RegisterCompComponent implements OnInit {
   ngOnInit(): void {}
 
   register() {
-    const formValue = this.registerForm.value;
-    console.log(formValue);
+    const userRegisterDTO = this.registerForm.value;
+    console.log(userRegisterDTO);
+    userRegisterDTO.password = userRegisterDTO.password1;
+    this.authService
+      .register(userRegisterDTO)
+      .subscribe((response) => this.router.navigate(['/login']));
   }
 
   checkPasswords(group: FormGroup) {
