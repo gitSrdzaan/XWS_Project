@@ -71,6 +71,11 @@ public class RentRequestController {
 
     }
 
+    /**
+     * TODO: odobravanje ili odbijanje budnle zahtjeva
+     * */
+
+
 
 
 }

@@ -196,77 +196,11 @@ public class AdminController {
     	return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @GetMapping(value = "svi/marke")
-    public ResponseEntity<?> findAllCarMarks(){
-    	ArrayList<CarMark> listMark = carService.findAllCarMarks();
-    	if(listMark == null) {
-    		return new ResponseEntity<>("Lista marki automobila prazna", HttpStatus.NO_CONTENT);
-    	}
-    	
-    	return new ResponseEntity<>(listMark,HttpStatus.OK);
-    	
-    	
-    }
-    
-    @GetMapping(value = "svi/klase")
-    public ResponseEntity<?> findAllCarClasses(){
-    	ArrayList<CarClass> listClass = carService.findAllCarClasses();
-    	if(listClass == null) {
-    		return new ResponseEntity<>("Lista klasi automobila prazna", HttpStatus.NO_CONTENT);
-    	}
-    	
-    	return new ResponseEntity<>(listClass,HttpStatus.OK);
-    	
-    	
-    }
-    
-    
 
-    @GetMapping(value = "svi/modeli")
-    public ResponseEntity<?> findAllCarModels(){
-    	ArrayList<CarModel> listModel = carService.findAllCarModels();
-    	if(listModel == null) {
-    		return new ResponseEntity<>("Lista modeli automobila prazna", HttpStatus.NO_CONTENT);
-    	}
-    	
-    	return new ResponseEntity<>(listModel,HttpStatus.OK);
-    	
-    	
-    }
-    
-    
-    
-    /**
-     * @author Artukov
-     * */
-    
-    @PostMapping("addInCodebook/{id}/{s1}/{s2}/{s3}/{s4}")
-    public ResponseEntity<?> addInCodebook (@PathVariable Long id, 
-    		@PathVariable String s1, @PathVariable String s2, @PathVariable String s3,@PathVariable String s4)  {
-    	
-    	Codebook c = codebookService.getOne(id);
-    	if (c==null) {
-    		return new ResponseEntity("Unexpected error",HttpStatus.BAD_REQUEST);
-    	
-    	}else {
-    		c=codebookService.update(id, s1, s2, s3, s4);
-    		return new ResponseEntity(c,HttpStatus.OK);
-    	}
-    }
-    
-    @DeleteMapping("deleteFromCodebook/{id}/{s1}/{s2}/{s3}/{s4}")
-    public ResponseEntity<?> deleteFromCodebook(@PathVariable Long id, 
-    		@PathVariable String s1, @PathVariable String s2, @PathVariable String s3,@PathVariable String s4)  {
-    	
-    	Codebook c = codebookService.getOne(id);
-    	if (c==null) {
-    		return new ResponseEntity("Unexpected error",HttpStatus.BAD_REQUEST);
-    	
-    	}else {
-    		codebookService.delete(id, s1, s2, s3, s4);
-    		return new ResponseEntity("Deleted from Codebook",HttpStatus.OK);
-    	}
-    }
+
+
+
+
     
     
 }

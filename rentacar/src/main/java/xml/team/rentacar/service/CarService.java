@@ -1,6 +1,7 @@
 package xml.team.rentacar.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -223,5 +224,13 @@ public class CarService {
 	public ArrayList<CarModel> findAllCarModels() {
 		// TODO Auto-generated method stub
 		return (ArrayList<CarModel>) modelRepository.findAll();
+	}
+
+    public ArrayList<Transmission> getAllTransmission() {
+		return (ArrayList<Transmission>) transRepository.findAll();
+    }
+
+	public ArrayList<CarFuel> getAllCarFuel() {
+		return (ArrayList<CarFuel>) fuelRepository.findAll();
 	}
 }
