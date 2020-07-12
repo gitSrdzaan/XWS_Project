@@ -13,7 +13,7 @@ import xws.microservice.auth.service.RoleService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "role")
+@RequestMapping(value = "/role")
 @CrossOrigin(origins = "*")
 public class RoleController {
 

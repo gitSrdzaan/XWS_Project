@@ -16,6 +16,7 @@ import xws.microservice.searchservice.services.CarService;
 
 @RestController
 @RequestMapping(value = "/automobil")
+@CrossOrigin(origins = "*")
 public class CarController {
 	
 	@Autowired

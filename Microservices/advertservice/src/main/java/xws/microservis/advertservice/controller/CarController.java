@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping(value= "/car")
+@CrossOrigin(origins = "*")
 public class CarController {
 
 

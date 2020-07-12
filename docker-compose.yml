@@ -27,8 +27,8 @@ services:
     depends_on:
       - eureka-serviceregistry
   
-  authentification-service:
-    build:  ./Microservices/authentificationservice
+  auth-service:
+    build:  ./Microservices/auth
     ports:
     - "8082:8082"
     environment:
@@ -67,7 +67,7 @@ services:
     depends_on:
       - eureka-serviceregistry
       - advert-service
-      - authentification-service
+      - auth-service
       - rent-service
       - search-service
 
