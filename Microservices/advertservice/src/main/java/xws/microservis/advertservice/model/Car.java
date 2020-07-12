@@ -52,6 +52,9 @@ public class Car {
 
 	@Column(nullable = true)
 	private Integer kidsSeats;
+
+	@Column(nullable = true)
+	private String owner;
 	
 	//Slika automobila
 	
@@ -68,7 +71,14 @@ public class Car {
 	public Car() {
 		
 	}
-	
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
 
 	public Long getId() {
 		return id;
