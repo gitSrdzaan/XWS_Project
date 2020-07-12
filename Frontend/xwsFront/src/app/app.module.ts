@@ -45,6 +45,7 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { CarsComponent } from './cars/cars.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersComponent } from './users/users.component';
+import { CreateCarComponent } from './create-car/create-car.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { UsersComponent } from './users/users.component';
     CarsComponent,
     UserProfileComponent,
     UsersComponent,
+    CreateCarComponent,
   ],
   imports: [
     BrowserModule,

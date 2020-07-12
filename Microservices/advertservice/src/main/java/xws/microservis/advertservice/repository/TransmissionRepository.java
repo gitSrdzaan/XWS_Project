@@ -1,3 +1,5 @@
+
+
 package xws.microservis.advertservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,3 +11,4 @@ import xws.microservis.advertservice.model.Transmission;
 public interface TransmissionRepository extends JpaRepository<Transmission, Long> {
 
 }
+

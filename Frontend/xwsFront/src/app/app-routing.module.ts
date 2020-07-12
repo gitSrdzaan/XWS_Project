@@ -8,6 +8,7 @@ import { ShoppingCartCompComponent } from './shopping-cart-comp/shopping-cart-co
 import { CarsComponent } from './cars/cars.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersComponent } from './users/users.component';
+import { CreateCarComponent } from './create-car/create-car.component';
 
 const routes: Routes = [
   { path: 'search', component: SearchComponentComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'cart', component: ShoppingCartCompComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'new-car', component: CreateCarComponent },
   { path: '', redirectTo: 'search', pathMatch: 'full' },
 ];
 

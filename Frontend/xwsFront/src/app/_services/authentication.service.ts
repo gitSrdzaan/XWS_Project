@@ -13,12 +13,12 @@ export class AuthService {
   ) {}
 
   login(loginDTO) {
-    return this.http.post<any>('http://localhost:8080/auth/login', loginDTO);
+    return this.http.post<any>('http://localhost:8089/auth/login', loginDTO);
   }
 
   register(registerUserDTO) {
     return this.http.post<any>(
-      'http://localhost:8080/auth/register',
+      'http://localhost:8089/auth/register',
       registerUserDTO
     );
   }
@@ -26,7 +26,7 @@ export class AuthService {
   verify() {
     let token = localStorage.getItem('token');
     if (token == null) this.router.navigate(['/login']);
-    this.http.get<any>(`http://localhost:8080/auth/verify/${token}`).subscribe(
+    this.http.get<any>(`http://localhost:8089/auth/verify/${token}`).subscribe(
       (response) => {
         if (response === true) {
           this.snackBar.open('You have valid token', '', {
@@ -39,19 +39,5 @@ export class AuthService {
         this.router.navigate(['/login']);
       }
     );
-  }
-
-  profile() {
-    return of(new Object());
-  }
-
-  updateProfile(user: any) {
-    console.log(user);
-    return of(user);
-  }
-
-  changePassword(changePassword: any) {
-    console.log(changePassword);
-    return of(new Object());
   }
 }

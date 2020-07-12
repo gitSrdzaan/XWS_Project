@@ -11,4 +11,17 @@ export default class Car {
   carMileage: number;
   carGrade: number;
   kidsSeats: number;
+
+  constructor() {
+    this.id = null;
+    this.carRegistration = null;
+    this.carMark = null;
+    this.carModel = null;
+    this.carFuel = new CarFuel();
+    this.transmission = new Transmission();
+    this.carClass = null;
+    this.carMileage = null;
+    this.carGrade = null;
+    this.kidsSeats = null;
+  }
 }
