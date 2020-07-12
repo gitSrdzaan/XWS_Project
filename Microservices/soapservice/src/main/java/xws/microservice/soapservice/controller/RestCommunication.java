@@ -10,16 +10,32 @@ import org.springframework.web.bind.annotation.RestController;
 import xws.microservice.soapservice.soapclient.SoapClient;
 
 @RestController
-@RequestMapping(value="/s")
+@RequestMapping(value="/")
 public class RestCommunication {
 
     @Autowired
     private SoapClient soapClient;
 
-    @GetMapping("/{id}")
+    @GetMapping("car/{id}")
     public ResponseEntity<String> car(@PathVariable Long id){
-        String carId = soapClient.getRentAdvert(id).getRentAdvert().getOwner();
+        String carId = soapClient.getCarResponse(id).getCar().getOwner();
 
         return new ResponseEntity<>(carId , HttpStatus.OK);
+    }
+
+    @GetMapping("rentadvert/{id}")
+    public ResponseEntity<String> rentadvert(@PathVariable Long id){
+        String rentAdvertId = soapClient.getRentAdvert(id).getRentAdvert().getOwner();
+
+        return new ResponseEntity<>(rentAdvertId,HttpStatus.OK);
+
+    }
+
+    @GetMapping("pricelist/{id}")
+    public ResponseEntity<String> pricelist(@PathVariable Long id){
+        String pricelistId = soapClient.getPriceListResponse(id).getPriceList().getOwner();
+
+        return new ResponseEntity<>(pricelistId,HttpStatus.OK);
+
     }
 }
