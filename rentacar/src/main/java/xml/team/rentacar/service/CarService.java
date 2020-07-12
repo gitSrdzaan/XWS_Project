@@ -5,8 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.client.RestTemplate;
 import xml.team.rentacar.model.Car;
 import xml.team.rentacar.model.CarClass;
 import xml.team.rentacar.model.CarFuel;
@@ -50,7 +53,15 @@ public class CarService {
 		catch(Exception e) {
 			throw new Exception("Neuspjesan pokusaj uspisivanja auta u bazu");
 		}
-		
+
+		/**
+		 * TODO: komunikacija sa ostalim servisima
+		 * */
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Long> soapResponse = restTemplate.getForEntity("http://localhost:8086/car/" + car.getId(),Long.class);
+
+
+
 		return true;
 	}
 

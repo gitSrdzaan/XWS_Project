@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.client.RestTemplate;
 import xml.team.rentacar.model.Firm;
 import xml.team.rentacar.model.PriceList;
 import xml.team.rentacar.repository.FirmRepository;
@@ -50,7 +52,11 @@ public class PriceListService {
 			e.printStackTrace();
 			throw new Exception("Greska pri cuvanju cjenovnika");
 		}
-		// TODO Auto-generated method stub
+
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<?> responseEntity = restTemplate.getForEntity("http://localhost:8086/pricelist/"+pl.getId(),Long.class);
+
+
 		
 	}
 	

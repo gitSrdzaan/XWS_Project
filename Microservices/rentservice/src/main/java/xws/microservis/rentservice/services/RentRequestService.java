@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
+import org.springframework.web.client.RestTemplate;
 import xws.microservis.rentservice.dto.RentRequestBundleDTO;
 import xws.microservis.rentservice.dto.RentRequestDTO;
 import xws.microservis.rentservice.model.RentRequest;
@@ -72,6 +74,9 @@ public class RentRequestService {
 			e.printStackTrace();
 			throw new Exception("Neuspjesno sacuvan zahtjev");
 		}
+
+		RestTemplate newRentRequset = new RestTemplate();
+		ResponseEntity<Long> responseEntity = newRentRequset.getForEntity("http://localhost:8086/rentrequest/"+rr.getId(), Long.class);
 	}
 	
 	/**

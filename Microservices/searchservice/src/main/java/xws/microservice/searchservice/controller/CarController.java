@@ -8,10 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import xws.microservice.searchservice.dto.CarDTO;
 import xws.microservice.searchservice.model.Car;
@@ -95,5 +92,21 @@ public class CarController {
 
 		return new ResponseEntity<>(carFuelSet,HttpStatus.OK);
 
+	}
+
+
+	@PostMapping(path = "/novi", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> addCar(@RequestBody Car car){
+
+		try {
+
+			carService.addCar(car);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("Greska pri dodavanju automobila",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

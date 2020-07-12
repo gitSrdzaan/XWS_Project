@@ -39,7 +39,7 @@ public class CarController {
 	@PostMapping(path = "/novi", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addCar(@RequestBody CarDTO carDTO){
 		
-		System.out.println(carDTO.getCarClass());
+		//System.out.println(carDTO.getCarClass());
 		CarMark mark = carService.findMark(carDTO.getCarMark());
 		if(mark == null) {
 			return new ResponseEntity<>("Marka automobila nije izabrana",HttpStatus.BAD_REQUEST);

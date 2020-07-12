@@ -50,4 +50,13 @@ public class CarService {
 
 		return (HashSet<String>) carFuelRepository.findAllCarFuel();
 	}
+
+    public void addCar(Car car) throws Exception {
+		try {
+			repository.save(car);
+		}
+		catch(Exception e) {
+			throw new Exception("Neuspjesan pokusaj uspisivanja auta u bazu");
+		}
+    }
 }
