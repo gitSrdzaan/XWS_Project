@@ -8,15 +8,16 @@ import javax.persistence.*;
 @Table(name = "rent_request")
 public class RentRequest {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rentAdvert_id")
 	private RentAdvert rentAdvert;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User advertSender;
 	
@@ -97,6 +98,12 @@ public class RentRequest {
 	public void setStatus(RentRequestStatus status) {
 		this.status = status;
 	}
-	
-	
+
+	public RentRequestBundle getRentRequestBundle() {
+		return rentRequestBundle;
+	}
+
+	public void setRentRequestBundle(RentRequestBundle rentRequestBundle) {
+		this.rentRequestBundle = rentRequestBundle;
+	}
 }

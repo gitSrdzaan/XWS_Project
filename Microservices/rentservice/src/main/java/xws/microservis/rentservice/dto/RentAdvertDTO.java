@@ -3,13 +3,16 @@ package xws.microservis.rentservice.dto;
 import java.util.Date;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import xws.microservis.rentservice.model.RentAdvert;
 
 public class RentAdvertDTO {
 
 	private Long id;
 	private Long car_Id;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SS")
 	private Date advertStartDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SS")
 	private Date advertEndDate;
 	private Long priceList_Id;
 	

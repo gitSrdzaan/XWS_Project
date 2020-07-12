@@ -1,7 +1,6 @@
 package xml.team.rentacar.soap;
 
-import com.rentacar.rentadvert.xws.GetPriceListRequest;
-import com.rentacar.rentadvert.xws.GetPriceListResponse;
+import com.rentacar.rentadvert.xws.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

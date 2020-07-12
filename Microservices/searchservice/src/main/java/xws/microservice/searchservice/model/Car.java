@@ -57,11 +57,11 @@ public class Car {
 	//Slika automobila
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "firm")
+    @JoinColumn(name = "firm_id")
     private Firm firm;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 

@@ -27,17 +27,15 @@ public class RentRequest {
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User advertSender;
-	
+
+	@Column
 	private Date reservationStart;
-	
+	@Column
 	private Date reservationEnd;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "bundle_id", nullable = true)
 	private RentRequestBundle rentRequestBundle;
-
-
-
 
 	@Column(name = "status")
 	private RentRequestStatus status;

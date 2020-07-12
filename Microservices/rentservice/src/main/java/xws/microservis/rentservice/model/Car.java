@@ -59,9 +59,7 @@ public class Car {
 	/*private double longitude;
 	
 	private double latitude;*/
-	
-	//Cjenovnik
-	
+
 	@Column(nullable = true)
 	private Integer kidsSeats;
 	

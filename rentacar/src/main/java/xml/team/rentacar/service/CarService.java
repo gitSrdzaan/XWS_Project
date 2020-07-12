@@ -1,6 +1,7 @@
 package xml.team.rentacar.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,13 +98,21 @@ public class CarService {
 
 	public CarClass classExsits(CarModel carModel, String carClass) {
 		// TODO Auto-generated method stub
-		CarClass cc = classRepository.findByModelAndClass(carModel.getId(),carClass);
-		
-		if(cc == null) {
+
+		try{
+			CarClass cc = classRepository.findByModelAndClass(carModel.getId(),carClass);
+			if(cc == null) {
+				return null;
+			}
+
+			return cc;
+		}
+		catch(Exception e){
+			e.printStackTrace();
 			return null;
 		}
 		
-		return cc;
+
 	}
 
 	public Car findCar(Long carID) {
@@ -223,5 +232,13 @@ public class CarService {
 	public ArrayList<CarModel> findAllCarModels() {
 		// TODO Auto-generated method stub
 		return (ArrayList<CarModel>) modelRepository.findAll();
+	}
+
+    public ArrayList<Transmission> getAllTransmission() {
+		return (ArrayList<Transmission>) transRepository.findAll();
+    }
+
+	public ArrayList<CarFuel> getAllCarFuel() {
+		return (ArrayList<CarFuel>) fuelRepository.findAll();
 	}
 }

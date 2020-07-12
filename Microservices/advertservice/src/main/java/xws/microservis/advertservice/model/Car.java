@@ -1,25 +1,15 @@
 package xws.microservis.advertservice.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Car {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -32,34 +22,46 @@ public class Car {
 	private String carModel;
 	
 	
-	@Column(nullable = false)
-	private String carFuel;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "carfuel_id")
+	private CarFuel carFuel;
 	
-	@Column(nullable = false)
-	private String transmission;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "transmission_id")
+	private Transmission transmission;
 	
 	@Column(nullable = false)
 	private String carClass;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer carMileage;//kilometraza do sada
+
+	@Column(nullable = true)
+	private Integer maxAllowedMileage;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
+	@ElementCollection(targetClass = String.class)
+	private List<String> carComment;
+	
+	@Column(nullable = true)
 	private Integer carGrade;
 	
-	private double longitude;
+	/*private double longitude;
 	
-	private double latitude;
-	
-	//Cjenovnik
-	
-	@Column(nullable = false)
+	private double latitude;*/
+
+	@Column(nullable = true)
 	private Integer kidsSeats;
+	
+	//Slika automobila
+	
+	/**
+	 * TODO: veza firme i auta da se obezbjedi
+	 * */
 
-
-	@Lob
-    @Column(name = "CAR_IMAGE", nullable = true, columnDefinition = "BLOB")
-    private String image;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	
 	
@@ -67,8 +69,7 @@ public class Car {
 		
 	}
 	
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -93,20 +94,28 @@ public class Car {
 		this.carModel = carModel;
 	}
 
-	public String getCarFuel() {
+	public CarFuel getCarFuel() {
 		return carFuel;
 	}
 
-	public void setCarFuel(String  carFuel) {
+	public void setCarFuel(CarFuel carFuel) {
 		this.carFuel = carFuel;
 	}
 
-	public String  getTransmission() {
+	public Transmission getTransmission() {
 		return transmission;
 	}
 
-	public void setTransmission(String  transmission) {
+	public void setTransmission(Transmission transmission) {
 		this.transmission = transmission;
+	}
+
+	public List<String> getCarComment() {
+		return carComment;
+	}
+
+	public void setCarComment(List<String> carComment) {
+		this.carComment = carComment;
 	}
 
 	public String getCarClass() {
@@ -150,7 +159,7 @@ public class Car {
 		this.carGrade = carGrade;
 	}
 
-	public double getLongitude() {
+	/*public double getLongitude() {
 		return longitude;
 	}
 
@@ -164,6 +173,21 @@ public class Car {
 
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
+	}*/
+
+	public User getUser() {
+		return user;
 	}
-	
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getMaxAllowedMileage() {
+		return maxAllowedMileage;
+	}
+
+	public void setMaxAllowedMileage(Integer maxAllowedMileage) {
+		this.maxAllowedMileage = maxAllowedMileage;
+	}
 }

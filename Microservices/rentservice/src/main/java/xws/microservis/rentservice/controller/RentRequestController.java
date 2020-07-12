@@ -1,5 +1,6 @@
 package xws.microservis.rentservice.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -67,7 +68,9 @@ public class RentRequestController {
 			try {
 				rrDTO.setStatus(RentRequestStatus.PENNDING);
 				rentRService.saveRentRequest(rrDTO);
+				return new ResponseEntity<>(HttpStatus.OK);
 			} catch (Exception e) {
+				e.printStackTrace();
 				return new ResponseEntity<>("Greska u cuvanju zahtjeva",HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			
@@ -78,21 +81,20 @@ public class RentRequestController {
 	@PostMapping(path = "/novi/bundle",consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createBundleRequest(@RequestBody List<RentRequestDTO> listRRDTO){
 		RentRequestBundle rrb = new RentRequestBundle();
+		System.out.println("list " + listRRDTO);
 		if(listRRDTO != null || listRRDTO.size()>0) {
-			
-			rrb = rentRService.createRentRequestBundel(listRRDTO);
-				
-			if(rrb == null) {
-				return new ResponseEntity<>("GRESKA u pravljenju bundle zahtjeva ",HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+
 			try {
-				rentRService.saveRentRequestBundle(rrb);
+				rrb = rentRService.createRentRequestBundel(listRRDTO);
+				return new ResponseEntity<>(HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>("GRESKA u pravljenju bundle zahtjeva i cuvanja ",HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			catch(Exception e) {
-				return new ResponseEntity<>("Greska u kreiranju bundle zahtjeva",HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+
+
 		}
-		return new ResponseEntity<>("Greska u kreiranju bundle zahtjeva",HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>("Greska u kreiranju bundle zahtjeva lista prazna",HttpStatus.BAD_REQUEST);
 
 	}
 	
@@ -112,7 +114,24 @@ public class RentRequestController {
 		}
 		return new ResponseEntity<>("No rent request",HttpStatus.BAD_REQUEST);
 	}
-	
+
+	@GetMapping(value = "/svi")
+	public ResponseEntity<?> getAllRentRequest(){
+		ArrayList<RentRequest> rentRequestArrayList = rentRService.getAll();
+
+		return new ResponseEntity<>(rentRequestArrayList, HttpStatus.OK);
+
+
+	}
+
+	@GetMapping(value = "/svi/bundle")
+	public ResponseEntity<?> getAllRentRequestBundle(){
+		ArrayList<RentRequestBundle> rentRequestArrayList = rentRService.getAllBundle();
+
+		return new ResponseEntity<>(rentRequestArrayList, HttpStatus.OK);
+
+
+	}
 	
 	
 	

@@ -39,6 +39,9 @@ public class Car {
 	
 	@Column(nullable = true)
 	private Integer carMileage;//kilometraza do sada
+
+	@Column(nullable = true)
+	private Integer maxAllowedMileage;
 	
    /* *
    TODO: make COMMENT CLASS and connect to car @OneToMany
@@ -163,4 +166,12 @@ public class Car {
 		this.latitude = latitude;
 	}
 	*/
+
+	public Integer getMaxAllowedMileage() {
+		return maxAllowedMileage;
+	}
+
+	public void setMaxAllowedMileage(Integer maxAllowedMileage) {
+		this.maxAllowedMileage = maxAllowedMileage;
+	}
 }

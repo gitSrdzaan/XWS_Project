@@ -15,7 +15,9 @@ export class CarDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private carService: CarService
-  ) {}
+  ) {
+    this.car = new Car();
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {

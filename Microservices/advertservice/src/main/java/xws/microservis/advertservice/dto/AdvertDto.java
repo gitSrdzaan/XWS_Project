@@ -2,6 +2,7 @@ package xws.microservis.advertservice.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import xws.microservis.advertservice.model.Car;
 import xws.microservis.advertservice.model.PriceList;
 
@@ -10,9 +11,9 @@ public class AdvertDto {
 	private Long id;
 	
 	private Long carId;
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SSS")
 	private Date advertStartDate;
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SSS")
 	private Date advertEndDate;
 	
 	private Long priceListId;
