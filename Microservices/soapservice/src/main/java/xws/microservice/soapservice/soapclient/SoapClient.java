@@ -44,7 +44,8 @@ public class SoapClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive("http://localhost:8080/ws/car" , request,
                         new SoapActionCallback("http://rentacar.com/rentadvert/xws/GetRentAdvertRequest"));
 
-        System.out.println("RESPONSE: " + response.getCar().getOwner());
+        System.out.println("RESPONSE: " + response.getCar().getOwner() +  "With id:" + response.getCar().getId()
+        + "car:" + response.getCar().getCarMark());
 
         xws.microservice.soapservice.model.Car car = new xws.microservice.soapservice.model.Car();
         car.setId(response.getCar().getId());
