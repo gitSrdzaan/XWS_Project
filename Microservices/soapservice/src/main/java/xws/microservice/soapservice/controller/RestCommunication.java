@@ -17,10 +17,10 @@ public class RestCommunication {
     private SoapClient soapClient;
 
     @GetMapping("car/{id}")
-    public ResponseEntity<String> car(@PathVariable Long id){
+    public ResponseEntity<?> car(@PathVariable Long id){
         String carId = soapClient.getCarResponse(id).getCar().getOwner();
 
-        return new ResponseEntity<>(carId , HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("rentadvert/{id}")

@@ -58,7 +58,7 @@ public class CarService {
 		 * TODO: komunikacija sa ostalim servisima
 		 * */
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Long> soapResponse = restTemplate.getForEntity("http://localhost:8086/car/" + car.getId(),Long.class);
+		ResponseEntity<?> soapResponse = restTemplate.getForEntity("http://localhost:8086/car/" + car.getId(),Long.class);
 
 
 
