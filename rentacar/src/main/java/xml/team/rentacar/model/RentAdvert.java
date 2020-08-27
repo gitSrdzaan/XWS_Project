@@ -30,6 +30,10 @@ public class RentAdvert {
 	@ManyToOne
 	@JoinColumn(name = "firm")
 	private Firm firm;
+
+	@Column(nullable = true)
+	private Double priceForRent;
+
 	
 	
 	
@@ -127,5 +131,12 @@ public class RentAdvert {
 	public void setPriceList(PriceList priceList) {
 		this.priceList = priceList;
 	}
-	
+
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
+
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
+	}
 }
