@@ -1,8 +1,19 @@
-insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(1, 'pib','name', 'city','country', 'adress');
-insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(2, 'pib2','name2', 'city2','country2', 'adress2');
-insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(3, 'pib3','name3', 'city3','country3', 'adress3');
-insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(4, 'pib4','name4', 'city4','country4', 'adress4');
-insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(5, 'pib5','name5', 'city5','country5', 'adress5');
+insert into owner(id) values(1);
+insert into owner(id) values(2);
+insert into owner(id) values(3);
+insert into owner(id) values(4);
+insert into owner(id) values(5);
+insert into owner(id) values(10);
+insert into owner(id) values(20);
+insert into owner(id) values(30);
+insert into owner(id) values(40);
+insert into owner(id) values(50);
+
+insert into firm(firm_id,pib,firm_name,firm_city,firm_country,firm_adress) values(1, 'pib','name', 'city','country', 'adress');
+insert into firm(firm_id,pib,firm_name,firm_city,firm_country,firm_adress) values(2, 'pib2','name2', 'city2','country2', 'adress2');
+insert into firm(firm_id,pib,firm_name,firm_city,firm_country,firm_adress) values(3, 'pib3','name3', 'city3','country3', 'adress3');
+insert into firm(firm_id,pib,firm_name,firm_city,firm_country,firm_adress) values(4, 'pib4','name4', 'city4','country4', 'adress4');
+insert into firm(firm_id,pib,firm_name,firm_city,firm_country,firm_adress) values(5, 'pib5','name5', 'city5','country5', 'adress5');
 
 insert into car_fuel values(1,'benzin');
 insert into car_fuel values(2,'dizel');
@@ -14,102 +25,102 @@ insert into transmission values(3,'poluautomatski');
 
 
 insert into user(id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
-values(1,'vozacke', 'email','srks','kralj','Srdjan', 'Simic', 'adresa_s','grad_s','zemlja_s');
+values(10,'vozacke', 'email','srks','kralj','Srdjan', 'Simic', 'adresa_s','grad_s','zemlja_s');
 
 insert into user(id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
-values(2,'vozacke', 'email','nidza','solidni','Nikola', 'Artukov', 'adresa_n','grad_n','zemlja_n');
+values(20,'vozacke', 'email','nidza','solidni','Nikola', 'Artukov', 'adresa_n','grad_n','zemlja_n');
 
 insert into user(id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
-values(3,'vozacke', 'email','markaya','macor','Marko', 'Ristic', 'adresa_m','grad_m','zemlja_m');
+values(30,'vozacke', 'email','markaya','macor','Marko', 'Ristic', 'adresa_m','grad_m','zemlja_m');
 
 insert into user(id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
-values(4,'vozacke', 'email','mica','lavanda','Milica', 'Svonja', 'adresa_mm','grad_mm','zemlja_mm');
+values(40,'vozacke', 'email','mica','lavanda','Milica', 'Svonja', 'adresa_mm','grad_mm','zemlja_mm');
 
 --automobili
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id)
+car_registration, kids_seats,max_allowed_mileage, owner_id)
 values(1,'BMW','X5','SUV',1,1,20,'aaa',1,50 ,1);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(2,'Mercedes','Vitto','Karavan',1,2,10,'aaa',2,500 ,1);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(3,'Mercedes','Ajkula','Limuzina',2,2,10,'aaa',1,500 ,1);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(4,'Skoda','Oktavija','Karavan',1,3,20,'aaa',1,0 ,1);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(5,'Skoda','Oktavija','Fabija',3,2,200,'aaa',1,0 ,1);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(6,'Skoda','Favorit','Favorit',3,2,200,'aaa',1,0 ,2);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(7,'Audi','A5','Karavan',2,1,200,'aaa',2,0 ,3);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(8,'Maserati','A8','Karavan',1,3,100,'aaa',0,0 ,4);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(9,'Ferrari','X5','Dvosed',3,3,100,'aaa',0,0 ,5);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, firm_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(10,'Lamborghini','X2','Dvosed',3,2,100,'aaa',0,0 ,2);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, user_id )
+car_registration, kids_seats,max_allowed_mileage, owner_id )
 values(11,'Tesla','Elektricna','Dvosed',4,2,100,'aaa',0,0 ,1);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, user_id )
-values(12,'Skoda','Fobia','Dvosed',2,1,10,'aaa',2,0 ,2);
+car_registration, kids_seats,max_allowed_mileage, owner_id )
+values(12,'Skoda','Fobia','Dvosed',2,1,10,'aaa',2,0 ,20);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, user_id )
-values(13,'Renault','F1','Bolid',2,1,10,'aaa',2,0 ,3);
+car_registration, kids_seats,max_allowed_mileage, owner_id )
+values(13,'Renault','F1','Bolid',2,1,10,'aaa',2,0 ,30);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, user_id )
-values(14,'Chrysler','Cruiser','30',2,1,10,'aaa',2,0 ,4);
+car_registration, kids_seats,max_allowed_mileage, owner_id )
+values(14,'Chrysler','Cruiser','30',2,1,10,'aaa',2,0 ,40);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
-car_registration, kids_seats,max_allowed_mileage, user_id )
-values(15,'Aaston Martin','P200','C',2,1,10,'aaa',2,1 ,4);
+car_registration, kids_seats,max_allowed_mileage, owner_id )
+values(15,'Aaston Martin','P200','C',2,1,10,'aaa',2,1 ,40);
 
 --cjenovnika
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,firm_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(1,2,4,60,1);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,firm_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(2,4,6,80,2);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,firm_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(3,6,8,100,1);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,firm_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(4,4,12,80,3);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,firm_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(5,7,2,30,4);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,firm_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(6,4,3,120,5);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,firm_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(7,1,6,10,2);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,user_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(8,10,6,10,1);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,user_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(9,7,16,10,2);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,user_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(10,5,10,20,3);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,user_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(11,15,10,20,4);
-insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,user_id)
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,owner_id)
 values(12,2,1,20,4);
 --reklame
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,firm,pricelist_id )
@@ -158,23 +169,23 @@ values(11,parsedatetime('09-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),par
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,user,pricelist_id )
 values(12,parsedatetime('22-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('05-12-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-11,1,8);
+11,10,8);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,user,pricelist_id )
 values(13,parsedatetime('20-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('03-12-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-12,2,9);
+12,20,9);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,user,pricelist_id )
 values(14,parsedatetime('20-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('03-10-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-13,3,10);
+13,30,10);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,user,pricelist_id )
 values(15,parsedatetime('20-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('03-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-14,4,11);
+14,40,11);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,user,pricelist_id )
 values(16,parsedatetime('10-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('23-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-15,4,12);
+15,40,12);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,firm,pricelist_id )
 values(17,parsedatetime('16-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('25-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
