@@ -22,7 +22,7 @@ public class PriceList {
 	private Double priceCDW;
 	
 	//Intervali za popust
-	@Column
+	@Column(nullable = true)
     @ElementCollection
 	private Map<Integer , Integer> saleIntervals ; 
 	

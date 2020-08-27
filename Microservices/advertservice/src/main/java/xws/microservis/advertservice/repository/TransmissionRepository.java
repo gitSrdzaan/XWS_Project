@@ -12,7 +12,7 @@ import xws.microservis.advertservice.model.Transmission;
 @Repository
 public interface TransmissionRepository extends JpaRepository<Transmission, Long> {
 
-    @Query(value = "Select * from transmission where transsmision.transmission = :transmission", nativeQuery = true)
-    Transmission findByName(@Param("transsmision") String transmission);
+    @Query(value = "SELECT * FROM transmission t WHERE t.transmission = :transmission", nativeQuery = true)
+    public Transmission findByName(@Param("transmission") String transmission);
 }
 

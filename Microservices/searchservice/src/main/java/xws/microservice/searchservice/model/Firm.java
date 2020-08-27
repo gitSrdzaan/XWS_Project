@@ -35,9 +35,7 @@ public class Firm extends Owner {
 	@JoinColumn(name="cars")
 	private Set<Car> firmCars;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="users")
-	private List<User> firmUsers;
+
 	
 	
 	
@@ -103,13 +101,9 @@ public class Firm extends Owner {
 		this.firmCars = firmCars;
 	}
 
-	public List<User> getFirmUsers() {
-		return firmUsers;
-	}
 
-	public void setFirmUsers(List<User> firmUsers) {
-		this.firmUsers = firmUsers;
-	}
+
+
 
 
 
