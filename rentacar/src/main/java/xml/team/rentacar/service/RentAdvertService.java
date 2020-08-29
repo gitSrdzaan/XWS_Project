@@ -9,9 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.client.RestTemplate;
+import xml.team.rentacar.dto.RentAdvertDTO;
+import xml.team.rentacar.model.Car;
 import xml.team.rentacar.model.Firm;
+import xml.team.rentacar.model.PriceList;
 import xml.team.rentacar.model.RentAdvert;
+import xml.team.rentacar.repository.CarRepository;
 import xml.team.rentacar.repository.FirmRepository;
+import xml.team.rentacar.repository.PriceListRepository;
 import xml.team.rentacar.repository.RentAdvertRepository;
 
 @Service
@@ -22,6 +27,12 @@ public class RentAdvertService {
 	
 	@Autowired
 	private FirmRepository firmRepository;
+
+	@Autowired
+	private CarRepository carRepository;
+
+	@Autowired
+	private PriceListRepository priceListRepository;
 	
 
 	public ArrayList<RentAdvert> findAll() {
@@ -69,6 +80,63 @@ public class RentAdvertService {
 		
 		return (ArrayList<RentAdvert>) listRA;
 	}
-	
-	
+
+
+    public void modifyAdvert(RentAdvertDTO rentAdvertDTO) throws NoSuchElementException, Exception {
+		RentAdvert rentAdvert = rentARepository.findById(rentAdvertDTO.getId()).orElse(null);
+
+		if(rentAdvert == null){
+			throw new NoSuchElementException("Rentacar: modifikacija reklame - ne postoji reklama");
+		}
+
+		rentAdvert.setAdvertStartDate(rentAdvertDTO.getAdvertStartDate());
+		rentAdvert.setAdvertEndDate(rentAdvertDTO.getAdvertEndDate());
+		Car car = carRepository.findById(rentAdvertDTO.getCarID()).orElse(null);
+		if(car == null){
+			throw new NoSuchElementException("Rentacar: modifikacija reklame - ne postoji auto");
+		}
+
+		rentAdvert.setCar(car);
+
+		PriceList pl = priceListRepository.findById(rentAdvertDTO.getPriceListID()).orElse(null);
+
+		if(pl == null){
+			throw new NoSuchElementException("Rentacar: modifikacija reklame - ne postoji cjenovnik");
+
+		}
+
+		rentAdvert.setPriceList(pl);
+		rentAdvert.setPriceForRent(rentAdvertDTO.getPriceForRent());
+
+		try{
+			rentARepository.save(rentAdvert);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			throw new Exception("Rentacar: modifikacija reklame");
+		}
+
+
+
+
+
+
+    }
+
+	public void deleteRentAdvert(Long id) throws Exception, NoSuchElementException {
+
+		RentAdvert ra = rentARepository.findById(id).orElse(null);
+
+		if(ra == null){
+			throw new NoSuchElementException("Rentacar: brisanje reklame - reklama ne postoji");
+		}
+
+		try {
+			rentARepository.deleteById(id);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			throw new Exception("Rentacar: brisanje reklame");
+		}
+	}
 }

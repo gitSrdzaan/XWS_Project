@@ -1,16 +1,12 @@
 package xml.team.rentacar.controller;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import xml.team.rentacar.dto.RentAdvertDTO;
 import xml.team.rentacar.model.Car;
@@ -19,6 +15,8 @@ import xml.team.rentacar.model.RentAdvert;
 import xml.team.rentacar.service.CarService;
 import xml.team.rentacar.service.PriceListService;
 import xml.team.rentacar.service.RentAdvertService;
+
+import javax.websocket.server.PathParam;
 
 
 @RestController
@@ -77,6 +75,41 @@ public class RentAdvertController {
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 		
+	}
+
+	@PutMapping(value = "/modify", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> modifyRentAdvert(@RequestBody RentAdvertDTO rentAdvertDTO){
+
+		try{
+			rentService.modifyAdvert(rentAdvertDTO);
+
+		}
+		catch (NoSuchElementException e){
+			e.printStackTrace();
+			return new ResponseEntity<>("Rentacar: izmjena reklame - los zahtjev",HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("Rentacar: izmjena reklame",HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity<?> deleteRentAdvert(@PathParam("id") Long id){
+		try {
+			rentService.deleteRentAdvert(id);
+		} catch (NoSuchElementException ne){
+			ne.printStackTrace();
+			return new ResponseEntity<>("Rentacar: izmjena reklame - los zahtjev",HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("Rentacar: brisanje reklame",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 }
