@@ -54,7 +54,7 @@ public class PriceListController {
 			pl.setPriceCDW(plDTO.getPriceCDW());
 			pl.setPricePerDay(plDTO.getPricePerDay());
 			pl.setPricePerKilometer(plDTO.getPricePerKilometer());
-			pl.setSaleIntervals(plDTO.getSaleIntervals());
+			//pl.setSaleIntervals(plDTO.getSaleIntervals());
 			priceListService.addNewPriceList(pl);
 		}
 		catch(Exception e) {

@@ -2,15 +2,20 @@ package xml.team.rentacar.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import xml.team.rentacar.model.RentAdvert;
 
 public class RentAdvertDTO {
 
 	private Long id;
 	private Long carID;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SS")
 	private Date advertStartDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SS")
 	private Date advertEndDate;
 	private Long priceListID;
+	private Long firm;
+
 	private Double priceForRent;
 
 
@@ -75,8 +80,11 @@ public class RentAdvertDTO {
 		this.priceListID = priceListID;
 	}
 
-	
-	
-	
-	
+	public Long getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Long firm) {
+		this.firm = firm;
+	}
 }

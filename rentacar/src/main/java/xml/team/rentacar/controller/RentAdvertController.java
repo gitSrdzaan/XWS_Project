@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import xml.team.rentacar.dto.RentAdvertDTO;
 import xml.team.rentacar.model.Car;
+import xml.team.rentacar.model.Firm;
 import xml.team.rentacar.model.PriceList;
 import xml.team.rentacar.model.RentAdvert;
 import xml.team.rentacar.service.CarService;
+import xml.team.rentacar.service.FirmService;
 import xml.team.rentacar.service.PriceListService;
 import xml.team.rentacar.service.RentAdvertService;
 
@@ -31,11 +33,14 @@ public class RentAdvertController {
 	
 	@Autowired
 	private PriceListService priceService;
+
+	@Autowired
+	private FirmService firmService;
 	
 	
 	
 	
-	@GetMapping(value="/svi/{firmID}")
+	@GetMapping(value="/svi/{firmID}", produces = "application/json")
 	public ResponseEntity<?> findAllRentAdvert(@PathVariable Long firmID){
 		
 		ArrayList<RentAdvert> raList = rentService.findFirmsAllRentAdvert(firmID);
@@ -48,7 +53,7 @@ public class RentAdvertController {
 	}
 	
 	@PostMapping(value = "/novi",consumes = "application/json", produces ="application/json")
-	public ResponseEntity<?> addNewRentAdvert(@RequestBody RentAdvertDTO raDTO){
+	public ResponseEntity<?> aoddNewRentAdvert(@RequestBody RentAdvertDTO raDTO){
 		
 		Car car = carService.findCar(raDTO.getCarID());
 		if(car == null) {
@@ -59,13 +64,22 @@ public class RentAdvertController {
 		if(pl == null ) {
 			return new ResponseEntity<> ("Greksa u cjenovniku", HttpStatus.BAD_REQUEST);
 		}
+
+		Firm firm  = firmService.findFirm(raDTO.getFirm());
+		if(firm == null){
+			return new ResponseEntity<> ("Greksa u pronalzenju firme", HttpStatus.BAD_REQUEST);
+
+		}
 		
 		try {
 			RentAdvert ra = new RentAdvert();
+			ra.setId(raDTO.getId());
 			ra.setCar(car);
 			ra.setAdvertStartDate(raDTO.getAdvertStartDate());
 			ra.setAdvertEndDate(raDTO.getAdvertEndDate());
 			ra.setPriceList(pl);
+			ra.setPriceForRent(raDTO.getPriceForRent());
+			ra.setFirm(firm);
 			rentService.addRentAdvert(ra);
 		}
 		catch(Exception e) {
@@ -97,8 +111,8 @@ public class RentAdvertController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<?> deleteRentAdvert(@PathParam("id") Long id){
+	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
+	public ResponseEntity<?> deleteRentAdvert(@PathVariable ("id") Long id){
 		try {
 			rentService.deleteRentAdvert(id);
 		} catch (NoSuchElementException ne){

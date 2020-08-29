@@ -59,8 +59,8 @@ public class RentAdvertService {
 		}
 
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Long> responseEntity = restTemplate.getForEntity("http://localhost:8086"+ra.getId(),Long.class);
-		
+		//ResponseEntity<Long> responseEntity = restTemplate.getForEntity("http://localhost:8086"+ra.getId(),Long.class);
+
 	}
 
 

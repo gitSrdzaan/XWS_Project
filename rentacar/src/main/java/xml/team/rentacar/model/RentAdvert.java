@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class RentAdvert {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@OneToOne
@@ -138,5 +138,13 @@ public class RentAdvert {
 
 	public void setPriceForRent(Double priceForRent) {
 		this.priceForRent = priceForRent;
+	}
+
+	public Firm getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
 	}
 }
