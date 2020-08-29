@@ -27,7 +27,7 @@ public class FirmDTO {
 		this.firmCountry = firm.getFirmCountry();
 		this.firmAdress = firm.getFirmAdress();
 		this.firmCars = firm.getFirmCars();
-		this.firmUsers = firm.getFirmUsers();
+		//this.firmUsers = firm.getFirmUsers();
 		
 	}
 

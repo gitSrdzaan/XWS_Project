@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class CarController {
 	@Autowired
 	private CarService carService;
 
-	@GetMapping(path = "/prikaz/{CarId}")
+	@GetMapping(path = "/prikaz/{CarId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> findCar(@PathVariable Long CarId){
 		CarDTO carDTO = new CarDTO();
 		
@@ -39,7 +40,7 @@ public class CarController {
 		
 	}
 
-	@GetMapping(value = "/marke")
+	@GetMapping(value = "/marke", produces = "application/json")
 	public ResponseEntity<?> getAllMarks(){
 		ArrayList<Car> carArrayList = carService.getAll();
 		Set<String> carMarks = new HashSet<String>();
@@ -52,7 +53,7 @@ public class CarController {
 
 	}
 
-	@GetMapping(value = "/modeli")
+	@GetMapping(value = "/modeli", produces = "application/json")
 	public ResponseEntity<?> getAllModels(){
 		ArrayList<Car> carArrayList = carService.getAll();
 		Set<String> carModels= new HashSet<String>();
@@ -65,7 +66,7 @@ public class CarController {
 	}
 
 
-	@GetMapping(value = "/klase")
+	@GetMapping(value = "/klase", produces = "application/json")
 	public ResponseEntity<?> getAllCarClasses(){
 		ArrayList<Car> carArrayList = carService.getAll();
 		Set<String> carClasses= new HashSet<String>();
@@ -77,7 +78,7 @@ public class CarController {
 		return new ResponseEntity<>(carClasses, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/prenos")
+	@GetMapping(value = "/prenos", produces = "application/json")
 	public ResponseEntity<?> getAllCarTransmission(){
 
 		HashSet<String> transmissionSet = carService.getAllTransmission();
@@ -86,7 +87,7 @@ public class CarController {
 
 	}
 
-	@GetMapping(value = "/gorivo")
+	@GetMapping(value = "/gorivo", produces = "application/json")
 	public ResponseEntity<?> getAllCarFuel(){
 
 		HashSet<String> carFuelSet = carService.getAllCarFuel();
