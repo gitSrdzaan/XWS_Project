@@ -19,7 +19,7 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @GetMapping(value = "/all")
+    @GetMapping(value = "/all",produces = "application/json")
     public ResponseEntity<?> getAllCars(){
         ArrayList<Car> carArrayList = carService.getAllCars();
         return new ResponseEntity<>(carArrayList,HttpStatus.OK);
@@ -46,6 +46,9 @@ public class CarController {
     @PutMapping(value = "/modify/{carId}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> modifyCar(@RequestBody Car car){
 
+        /**
+         * TODO: modifikacija auta
+         * */
         return new ResponseEntity<>(HttpStatus.OK);
 
 
@@ -53,7 +56,7 @@ public class CarController {
     /**
      * TODO : ispis sifrarnika
      * */
-    @GetMapping(value = "marke")
+    @GetMapping(value = "/marks", produces = "application/json")
     public ResponseEntity<?> findAllCarMarks(){
         ArrayList<CarMark> listMark = carService.findAllCarMarks();
         if(listMark == null) {
@@ -65,7 +68,7 @@ public class CarController {
 
     }
 
-    @GetMapping(value = "klase")
+    @GetMapping(value = "/classes",produces = "application/json")
     public ResponseEntity<?> findAllCarClasses(){
         ArrayList<CarClass> listClass = carService.findAllCarClasses();
         if(listClass == null) {
@@ -79,7 +82,7 @@ public class CarController {
 
 
 
-    @GetMapping(value = "modeli")
+    @GetMapping(value = "/models",produces = "application/json")
     public ResponseEntity<?> findAllCarModels(){
         ArrayList<CarModel> listModel = carService.findAllCarModels();
         if(listModel == null) {
@@ -92,7 +95,7 @@ public class CarController {
     }
 
 
-    @GetMapping(value = "/prenosi")
+    @GetMapping(value = "/transmissions",produces = "application/json")
     public ResponseEntity<?> getAllCarTransmission(){
         ArrayList<Transmission> transmissionArrayList = carService.getAllTransmission();
 
@@ -100,7 +103,7 @@ public class CarController {
 
     }
 
-    @GetMapping(value = "/goriva")
+    @GetMapping(value = "/fuels",produces = "application/json")
     public ResponseEntity<?> getAllCarFuel(){
 
         ArrayList<CarFuel> carFuelSet = carService.getAllCarFuel();

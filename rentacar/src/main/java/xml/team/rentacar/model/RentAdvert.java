@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class RentAdvert {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@OneToOne
@@ -30,6 +30,10 @@ public class RentAdvert {
 	@ManyToOne
 	@JoinColumn(name = "firm")
 	private Firm firm;
+
+	@Column(nullable = true)
+	private Double priceForRent;
+
 	
 	
 	
@@ -127,5 +131,20 @@ public class RentAdvert {
 	public void setPriceList(PriceList priceList) {
 		this.priceList = priceList;
 	}
-	
+
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
+
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
+	}
+
+	public Firm getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
+	}
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Advert {
+public class RentAdvert {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -29,10 +29,15 @@ public class Advert {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	@Column(nullable = true)
+	private Double priceForRent;
+
+
 	
 	
 	
-	public Advert() {
+	public RentAdvert() {
 		
 	}
 	
@@ -102,5 +107,13 @@ public class Advert {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
+
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
 	}
 }

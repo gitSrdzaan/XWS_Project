@@ -11,14 +11,14 @@ import xws.microservice.searchservice.dto.FirmDTO;
 import xws.microservice.searchservice.services.FirmService;
 
 @RestController
-@RequestMapping(value = "/firma")
+@RequestMapping(value = "/firm")
 public class FirmController {
 
     @Autowired
     private FirmService firmService;
 
 
-    @GetMapping(value = "/prikaz/{firmID}")
+    @GetMapping(value = "/getFirm/{firmID}",produces = "application/json")
     public ResponseEntity<?> getFirmInfo(@PathVariable Long firmID){
 
         FirmDTO firmDTO = firmService.findFirm(firmID);

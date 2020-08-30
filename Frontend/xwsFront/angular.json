@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "xwsFront"
+  "defaultProject": "xwsFront",
+  "cli": {
+    "analytics": "803152af-b2ea-483e-88b1-b2fc81ef5b53"
+  }
 }

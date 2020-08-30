@@ -22,13 +22,19 @@ public class PriceList {
 	private Double priceCDW;
 
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	/*@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name= "firm_id", nullable = true)
 	private Firm firm;
 
 	@ManyToOne(fetch   = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = true)
-	private User user;
+	private User user;*/
+
+
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "owner_id")
+	private Owner owner;
 	
 	/***
 	 * TODO: Implementirati izracunavanje popusta
@@ -39,13 +45,7 @@ public class PriceList {
 		
 	}
 
-	public Firm getFirm() {
-		return firm;
-	}
 
-	public void setFirm(Firm firm) {
-		this.firm = firm;
-	}
 
 	public Long getId() {
 		return id;
@@ -86,11 +86,27 @@ public class PriceList {
 		this.priceCDW = priceCDW;
 	}
 
+	/*public Firm getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
+	}
+
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+*/
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 }

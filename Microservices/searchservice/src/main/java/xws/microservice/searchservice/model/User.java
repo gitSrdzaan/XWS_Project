@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class User extends Owner {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

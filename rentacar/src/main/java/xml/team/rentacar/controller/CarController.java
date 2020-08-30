@@ -19,14 +19,14 @@ import xml.team.rentacar.model.*;
 import xml.team.rentacar.service.CarService;
 
 @RestController
-@RequestMapping(value = "/auta")
+@RequestMapping(value = "/car")
 public class CarController {
 	
 	@Autowired
 	private CarService carService;
 	
 	
-	@GetMapping(path = "/svi")
+	@GetMapping(path = "/all",produces = "application/json")
 	public ResponseEntity<?> findAll(){
 		List<Car> cars = carService.findAll();
 		if (cars == null) {
@@ -36,7 +36,7 @@ public class CarController {
 		return new ResponseEntity<>(cars,HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/novi", consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/new", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addCar(@RequestBody CarDTO carDTO){
 		
 		//System.out.println(carDTO.getCarClass());
@@ -89,7 +89,7 @@ public class CarController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@GetMapping(value = "marke")
+	@GetMapping(value = "/marks",produces = "application/json")
 	public ResponseEntity<?> findAllCarMarks(){
 		ArrayList<CarMark> listMark = carService.findAllCarMarks();
 		if(listMark == null) {
@@ -101,7 +101,7 @@ public class CarController {
 
 	}
 
-	@GetMapping(value = "klase")
+	@GetMapping(value = "/classes",produces = "application/json")
 	public ResponseEntity<?> findAllCarClasses(){
 		ArrayList<CarClass> listClass = carService.findAllCarClasses();
 		if(listClass == null) {
@@ -115,7 +115,7 @@ public class CarController {
 
 
 
-	@GetMapping(value = "modeli")
+	@GetMapping(value = "/models",produces = "application/json")
 	public ResponseEntity<?> findAllCarModels(){
 		ArrayList<CarModel> listModel = carService.findAllCarModels();
 		if(listModel == null) {
@@ -128,7 +128,7 @@ public class CarController {
 	}
 
 
-	@GetMapping(value = "/prenosi")
+	@GetMapping(value = "/transmissions",produces = "application/json")
 	public ResponseEntity<?> getAllCarTransmission(){
 		ArrayList<Transmission> transmissionArrayList = carService.getAllTransmission();
 
@@ -136,7 +136,7 @@ public class CarController {
 
 	}
 
-	@GetMapping(value = "/goriva")
+	@GetMapping(value = "/fuels",produces = "application/json")
 	public ResponseEntity<?> getAllCarFuel(){
 
 		ArrayList<CarFuel> carFuelSet = carService.getAllCarFuel();

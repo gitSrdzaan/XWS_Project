@@ -18,7 +18,7 @@ import xws.microservice.searchservice.services.RentAdvertService;
 import xws.microservice.searchservice.services.UserService;
 
 @RestController
-@RequestMapping(value = "/pretrazivanje")
+@RequestMapping(value = "/search")
 public class RentAdvertController {
 
 	@Autowired
@@ -38,7 +38,7 @@ public class RentAdvertController {
 	/**
 	 * Ucitavanje podataka korisnika i pretraga za potrebnim oglasima
 	 * */
-	@PostMapping(value ="/podaci", consumes = "application/json", produces = "application/json")
+	@PostMapping(value ="/findAdvert", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> searchForRentAdverts(@RequestBody SearchInfo searchInfo){
 
 
@@ -219,8 +219,12 @@ public class RentAdvertController {
 		//cijena po kilometrazi
 		if(searchInfo.getIntendingMileage() !=  null){
 			if(rentAdvert.getCar().getMaxAllowedMileage() != 0 && rentAdvert.getCar().getMaxAllowedMileage() != null){
-				retPrice += priceList.getPricePerKilometer() *
-						(searchInfo.getIntendingMileage() - rentAdvert.getCar().getMaxAllowedMileage());
+				//ako je trazena kilometraza veca od dozvoljene
+				if(rentAdvert.getCar().getMaxAllowedMileage() < searchInfo.getIntendingMileage()) {
+					retPrice += priceList.getPricePerKilometer() *
+							(searchInfo.getIntendingMileage() - rentAdvert.getCar().getMaxAllowedMileage());
+				}
+
 			}
 		}
 

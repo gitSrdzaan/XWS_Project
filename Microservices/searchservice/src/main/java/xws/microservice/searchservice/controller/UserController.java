@@ -14,13 +14,13 @@ import xws.microservice.searchservice.model.User;
 import xws.microservice.searchservice.services.UserService;
 
 @RestController
-@RequestMapping(value = "/korisnik")
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/prikaz/{userID}")
+    @GetMapping(value = "/getUser/{userID}",produces = "application/json")
     public ResponseEntity<?> getUserInfo(@PathVariable Long userID){
 
         UserDTO userDTO = userService.findUser(userID);

@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface RentAdvertRepository extends JpaRepository<RentAdvert, Long> {
 
     @Query(value ="SELECT f.* FROM rent_advert ra INNER JOIN firm f ON f.id = ra.firm" +
-            "WHERE ra.id = :id"
+            "WHERE  .id = :id"
             ,nativeQuery = true)
     Firm findFirmByAdvert(@Param("id") Long id) ;
 }

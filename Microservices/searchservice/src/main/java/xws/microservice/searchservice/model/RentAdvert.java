@@ -28,13 +28,17 @@ public class RentAdvert {
 	@JoinColumn(name = "pricelist_id")
 	private PriceList priceList;
 
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "firm", nullable = true)
 	private Firm firm;
 
 	@ManyToOne
 	@JoinColumn(name = "user", nullable = true)
-	private User user;
+	private User user;*/
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name= "owner_id")
+	private Owner owner;
 
 	@Column(nullable = true)
 	private Double priceForRent;
@@ -61,13 +65,13 @@ public class RentAdvert {
 	}
 
 
-	public Firm getFirm() {
+	/*public Firm getFirm() {
 		return firm;
 	}
 
 	public void setFirm(Firm firm) {
 		this.firm = firm;
-	}
+	}*/
 
 	public Car getCar() {
 		return car;
@@ -135,5 +139,12 @@ public class RentAdvert {
 	public void setPriceList(PriceList priceList) {
 		this.priceList = priceList;
 	}
-	
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
 }

@@ -33,7 +33,7 @@ public class PriceListDTO {
 		this.pricePerDay = priceList.getPricePerDay();
 		this.priceCDW = priceList.getPriceCDW();
 		this.pricePerKilometer = priceList.getPricePerKilometer();
-		this.saleIntervals = priceList.getSaleIntervals();
+		//this.saleIntervals = priceList.getSaleIntervals();
 	}
 
 

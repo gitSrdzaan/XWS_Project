@@ -33,7 +33,7 @@ public class RentRequest {
 	@Column
 	private Date reservationEnd;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "bundle_id", nullable = true)
 	private RentRequestBundle rentRequestBundle;
 

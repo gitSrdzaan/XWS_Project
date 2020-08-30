@@ -3,19 +3,12 @@ package xws.microservice.searchservice.model;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
-
+@Table(name = "firm")
 @Entity
-public class Firm {
+@PrimaryKeyJoinColumn(name = "firm_id")
+public class Firm extends Owner {
 
 
 	@Id
@@ -42,12 +35,7 @@ public class Firm {
 	@JoinColumn(name="cars")
 	private Set<Car> firmCars;
 	
-	/**
-	 * TODO:provjeriti sta je JoinColumn 
-	 * */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="users")
-	private List<User> firmUsers;
+
 	
 	
 	
@@ -113,13 +101,9 @@ public class Firm {
 		this.firmCars = firmCars;
 	}
 
-	public List<User> getFirmUsers() {
-		return firmUsers;
-	}
 
-	public void setFirmUsers(List<User> firmUsers) {
-		this.firmUsers = firmUsers;
-	}
+
+
 
 
 

@@ -1,28 +1,28 @@
 package xml.team.rentacar.controller;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import xml.team.rentacar.dto.RentAdvertDTO;
 import xml.team.rentacar.model.Car;
+import xml.team.rentacar.model.Firm;
 import xml.team.rentacar.model.PriceList;
 import xml.team.rentacar.model.RentAdvert;
 import xml.team.rentacar.service.CarService;
+import xml.team.rentacar.service.FirmService;
 import xml.team.rentacar.service.PriceListService;
 import xml.team.rentacar.service.RentAdvertService;
 
+import javax.websocket.server.PathParam;
+
 
 @RestController
-@RequestMapping(value = "/oglas")
+@RequestMapping(value = "/advert")
 public class RentAdvertController {
 
 	@Autowired
@@ -33,11 +33,14 @@ public class RentAdvertController {
 	
 	@Autowired
 	private PriceListService priceService;
+
+	@Autowired
+	private FirmService firmService;
 	
 	
 	
 	
-	@GetMapping(value="/svi/{firmID}")
+	@GetMapping(value="/all/{firmID}", produces = "application/json")
 	public ResponseEntity<?> findAllRentAdvert(@PathVariable Long firmID){
 		
 		ArrayList<RentAdvert> raList = rentService.findFirmsAllRentAdvert(firmID);
@@ -49,8 +52,8 @@ public class RentAdvertController {
 		return new ResponseEntity<>(raList,HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/novi",consumes = "application/json", produces ="application/json")
-	public ResponseEntity<?> addNewRentAdvert(@RequestBody RentAdvertDTO raDTO){
+	@PostMapping(value = "/new",consumes = "application/json", produces ="application/json")
+	public ResponseEntity<?> aoddNewRentAdvert(@RequestBody RentAdvertDTO raDTO){
 		
 		Car car = carService.findCar(raDTO.getCarID());
 		if(car == null) {
@@ -61,13 +64,22 @@ public class RentAdvertController {
 		if(pl == null ) {
 			return new ResponseEntity<> ("Greksa u cjenovniku", HttpStatus.BAD_REQUEST);
 		}
+
+		Firm firm  = firmService.findFirm(raDTO.getFirm());
+		if(firm == null){
+			return new ResponseEntity<> ("Greksa u pronalzenju firme", HttpStatus.BAD_REQUEST);
+
+		}
 		
 		try {
 			RentAdvert ra = new RentAdvert();
+			ra.setId(raDTO.getId());
 			ra.setCar(car);
 			ra.setAdvertStartDate(raDTO.getAdvertStartDate());
 			ra.setAdvertEndDate(raDTO.getAdvertEndDate());
 			ra.setPriceList(pl);
+			ra.setPriceForRent(raDTO.getPriceForRent());
+			ra.setFirm(firm);
 			rentService.addRentAdvert(ra);
 		}
 		catch(Exception e) {
@@ -77,6 +89,41 @@ public class RentAdvertController {
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 		
+	}
+
+	@PutMapping(value = "/modify", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> modifyRentAdvert(@RequestBody RentAdvertDTO rentAdvertDTO){
+
+		try{
+			rentService.modifyAdvert(rentAdvertDTO);
+
+		}
+		catch (NoSuchElementException e){
+			e.printStackTrace();
+			return new ResponseEntity<>("Rentacar: izmjena reklame - los zahtjev",HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("Rentacar: izmjena reklame",HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
+	public ResponseEntity<?> deleteRentAdvert(@PathVariable ("id") Long id){
+		try {
+			rentService.deleteRentAdvert(id);
+		} catch (NoSuchElementException ne){
+			ne.printStackTrace();
+			return new ResponseEntity<>("Rentacar: izmjena reklame - los zahtjev",HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("Rentacar: brisanje reklame",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 }
