@@ -57,10 +57,7 @@ public class Car {
 	private String owner;
 	
 	//Slika automobila
-	
-	/**
-	 * TODO: veza firme i auta da se obezbjedi
-	 * */
+
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
