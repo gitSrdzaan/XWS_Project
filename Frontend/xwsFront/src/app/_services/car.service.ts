@@ -42,4 +42,11 @@ export class CarService {
   getAllCarFuel() {
     return this.http.get<any>(`http://localhost:8089/search/car/fuels`);
   }
+  getAllCarRegs() {
+    return this.http.get<any>(`http://localhost:8089/search/car/registration`);
+  }
+
+  getAllCars() {
+    return this.http.get<any>(`http://localhost:8089/search/car`);
+  }
 }

@@ -48,6 +48,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersComponent } from './users/users.component';
 import { CreateCarComponent } from './create-car/create-car.component';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
+import { CreateRentAdvertComponent } from './create-rent-advert/create-rent-advert.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
     UserProfileComponent,
     UsersComponent,
     CreateCarComponent,
+    CreateRentAdvertComponent,
   ],
   imports: [
     BrowserModule,

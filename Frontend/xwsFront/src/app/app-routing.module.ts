@@ -9,6 +9,8 @@ import { CarsComponent } from './cars/cars.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersComponent } from './users/users.component';
 import { CreateCarComponent } from './create-car/create-car.component';
+import { AdvertCompComponent } from './advert-comp/advert-comp.component';
+import { CreateRentAdvertComponent } from './create-rent-advert/create-rent-advert.component';
 
 const routes: Routes = [
   { path: 'search', component: SearchComponentComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
   { path: 'users', component: UsersComponent },
   { path: 'new-car', component: CreateCarComponent },
+  { path: 'rentAdvert', component: AdvertCompComponent },
+  { path: 'createRentAdvert', component: CreateRentAdvertComponent },
   { path: '', redirectTo: 'search', pathMatch: 'full' },
 ];
 
