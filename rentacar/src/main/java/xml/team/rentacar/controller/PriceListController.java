@@ -19,7 +19,7 @@ import xml.team.rentacar.service.FirmService;
 import xml.team.rentacar.service.PriceListService;
 
 @RestController
-@RequestMapping(value = "/cjenovnik")
+@RequestMapping(value = "/pricelist")
 public class PriceListController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class PriceListController {
 	@Autowired
 	private FirmService firmService;
 	
-	@GetMapping(value = "/svi/{id}")
+	@GetMapping(value = "/all/{id}",produces = "application/json")
 	public ResponseEntity<?> findAllPriceList(@PathVariable Long id){
 		ArrayList<PriceList> listPL = priceListService.findAllFirmPL(id);
 		
@@ -40,7 +40,7 @@ public class PriceListController {
 		
 	}
 	
-	@PostMapping(value = "/novi", consumes = "application/json", produces = "application/json")
+	@PostMapping(value = "/new", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addPriceList(@RequestBody PriceListDTO plDTO) {
 		Firm firm = firmService.findFirm(plDTO.getFirmID());
 		if(firm == null) {

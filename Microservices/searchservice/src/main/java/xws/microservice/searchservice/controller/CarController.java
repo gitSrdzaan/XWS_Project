@@ -16,14 +16,14 @@ import xws.microservice.searchservice.model.Car;
 import xws.microservice.searchservice.services.CarService;
 
 @RestController
-@RequestMapping(value = "/automobil")
+@RequestMapping(value = "/car")
 @CrossOrigin(origins = "*")
 public class CarController {
 	
 	@Autowired
 	private CarService carService;
 
-	@GetMapping(path = "/prikaz/{CarId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/getCar/{CarId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> findCar(@PathVariable Long CarId){
 		CarDTO carDTO = new CarDTO();
 		
@@ -40,7 +40,7 @@ public class CarController {
 		
 	}
 
-	@GetMapping(value = "/marke", produces = "application/json")
+	@GetMapping(value = "/marks", produces = "application/json")
 	public ResponseEntity<?> getAllMarks(){
 		ArrayList<Car> carArrayList = carService.getAll();
 		Set<String> carMarks = new HashSet<String>();
@@ -53,7 +53,7 @@ public class CarController {
 
 	}
 
-	@GetMapping(value = "/modeli", produces = "application/json")
+	@GetMapping(value = "/models", produces = "application/json")
 	public ResponseEntity<?> getAllModels(){
 		ArrayList<Car> carArrayList = carService.getAll();
 		Set<String> carModels= new HashSet<String>();
@@ -66,7 +66,7 @@ public class CarController {
 	}
 
 
-	@GetMapping(value = "/klase", produces = "application/json")
+	@GetMapping(value = "/classes", produces = "application/json")
 	public ResponseEntity<?> getAllCarClasses(){
 		ArrayList<Car> carArrayList = carService.getAll();
 		Set<String> carClasses= new HashSet<String>();
@@ -78,7 +78,7 @@ public class CarController {
 		return new ResponseEntity<>(carClasses, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/prenos", produces = "application/json")
+	@GetMapping(value = "/transmissions", produces = "application/json")
 	public ResponseEntity<?> getAllCarTransmission(){
 
 		HashSet<String> transmissionSet = carService.getAllTransmission();
@@ -87,7 +87,7 @@ public class CarController {
 
 	}
 
-	@GetMapping(value = "/gorivo", produces = "application/json")
+	@GetMapping(value = "/fuels", produces = "application/json")
 	public ResponseEntity<?> getAllCarFuel(){
 
 		HashSet<String> carFuelSet = carService.getAllCarFuel();
@@ -97,7 +97,7 @@ public class CarController {
 	}
 
 
-	@PostMapping(path = "/novi", consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/new", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addCar(@RequestBody Car car){
 
 		try {

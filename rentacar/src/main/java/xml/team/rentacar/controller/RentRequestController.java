@@ -14,7 +14,7 @@ import xml.team.rentacar.service.RentRequestService;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping(value = "/zahtjevi")
+@RequestMapping(value = "/request")
 public class RentRequestController {
 
 
@@ -22,28 +22,28 @@ public class RentRequestController {
     private RentRequestService rentRequestService;
 
 
-    @GetMapping(value = "/svi")
+    @GetMapping(value = "/all")
     public ResponseEntity<?> getAllRequests(){
         ArrayList<RentRequest> rentRequestArrayList =  rentRequestService.getAll();
 
         return new ResponseEntity<>(rentRequestArrayList,HttpStatus.OK);
     }
 
-    @GetMapping(value = "/svi/bundle")
+    @GetMapping(value = "/all/bundle")
     public ResponseEntity<?> getAllRequestsBundle(){
         ArrayList<RentRequestBundle> rentRequestBundles = rentRequestService.getAllBundle();
 
         return new ResponseEntity<>(rentRequestBundles,HttpStatus.OK);
     }
 
-    @GetMapping(value="/neodobreni")
+    @GetMapping(value="/allPending", produces = "application/json")
     public ResponseEntity<?> getAllRequestsPending(){
         ArrayList<RentRequest> rentRequestArrayList =  rentRequestService.getAllPending();
 
         return new ResponseEntity<>(rentRequestArrayList,HttpStatus.OK);
     }
 
-    @PutMapping(value = "/odobrovanje/{rrID}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/accepted/{rrID}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> modifyRentRequestPaid(@PathVariable Long rrID){
         RentRequest rentRequest = rentRequestService.findRentRequest(rrID);
 
@@ -61,7 +61,7 @@ public class RentRequestController {
 
     }
 
-    @PutMapping(value = "/odbijanje/{rrID}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/denied/{rrID}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> modifyRentRequestDenied(@PathVariable Long rrID){
         RentRequest rentRequest = rentRequestService.findRentRequest(rrID);
 
@@ -84,7 +84,7 @@ public class RentRequestController {
      *
      * */
 
-    @PutMapping(value ="odbijanje/bundle/{bundleId}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value ="/denied/bundle/{bundleId}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> deniedBundleRequest(@PathVariable Long bundleId){
         RentRequestBundle rrb = rentRequestService.findRentRequestBundle(bundleId);
         if(rrb == null){
@@ -108,7 +108,7 @@ public class RentRequestController {
     }
 
 
-    @PutMapping(value ="odobreni/bundle/{bundleId}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value ="/accepted/bundle/{bundleId}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> acceptedBundleRequest(@PathVariable Long bundleId){
         RentRequestBundle rrb = rentRequestService.findRentRequestBundle(bundleId);
         if(rrb == null){

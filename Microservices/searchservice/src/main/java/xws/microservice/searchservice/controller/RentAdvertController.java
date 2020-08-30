@@ -18,7 +18,7 @@ import xws.microservice.searchservice.services.RentAdvertService;
 import xws.microservice.searchservice.services.UserService;
 
 @RestController
-@RequestMapping(value = "/pretrazivanje")
+@RequestMapping(value = "/search")
 public class RentAdvertController {
 
 	@Autowired
@@ -38,7 +38,7 @@ public class RentAdvertController {
 	/**
 	 * Ucitavanje podataka korisnika i pretraga za potrebnim oglasima
 	 * */
-	@PostMapping(value ="/podaci", consumes = "application/json", produces = "application/json")
+	@PostMapping(value ="/findAdvert", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> searchForRentAdverts(@RequestBody SearchInfo searchInfo){
 
 

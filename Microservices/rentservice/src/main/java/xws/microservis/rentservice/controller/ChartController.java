@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/korpa")
+@RequestMapping(value = "/chart")
 public class ChartController {
 
     @Autowired
@@ -24,14 +24,14 @@ public class ChartController {
     @Autowired
     private RentAdvertService rentAdvertService;
 
-    @GetMapping(value = "/svi")
+    @GetMapping(value = "/allCharts")
     public ResponseEntity<?> getAll(){
         ArrayList<Chart> chartArrayList = chartService.getAllCharts();
         return new ResponseEntity<>(chartArrayList,HttpStatus.OK);
 
     }
 
-    @GetMapping(value = "/izlistaj/{chartId}")
+    @GetMapping(value = "/getAdverts/{chartId}",produces = "application/json")
     public ResponseEntity<?> getAllRentAdverts(@PathVariable Long chartId){
         Chart chart = chartService.getChart(chartId);
         if(chart == null){
@@ -43,7 +43,7 @@ public class ChartController {
 
     }
 
-    @PostMapping(value = "/nova", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/new", produces = "application/json", consumes = "application/json")
     public ResponseEntity<?> addNewChart(@RequestBody Chart chart){
         try{
             chartService.addChart(chart);
@@ -57,7 +57,7 @@ public class ChartController {
 
     }
 
-    @PutMapping(value = "/dodaj/{chartID}",  produces = "application/json", consumes = "application/json" )
+    @PutMapping(value = "/add/{chartID}",  produces = "application/json", consumes = "application/json" )
     public ResponseEntity<?> addTOChartNewAdvert(@RequestBody RentAdvert ra,@PathVariable Long chartID){
 
         Chart chart = chartService.getChart(chartID);

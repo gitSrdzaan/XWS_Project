@@ -22,7 +22,7 @@ import javax.websocket.server.PathParam;
 
 
 @RestController
-@RequestMapping(value = "/oglas")
+@RequestMapping(value = "/advert")
 public class RentAdvertController {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class RentAdvertController {
 	
 	
 	
-	@GetMapping(value="/svi/{firmID}", produces = "application/json")
+	@GetMapping(value="/all/{firmID}", produces = "application/json")
 	public ResponseEntity<?> findAllRentAdvert(@PathVariable Long firmID){
 		
 		ArrayList<RentAdvert> raList = rentService.findFirmsAllRentAdvert(firmID);
@@ -52,7 +52,7 @@ public class RentAdvertController {
 		return new ResponseEntity<>(raList,HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/novi",consumes = "application/json", produces ="application/json")
+	@PostMapping(value = "/new",consumes = "application/json", produces ="application/json")
 	public ResponseEntity<?> aoddNewRentAdvert(@RequestBody RentAdvertDTO raDTO){
 		
 		Car car = carService.findCar(raDTO.getCarID());
