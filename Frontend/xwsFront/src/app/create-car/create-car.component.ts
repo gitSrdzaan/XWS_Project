@@ -9,6 +9,7 @@ import { CarService } from '../_services/car.service';
 })
 export class CreateCarComponent implements OnInit {
   newCarForm: FormGroup;
+  carMarks: Array<string>;
   constructor(
     private formBuilder: FormBuilder,
     private carService: CarService
@@ -26,7 +27,11 @@ export class CreateCarComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.carService
+      .getAllMarks()
+      .subscribe((response) => (this.carMarks = response));
+  }
 
   submitForm() {
     let car = this.newCarForm.value;
