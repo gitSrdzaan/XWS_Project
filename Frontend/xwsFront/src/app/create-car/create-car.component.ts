@@ -10,6 +10,10 @@ import { CarService } from '../_services/car.service';
 export class CreateCarComponent implements OnInit {
   newCarForm: FormGroup;
   carMarks: Array<string>;
+  carModels: Array<string>;
+  carFuels: Array<string>;
+  carTransM: Array<string>;
+  carClasses: Array<string>;
   constructor(
     private formBuilder: FormBuilder,
     private carService: CarService
@@ -31,6 +35,18 @@ export class CreateCarComponent implements OnInit {
     this.carService
       .getAllMarks()
       .subscribe((response) => (this.carMarks = response));
+    this.carService
+      .getAllModels()
+      .subscribe((response) => (this.carModels = response));
+    this.carService
+      .getAllCarFuel()
+      .subscribe((response) => (this.carFuels = response));
+    this.carService
+      .getAllCarTransmission()
+      .subscribe((response) => (this.carTransM = response));
+    this.carService
+      .getAllCarClasses()
+      .subscribe((response) => (this.carClasses = response));
   }
 
   submitForm() {
