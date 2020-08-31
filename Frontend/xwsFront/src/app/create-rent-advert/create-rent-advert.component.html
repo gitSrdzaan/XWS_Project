@@ -29,6 +29,17 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>PriceList </mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let priceList of priceLists"
+              [value]="priceList"
+            >
+              {{ priceList }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
         <mat-form-field class="form-field">
           <input
