@@ -58,8 +58,8 @@ export class CreateRentAdvertComponent implements OnInit {
       endDate: rentAdvert.endDate,
       priceList: rentAdvert.priceList,
     };
-    //this.SearchService
-    //.addNewRentAdvert(rentAdvertDTO)
-    //.subscribe((response) => console.log(response));
+    this.rentService
+      .addNewRentAdvert(rentAdvertDTO)
+      .subscribe((response) => console.log(response));
   }
 }
