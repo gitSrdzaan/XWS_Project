@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'new-car', component: CreateCarComponent },
   { path: 'rentAdvert', component: AdvertCompComponent },
   { path: 'createRentAdvert', component: CreateRentAdvertComponent },
+
   { path: '', redirectTo: 'search', pathMatch: 'full' },
 ];
 
