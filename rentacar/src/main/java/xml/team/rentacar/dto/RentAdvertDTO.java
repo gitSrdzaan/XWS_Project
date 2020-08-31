@@ -2,27 +2,51 @@ package xml.team.rentacar.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import xml.team.rentacar.model.RentAdvert;
 
 public class RentAdvertDTO {
 
+	private Long id;
 	private Long carID;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SS")
 	private Date advertStartDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SS")
 	private Date advertEndDate;
 	private Long priceListID;
-	
+	private Long firm;
+
+	private Double priceForRent;
+
+
 	public RentAdvertDTO() {
 		
 	}
 	
 	public RentAdvertDTO(RentAdvert ra) {
-		//this.carDTO = new CarDTO(ra.getCar());
+		this.id = ra.getId();
+		this.carID = ra.getCar().getId();
 		this.advertStartDate = ra.getAdvertStartDate();
 		this.advertEndDate = ra.getAdvertEndDate();
-		//this.priceListDTO = new PriceListDTO(ra.getPriceList());
+		this.priceListID = ra.getPriceList().getId();
+		this.priceForRent = ra.getPriceForRent();
 	}
 
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
+
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
+	}
 
 	public Date getAdvertStartDate() {
 		return advertStartDate;
@@ -56,8 +80,11 @@ public class RentAdvertDTO {
 		this.priceListID = priceListID;
 	}
 
-	
-	
-	
-	
+	public Long getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Long firm) {
+		this.firm = firm;
+	}
 }

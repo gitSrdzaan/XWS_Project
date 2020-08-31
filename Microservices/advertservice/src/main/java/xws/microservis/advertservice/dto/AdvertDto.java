@@ -17,13 +17,16 @@ public class AdvertDto {
 	private Date advertEndDate;
 	
 	private Long priceListId;
+
+	private Double priceForRent;
 	
-	public AdvertDto(Long id , Long carId, Date advertStartDate , Date advertEndDate , Long priceListId) {
+	public AdvertDto(Long id , Long carId, Date advertStartDate , Date advertEndDate , Long priceListId, Double priceForRent) {
 		this.id = id;
 		this.advertEndDate = advertEndDate;
 		this.advertStartDate = advertStartDate;
 		this.carId = carId;
 		this.priceListId = priceListId;
+		this.priceForRent = priceForRent;
 	}
 	
 	
@@ -77,7 +80,11 @@ public class AdvertDto {
 		this.advertEndDate = advertEndDate;
 	}
 
-	
-	
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
 
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
+	}
 }

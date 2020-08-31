@@ -22,9 +22,10 @@ public class PriceList {
 	private Double priceCDW;
 	
 	//Intervali za popust
-	@Column
+	/*
+	@Column(nullable = true)
     @ElementCollection
-	private Map<Integer , Integer> saleIntervals ; 
+	private Map<Integer , Integer> saleIntervals ; */
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name= "firm_id")
@@ -34,7 +35,7 @@ public class PriceList {
 
 
 	public PriceList() {
-		this.saleIntervals = new HashMap<Integer,Integer>();
+		//this.saleIntervals = new HashMap<Integer,Integer>();
 	}
 
 
@@ -77,7 +78,7 @@ public class PriceList {
 		this.priceCDW = priceCDW;
 	}
 
-
+/*
 	public HashMap<Integer, Integer> getSaleIntervals() {
 		return (HashMap<Integer,Integer>)saleIntervals;
 	}
@@ -85,7 +86,7 @@ public class PriceList {
 
 	public void setSaleIntervals(HashMap<Integer, Integer> saleIntervals) {
 		this.saleIntervals = saleIntervals;
-	}
+	}*/
 	public Firm getFirm() {
 		return firm;
 	}

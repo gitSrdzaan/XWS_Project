@@ -4,15 +4,22 @@ import javax.persistence.LockModeType;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import xws.microservis.advertservice.model.Advert;
+
+import xws.microservis.advertservice.model.RentAdvert;
+
+import java.util.ArrayList;
 
 
 @Repository
-public interface AdvertRepository extends JpaRepository<Advert, Long> {
+public interface AdvertRepository extends JpaRepository<RentAdvert, Long> {
 
 	@Lock(LockModeType.PESSIMISTIC_READ)
-	Advert save(Advert advert);
-	
+	public RentAdvert save(RentAdvert advert);
+
+	@Query(value = "SELECT * FROM rent_advert ra WHERE ra.user_id = :id",nativeQuery = true)
+	ArrayList<RentAdvert> findByUserId(@Param("id") Long id);
 }

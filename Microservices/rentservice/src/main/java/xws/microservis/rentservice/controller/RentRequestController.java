@@ -23,7 +23,7 @@ import xws.microservis.rentservice.services.RentAdvertService;
 import xws.microservis.rentservice.services.RentRequestService;
 
 @RestController
-@RequestMapping(value = "/rent")
+@RequestMapping(value = "/request")
 public class RentRequestController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class RentRequestController {
 	private CarService carService;
 
 
-	@GetMapping(path = "/vlasnik/{rentAdvertId}")
+	@GetMapping(path = "/owner/{rentAdvertId}")
 	public ResponseEntity<?> findOwner(@PathVariable Long rentAdvertId){
 		RentAdvert ra = new RentAdvert();
 		try {
@@ -61,7 +61,7 @@ public class RentRequestController {
 	
 	
 	
-	@PostMapping(path = "/novi",consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/new",consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createRentRequest(@RequestBody RentRequestDTO rrDTO) {
 		
 		if(rrDTO != null) {
@@ -78,7 +78,7 @@ public class RentRequestController {
 		return new ResponseEntity<>("Los zahtjev za rentiranje",HttpStatus.BAD_REQUEST);
 	}
 	
-	@PostMapping(path = "/novi/bundle",consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/new/bundle",consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createBundleRequest(@RequestBody List<RentRequestDTO> listRRDTO){
 		RentRequestBundle rrb = new RentRequestBundle();
 		System.out.println("list " + listRRDTO);
@@ -115,7 +115,7 @@ public class RentRequestController {
 		return new ResponseEntity<>("No rent request",HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value = "/svi")
+	@GetMapping(value = "/all", produces = "application/json")
 	public ResponseEntity<?> getAllRentRequest(){
 		ArrayList<RentRequest> rentRequestArrayList = rentRService.getAll();
 
@@ -124,7 +124,7 @@ public class RentRequestController {
 
 	}
 
-	@GetMapping(value = "/svi/bundle")
+	@GetMapping(value = "/all/bundle",produces = "application/json")
 	public ResponseEntity<?> getAllRentRequestBundle(){
 		ArrayList<RentRequestBundle> rentRequestArrayList = rentRService.getAllBundle();
 
