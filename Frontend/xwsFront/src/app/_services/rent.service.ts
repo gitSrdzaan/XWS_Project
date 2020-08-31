@@ -16,4 +16,7 @@ export class RentService {
     //replace this with real api
     return of(new Object());
   }
+  getAllAds() {
+    return this.http.get<any>(`http://localhost:8089/search/car/marks`);
+  }
 }

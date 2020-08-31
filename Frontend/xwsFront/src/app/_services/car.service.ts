@@ -19,7 +19,7 @@ export class CarService {
     let token = localStorage.getItem('token');
     if (user === null) return;
     car.user = user;
-    return this.http.post<any>('http://localhost:8085/car/new', car, {
+    return this.http.post<any>('http://localhost:8089/advert/car/new', car, {
       headers: { 'x-auth': `Bearer ${token}` },
     });
   }
@@ -47,6 +47,6 @@ export class CarService {
   }
 
   getAllCars() {
-    return this.http.get<any>(`http://localhost:8089/search/car`);
+    return this.http.get<any>(`http://localhost:8080/car/all`);
   }
 }

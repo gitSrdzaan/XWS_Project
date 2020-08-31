@@ -41,11 +41,13 @@ export class CreateRentAdvertComponent implements OnInit {
     let rentAdvert = this.newRentAdvertForm.value;
     let rentAdvertDTO = {
       rentAdvertId: rentAdvert.rentAdvertId,
-      car: rentAdvert.car,
+      car: {
+        car: rentAdvert.car,
+      },
       price: rentAdvert.price,
       firmName: rentAdvert.firmName,
       userName: rentAdvert.userName,
-      startDate: rentAdvert.startDate,
+      startDate: rentAdvert.starSSStDate,
       endDate: rentAdvert.endDate,
     };
     //this.SearchService

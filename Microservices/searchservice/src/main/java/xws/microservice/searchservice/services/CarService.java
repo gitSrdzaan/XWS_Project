@@ -51,6 +51,7 @@ public class CarService {
 		return (HashSet<String>) carFuelRepository.findAllCarFuel();
 	}
 
+
     public void addCar(Car car) throws Exception {
 		try {
 			repository.save(car);
@@ -59,4 +60,16 @@ public class CarService {
 			throw new Exception("Neuspjesan pokusaj uspisivanja auta u bazu");
 		}
     }
+
+	public HashSet<String> getAllCarRegs() {
+
+		ArrayList<Car> cars = (ArrayList<Car>) repository.findAll();
+
+		HashSet<String> registrations = new HashSet<>();
+
+		for(Car car : cars){
+			registrations.add(car.getCarRegistration());
+		}
+		return registrations;
+	}
 }

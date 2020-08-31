@@ -1,80 +1,12 @@
 <app-header-comp></app-header-comp>
 <div align="center" valign="middle">
   <mat-card class="basic-card">
-    <mat-card-title> Car marks </mat-card-title>
+    <mat-card-title> Ads </mat-card-title>
     <mat-card-content>
       <div class="content">
         <mat-chip-list aria-label="Car details">
           <mat-chip *ngFor="let carMark of carMarks" color="primary" selected>
             {{ carMark }}
-          </mat-chip>
-        </mat-chip-list>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<div align="center" valign="middle">
-  <mat-card class="basic-card">
-    <mat-card-title> Car models </mat-card-title>
-    <mat-card-content>
-      <div class="content">
-        <mat-chip-list aria-label="Car details">
-          <mat-chip *ngFor="let carModel of carModels" color="primary" selected>
-            {{ carModel }}
-          </mat-chip>
-        </mat-chip-list>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<div align="center" valign="middle">
-  <mat-card class="basic-card">
-    <mat-card-title> Car classes </mat-card-title>
-    <mat-card-content>
-      <div class="content">
-        <mat-chip-list aria-label="Car details">
-          <mat-chip
-            *ngFor="let carClass of carClasses"
-            color="primary"
-            selected
-          >
-            {{ carClass }}
-          </mat-chip>
-        </mat-chip-list>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<div align="center" valign="middle">
-  <mat-card class="basic-card">
-    <mat-card-title> Transmissions </mat-card-title>
-    <mat-card-content>
-      <div class="content">
-        <mat-chip-list aria-label="Car details">
-          <mat-chip
-            *ngFor="let transmission of transmissions"
-            color="primary"
-            selected
-          >
-            {{ transmission }}
-          </mat-chip>
-        </mat-chip-list>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<div align="center" valign="middle">
-  <mat-card class="basic-card">
-    <mat-card-title> Fuel types </mat-card-title>
-    <mat-card-content>
-      <div class="content">
-        <mat-chip-list aria-label="Car details">
-          <mat-chip *ngFor="let fuel of fuelTypes" color="primary" selected>
-            {{ fuel }}
           </mat-chip>
         </mat-chip-list>
       </div>

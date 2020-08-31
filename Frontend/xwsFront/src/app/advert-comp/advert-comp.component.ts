@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CarService } from '../_services/car.service';
+import { RentService } from '../_services/rent.service';
+import RentAdvert from '../_model/rentAdvert.model';
 
 @Component({
   selector: 'app-advert-comp',
@@ -7,29 +8,11 @@ import { CarService } from '../_services/car.service';
   styleUrls: ['./advert-comp.component.css'],
 })
 export class AdvertCompComponent implements OnInit {
-  carMarks: Array<string>;
-  carModels: Array<string>;
-  carClasses: Array<string>;
-  transmissions: Array<string>;
-  fuelTypes: Array<string>;
+  ads: Array<RentAdvert>;
 
-  constructor(private carService: CarService) {}
+  constructor(private rentService: RentService) {}
 
   ngOnInit(): void {
-    this.carService
-      .getAllMarks()
-      .subscribe((response) => (this.carMarks = response));
-    this.carService
-      .getAllModels()
-      .subscribe((response) => (this.carModels = response));
-    this.carService
-      .getAllCarClasses()
-      .subscribe((response) => (this.carClasses = response));
-    this.carService
-      .getAllCarTransmission()
-      .subscribe((response) => (this.transmissions = response));
-    this.carService
-      .getAllCarFuel()
-      .subscribe((response) => (this.fuelTypes = response));
+    this.rentService.getAllAds().subscribe((response) => (this.ads = response));
   }
 }
