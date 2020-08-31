@@ -67,7 +67,6 @@ import { CreateRentAdvertComponent } from './create-rent-advert/create-rent-adve
     UsersComponent,
     CreateCarComponent,
     CreateRentAdvertComponent,
-    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,
