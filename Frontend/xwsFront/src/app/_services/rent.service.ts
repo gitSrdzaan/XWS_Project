@@ -40,8 +40,9 @@ export class RentService {
       headers: { 'x-auth': `Bearer ${token}` },
     });
   }
+  //findAllAds
   getAllAds() {
-    return this.http.get<any>(`http://localhost:8089/search/findAdvert`);
+    return this.http.get<any>(`http://localhost:8080/advert/all`);
   }
   getAllPriceList() {
     return this.http.get<any>(`http://localhost:8080/pricelist/all`);
