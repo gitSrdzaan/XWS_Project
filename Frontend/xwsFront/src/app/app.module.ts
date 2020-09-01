@@ -50,6 +50,7 @@ import { CreateCarComponent } from './create-car/create-car.component';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 import { CreateRentAdvertComponent } from './create-rent-advert/create-rent-advert.component';
 import { CreatePricelistComponent } from './create-pricelist/create-pricelist.component';
+import { AcceptRequestsComponent } from './accept-requests/accept-requests.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { CreatePricelistComponent } from './create-pricelist/create-pricelist.co
     CreateCarComponent,
     CreateRentAdvertComponent,
     CreatePricelistComponent,
+    AcceptRequestsComponent,
   ],
   imports: [
     BrowserModule,
