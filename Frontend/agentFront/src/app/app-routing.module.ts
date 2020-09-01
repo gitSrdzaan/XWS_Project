@@ -12,6 +12,7 @@ import { CreateCarComponent } from './create-car/create-car.component';
 import { AdvertCompComponent } from './advert-comp/advert-comp.component';
 import { CreateRentAdvertComponent } from './create-rent-advert/create-rent-advert.component';
 import { CreatePricelistComponent } from './create-pricelist/create-pricelist.component';
+import { AcceptRequestsComponent } from './accept-requests/accept-requests.component';
 
 const routes: Routes = [
   { path: 'search', component: SearchComponentComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'rentAdvert', component: AdvertCompComponent },
   { path: 'createRentAdvert', component: CreateRentAdvertComponent },
   { path: 'createPriceList', component: CreatePricelistComponent },
+  { path: 'acceptRequests', component: AcceptRequestsComponent },
 
   { path: '', redirectTo: 'search', pathMatch: 'full' },
 ];
