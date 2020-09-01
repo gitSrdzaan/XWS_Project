@@ -1,10 +1,5 @@
 package xws.microservis.advertservice.dto;
 
-import xws.microservis.advertservice.model.CarFuel;
-import xws.microservis.advertservice.model.Transmission;
-import xws.microservis.advertservice.model.User;
-
-import javax.persistence.*;
 import java.util.List;
 
 public class CarDTO {

@@ -1,5 +1,6 @@
 package xws.microservis.advertservice.controller;
 
+import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,11 +45,16 @@ public class CarController {
     }
 
     @PutMapping(value = "/modify/{carId}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> modifyCar(@RequestBody Car car){
+    public ResponseEntity<?> modifyCar(@RequestBody CarDTO carDTO, @PathVariable("carId") Long carId){
 
-        /**
-         * TODO: modifikacija auta
-         * */
+
+        try {
+            carService.modifyCar(carDTO,carId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("AdvertService: Greska pri modifikaciji automobila", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
         return new ResponseEntity<>(HttpStatus.OK);
 
 

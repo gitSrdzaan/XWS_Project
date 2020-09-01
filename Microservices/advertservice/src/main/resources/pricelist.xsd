@@ -2,15 +2,15 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.baeldung.com/springsoap/gen"
            targetNamespace="http://www.baeldung.com/springsoap/gen" elementFormDefault="qualified">
 
-    <xs:element name="getRentRequestRequest">
+    <xs:element name="getPriceListRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="rentrequest" type="tns:rentrequest"/>
+                <xs:element name="priceList" type="tns:priceList"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getRentRequestResponse">
+    <xs:element name="getPriceListResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id" type="xs:long"/>
@@ -19,15 +19,13 @@
     </xs:element>
 
 
-    <xs:complexType name="rentrequest">
+    <xs:complexType name="priceList">
         <xs:sequence>
             <xs:element name="id" type="xs:long" minOccurs="0"/>
-            <xs:element name="rentAdvertId" type="xs:long" minOccurs="0"/>
-            <xs:element name="user" type="xs:string" minOccurs="0"/>
-            <xs:element name="reservationStart" type="xs:string" minOccurs="0"/>
-            <xs:element name="reservationEnd" type="xs:string" minOccurs="0"/>
-            <xs:element name="status" type="xs:string" minOccurs="0"/>
-            <xs:element name="bundleId" type="xs:long" minOccurs="0"/>
+            <xs:element name="pricePerDay" type="xs:double" minOccurs="0"/>
+            <xs:element name="pricePerKilometer" type="xs:double" minOccurs="0"/>
+            <xs:element name="priceCDW" type="xs:double" minOccurs="0"/>
+            <xs:element name="owner" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 

@@ -1,6 +1,7 @@
 package xws.microservis.advertservice.service;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,17 +56,7 @@ public class CarService {
 			throw new Exception("Korisnik ne postoji");
 		}
 		Car car = new Car();
-		car.setCarClass(carDTO.getCarClass());
-		car.setCarComment(carDTO.getCarComment());
-		car.setCarFuel(fuelRepository.findById(carDTO.getCarFuel()).orElse(null));
-		car.setTransmission(transRepository.findById(carDTO.getTransmission()).orElse(null));
-		car.setCarMark(carDTO.getCarMark());
-		car.setCarModel(carDTO.getCarModel());
-		car.setCarGrade(carDTO.getCarGrade());
-		car.setCarMileage(carDTO.getCarMileage());
-		car.setMaxAllowedMileage(carDTO.getMaxAllowedMileage());
-		car.setKidsSeats(carDTO.getKidsSeats());
-		car.setCarRegistration(carDTO.getCarRegistration());
+		dtoToCar(carDTO,car);
 		car.setUser(user);
 		try {
 			carRepository.save(car);
@@ -104,5 +95,42 @@ public class CarService {
 	public ArrayList<Car> getAllCars() {
 
 		return (ArrayList<Car>) carRepository.findAll();
+	}
+
+    public void modifyCar(CarDTO carDTO, Long carId) throws Exception {
+
+		Car car = carRepository.findById(carId).orElse(null);
+		if(car == null){
+			throw new NoSuchElementException("AdvertService: modifikacija - auto ne postoji");
+
+		}
+		dtoToCar(carDTO,car);
+		try {
+			carRepository.save(car);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			throw new Exception("Greska u pokusaju uspisa automobila");
+		}
+
+    }
+
+
+	// * Metoda koja Car.class objekat set-uje na vrijednosti CarDTO.class objekta
+	// * @param model.CarDTO carDTO
+	// * @param model.Car car
+    private void dtoToCar(CarDTO carDTO, Car car){
+		car.setCarClass(carDTO.getCarClass());
+		car.setCarComment(carDTO.getCarComment());
+		car.setCarFuel(fuelRepository.findById(carDTO.getCarFuel()).orElse(null));
+		car.setTransmission(transRepository.findById(carDTO.getTransmission()).orElse(null));
+		car.setCarMark(carDTO.getCarMark());
+		car.setCarModel(carDTO.getCarModel());
+		car.setCarGrade(carDTO.getCarGrade());
+		car.setCarMileage(carDTO.getCarMileage());
+		car.setMaxAllowedMileage(carDTO.getMaxAllowedMileage());
+		car.setKidsSeats(carDTO.getKidsSeats());
+		car.setCarRegistration(carDTO.getCarRegistration());
+
 	}
 }

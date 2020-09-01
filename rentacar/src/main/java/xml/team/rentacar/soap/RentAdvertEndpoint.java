@@ -1,8 +1,5 @@
-package xml.team.rentacar.soap;
+/*package xml.team.rentacar.soap;
 
-import com.rentacar.rentadvert.xws.GetRentAdvertRequest;
-import com.rentacar.rentadvert.xws.GetRentAdvertResponse;
-import com.rentacar.rentadvert.xws.RentAdvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -52,3 +49,4 @@ public class RentAdvertEndpoint {
 
 
 }
+*/
