@@ -55,6 +55,22 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+
+		<!--AXION-->
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-spring-boot-starter</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+
+		<!--SAGA-->
+		<dependency>
+			<groupId>org.saga</groupId>
+			<artifactId>core-apis</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
