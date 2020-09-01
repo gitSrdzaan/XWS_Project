@@ -115,10 +115,10 @@ public class CarService {
 
     }
 
-    /**
-	 * Metoda koja Car.class objekat set-uje na vrijednosti CarDTO.class objekta
-	 * @param model.CarDTO carDTO
-	 * @param model.Car car*/
+
+	// * Metoda koja Car.class objekat set-uje na vrijednosti CarDTO.class objekta
+	// * @param model.CarDTO carDTO
+	// * @param model.Car car
     private void dtoToCar(CarDTO carDTO, Car car){
 		car.setCarClass(carDTO.getCarClass());
 		car.setCarComment(carDTO.getCarComment());

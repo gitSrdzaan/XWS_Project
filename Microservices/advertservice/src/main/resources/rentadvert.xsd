@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.baeldung.com/springsoap/gen"
+           targetNamespace="http://www.baeldung.com/springsoap/gen" elementFormDefault="qualified">
+
+  <xs:element name="getRentAdvertRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="rentAdvert" type="tns:rentAdvert"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getRentAdvertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="id" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:complexType name="rentAdvert">
+    <xs:sequence>
+      <xs:element name="advertEndDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="advertStartDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="carId" type="xs:long" minOccurs="0"/>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="priceListId" type="xs:long" minOccurs="0"/>
+      <xs:element name="owner" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+
