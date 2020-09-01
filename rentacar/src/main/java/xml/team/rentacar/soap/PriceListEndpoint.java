@@ -1,6 +1,5 @@
-package xml.team.rentacar.soap;
+/*package xml.team.rentacar.soap;
 
-import com.rentacar.rentadvert.xws.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -43,4 +42,4 @@ public class PriceListEndpoint {
 
     }
 
-}
+}*/

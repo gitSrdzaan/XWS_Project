@@ -54,7 +54,7 @@ public class RentAdvertController {
 	}
 	
 	@PostMapping(value = "/new",consumes = "application/json", produces ="application/json")
-	public ResponseEntity<?> aoddNewRentAdvert(@RequestBody RentAdvertDTO raDTO){
+	public ResponseEntity<?> addNewRentAdvert(@RequestBody RentAdvertDTO raDTO){
 		
 		Car car = carService.findCar(raDTO.getCarID());
 		if(car == null) {

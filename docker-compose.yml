@@ -16,16 +16,6 @@ services:
     tty: true
     depends_on:
       - eureka-serviceregistry
-   
-  soap-service:
-    build: ./Microservices/soapservice
-    ports:
-    - "8086:8086"
-    environment:
-      - REGISTRY_HOST=eureka-serviceregistry
-    tty: true
-    depends_on:
-      - eureka-serviceregistry
   
   auth-service:
     build:  ./Microservices/auth
