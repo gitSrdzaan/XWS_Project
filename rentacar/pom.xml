@@ -56,6 +56,18 @@
 			</exclusions>
 		</dependency>
 
+		<dependency>
+			<groupId>jakarta.xml.ws</groupId>
+			<artifactId>jakarta.xml.ws-api</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>rt</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+
 
 		<!--AXION-->
 		<dependency>
@@ -80,44 +92,32 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.jvnet.jaxb2.maven2</groupId>
-				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.14.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<schemaLanguage>WSDL</schemaLanguage>
-					<generatePackage>com.example.consumingwebservice.wsdl</generatePackage>
-					<schemas>
-						<schema>
-							<url>http://localhost:8095/ws/rentrequest.wsdl</url>
-						</schema>
-					</schemas>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>2.5.0</version>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>2.6</version>
 				<executions>
 					<execution>
-						<id>xjc</id>
+						<id>wsimport-from-jdk</id>
 						<goals>
-							<goal>xjc</goal>
+							<goal>wsimport</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<sources>
-						<source>${project.basedir}/src/main/resources/rentadvert.xsd</source>
-						<source>${project.basedir}/src/main/resources/car.xsd</source>
-						<source>${project.basedir}/src/main/resources/pricelist.xsd</source>
-					</sources>
+					<wsdlUrls>
+						<wsdlUrl>http://localhost:8085/ws/car.wsdl</wsdlUrl>
+						<wsdlUrl>http://localhost:8085/ws/pricelist.wsdl</wsdlUrl>
+						<wsdlUrl>http://localhost:8085/ws/rentadvert.wsdl</wsdlUrl>
+						<wsdlUrl>http://localhost:8085/ws/rentrequest.wsdl</wsdlUrl>
+					</wsdlUrls>
+					<keep>true</keep>
+					<packageName>com.baeldung.soap.ws.client.generated</packageName>
+					<sourceDestDir>src/main/java</sourceDestDir>
 				</configuration>
 			</plugin>
 		</plugins>
