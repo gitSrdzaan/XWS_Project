@@ -23,7 +23,7 @@ import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping(value = "/advert")
-@CrossOrigin(value = "*")
+@CrossOrigin(origins = "*")
 public class RentAdvertController {
 
 	@Autowired
