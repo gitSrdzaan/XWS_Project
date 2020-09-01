@@ -8,7 +8,7 @@ import RentAdvert from '../_model/rentAdvert.model';
   styleUrls: ['./advert-comp.component.css'],
 })
 export class AdvertCompComponent implements OnInit {
-  ads: Array<RentAdvert>;
+  ads: Array<any>;
 
   constructor(private rentService: RentService) {}
 

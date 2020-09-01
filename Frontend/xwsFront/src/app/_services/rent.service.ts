@@ -41,7 +41,7 @@ export class RentService {
     });
   }
   getAllAds() {
-    return this.http.get<any>(`http://localhost:8089/search/car/marks`);
+    return this.http.get<any>(`http://localhost:8089/search/findAdvert`);
   }
   getAllPriceList() {
     return this.http.get<any>(`http://localhost:8080/pricelist/all`);
