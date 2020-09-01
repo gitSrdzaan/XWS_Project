@@ -1,4 +1,4 @@
-package xml.team.rentacar.soap;
+/*package xml.team.rentacar.soap;
 
 
 import com.rentacar.rentadvert.xws.GetCarRequest;
@@ -46,10 +46,11 @@ public class CarEndpoint {
         /*
         carSoap.setLongitude(car.getLongitude());
         carSoap.setLatitude(car.getLatitude());
-             **/
+
         response.setCar(carSoap);
 
         return response;
     }
 
 }
+*/
