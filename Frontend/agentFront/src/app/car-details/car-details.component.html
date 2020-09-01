@@ -1,0 +1,31 @@
+<app-header-comp></app-header-comp>
+<mat-card class="mat-elevation-z10">
+  <mat-toolbar color="primary">
+    <h2>
+      Car details
+    </h2></mat-toolbar>
+  
+  <h1 class="header">{{ car.carMark }} {{ car.carModel }}</h1>
+  <h3 class="header">{{ car.carRegistration }}</h3>
+  <div class="content">
+    <mat-chip-list aria-label="Car details">
+      <span class="details">Fuel: </span>
+      <mat-chip color="primary" selected>{{ car.carFuel.fuel }} </mat-chip>
+
+      <span class="details">Transmission: </span>
+      <mat-chip color="primary" selected>
+        {{ car.transmission.transmission }}
+      </mat-chip>
+
+      <span class="details">Class: </span>
+      <mat-chip color="primary" selected>
+        {{ car.carClass }}
+      </mat-chip>
+
+      <span class="details">Mileage: </span>
+      <mat-chip color="primary" selected>
+        {{ car.carMileage }}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</mat-card>

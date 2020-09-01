@@ -1,0 +1,63 @@
+<app-header-comp></app-header-comp>
+<div align="center" valign="middle" *ngIf="myCart.length > 0">
+  <table mat-table [dataSource]="myCart" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.id }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carMark">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carMark }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carModel">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carModel }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cart">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="removeFromCart(element.id)"
+        >
+          Remove from cart
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="request">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="sendRequest(element)"
+        >
+          Send request
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+<br />
+<div align="center" valign="middle" *ngIf="myCart.length > 0">
+  <button mat-raised-button color="primary" (click)="sendRequestAll()">
+    Send request for all
+  </button>
+</div>
+<div align="center" valign="middle" *ngIf="myCart.length === 0">
+  <h1>YOUR CART IS EMPTY</h1>
+</div>

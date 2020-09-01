@@ -1,0 +1,44 @@
+<app-header-comp></app-header-comp>
+<mat-card class="mat-elevation-z10">
+  <mat-toolbar color="primary">
+    <h2>Login</h2>
+  </mat-toolbar>
+  <form [formGroup]="form" class="login-form">
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        name="email"
+        formControlName="email"
+        placeholder="Email"
+      />
+      <mat-error *ngIf="form.hasError('required', 'email')">
+        Email is required
+      </mat-error>
+      <mat-error id="invalidMail" *ngIf="form.hasError('email', 'email')">
+        Email is not valid
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        name="password"
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+      />
+      <mat-error *ngIf="form.hasError('required', 'password')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      class="button button-primary"
+      (click)="login()"
+    >
+      Login
+    </button>
+  </form>
+</mat-card>

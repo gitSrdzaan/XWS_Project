@@ -1,0 +1,138 @@
+<app-header-comp></app-header-comp>
+<div align="center" valign="middle">
+  <mat-card class="basic-card">
+    <mat-card-title> Create car </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="newCarForm" class="search-form">
+        <mat-form-field class="form-field" appearance="fill">
+          <input
+            matInput
+            name="carRegistration"
+            formControlName="carRegistration"
+            placeholder="Car registration"
+          />
+        </mat-form-field>
+
+        <!-- <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carMark"
+            formControlName="carMark"
+            placeholder="Car mark"
+          />
+        </mat-form-field>-->
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Car mark</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let carMark of carMarks" [value]="carMark">
+              {{ carMark }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!--<mat-form-field class="form-field">
+          <input
+            matInput
+            name="carModel"
+            formControlName="carModel"
+            placeholder="Car model"
+          />
+        </mat-form-field>-->
+
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Car model</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let carModel of carModels" [value]="carModel">
+              {{ carModel }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!--<mat-form-field class="form-field">
+          <input
+            matInput
+            name="carFuel"
+            formControlName="carFuel"
+            placeholder="Car fuel"
+          />
+        </mat-form-field>-->
+
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Car fuel</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let carFuel of carFuels" [value]="carFuel">
+              {{ carFuel }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!--<mat-form-field class="form-field">
+          <input
+            matInput
+            name="transmission"
+            formControlName="transmission"
+            placeholder="Transmission"
+          />
+        </mat-form-field>-->
+
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Car transmission</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let carTrans of carTransM" [value]="carTrans">
+              {{ carTrans }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!--<mat-form-field class="form-field">
+          <input
+            matInput
+            name="carClass"
+            formControlName="carClass"
+            placeholder="Car class"
+          />
+        </mat-form-field>-->
+
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Car classes</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let carClass of carClasses" [value]="carClass">
+              {{ carClass }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carMileage"
+            formControlName="carMileage"
+            placeholder="Car mileage"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="maxAllowedMileage"
+            formControlName="maxAllowedMileage"
+            placeholder="Max allowed mileage"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="kidsSeats"
+            formControlName="kidsSeats"
+            placeholder="Kids seats"
+          />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="submitForm()">
+          Create
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
