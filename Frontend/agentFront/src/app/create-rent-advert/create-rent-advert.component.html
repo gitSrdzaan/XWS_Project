@@ -1,0 +1,95 @@
+<app-header-comp></app-header-comp>
+<div align="center" valign="middle">
+  <mat-card class="basic-card">
+    <mat-card-title> Create Rent Advert </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="newRentAdvertForm" class="search-form">
+        <mat-form-field class="form-field" appearance="fill">
+          <input
+            matInput
+            name="RentAdvertId"
+            formControlName="RentAdvertId"
+            placeholder="Rent Advert ID"
+          />
+        </mat-form-field>
+
+        <!-- <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carMark"
+            formControlName="carMark"
+            placeholder="Car mark"
+          />
+        </mat-form-field>-->
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Car </mat-label>
+          <mat-select>
+            <mat-option *ngFor="let reg of carRegs" [value]="reg">
+              {{ reg }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>PriceList </mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let priceList of priceLists"
+              [value]="priceList"
+            >
+              {{ priceList }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="price"
+            formControlName="price"
+            placeholder="Price"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="firmName"
+            formControlName="firmName"
+            placeholder="Firm"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="userName"
+            formControlName="userName"
+            placeholder="User"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Choose starting date</mat-label>
+          <input matInput [matDatepicker]="pickerStart" />
+          <mat-datepicker-toggle matSuffix [for]="pickerStart">
+            <mat-icon matDatepickerToggleIcon>Select</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #pickerStart></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Choose ending date</mat-label>
+          <input matInput [matDatepicker]="pickerEnd" />
+          <mat-datepicker-toggle matSuffix [for]="pickerEnd">
+            <mat-icon matDatepickerToggleIcon>Select</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #pickerEnd></mat-datepicker>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="submitForm()">
+          Create
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

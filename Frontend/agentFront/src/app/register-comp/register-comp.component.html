@@ -1,0 +1,132 @@
+<app-header-comp></app-header-comp>
+<mat-card class="mat-elevation-z10">
+  <mat-toolbar color="primary">
+    <h2>
+      Register
+    </h2>
+  </mat-toolbar>
+
+  <form [formGroup]="registerForm" class="register-form">
+    <mat-form-field>
+      <input name="name" matInput placeholder="Name" formControlName="name" />
+      <mat-error *ngIf="registerForm.hasError('required', 'name')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="surname"
+        matInput
+        placeholder="Surname"
+        formControlName="surname"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'surname')">
+        Surname is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="email"
+        matInput
+        placeholder="Email"
+        formControlName="email"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'email')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.hasError('email', 'email')">
+        Email is not valid
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="password"
+        matInput
+        placeholder="Password"
+        formControlName="password1"
+        type="password"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'password1')">
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.hasError('minlength', 'password1')">
+        Password must be at least 6 characters long
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="confirmPassword"
+        matInput
+        formControlName="password2"
+        placeholder="Confirm password"
+        [errorStateMatcher]="matcher"
+        type="password"
+      />
+      <mat-error *ngIf="registerForm.hasError('notSame')">
+        Passwords do not match
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="address"
+        matInput
+        placeholder="Address"
+        formControlName="address"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'address')">
+        Address is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input name="city" matInput placeholder="City" formControlName="city" />
+      <mat-error *ngIf="registerForm.hasError('required', 'city')">
+        City is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="state"
+        matInput
+        placeholder="State"
+        formControlName="state"
+      />
+      <mat-error *ngIf="registerForm.hasError('required', 'state')">
+        State is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="phoneNumber"
+        matInput
+        placeholder="Phone number"
+        formControlName="phoneNumber"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="company"
+        matInput
+        placeholder="Company"
+        formControlName="company"
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="register()"
+      [disabled]="!registerForm.valid"
+    >
+      Register
+    </button>
+  </form>
+</mat-card>
