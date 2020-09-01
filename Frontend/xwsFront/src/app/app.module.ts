@@ -35,6 +35,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 import {
   NgxMatDatetimePickerModule,
@@ -46,6 +47,9 @@ import { CarsComponent } from './cars/cars.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersComponent } from './users/users.component';
 import { CreateCarComponent } from './create-car/create-car.component';
+import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
+import { CreateRentAdvertComponent } from './create-rent-advert/create-rent-advert.component';
+import { CreatePricelistComponent } from './create-pricelist/create-pricelist.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +67,8 @@ import { CreateCarComponent } from './create-car/create-car.component';
     UserProfileComponent,
     UsersComponent,
     CreateCarComponent,
+    CreateRentAdvertComponent,
+    CreatePricelistComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +96,7 @@ import { CreateCarComponent } from './create-car/create-car.component';
     MatChipsModule,
     MatSnackBarModule,
     MatPaginatorModule,
+    MatSelectModule,
   ],
   providers: [
     SearchService,
