@@ -22,9 +22,11 @@ public class HelloWorld {
     @GetMapping(path = "/soap/{id}")
     public ResponseEntity<String> testSoap(@PathVariable Long id){
 
-	    String carId = soapClient.getRentAdvert(id).getRentAdvert().getOwner();
+	    //String carId = soapClient.getRentAdvert(id).getRentAdvert().getOwner();
 
-	    return new ResponseEntity<>(carId , HttpStatus.OK);
+	   // return new ResponseEntity<>(carId , HttpStatus.OK);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 	
 }

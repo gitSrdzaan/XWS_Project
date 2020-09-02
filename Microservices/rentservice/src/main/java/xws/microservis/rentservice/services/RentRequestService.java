@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.axonframework.commandhandling.CommandHandler;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -166,6 +166,9 @@ public class RentRequestService {
 		rr.setReservationStart(start);
 		rr.setReservationEnd(end);
 		rr.setStatus(status);
+		/**
+		 * TODO: obavjestiti o statusa requesta
+		 * */
         
         
  
@@ -182,5 +185,39 @@ public class RentRequestService {
 
 	public ArrayList<RentRequestBundle> getAllBundle() {
 		return (ArrayList<RentRequestBundle>) bundleRepository.findAll();
+	}
+
+	public boolean findBundle(Long id) {
+
+		RentRequestBundle bundle = this.bundleRepository.findById(id).orElse(null);
+		if(bundle == null){
+			return false;
+		}
+		return true;
+
+	}
+
+	public void setBundleStatus(RentRequestBundleDTO bundleDTO) throws Exception {
+		RentRequestBundle bundle = this.bundleRepository.findById(bundleDTO.getId()).orElse(null);
+
+		for(RentRequest request : bundle.getRentRequest()){
+			request.setStatus(bundleDTO.getStatus());
+		}
+
+
+
+		try{
+			this.bundleRepository.save(bundle);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			throw new Exception();
+		}
+
+		/**
+		 * TODO : obavjestit da je doslo do promjene u bundle status*/
+
+
+
 	}
 }
