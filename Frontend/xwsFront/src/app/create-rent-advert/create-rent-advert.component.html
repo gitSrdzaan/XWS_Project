@@ -7,8 +7,8 @@
         <mat-form-field class="form-field" appearance="fill">
           <input
             matInput
-            name="RentAdvertId"
-            formControlName="RentAdvertId"
+            name="rentAdvertId"
+            formControlName="rentAdvertId"
             placeholder="Rent Advert ID"
           />
         </mat-form-field>
@@ -32,11 +32,8 @@
         <mat-form-field class="form-field" appearance="fill">
           <mat-label>PriceList </mat-label>
           <mat-select>
-            <mat-option
-              *ngFor="let priceList of priceLists"
-              [value]="priceList"
-            >
-              {{ priceList }}
+            <mat-option *ngFor="let p of priceLists" [value]="p">
+              {{ p.id }}
             </mat-option>
           </mat-select>
         </mat-form-field>
