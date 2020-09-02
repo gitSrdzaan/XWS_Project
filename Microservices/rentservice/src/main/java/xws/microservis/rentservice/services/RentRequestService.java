@@ -37,12 +37,6 @@ public class RentRequestService {
 	private RentAdvertRepository rentARepository;
 
 
-	private transient CommandHandler commandHandler;
-
-	public RentRequestService(CommandHandler commandHandler) {
-		this.commandHandler = commandHandler;
-	}
-
 
 
 	//pronalazenje zahtjeva
