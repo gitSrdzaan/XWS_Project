@@ -93,18 +93,20 @@ public class RentRequestController {
 	}
 	
 
-	@GetMapping(value = "/all", produces = "application/json")
-	public ResponseEntity<?> getAllRentRequest(){
-		ArrayList<RentRequest> rentRequestArrayList = rentRService.getAll();
+	@GetMapping(value = "/all/{owner}", produces = "application/json")
+	public ResponseEntity<?> getAllRentRequest(@PathVariable Long ownerId){
+
+
+		ArrayList<RentRequest> rentRequestArrayList = rentRService.getOwnersAll(ownerId);
 
 		return new ResponseEntity<>(rentRequestArrayList, HttpStatus.OK);
 
 
 	}
 
-	@GetMapping(value = "/all/bundle",produces = "application/json")
-	public ResponseEntity<?> getAllRentRequestBundle(){
-		ArrayList<RentRequestBundle> rentRequestArrayList = rentRService.getAllBundle();
+	@GetMapping(value = "/all/bundle/{owner}",produces = "application/json")
+	public ResponseEntity<?> getAllRentRequestBundle(@PathVariable Long owner){
+		ArrayList<RentRequestBundle> rentRequestArrayList = rentRService.getAllOwnersBundle(owner);
 
 		return new ResponseEntity<>(rentRequestArrayList, HttpStatus.OK);
 

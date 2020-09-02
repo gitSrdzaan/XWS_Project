@@ -22,11 +22,7 @@ public class CarDTO {
 
     private Integer kidsSeats;
 
-    //Slika automobila
 
-    /**
-     * TODO: veza firme i auta da se obezbjedi
-     * */
 
 
     private Long owner_id;

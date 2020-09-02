@@ -54,28 +54,28 @@ public class CarService {
 		return (HashSet<String>) carFuelRepository.findAllCarFuel();
 	}
 
-<<<<<<< HEAD
+
     public void addCar(CarDTO carDTO) throws Exception {
 		Car car = repository.findById(carDTO.getId()).orElse(new Car());
 
-		dto2Car(carDTO,car);
+		dto2Car(carDTO, car);
 
 		Firm firm = ownerRepository.findOwnerFirm(carDTO.getOwner_id());
 
-		if(firm != null){
+		if (firm != null) {
 			car.setOwner(firm);
-		}
-		else{
+		} else {
 			User user = ownerRepository.findOwnerUser(carDTO.getOwner_id());
 			car.setOwner(user);
 		}
+	}
 
 
 
-=======
+
 
     public void addCar(Car car) throws Exception {
->>>>>>> master
+
 		try {
 			repository.save(car);
 		}
@@ -85,8 +85,7 @@ public class CarService {
 		}
     }
 
-<<<<<<< HEAD
-    private void dto2Car(CarDTO carDTO,Car car){
+    private void dto2Car(CarDTO carDTO,Car car) {
 		car.setId(carDTO.getId());
 		car.setCarClass(carDTO.getCarClass());
 		car.setCarComment(carDTO.getCarComment());
@@ -99,8 +98,8 @@ public class CarService {
 		car.setMaxAllowedMileage(carDTO.getMaxAllowedMileage());
 		car.setKidsSeats(carDTO.getKidsSeats());
 		car.setCarRegistration(carDTO.getCarRegistration());
+	}
 
-=======
 	public HashSet<String> getAllCarRegs() {
 
 		ArrayList<Car> cars = (ArrayList<Car>) repository.findAll();
@@ -111,6 +110,6 @@ public class CarService {
 			registrations.add(car.getCarRegistration());
 		}
 		return registrations;
->>>>>>> master
+
 	}
 }

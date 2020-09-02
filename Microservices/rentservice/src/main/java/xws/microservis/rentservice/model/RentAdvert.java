@@ -40,6 +40,11 @@ public class RentAdvert {
 	@ManyToMany(mappedBy = "rentAdvertList", fetch = FetchType.EAGER)
 	private List<Chart> charts;
 
+	@Column(nullable = true)
+	private Double priceForRent;
+
+
+
 
 	public RentAdvert() {
 		
@@ -109,4 +114,20 @@ public class RentAdvert {
     public void setCharts(List<Chart> charts) {
         this.charts = charts;
     }
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
+
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
+	}
 }

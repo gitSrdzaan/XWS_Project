@@ -16,6 +16,7 @@ public class CarDTO {
 	private Long transmission_Id;
 	private String carClass;
 	private Integer carMileage;//kilometraza do sada
+	private Integer maxAllowedMileage;
 	
 	private List<String> carComment;
 	
@@ -26,6 +27,8 @@ public class CarDTO {
 	private double latitude;
 	
 	private Integer kidsSeats;
+
+	private  Long owner_id;
 	
 	public CarDTO (Car car) {
 		this.id = car.getId();
@@ -43,7 +46,39 @@ public class CarDTO {
 		this.kidsSeats = car.getKidsSeats();
 		
 	}
-	
+
+	public Long getOwner_id() {
+		return owner_id;
+	}
+
+	public void setOwner_id(Long owner_id) {
+		this.owner_id = owner_id;
+	}
+
+	public Long getCarFuel_Id() {
+		return carFuel_Id;
+	}
+
+	public void setCarFuel_Id(Long carFuel_Id) {
+		this.carFuel_Id = carFuel_Id;
+	}
+
+	public Long getTransmission_Id() {
+		return transmission_Id;
+	}
+
+	public void setTransmission_Id(Long transmission_Id) {
+		this.transmission_Id = transmission_Id;
+	}
+
+	public Integer getMaxAllowedMileage() {
+		return maxAllowedMileage;
+	}
+
+	public void setMaxAllowedMileage(Integer maxAllowedMileage) {
+		this.maxAllowedMileage = maxAllowedMileage;
+	}
+
 	public Long getId() {
 		return id;
 	}

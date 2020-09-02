@@ -13,6 +13,7 @@ import xws.microservis.advertservice.model.PriceList;
 import xws.microservis.advertservice.model.RentAdvert;
 import xws.microservis.advertservice.repository.AdvertRepository;
 import xws.microservis.advertservice.repository.CarRepository;
+import xws.microservis.advertservice.repository.UserRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class AdvertService {
 	@Autowired
 	CarRepository carRepository;
 
+	@Autowired
+	private UserRepository userRepository;
 
 	public RentAdvert findById(Long id){
 		Optional<RentAdvert> rentAdvert = advertRepository.findById(id);
@@ -75,6 +78,8 @@ public class AdvertService {
 			advert.setPriceForRent(advertDto.getPriceForRent());
 
 		}
+
+		advert.setUser(userRepository.findById(advertDto.getOwner_id()).orElse(null));
 
 		advertRepository.save(advert);
 		
