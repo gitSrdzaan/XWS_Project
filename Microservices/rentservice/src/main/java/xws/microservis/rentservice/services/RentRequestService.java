@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,16 @@ public class RentRequestService {
 	private UserRepository userRepository;
 	@Autowired
 	private RentAdvertRepository rentARepository;
-	
+
+
+	private transient CommandHandler commandHandler;
+
+	public RentRequestService(CommandHandler commandHandler) {
+		this.commandHandler = commandHandler;
+	}
+
+
+
 	//pronalazenje zahtjeva
 	public RentRequestDTO findRentRequest(Long id) {
 		
@@ -75,6 +85,9 @@ public class RentRequestService {
 			throw new Exception("Neuspjesno sacuvan zahtjev");
 		}
 
+		/**
+		 * TODO : MessageQueue implementacija
+		 * */
 		RestTemplate newRentRequset = new RestTemplate();
 		ResponseEntity<Long> responseEntity = newRentRequset.getForEntity("http://localhost:8086/rentrequest/"+rr.getId(), Long.class);
 	}
