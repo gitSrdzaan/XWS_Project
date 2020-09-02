@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class PriceList {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column
@@ -32,6 +33,12 @@ public class PriceList {
 	
 	public PriceList() {
 		
+	}
+
+	public PriceList(com.baeldung.springsoap.gen.PriceList priceList){
+		this.pricePerDay = priceList.getPricePerDay();
+		this.pricePerKilometer = priceList.getPricePerKilometer();
+		this.priceCDW = priceList.getPriceCDW();
 	}
 
 

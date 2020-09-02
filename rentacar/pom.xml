@@ -72,6 +72,7 @@
 
 
 
+
 		<!--RabbitMQ-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -82,6 +83,8 @@
 			<artifactId>spring-rabbit-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
 
 	</dependencies>
 
@@ -110,10 +113,10 @@
 				</executions>
 				<configuration>
 					<wsdlUrls>
-						<wsdlUrl>http://localhost:8085/ws/car.wsdl</wsdlUrl>
+					<!--	<wsdlUrl>http://localhost:8085/ws/car.wsdl</wsdlUrl>
 						<wsdlUrl>http://localhost:8085/ws/pricelist.wsdl</wsdlUrl>
 						<wsdlUrl>http://localhost:8085/ws/rentadvert.wsdl</wsdlUrl>
-						<wsdlUrl>http://localhost:8085/ws/rentrequest.wsdl</wsdlUrl>
+						<wsdlUrl>http://localhost:8085/ws/rentrequest.wsdl</wsdlUrl> -->
 					</wsdlUrls>
 					<keep>true</keep>
 					<packageName>com.baeldung.soap.ws.client.generated</packageName>

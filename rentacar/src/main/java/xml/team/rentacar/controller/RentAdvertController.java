@@ -42,10 +42,10 @@ public class RentAdvertController {
 	
 	
 	
-	@GetMapping(value="/all", produces = "application/json")
-	public ResponseEntity<?> findAllRentAdvert(){
-		System.out.println("aaa");
-		ArrayList<RentAdvert> raList = rentService.getAll();
+	@GetMapping(value="/all/{firmID}", produces = "application/json")
+	public ResponseEntity<?> findAllRentAdvert(@PathVariable Long firmID){
+		
+		ArrayList<RentAdvert> raList = rentService.findFirmsAllRentAdvert(firmID);
 		
 		if(raList == null) {
 			return new ResponseEntity<>("Greska u izlistavanju oglasa", HttpStatus.NOT_ACCEPTABLE);
@@ -75,7 +75,6 @@ public class RentAdvertController {
 		
 		try {
 			RentAdvert ra = new RentAdvert();
-			ra.setId(raDTO.getId());
 			ra.setCar(car);
 			ra.setAdvertStartDate(raDTO.getAdvertStartDate());
 			ra.setAdvertEndDate(raDTO.getAdvertEndDate());
@@ -129,3 +128,5 @@ public class RentAdvertController {
 	}
 	
 }
+
+

@@ -1,9 +1,27 @@
 
+insert into car_mark values(1,'BMW');
+insert into car_model values(1,'X5',1);
+insert into car_class values(1,'SUV');
+insert into model_class values(1,1);
+insert into firm values(123 , 'mifa' , 'fafsa' , 'ffsafa' , 'fasfa' , 'ffasfsa');
+
+
 insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(1, 'pib','name', 'city','country', 'adress');
 insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(2, 'pib2','name2', 'city2','country2', 'adress2');
 insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(3, 'pib3','name3', 'city3','country3', 'adress3');
 insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(4, 'pib4','name4', 'city4','country4', 'adress4');
 insert into firm(id,pib,firm_name,firm_city,firm_country,firm_adress) values(5, 'pib5','name5', 'city5','country5', 'adress5');
+
+
+insert into car(id , car_class , car_fuel , car_grade , car_mark , car_mileage , car_model , car_registration , kids_seats , max_allowed_mileage ,
+transmission) values (123,'SUV','dizel', 2,'BMW',0.0,'X5','registration',0,500,'manuel');
+
+insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,firm_id)
+values(123,2,4,60,123);
+
+insert into rent_advert(id ,advert_start_date,advert_end_date, car_id , firm , pricelist_id)
+values(123,parsedatetime('05-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+123,123,123);
 
 insert into car_fuel values(1,'benzin');
 insert into car_fuel values(2,'dizel');
@@ -234,3 +252,4 @@ values(29,parsedatetime('16-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),par
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(30,parsedatetime('16-10-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
 2,1);
+

@@ -3,13 +3,22 @@ package xws.microservis.advertservice.controller;
 import java.io.Console;
 import java.util.ArrayList;
 
-import com.netflix.discovery.converters.Auto;
+
+import com.baeldung.springsoap.gen.GetCarRequest;
+import com.baeldung.springsoap.gen.GetCarResponse;
+import com.baeldung.springsoap.gen.GetRentAdvertRequest;
+import com.baeldung.springsoap.gen.GetRentAdvertResponse;
+
 import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import xws.microservis.advertservice.dto.AdvertDto;
 
 import xws.microservis.advertservice.model.Car;
@@ -23,8 +32,12 @@ import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping(value = "/advert")
+@Endpoint
 public class AdvertController {
-	
+
+
+	private static final String NAMESPACE_URI = "http://www.baeldung.com/springsoap/gen";
+
 	@Autowired
 	private AdvertService advertService;
 
@@ -88,5 +101,24 @@ public class AdvertController {
 
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getRentAdvertRequest")
+	@ResponsePayload
+	public GetRentAdvertResponse addAdvertFromAgentApp(@RequestPayload GetRentAdvertRequest request) {
+		try{
+			GetRentAdvertResponse response = new GetRentAdvertResponse();
+
+			response.setId(advertService.addNewAdvertSoap(request));
+
+			return response;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+
+	}
+
+
+
 }

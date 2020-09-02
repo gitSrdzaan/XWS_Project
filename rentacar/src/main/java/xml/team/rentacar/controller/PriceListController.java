@@ -2,6 +2,7 @@ package xml.team.rentacar.controller;
 
 import java.util.ArrayList;
 
+import com.baeldung.soap.ws.client.generated.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,10 +51,10 @@ public class PriceListController {
 		if(firm == null) {
 			return new ResponseEntity<>("Firma ne postoji", HttpStatus.BAD_REQUEST);
 		}
-		
+
 		try {
 			PriceList pl = new PriceList();
-			pl.setId(plDTO.getId());
+			//pl.setId(plDTO.getId());
 			pl.setFirm(firm);
 			pl.setPriceCDW(plDTO.getPriceCDW());
 			pl.setPricePerDay(plDTO.getPricePerDay());
@@ -65,6 +66,7 @@ public class PriceListController {
 			e.printStackTrace();
 			return new ResponseEntity<>("Greska pri upisu cjenovnika",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 		

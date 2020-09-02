@@ -1,12 +1,20 @@
 package xws.microservis.advertservice.controller;
 
+import com.baeldung.springsoap.gen.GetCarRequest;
+import com.baeldung.springsoap.gen.GetCarResponse;
 import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import xws.microservis.advertservice.dto.CarDTO;
 import xws.microservis.advertservice.model.*;
+import xws.microservis.advertservice.repository.CarFuelRepository;
+import xws.microservis.advertservice.repository.TransmissionRepository;
 import xws.microservis.advertservice.service.CarService;
 
 import java.util.ArrayList;
@@ -14,11 +22,19 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping(value= "/car")
 @CrossOrigin(origins = "*")
+@Endpoint
 public class CarController {
 
+    private static final String NAMESPACE_URI = "http://www.baeldung.com/springsoap/gen";
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private CarFuelRepository carFuelRepository;
+
+    @Autowired
+    private TransmissionRepository transmissionRepository;
 
     @GetMapping(value = "/all",produces = "application/json")
     public ResponseEntity<?> getAllCars(){
@@ -117,6 +133,25 @@ public class CarController {
         return new ResponseEntity<>(carFuelSet,HttpStatus.OK);
 
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCarRequest")
+    @ResponsePayload
+    public GetCarResponse addCarFromAgentApp(@RequestPayload GetCarRequest request) {
+        try{
+            GetCarResponse response = new GetCarResponse();
+
+            response.setId(carService.addNewCarSoap(request));
+
+            return response;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
+
+
 
 
 

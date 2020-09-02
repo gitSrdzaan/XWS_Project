@@ -10,13 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RentacarApplication {
 
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(RentacarApplication.class, args);
 	}
-
-
-
 
 
 }

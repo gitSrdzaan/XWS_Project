@@ -63,6 +63,23 @@ public class Car {
     protected Integer kidsSeats;
     protected String owner;
 
+
+    public Car (){
+
+    }
+
+    public Car(xml.team.rentacar.model.Car car){
+        this.kidsSeats = car.getKidsSeats();
+        this.carGrade = car.getCarGrade();
+        this.carMileage = car.getCarMileage();
+        this.carRegistration = car.getCarRegistration();
+        this.carMark = car.getCarMark();
+        this.carModel = car.getCarModel();
+        this.carClass = car.getCarClass();
+        this.carFuel= car.getCarFuel();
+        this.transmission = car.getTransmission();
+        this.owner = "AGENT_APP";
+    }
     /**
      * Gets the value of the id property.
      * 
