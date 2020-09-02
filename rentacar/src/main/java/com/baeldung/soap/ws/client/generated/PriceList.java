@@ -45,6 +45,18 @@ public class PriceList {
     protected Double priceCDW;
     protected String owner;
 
+    public PriceList() {
+
+    }
+
+    public PriceList(xml.team.rentacar.model.PriceList priceList){
+        this.id = priceList.getId();
+        this.priceCDW = priceList.getPriceCDW();
+        this.pricePerDay = priceList.getPricePerDay();
+        this.pricePerKilometer = priceList.getPricePerKilometer();
+        this.owner = "AGENT_APP";
+    }
+
     /**
      * Gets the value of the id property.
      * 

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import com.baeldung.soap.ws.client.generated.CarPort;
+import com.baeldung.soap.ws.client.generated.CarPortService;
+import com.baeldung.soap.ws.client.generated.GetCarRequest;
+import com.baeldung.soap.ws.client.generated.GetCarResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -46,20 +50,31 @@ public class CarService {
 	private TransmissionRepository transRepository;
 	
 	public boolean addCar(Car car) throws Exception {
-		
+
+		/**
+		 * TODO: komunikacija sa ostalim servisima
+		 * */
+
+		/// SOAP SENDING
+		CarPortService service = new CarPortService();
+		CarPort carsPort = service.getCarPortSoap11();
+		GetCarRequest getCarRequest = new GetCarRequest();
+
+		try{
+			com.baeldung.soap.ws.client.generated.Car carSoap = new com.baeldung.soap.ws.client.generated.Car(car);
+			getCarRequest.setCar(carSoap);
+			GetCarResponse getCarResponse = carsPort.getCar(getCarRequest);
+			car.setForeignId(getCarResponse.getId());
+		}catch (Exception e){
+			System.out.println("Nije moguce posalti auto.Mikroservis ne radi");
+		}
+
 		try {
 			repository.save(car);
 		}
 		catch(Exception e) {
 			throw new Exception("Neuspjesan pokusaj uspisivanja auta u bazu");
 		}
-
-		/**
-		 * TODO: komunikacija sa ostalim servisima
-		 * */
-		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<?> soapResponse = restTemplate.getForEntity("http://localhost:8086/car/" + car.getId(),Long.class);
-
 
 
 		return true;

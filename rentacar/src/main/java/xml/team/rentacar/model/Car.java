@@ -42,7 +42,7 @@ public class Car {
 
 	@Column(nullable = true)
 	private Integer maxAllowedMileage;
-	
+
    /* *
    TODO: make COMMENT CLASS and connect to car @OneToMany
 	*/
@@ -58,7 +58,9 @@ public class Car {
 	
 	@Column(nullable = true)
 	private Integer kidsSeats;
-	
+
+	@Column
+	private Long foreignId;
 	//Slika automobila
 	
 	
@@ -66,6 +68,14 @@ public class Car {
 	
 	public Car() {
 		
+	}
+
+	public Long getForeignId() {
+		return foreignId;
+	}
+
+	public void setForeignId(Long foreignId) {
+		this.foreignId = foreignId;
 	}
 
 	public Long getId() {
