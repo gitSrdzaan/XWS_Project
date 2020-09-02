@@ -1,12 +1,47 @@
 <app-header-comp></app-header-comp>
-<div align="center" valign="middle">
+
+<div *ngFor="let req of ads" align="center" valign="middle">
   <mat-card class="basic-card">
-    <mat-card-title> Ads </mat-card-title>
+    <mat-card-title> Rent Advert {{ req.id }} </mat-card-title>
     <mat-card-content>
       <div class="content">
-        <mat-chip-list aria-label="Car details">
-          <mat-chip *ngFor="let carMark of ads" color="primary" selected>
-            {{ carMark }}
+        <mat-chip-list aria-label="Ad details">
+          <mat-chip color="primary" selected>
+            <div>Advert start date:</div>
+
+            {{ req.advertStartDate }}
+          </mat-chip>
+          <mat-chip color="primary" selected>
+            <div>Advert end date:</div>
+            {{ req.advertEndDate }}
+          </mat-chip>
+          <mat-chip color="primary" selected>
+            <div>Car id:</div>
+            {{ req.car.id }}
+          </mat-chip>
+          <mat-chip color="primary" selected>
+            <div>Car registration:</div>
+            {{ req.car.carRegistration }}
+          </mat-chip>
+          <mat-chip color="primary" selected>
+            <div>Car mark:</div>
+            {{ req.car.carMark }}
+          </mat-chip>
+          <mat-chip color="primary" selected>
+            <div>Car model:</div>
+            {{ req.car.carModel }}
+          </mat-chip>
+          <mat-chip color="primary" selected>
+            <div>PriceList id:</div>
+            {{ req.priceList.id }}
+          </mat-chip>
+          <mat-chip color="primary" selected>
+            <div>PriceList price per day:</div>
+            {{ req.priceList.pricePerDay }}
+          </mat-chip>
+          <mat-chip color="primary" selected>
+            <div>PriceList price per kilometer:</div>
+            {{ req.priceList.pricePerKilometer }}
           </mat-chip>
         </mat-chip-list>
       </div>
