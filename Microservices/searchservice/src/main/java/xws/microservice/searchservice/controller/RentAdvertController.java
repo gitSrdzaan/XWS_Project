@@ -1,8 +1,6 @@
 package xws.microservice.searchservice.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +36,19 @@ public class RentAdvertController {
 	/**
 	 * Ucitavanje podataka korisnika i pretraga za potrebnim oglasima
 	 * */
+	//I OVO SAM DODAO
+	/*@GetMapping(value = "/findAllAds", produces = "application/json")
+	public ResponseEntity<?> getAllAds(){
+		ArrayList<RentAdvert> adsArrayList = rentAdvertService.getAll();
+		ArrayList<RentAdvert> rentAds = new ArrayList<RentAdvert>();
+
+		for( RentAdvert ad : adsArrayList ){
+			rentAds.add(ad);
+		}
+
+		return new ResponseEntity<>(rentAds, HttpStatus.OK);
+
+	}*/
 	@PostMapping(value ="/findAdvert", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> searchForRentAdverts(@RequestBody SearchInfo searchInfo){
 

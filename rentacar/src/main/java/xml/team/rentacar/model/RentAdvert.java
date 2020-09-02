@@ -24,7 +24,7 @@ public class RentAdvert {
 	
 	
 	@OneToOne
-	@JoinColumn(name = "priceList_id")
+	@JoinColumn(name = "pricelist_id")
 	private PriceList priceList;
 	
 	@ManyToOne

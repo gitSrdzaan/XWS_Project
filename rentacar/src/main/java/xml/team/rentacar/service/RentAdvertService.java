@@ -171,4 +171,9 @@ public class RentAdvertService {
 			throw new Exception("Rentacar: brisanje reklame");
 		}
 	}
+
+	public ArrayList<RentAdvert> getAll() {
+
+		return (ArrayList<RentAdvert>) rentARepository.findAll();
+	}
 }

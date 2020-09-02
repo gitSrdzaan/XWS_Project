@@ -1,0 +1,55 @@
+<app-header-comp></app-header-comp>
+<div align="center" valign="middle">
+  <mat-card class="basic-card">
+    <mat-card-title> Create PriceList </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="newPriceListForm" class="search-form">
+        <mat-form-field class="form-field" appearance="fill">
+          <input
+            matInput
+            name="PriceListId"
+            formControlName="PriceListId"
+            placeholder="PriceList ID"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="fill">
+          <input
+            matInput
+            name="PricePerDay"
+            formControlName="PricePerDay"
+            placeholder="PricePerDay"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+          <input
+            matInput
+            name="PricePerKilometer"
+            formControlName="PricePerKilometer"
+            placeholder="Price per kilometer"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+          <input
+            matInput
+            name="PriceCDW"
+            formControlName="PriceCDW"
+            placeholder="PriceCDW"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+          <input
+            matInput
+            name="Firm"
+            formControlName="Firm"
+            placeholder="Firm"
+          />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="submitForm()">
+          Create
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

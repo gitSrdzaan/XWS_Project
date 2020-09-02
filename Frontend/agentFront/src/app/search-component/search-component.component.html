@@ -1,0 +1,236 @@
+<app-header-comp></app-header-comp>
+<div align="center" valign="middle">
+  <mat-card class="basic-card">
+    <mat-card-title>
+      Search cars
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="searchForm" class="search-form">
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="country"
+            formControlName="country"
+            placeholder="Country"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="city"
+            formControlName="city"
+            placeholder="City"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Start date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="startDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Start date</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="endDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <br />
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carMark"
+            formControlName="carMark"
+            placeholder="Car mark"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carModel"
+            formControlName="carModel"
+            placeholder="Car model"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carClass"
+            formControlName="carClass"
+            placeholder="Car class"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="transmission"
+            formControlName="transmission"
+            placeholder="Transmission"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            name="carFuel"
+            formControlName="carFuel"
+            placeholder="Fuel"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            type="number"
+            name="carMileage"
+            formControlName="carMileage"
+            placeholder="Mileage"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            type="number"
+            name="kidsSeats"
+            formControlName="kidsSeats"
+            placeholder="Kids seats"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            type="number"
+            name="intendingMileage"
+            formControlName="intendingMileage"
+            placeholder="Intending mileage"
+          />
+        </mat-form-field>
+
+        <br />
+
+        <button mat-raised-button color="primary" (click)="submitForm()">
+          Search
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <table mat-table [dataSource]="advertList" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.id }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carMark">
+      <th mat-header-cell *matHeaderCellDef>Mark</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carMark }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carModel">
+      <th mat-header-cell *matHeaderCellDef>Model</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carModel }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fuel">
+      <th mat-header-cell *matHeaderCellDef>Fuel</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carFuel.fuel }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="transmission">
+      <th mat-header-cell *matHeaderCellDef>Transmission</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.transmission.transmission }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="class">
+      <th mat-header-cell *matHeaderCellDef>Class</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carClass }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mileage">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        (click)="sortMileage()"
+      >
+        Mileage
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carMileage }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="kids">
+      <th mat-header-cell *matHeaderCellDef>Kids seats</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.kidsSeats }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carGrade">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        (click)="sortGrade()"
+      >
+        Grade
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.car.carGrade }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button (click)="details(element.car.id)">
+          Details
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cart">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="addToCart(element)">
+          Add to cart
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
