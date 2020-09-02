@@ -39,11 +39,21 @@ public class RentRequest {
 
 	@Column(name = "status")
 	private RentRequestStatus status;
+
+	@Column
+	private Long foreignId;
 	
 	public RentRequest() {
 		
 	}
 
+	public Long getForeignId() {
+		return foreignId;
+	}
+
+	public void setForeignId(Long foreignId) {
+		this.foreignId = foreignId;
+	}
 
 	public RentAdvert getRentAdvert() {
 		return rentAdvert;

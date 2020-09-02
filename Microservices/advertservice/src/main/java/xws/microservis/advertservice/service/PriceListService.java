@@ -2,6 +2,7 @@ package xws.microservis.advertservice.service;
 
 import java.util.Optional;
 
+import com.baeldung.springsoap.gen.GetPriceListRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,5 +29,11 @@ public class PriceListService {
 		}else {
 			throw new PriceListNotFoundException(id);
 		}
+	}
+
+	public Long addNewPriceListSoap(GetPriceListRequest request){
+		PriceList priceList = new PriceList(request.getPriceList());
+		PriceList savedPL = priceListRepository.save(priceList);
+		return savedPL.getId();
 	}
 }

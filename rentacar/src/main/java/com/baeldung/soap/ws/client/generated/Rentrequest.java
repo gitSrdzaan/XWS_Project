@@ -1,6 +1,8 @@
 
 package com.baeldung.soap.ws.client.generated;
 
+import xml.team.rentacar.model.RentRequest;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -50,6 +52,20 @@ public class Rentrequest {
     protected String reservationEnd;
     protected String status;
     protected Long bundleId;
+
+    public Rentrequest(){
+
+    }
+
+    public Rentrequest(RentRequest rr){
+        this.id = rr.getId();
+        this.rentAdvertId = rr.getRentAdvert().getId();
+        this.user = "USER";
+        this.reservationEnd = rr.getReservationEnd().toString();
+        this.reservationStart = rr.getReservationStart().toString();
+        this.status = rr.getStatus().toString();
+    }
+
 
     /**
      * Gets the value of the id property.

@@ -40,6 +40,17 @@ public class User {
 	
 	@Column(nullable = false)
 	private String password;
+
+	@Column(nullable = false)
+	private String userCity;
+
+	@Column(nullable = false)
+	private String userCountry;
+
+
+
+	@Column(nullable = false)
+	private String userAdress;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="user_cars", nullable = true)
@@ -56,6 +67,29 @@ public class User {
 		this.userCars= new HashSet<Car>();
 	}
 
+	public String getUserCity() {
+		return userCity;
+	}
+
+	public void setUserCity(String userCity) {
+		this.userCity = userCity;
+	}
+
+	public String getUserCountry() {
+		return userCountry;
+	}
+
+	public void setUserCountry(String userCountry) {
+		this.userCountry = userCountry;
+	}
+
+	public String getUserAdress() {
+		return userAdress;
+	}
+
+	public void setUserAdress(String userAdress) {
+		this.userAdress = userAdress;
+	}
 	public Long getId() {
 		return id;
 	}

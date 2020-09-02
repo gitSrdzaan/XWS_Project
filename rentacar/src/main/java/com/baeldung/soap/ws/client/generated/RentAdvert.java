@@ -48,6 +48,17 @@ public class RentAdvert {
     protected Long priceListId;
     protected String owner;
 
+
+    public RentAdvert(){
+
+    }
+
+    public RentAdvert(xml.team.rentacar.model.RentAdvert rentAdvert){
+        this.carId = rentAdvert.getCar().getId();
+        this.id = rentAdvert.getId();
+        this.priceListId= rentAdvert.getPriceList().getId();
+        this.owner = "AGENT_APP";
+    }
     /**
      * Gets the value of the advertEndDate property.
      * 

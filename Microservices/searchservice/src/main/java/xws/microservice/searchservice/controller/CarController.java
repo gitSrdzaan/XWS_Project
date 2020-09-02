@@ -96,6 +96,15 @@ public class CarController {
 
 	}
 
+    @GetMapping(value = "/registration", produces = "application/json")
+    public ResponseEntity<?> getAllCarRegs(){
+
+        HashSet<String> carRegSet = carService.getAllCarRegs();
+
+        return new ResponseEntity<>(carRegSet,HttpStatus.OK);
+
+    }
+
 
 	@PostMapping(path = "/new", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addCar(@RequestBody CarDTO carDTO){

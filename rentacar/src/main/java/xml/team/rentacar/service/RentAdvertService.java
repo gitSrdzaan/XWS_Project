@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import com.baeldung.soap.ws.client.generated.GetRentAdvertRequest;
+import com.baeldung.soap.ws.client.generated.GetRentAdvertResponse;
+import com.baeldung.soap.ws.client.generated.RentAdvertPort;
+import com.baeldung.soap.ws.client.generated.RentAdvertPortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -47,19 +51,47 @@ public class RentAdvertService {
 		return (ArrayList<RentAdvert>) raList;
 	}
 
+	public RentAdvert findAdvert(Long advertId){
+		RentAdvert rentAdvert = rentARepository.findById(advertId).orElse(null);
+		if(rentAdvert == null){
+			return null;
+		}
+		return  rentAdvert;
+	}
+
 
 	public void addRentAdvert(RentAdvert ra) throws Exception {
 		// TODO Auto-generated method stub
+		RentAdvert saved = new RentAdvert();
 		try {
-			rentARepository.save(ra);
+			saved = rentARepository.save(ra);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception("Cuvanje oglasa nije uspjelo");
 		}
 
-		RestTemplate restTemplate = new RestTemplate();
-		//ResponseEntity<Long> responseEntity = restTemplate.getForEntity("http://localhost:8086"+ra.getId(),Long.class);
+		// SOAP
+		RentAdvertPortService service = new RentAdvertPortService();
+		RentAdvertPort rentAdvertPort = service.getRentAdvertPortSoap11();
+		GetRentAdvertRequest getRentAdvertRequest = new GetRentAdvertRequest();
+
+		System.out.println(ra.getAdvertEndDate().toString());
+
+		try {
+			com.baeldung.soap.ws.client.generated.RentAdvert rentAdvert = new com.baeldung.soap.ws.client.generated.RentAdvert(ra);
+			rentAdvert.setId(saved.getId());
+			rentAdvert.setAdvertEndDate(ra.getAdvertEndDate().toString());
+			rentAdvert.setAdvertStartDate(ra.getAdvertStartDate().toString());
+			getRentAdvertRequest.setRentAdvert(rentAdvert);
+			GetRentAdvertResponse getRentAdvertResponse = rentAdvertPort.getRentAdvert(getRentAdvertRequest);
+			ra.setForeignId(getRentAdvertResponse.getId());
+		}catch (Exception e){
+
+			System.out.println("Nije moguce poslati Advert.Mikroservis ne radi");
+		}
+
+
 
 	}
 
@@ -138,5 +170,10 @@ public class RentAdvertService {
 			e.printStackTrace();
 			throw new Exception("Rentacar: brisanje reklame");
 		}
+	}
+
+	public ArrayList<RentAdvert> getAll() {
+
+		return (ArrayList<RentAdvert>) rentARepository.findAll();
 	}
 }

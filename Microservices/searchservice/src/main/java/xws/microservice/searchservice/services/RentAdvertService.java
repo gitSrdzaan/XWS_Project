@@ -1,9 +1,6 @@
 package xws.microservice.searchservice.services;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +41,11 @@ public class RentAdvertService {
 */
 		return returnList;
 	}
+	//OVO SAM DODAO
+	/*public ArrayList<RentAdvert> getAll() {
+
+		return (ArrayList<RentAdvert>) repository.findAll();
+	}*/
 
     public ArrayList<RentAdvert> findByDates(Date startDate, Date endDate,Long firmId) {
 

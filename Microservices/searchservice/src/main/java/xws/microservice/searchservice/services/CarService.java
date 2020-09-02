@@ -54,6 +54,7 @@ public class CarService {
 		return (HashSet<String>) carFuelRepository.findAllCarFuel();
 	}
 
+<<<<<<< HEAD
     public void addCar(CarDTO carDTO) throws Exception {
 		Car car = repository.findById(carDTO.getId()).orElse(new Car());
 
@@ -71,6 +72,10 @@ public class CarService {
 
 
 
+=======
+
+    public void addCar(Car car) throws Exception {
+>>>>>>> master
 		try {
 			repository.save(car);
 		}
@@ -80,6 +85,7 @@ public class CarService {
 		}
     }
 
+<<<<<<< HEAD
     private void dto2Car(CarDTO carDTO,Car car){
 		car.setId(carDTO.getId());
 		car.setCarClass(carDTO.getCarClass());
@@ -94,5 +100,17 @@ public class CarService {
 		car.setKidsSeats(carDTO.getKidsSeats());
 		car.setCarRegistration(carDTO.getCarRegistration());
 
+=======
+	public HashSet<String> getAllCarRegs() {
+
+		ArrayList<Car> cars = (ArrayList<Car>) repository.findAll();
+
+		HashSet<String> registrations = new HashSet<>();
+
+		for(Car car : cars){
+			registrations.add(car.getCarRegistration());
+		}
+		return registrations;
+>>>>>>> master
 	}
 }

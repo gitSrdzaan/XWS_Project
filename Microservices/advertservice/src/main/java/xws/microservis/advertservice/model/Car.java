@@ -69,6 +69,17 @@ public class Car {
 		
 	}
 
+	public Car(com.baeldung.springsoap.gen.Car car){
+		this.carRegistration = car.getCarRegistration();
+		this.carMark = car.getCarMark();
+		this.carModel = car.getCarModel();
+		this.carClass = car.getCarClass();
+		this.carMileage = car.getCarMileage();
+		this.carGrade = car.getCarGrade();
+		this.kidsSeats = car.getKidsSeats();
+		this.owner = car.getOwner();
+	}
+
 	public String getOwner() {
 		return owner;
 	}

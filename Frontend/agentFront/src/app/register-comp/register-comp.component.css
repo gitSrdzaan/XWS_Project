@@ -1,0 +1,24 @@
+mat-card {
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  min-width: 300px;
+  padding: 0;
+}
+.register-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px;
+  padding-bottom: 30px;
+}
+mat-form-field {
+  width: 100%;
+}
+
+h2 {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 25px;
+}
