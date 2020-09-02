@@ -2,13 +2,14 @@ package xws.microservis.rentservice.mq;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+
 import xws.microservis.rentservice.dto.RentAdvertDTO;
 import xws.microservis.rentservice.services.RentAdvertService;
 
 import java.util.concurrent.CountDownLatch;
 
-@Service
+@Component
 public class AdvertCreatedReceiver {
 
     private CountDownLatch latch = new CountDownLatch(1);

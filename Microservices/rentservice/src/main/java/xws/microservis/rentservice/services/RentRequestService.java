@@ -277,6 +277,8 @@ public class RentRequestService {
 			findOwnersBundle(retList,user.getId(),"user");
 		}
 
+		return  retList;
+
 
 
 	}

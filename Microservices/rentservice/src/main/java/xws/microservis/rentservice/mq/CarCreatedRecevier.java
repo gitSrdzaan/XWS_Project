@@ -2,13 +2,14 @@ package xws.microservis.rentservice.mq;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import xws.microservis.rentservice.dto.CarDTO;
 import xws.microservis.rentservice.services.CarService;
 
 import java.util.concurrent.CountDownLatch;
 
-@Service
+@Component
 public class CarCreatedRecevier {
 
     CountDownLatch latch = new CountDownLatch(1);

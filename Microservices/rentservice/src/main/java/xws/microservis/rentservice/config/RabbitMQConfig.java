@@ -22,12 +22,57 @@ public class RabbitMQConfig {
     @Value("${xml.rabbitmq.routingkey}")
     private String routingkey;
 
+
+
+    @Bean
+    Queue advertQueue() {
+        return new Queue(queue+".advert" ,false);
+    }
+
+    @Bean
+    Queue carQueue(){
+        return new Queue(queue+".car", false);
+    }
+
+    @Bean
+    Queue priceListQueue(){
+        return new Queue(queue+".pricelist",false);
+    }
+
+    @Bean
+    DirectExchange advertExchange() {
+        return new DirectExchange(exchange+".advert");
+    }
+
+    @Bean
+    DirectExchange carExchange(){
+        return new DirectExchange(exchange+".car");
+    }
+
+    @Bean
+    DirectExchange priceListExchange(){
+        return new DirectExchange(exchange+".pricelist");
+    }
+
+    @Bean
+    Binding advertBinding(Queue advertQueue, DirectExchange advertExchange) {
+        return BindingBuilder.bind(advertQueue).to(advertExchange).with(routingkey+".advert");
+    }
+
+    @Bean
+    Binding carBinding(Queue carQueue, DirectExchange carExchange){
+        return BindingBuilder.bind(carQueue).to(carExchange).with(routingkey+".car");
+    }
+
+    @Bean
+    Binding bindingPL(Queue priceListQueue, DirectExchange priceListExchange){
+        return BindingBuilder.bind(priceListQueue).to(priceListExchange).with(routingkey+".pricelist");
+    }
+
     @Bean
     Queue requestQueue() {
         return new Queue(queue+".request" ,false);
     }
-
-
 
     @Bean
     DirectExchange requestExchange() {
@@ -37,7 +82,7 @@ public class RabbitMQConfig {
 
 
     @Bean
-    Binding binding(Queue requestQueue, DirectExchange requestExchange) {
+    Binding requestBinding(Queue requestQueue, DirectExchange requestExchange) {
         return BindingBuilder.bind(requestQueue).to(requestExchange).with(routingkey+".request");
     }
 
