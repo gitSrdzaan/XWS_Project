@@ -1,11 +1,9 @@
 package xws.microservis.advertservice.controller;
 
-<<<<<<< HEAD
-import com.netflix.discovery.converters.Auto;
-=======
+
 import com.baeldung.springsoap.gen.GetCarRequest;
 import com.baeldung.springsoap.gen.GetCarResponse;
->>>>>>> master
+
 import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +15,12 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import xws.microservis.advertservice.dto.CarDTO;
 import xws.microservis.advertservice.model.*;
-<<<<<<< HEAD
+
 import xws.microservis.advertservice.mq.CarCreatedSender;
-=======
+
 import xws.microservis.advertservice.repository.CarFuelRepository;
 import xws.microservis.advertservice.repository.TransmissionRepository;
->>>>>>> master
+
 import xws.microservis.advertservice.service.CarService;
 
 import java.util.ArrayList;
@@ -39,14 +37,14 @@ public class CarController {
     private CarService carService;
 
     @Autowired
-<<<<<<< HEAD
+
     private CarCreatedSender carSender;
-=======
+
     private CarFuelRepository carFuelRepository;
 
     @Autowired
     private TransmissionRepository transmissionRepository;
->>>>>>> master
+
 
     @GetMapping(value = "/all",produces = "application/json")
     public ResponseEntity<?> getAllCars(){
