@@ -42,7 +42,7 @@ export class RentService {
   }
   //findAllAds
   getAllAds() {
-    return this.http.get<any>(`http://localhost:8080/advert/all`);
+    return this.http.get<any>(`http://localhost:8080/advert/getAll`);
   }
   //getAllPriceList() {
   //return this.http.get<any>(`http://localhost:8080/pricelist/all/1`);
