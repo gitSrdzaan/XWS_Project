@@ -4,10 +4,11 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import xws.microservis.advertservice.model.RentAdvert;
+import xws.microservis.advertservice.dto.CarDTO;
+
 
 @Service
-public class AdvertCreatedSender {
+public class CarCreatedSender {
 
     @Autowired
     private AmqpTemplate amqpTemplate;
@@ -16,10 +17,12 @@ public class AdvertCreatedSender {
     private String exchange;
 
     @Value("${xml.rabbitmq.routingkey}")
-    private String routingkey;
+    private String rountingkey;
 
-    public void send(RentAdvert advert){
-        amqpTemplate.convertAndSend(exchange+".advert",routingkey+".advert",advert);
-        System.out.println("Send advert created = " + advert.getId());
+
+    public void sendCar(CarDTO car){
+        amqpTemplate.convertAndSend(exchange+".car",rountingkey+".car",car);
+        System.out.println("Send car created = " + car.getId());
     }
+
 }

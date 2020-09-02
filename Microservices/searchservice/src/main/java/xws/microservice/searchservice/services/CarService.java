@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import xws.microservice.searchservice.dto.CarDTO;
-import xws.microservice.searchservice.model.Car;
-import xws.microservice.searchservice.model.Transmission;
+import xws.microservice.searchservice.model.*;
 import xws.microservice.searchservice.repository.CarFuelRepository;
 import xws.microservice.searchservice.repository.CarRepository;
+import xws.microservice.searchservice.repository.OwnerRepository;
 import xws.microservice.searchservice.repository.TransmissionRepository;
 
 @Service
@@ -26,6 +26,9 @@ public class CarService {
 
 	@Autowired
 	private CarFuelRepository carFuelRepository;
+
+	@Autowired
+	private OwnerRepository ownerRepository;
 	
 	public CarDTO findCar(Long id) {
 		
@@ -51,12 +54,45 @@ public class CarService {
 		return (HashSet<String>) carFuelRepository.findAllCarFuel();
 	}
 
-    public void addCar(Car car) throws Exception {
+    public void addCar(CarDTO carDTO) throws Exception {
+		Car car = repository.findById(carDTO.getId()).orElse(new Car());
+
+		dto2Car(carDTO,car);
+
+		Firm firm = ownerRepository.findOwnerFirm(carDTO.getOwner_id());
+
+		if(firm != null){
+			car.setOwner(firm);
+		}
+		else{
+			User user = ownerRepository.findOwnerUser(carDTO.getOwner_id());
+			car.setOwner(user);
+		}
+
+
+
 		try {
 			repository.save(car);
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			throw new Exception("Neuspjesan pokusaj uspisivanja auta u bazu");
 		}
     }
+
+    private void dto2Car(CarDTO carDTO,Car car){
+		car.setId(carDTO.getId());
+		car.setCarClass(carDTO.getCarClass());
+		car.setCarComment(carDTO.getCarComment());
+		car.setCarFuel(carFuelRepository.findById(carDTO.getCarFuel()).orElse(null));
+		car.setTransmission(transmissionRepository.findById(carDTO.getTransmission()).orElse(null));
+		car.setCarMark(carDTO.getCarMark());
+		car.setCarModel(carDTO.getCarModel());
+		car.setCarGrade(carDTO.getCarGrade());
+		car.setCarMileage(carDTO.getCarMileage());
+		car.setMaxAllowedMileage(carDTO.getMaxAllowedMileage());
+		car.setKidsSeats(carDTO.getKidsSeats());
+		car.setCarRegistration(carDTO.getCarRegistration());
+
+	}
 }

@@ -5,41 +5,20 @@ import java.util.List;
 public class CarDTO {
 
     private Long id;
-
-
     private String carRegistration;
-
-
     private String carMark;
-
-
     private String carModel;
-
-
-
     private Long carFuel;
-
-
     private Long transmission;
-
-
     private String carClass;
-
-
     private Integer carMileage;//kilometraza do sada
-
-
     private Integer maxAllowedMileage;
-
     private List<String> carComment;
-
-
     private Integer carGrade;
 
 	/*private double longitude;
 
 	private double latitude;*/
-
 
     private Integer kidsSeats;
 
@@ -50,7 +29,7 @@ public class CarDTO {
      * */
 
 
-    private Long user_id;
+    private Long owner_id;
 
     public CarDTO(){
 
@@ -152,11 +131,11 @@ public class CarDTO {
         this.kidsSeats = kidsSeats;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getOwner_id() {
+        return owner_id;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setOwner_id(Long owner_id) {
+        this.owner_id = owner_id;
     }
 }

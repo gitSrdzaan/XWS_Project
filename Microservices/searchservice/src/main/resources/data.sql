@@ -24,16 +24,16 @@ insert into transmission values(2,'manuelni');
 insert into transmission values(3,'poluautomatski');
 
 
-insert into user(id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
+insert into user(user_id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
 values(10,'vozacke', 'email','srks','kralj','Srdjan', 'Simic', 'adresa_s','city','country');
 
-insert into user(id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
+insert into user(user_id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
 values(20,'vozacke', 'email','nidza','solidni','Nikola', 'Artukov', 'adresa_n','grad_n','zemlja_n');
 
-insert into user(id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
+insert into user(user_id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
 values(30,'vozacke', 'email','markaya','macor','Marko', 'Ristic', 'adresa_m','grad_m','zemlja_m');
 
-insert into user(id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
+insert into user(user_id,drivers_licence,email,username,password,name,surname,user_adress,user_city,user_country)
 values(40,'vozacke', 'email','mica','lavanda','Milica', 'Svonja', 'adresa_mm','grad_mm','zemlja_mm');
 
 --automobili

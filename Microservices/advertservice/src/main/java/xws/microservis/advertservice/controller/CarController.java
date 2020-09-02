@@ -1,5 +1,6 @@
 package xws.microservis.advertservice.controller;
 
+import com.netflix.discovery.converters.Auto;
 import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xws.microservis.advertservice.dto.CarDTO;
 import xws.microservis.advertservice.model.*;
+import xws.microservis.advertservice.mq.CarCreatedSender;
 import xws.microservis.advertservice.service.CarService;
 
 import java.util.ArrayList;
@@ -19,6 +21,9 @@ public class CarController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private CarCreatedSender carSender;
 
     @GetMapping(value = "/all",produces = "application/json")
     public ResponseEntity<?> getAllCars(){
@@ -39,6 +44,8 @@ public class CarController {
             e.printStackTrace();
             return new ResponseEntity<>("Greska pri upisu auta", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+        carSender.sendCar(carDTO);
 
         return  new ResponseEntity<>(HttpStatus.OK);
 

@@ -15,9 +15,9 @@ public class AdvertCreatedRecevier {
     private CountDownLatch latch = new CountDownLatch(1);
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "xml.queue",durable = "false"),
-            exchange = @Exchange(value = "xml.exchange"),
-            key = "xml.routingkey"
+            value = @Queue(value = "xml.queue.advert",durable = "false"),
+            exchange = @Exchange(value = "xml.exchange.advert"),
+            key = "xml.routingkey.advert"
 
     )
     )

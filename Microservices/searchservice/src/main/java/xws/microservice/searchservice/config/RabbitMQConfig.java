@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import xws.microservice.searchservice.mq.AdvertCreatedRecevier;
+import xws.microservice.searchservice.mq.CarCreatedReceiver;
 
 @Configuration
 public class RabbitMQConfig {
@@ -33,6 +34,11 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    TopicExchange topicExchange(){
+        return new TopicExchange(exchange);
+    }
+
+    @Bean
     Binding binding(Queue queue, DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(routingkey);
     }
@@ -49,8 +55,15 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public AdvertCreatedRecevier createdRecevier(){
+    public AdvertCreatedRecevier createdAdvertRecevier(){
         return new AdvertCreatedRecevier();
     }
+
+    @Bean
+    public CarCreatedReceiver carRecevier(){
+        return new CarCreatedReceiver();
+    }
+
+
 
 }
