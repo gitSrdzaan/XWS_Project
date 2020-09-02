@@ -132,6 +132,11 @@ public class RentRequestController {
 
 
 	}
+
+	/**
+	 * TODO: Odgovarnaje na request prebaciti na ovaj kontroler i servis
+	 * */
+
 	
 	
 	
