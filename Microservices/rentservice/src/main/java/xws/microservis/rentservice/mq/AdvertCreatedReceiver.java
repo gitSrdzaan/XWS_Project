@@ -1,19 +1,16 @@
-package xws.microservice.searchservice.mq;
+package xws.microservis.rentservice.mq;
 
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xws.microservice.searchservice.dto.RentAdvertDTO;
-import xws.microservice.searchservice.model.RentAdvert;
-import xws.microservice.searchservice.services.RentAdvertService;
+
+import xws.microservis.rentservice.dto.RentAdvertDTO;
+import xws.microservis.rentservice.services.RentAdvertService;
 
 import java.util.concurrent.CountDownLatch;
 
 @Component
-public class AdvertCreatedRecevier {
+public class AdvertCreatedReceiver {
 
     private CountDownLatch latch = new CountDownLatch(1);
 

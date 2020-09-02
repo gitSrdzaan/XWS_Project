@@ -19,6 +19,8 @@ public class AdvertDto {
 	private Long priceListId;
 
 	private Double priceForRent;
+
+	private Long owner_id;
 	
 	public AdvertDto(Long id , Long carId, Date advertStartDate , Date advertEndDate , Long priceListId, Double priceForRent) {
 		this.id = id;
@@ -28,8 +30,14 @@ public class AdvertDto {
 		this.priceListId = priceListId;
 		this.priceForRent = priceForRent;
 	}
-	
-	
+
+	public Long getOwner_id() {
+		return owner_id;
+	}
+
+	public void setOwner_id(Long owner_id) {
+		this.owner_id = owner_id;
+	}
 
 	public Long getCarId() {
 		return carId;

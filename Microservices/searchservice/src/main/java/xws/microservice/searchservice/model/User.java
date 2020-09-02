@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "user_id")
 public class User extends Owner {
 	
 	@Id

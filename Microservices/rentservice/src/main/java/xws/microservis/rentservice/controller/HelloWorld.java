@@ -1,7 +1,6 @@
 package xws.microservis.rentservice.controller;
 
-import com.example.consumingwebservice.wsdl.GetRentAdvertResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +22,11 @@ public class HelloWorld {
     @GetMapping(path = "/soap/{id}")
     public ResponseEntity<String> testSoap(@PathVariable Long id){
 
-	    String carId = soapClient.getRentAdvert(id).getRentAdvert().getOwner();
+	    //String carId = soapClient.getRentAdvert(id).getRentAdvert().getOwner();
 
-	    return new ResponseEntity<>(carId , HttpStatus.OK);
+	   // return new ResponseEntity<>(carId , HttpStatus.OK);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 	
 }

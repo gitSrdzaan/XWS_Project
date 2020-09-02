@@ -1,4 +1,4 @@
-package xws.microservice.searchservice.config;
+package xws.microservis.rentservice.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -8,13 +8,10 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import xws.microservice.searchservice.mq.AdvertCreatedRecevier;
-import xws.microservice.searchservice.mq.CarCreatedReceiver;
-
-import javax.management.Query;
 
 @Configuration
 public class RabbitMQConfig {
+
 
     @Value("${xml.rabbitmq.queue}")
     private String queue;
@@ -24,6 +21,8 @@ public class RabbitMQConfig {
 
     @Value("${xml.rabbitmq.routingkey}")
     private String routingkey;
+
+
 
     @Bean
     Queue advertQueue() {
@@ -56,12 +55,12 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    Binding binding(Queue advertQueue, DirectExchange advertExchange) {
+    Binding advertBinding(Queue advertQueue, DirectExchange advertExchange) {
         return BindingBuilder.bind(advertQueue).to(advertExchange).with(routingkey+".advert");
     }
 
     @Bean
-    Binding binding2(Queue carQueue, DirectExchange carExchange){
+    Binding carBinding(Queue carQueue, DirectExchange carExchange){
         return BindingBuilder.bind(carQueue).to(carExchange).with(routingkey+".car");
     }
 
@@ -69,6 +68,25 @@ public class RabbitMQConfig {
     Binding bindingPL(Queue priceListQueue, DirectExchange priceListExchange){
         return BindingBuilder.bind(priceListQueue).to(priceListExchange).with(routingkey+".pricelist");
     }
+
+    @Bean
+    Queue requestQueue() {
+        return new Queue(queue+".request" ,false);
+    }
+
+    @Bean
+    DirectExchange requestExchange() {
+        return new DirectExchange(exchange+".request");
+    }
+
+
+
+    @Bean
+    Binding requestBinding(Queue requestQueue, DirectExchange requestExchange) {
+        return BindingBuilder.bind(requestQueue).to(requestExchange).with(routingkey+".request");
+    }
+
+
 
     @Bean
     public MessageConverter jsonMessageConverter() {
@@ -80,17 +98,4 @@ public class RabbitMQConfig {
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
     }
-
-    @Bean
-    public AdvertCreatedRecevier createdAdvertRecevier(){
-        return new AdvertCreatedRecevier();
-    }
-
-    @Bean
-    public CarCreatedReceiver carRecevier(){
-        return new CarCreatedReceiver();
-    }
-
-
-
 }

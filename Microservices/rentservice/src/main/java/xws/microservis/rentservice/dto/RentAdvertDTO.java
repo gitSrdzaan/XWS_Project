@@ -9,19 +9,22 @@ import xws.microservis.rentservice.model.RentAdvert;
 public class RentAdvertDTO {
 
 	private Long id;
-	private Long car_Id;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SS")
+	private Long carId;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SSS")
 	private Date advertStartDate;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SS")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SSS")
 	private Date advertEndDate;
-	private Long priceList_Id;
+	private Long priceListId;
+	private Double priceForRent;
+
+	private Long owner_id;
 	
 	public RentAdvertDTO(RentAdvert ra) {
 		this.id = ra.getId();
-		this.car_Id = ra.getCar().getId();
+		this.carId = ra.getCar().getId();
 		this.advertStartDate = ra.getAdvertStartDate();
 		this.advertEndDate = ra.getAdvertEndDate();
-		this.priceList_Id = ra.getPriceList().getId();
+		this.priceListId = ra.getPriceList().getId();
 	}
 	
 	public Long getId() {
@@ -32,22 +35,7 @@ public class RentAdvertDTO {
 		this.id = id;
 	}
 
-	
-	public Long getCar_Id() {
-		return car_Id;
-	}
 
-	public void setCar_Id(Long car_Id) {
-		this.car_Id = car_Id;
-	}
-
-	public Long getPriceList_Id() {
-		return priceList_Id;
-	}
-
-	public void setPriceList_Id(Long priceList_Id) {
-		this.priceList_Id = priceList_Id;
-	}
 
 	public Date getAdvertStartDate() {
 		return advertStartDate;
@@ -62,4 +50,35 @@ public class RentAdvertDTO {
 		this.advertEndDate = advertEndDate;
 	}
 
+	public Long getOwner_id() {
+		return owner_id;
+	}
+
+	public void setOwner_id(Long owner_id) {
+		this.owner_id = owner_id;
+	}
+
+	public Long getCarId() {
+		return carId;
+	}
+
+	public void setCarId(Long carId) {
+		this.carId = carId;
+	}
+
+	public Long getPriceListId() {
+		return priceListId;
+	}
+
+	public void setPriceListId(Long priceListId) {
+		this.priceListId = priceListId;
+	}
+
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
+
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
+	}
 }

@@ -107,11 +107,11 @@ public class CarController {
 
 
 	@PostMapping(path = "/new", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<?> addCar(@RequestBody Car car){
+	public ResponseEntity<?> addCar(@RequestBody CarDTO carDTO){
 
 		try {
 
-			carService.addCar(car);
+			carService.addCar(carDTO);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

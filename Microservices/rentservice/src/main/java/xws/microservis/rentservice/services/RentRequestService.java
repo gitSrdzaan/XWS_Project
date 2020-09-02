@@ -1,11 +1,12 @@
 package xws.microservis.rentservice.services;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.axonframework.commandhandling.CommandHandler;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import xws.microservis.rentservice.dto.RentRequestBundleDTO;
 import xws.microservis.rentservice.dto.RentRequestDTO;
-import xws.microservis.rentservice.model.RentRequest;
-import xws.microservis.rentservice.model.RentRequestBundle;
-import xws.microservis.rentservice.model.RentRequestStatus;
-import xws.microservis.rentservice.repository.RentAdvertRepository;
-import xws.microservis.rentservice.repository.RentRequestBundleRepository;
-import xws.microservis.rentservice.repository.RentRequestRepository;
-import xws.microservis.rentservice.repository.UserRepository;
+import xws.microservis.rentservice.model.*;
+import xws.microservis.rentservice.repository.*;
+
+import javax.jws.soap.SOAPBinding;
 
 @Service
 public class RentRequestService {
@@ -36,12 +34,9 @@ public class RentRequestService {
 	@Autowired
 	private RentAdvertRepository rentARepository;
 
+	@Autowired
+	private FirmRepository firmRepository;
 
-	private transient CommandHandler commandHandler;
-
-	public RentRequestService(CommandHandler commandHandler) {
-		this.commandHandler = commandHandler;
-	}
 
 
 
@@ -172,6 +167,9 @@ public class RentRequestService {
 		rr.setReservationStart(start);
 		rr.setReservationEnd(end);
 		rr.setStatus(status);
+		/**
+		 * TODO: obavjestiti o statusa requesta
+		 * */
         
         
  
@@ -189,4 +187,124 @@ public class RentRequestService {
 	public ArrayList<RentRequestBundle> getAllBundle() {
 		return (ArrayList<RentRequestBundle>) bundleRepository.findAll();
 	}
+
+	public boolean findBundle(Long id) {
+
+		RentRequestBundle bundle = this.bundleRepository.findById(id).orElse(null);
+		if(bundle == null){
+			return false;
+		}
+		return true;
+
+	}
+
+	public void setBundleStatus(RentRequestBundleDTO bundleDTO) throws Exception {
+		RentRequestBundle bundle = this.bundleRepository.findById(bundleDTO.getId()).orElse(null);
+
+		for(RentRequest request : bundle.getRentRequest()){
+			request.setStatus(bundleDTO.getStatus());
+		}
+
+
+
+		try{
+			this.bundleRepository.save(bundle);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			throw new Exception();
+		}
+
+		/**
+		 * TODO : obavjestit da je doslo do promjene u bundle status
+		 * */
+
+
+
+	}
+
+	public ArrayList<RentRequest> getOwnersAll(Long ownerId) {
+
+		ArrayList<RentRequest> retList = new ArrayList<>();
+
+		Firm firm = firmRepository.findById(ownerId).orElse(null);
+		if(firm != null){
+			findAllOwnerRentRequest(retList,firm.getId(),"firm");
+		}
+		else{
+			User user = userRepository.findById(ownerId).orElse(null);
+			findAllOwnerRentRequest(retList,user.getId(),"user");
+		}
+
+		return retList;
+
+
+	}
+
+	private void findAllOwnerRentRequest(ArrayList<RentRequest> retList, Long ownerId,String owner) {
+		ArrayList<RentRequest> allRequest = (ArrayList<RentRequest>) rentRRepository.findAll();
+
+		if(owner.equals("firm")){
+			for(RentRequest iter : allRequest){
+				if(iter.getRentAdvert().getFirm().getId() == ownerId){
+					retList.add(iter);
+				}
+
+			}
+		}
+		else{
+			for(RentRequest iter : allRequest){
+				if(iter.getRentAdvert().getUser().getId() == ownerId){
+					retList.add(iter);
+				}
+
+			}
+		}
+
+
+
+	}
+
+
+	public ArrayList<RentRequestBundle> getAllOwnersBundle(Long ownerId) {
+		ArrayList<RentRequestBundle> retList = new ArrayList<>();
+		Firm firm = firmRepository.findById(ownerId).orElse(null);
+		if(firm != null){
+			findOwnersBundle(retList,ownerId, "firm");
+		}
+		else {
+			User user = userRepository.findById(ownerId).orElse(null);
+			findOwnersBundle(retList,user.getId(),"user");
+		}
+
+		return  retList;
+
+
+
+	}
+
+	private void findOwnersBundle(ArrayList<RentRequestBundle> retList, Long ownerId, String owner) {
+		ArrayList<RentRequestBundle> allBundles = (ArrayList<RentRequestBundle>) bundleRepository.findAll();
+
+		for(RentRequestBundle iter : allBundles){
+			if(ownerId == bundleOwner(iter,owner)){
+				retList.add(iter);
+			}
+		}
+
+	}
+
+	private Long bundleOwner(RentRequestBundle iter, String owner) {
+		if(owner.equals("firm")){
+			return iter.getRentRequest().get(0).getRentAdvert().getFirm().getId();
+		}
+		else{
+			return iter.getRentRequest().get(0).getRentAdvert().getUser().getId();
+		}
+
+
+
+	}
+
+
 }

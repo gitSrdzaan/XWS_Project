@@ -52,7 +52,7 @@ public class CarService {
 	}
 
 	public void saveNewCar(CarDTO carDTO) throws Exception {
-		User user  = userRepository.findById(carDTO.getUser_id()).orElse(null);
+		User user  = userRepository.findById(carDTO.getOwner_id()).orElse(null);
 		if(user == null){
 			throw new Exception("Korisnik ne postoji");
 		}
@@ -134,6 +134,7 @@ public class CarService {
 	// * @param model.CarDTO carDTO
 	// * @param model.Car car
     private void dtoToCar(CarDTO carDTO, Car car){
+		car.setId(carDTO.getId());
 		car.setCarClass(carDTO.getCarClass());
 		car.setCarComment(carDTO.getCarComment());
 		car.setCarFuel(fuelRepository.findById(carDTO.getCarFuel()).orElse(null));

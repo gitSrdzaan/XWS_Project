@@ -7,13 +7,27 @@ import org.springframework.stereotype.Service;
 
 import xws.microservis.rentservice.dto.RentAdvertDTO;
 import xws.microservis.rentservice.model.Firm;
+import xws.microservis.rentservice.model.PriceList;
 import xws.microservis.rentservice.model.RentAdvert;
-import xws.microservis.rentservice.repository.RentAdvertRepository;
+import xws.microservis.rentservice.model.User;
+import xws.microservis.rentservice.repository.*;
 
 @Service
 public class RentAdvertService {
 	@Autowired
 	private RentAdvertRepository repository;
+
+	@Autowired
+	private CarRepository carRepository;
+
+	@Autowired
+	private PriceListRepository priceListRepository;
+
+	@Autowired
+	private FirmRepository firmRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	
 	//pronalazenje reklame
@@ -41,5 +55,42 @@ public class RentAdvertService {
 		return repository.findFirmByAdvert(ra.getId());
 
 
+	}
+
+	public void addNewRentAdvert(RentAdvertDTO advertDTO) {
+		RentAdvert advert = repository.findById(advertDTO.getId()).orElse(new RentAdvert());
+		
+		dto2Advert(advertDTO,advert);
+
+		Firm firm = firmRepository.findById(advertDTO.getOwner_id()).orElse(null);
+		if(firm != null){
+			advert.setFirm(firm);
+		}
+		else{
+			User user = userRepository.findById(advertDTO.getOwner_id()).orElse(null);
+			advert.setUser(user);
+
+		}
+
+		try {
+			repository.save(advert);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+
+		}
+
+		
+		
+	}
+
+	private void dto2Advert(RentAdvertDTO advertDTO, RentAdvert advert) {
+
+		advert.setAdvertEndDate(advertDTO.getAdvertEndDate());
+		advert.setAdvertStartDate(advertDTO.getAdvertStartDate());
+		advert.setId(advertDTO.getId());
+		advert.setPriceForRent(advertDTO.getPriceForRent());
+		advert.setCar(carRepository.findById(advertDTO.getCarId()).orElse(null));
+		advert.setPriceList(priceListRepository.findById(advertDTO.getPriceListId()).orElse(null));
 	}
 }

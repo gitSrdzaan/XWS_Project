@@ -12,10 +12,11 @@ public class CarDTO {
 	private String carRegistration;
 	private String carMark;
 	private String carModel;
-	private CarFuel carFuel;
-	private Transmission transmission;
+	private Long carFuel;
+	private Long transmission;
 	private String carClass;
 	private Integer carMileage;//kilometraza do sada
+	private  Integer maxAllowedMileage;
 	
 	private List<String> carComment;
 	
@@ -26,6 +27,8 @@ public class CarDTO {
 	private double latitude;
 	
 	private Integer kidsSeats;
+
+	private Long owner_id;
 	
 	public CarDTO(Car car) {
 		this.id = car.getId();
@@ -33,14 +36,15 @@ public class CarDTO {
 		this.carClass = car.getCarClass();
 		this.carMark = car.getCarMark();
 		this.carModel = car.getCarModel();
-		this.carFuel =car.getCarFuel();
-		this.transmission = car.getTransmission();
+		this.carFuel = car.getCarFuel().getId();
+		this.transmission = car.getTransmission().getId();
 		this.carMileage = car.getCarMileage();
 		this.carComment = car.getCarComment();
 		this.carGrade = car.getCarGrade();
 		/*this.longitude = car.getLongitude();
 		this.latitude = car.getLatitude();*/
 		this.kidsSeats = car.getKidsSeats();
+		this.owner_id = car.getOwner().getId();
 		
 	}
 	
@@ -82,20 +86,28 @@ public class CarDTO {
 		this.carModel = carModel;
 	}
 
-	public CarFuel getCarFuel() {
+	public Long getCarFuel() {
 		return carFuel;
 	}
 
-	public void setCarFuel(CarFuel carFuel) {
+	public void setCarFuel(Long carFuel) {
 		this.carFuel = carFuel;
 	}
 
-	public Transmission getTransmission() {
+	public Long getTransmission() {
 		return transmission;
 	}
 
-	public void setTransmission(Transmission transmission) {
+	public void setTransmission(Long transmission) {
 		this.transmission = transmission;
+	}
+
+	public Long getOwner_id() {
+		return owner_id;
+	}
+
+	public void setOwner_id(Long owner_id) {
+		this.owner_id = owner_id;
 	}
 
 	public String getCarClass() {
@@ -153,8 +165,12 @@ public class CarDTO {
 	public void setKidsSeats(Integer kidsSeats) {
 		this.kidsSeats = kidsSeats;
 	}
-	
-	
-	
 
+	public Integer getMaxAllowedMileage() {
+		return maxAllowedMileage;
+	}
+
+	public void setMaxAllowedMileage(Integer maxAllowedMileage) {
+		this.maxAllowedMileage = maxAllowedMileage;
+	}
 }

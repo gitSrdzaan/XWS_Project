@@ -7,14 +7,10 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import xws.microservis.rentservice.dto.FirmDTO;
+import xws.microservis.rentservice.dto.RentRequestBundleDTO;
 import xws.microservis.rentservice.dto.RentRequestDTO;
 import xws.microservis.rentservice.model.*;
 import xws.microservis.rentservice.services.CarService;
@@ -58,9 +54,7 @@ public class RentRequestController {
 
 		
 	}
-	
-	
-	
+
 	@PostMapping(path = "/new",consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createRentRequest(@RequestBody RentRequestDTO rrDTO) {
 		
@@ -98,40 +92,82 @@ public class RentRequestController {
 
 	}
 	
-	@PostMapping(path = "/setRentRequestStatus", consumes = "application/json", produces = "application/json")
+
+	@GetMapping(value = "/all/{owner}", produces = "application/json")
+	public ResponseEntity<?> getAllRentRequest(@PathVariable Long ownerId){
+
+
+		ArrayList<RentRequest> rentRequestArrayList = rentRService.getOwnersAll(ownerId);
+
+		return new ResponseEntity<>(rentRequestArrayList, HttpStatus.OK);
+
+
+	}
+
+	@GetMapping(value = "/all/bundle/{owner}",produces = "application/json")
+	public ResponseEntity<?> getAllRentRequestBundle(@PathVariable Long owner){
+		ArrayList<RentRequestBundle> rentRequestArrayList = rentRService.getAllOwnersBundle(owner);
+
+		return new ResponseEntity<>(rentRequestArrayList, HttpStatus.OK);
+
+
+	}
+
+	/**
+	 * TODO: Odgovarnaje na request prebaciti na ovaj kontroler i servis
+	 * */
+
+	@PutMapping(path = "/status", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> setRentRequestStatus(@RequestBody RentRequestDTO rentRDTO) {
 		RentRequestDTO rrDTO = rentRService.findRentRequest(rentRDTO.getId());
-		
+
 		if(rrDTO != null) {
 			try {
 				rrDTO = rentRService.setRentRequestStatus(rentRDTO.getReservationStart(),rentRDTO.getReservationEnd(),rentRDTO.getStatus(),rentRDTO.getId());
 				return new ResponseEntity<>("Status changed",HttpStatus.OK);
-				
+
 			} catch (Exception e) {
 				return new ResponseEntity<>("Unexpected error",HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			
+
 		}
 		return new ResponseEntity<>("No rent request",HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value = "/all", produces = "application/json")
-	public ResponseEntity<?> getAllRentRequest(){
-		ArrayList<RentRequest> rentRequestArrayList = rentRService.getAll();
+	@PutMapping(path = "/status/bundle", consumes = "application/json",produces = "application/json")
+	public ResponseEntity<?> setBundleStatus(@RequestBody RentRequestBundleDTO bundleDTO){
 
-		return new ResponseEntity<>(rentRequestArrayList, HttpStatus.OK);
+		if(this.rentRService.findBundle(bundleDTO.getId())){
+			return  new ResponseEntity<>("Ne postoji bundle", HttpStatus.BAD_REQUEST);
+		}
 
+		try {
+			this.rentRService.setBundleStatus(bundleDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return  new ResponseEntity<>("Greska pri cuvanju bundle", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>(HttpStatus.OK);
 
 	}
 
-	@GetMapping(value = "/all/bundle",produces = "application/json")
-	public ResponseEntity<?> getAllRentRequestBundle(){
-		ArrayList<RentRequestBundle> rentRequestArrayList = rentRService.getAllBundle();
+	@PutMapping(value = "/modify",consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> modifyRentRequest(@RequestBody RentRequestDTO rentRequestDTO){
 
-		return new ResponseEntity<>(rentRequestArrayList, HttpStatus.OK);
+		try {
+			rentRService.saveRentRequest(rentRequestDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("AdvertService: greska pri mijenjaju zahtjeva", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
 
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
+
+
+
 	
 	
 	

@@ -74,10 +74,13 @@ public class AdvertController {
 		System.out.println(advertDto.getPriceListId());
 		System.out.println(advertDto.getCarId());
 
-		createdSender.send(advertService.save(advertDto));
+
 
 
 		RentAdvert advert = advertService.save(advertDto);
+
+		createdSender.send(advertDto);
+
 		return  ResponseEntity.ok(advert);
 	}
 

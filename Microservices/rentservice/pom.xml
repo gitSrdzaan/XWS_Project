@@ -63,19 +63,7 @@
             <version>2.2.2.RELEASE</version>
          </dependency>
 
-		<!--AXIOS-->
-		<dependency>
-			<groupId>org.axonframework</groupId>
-			<artifactId>axon-spring-boot-starter</artifactId>
-			<version>4.0.3</version>
-		</dependency>
 
-		<!--SAGA-->
-		<dependency>
-			<groupId>org.saga</groupId>
-			<artifactId>core-apis</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -85,24 +73,33 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.jvnet.jaxb2.maven2</groupId>
-				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.14.0</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>2.6</version>
 				<executions>
 					<execution>
+						<id>wsimport-from-jdk</id>
 						<goals>
-							<goal>generate</goal>
+							<goal>wsimport</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<schemaLanguage>WSDL</schemaLanguage>
-					<generatePackage>com.example.consumingwebservice.wsdl</generatePackage>
-					<schemas>
-						<schema>
-							<url>http://localhost:8080/ws/rentadvert.wsdl</url>
-						</schema>
-					</schemas>
+					<wsdlUrls>
+						<!--	<wsdlUrl>http://localhost:8085/ws/car.wsdl</wsdlUrl>
+                            <wsdlUrl>http://localhost:8085/ws/pricelist.wsdl</wsdlUrl>
+                            <wsdlUrl>http://localhost:8085/ws/rentadvert.wsdl</wsdlUrl>
+                            <wsdlUrl>http://localhost:8085/ws/rentrequest.wsdl</wsdlUrl> -->
+					</wsdlUrls>
+					<keep>true</keep>
+					<packageName>com.baeldung.soap.ws.client.generated</packageName>
+					<sourceDestDir>src/main/java</sourceDestDir>
 				</configuration>
 			</plugin>
 		</plugins>

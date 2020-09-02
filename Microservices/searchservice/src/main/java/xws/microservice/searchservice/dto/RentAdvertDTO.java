@@ -2,6 +2,7 @@ package xws.microservice.searchservice.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import xws.microservice.searchservice.model.Car;
 import xws.microservice.searchservice.model.PriceList;
 import xws.microservice.searchservice.model.RentAdvert;
@@ -9,57 +10,82 @@ import xws.microservice.searchservice.model.RentAdvert;
 public class RentAdvertDTO {
 
 	private Long id;
-	private Car car;
+	private Long carId;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SSS")
 	private Date advertStartDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss.SSS")
 	private Date advertEndDate;
-	private PriceList priceList;
+	private Long priceListId;
+	private Double priceForRent;
+
+	private Long owner_id;
 	
 	public RentAdvertDTO(RentAdvert rentAdvert) {
 		this.id = rentAdvert.getId();
-		this.car = rentAdvert.getCar();
+
 		this.advertStartDate = rentAdvert.getAdvertStartDate();
 		this.advertEndDate = rentAdvert.getAdvertEndDate();
-		this.priceList = rentAdvert.getPriceList();
+
 	}
-	
-	
-	
+
+	public Long getOwner_id() {
+		return owner_id;
+	}
+
+	public void setOwner_id(Long owner_id) {
+		this.owner_id = owner_id;
+	}
+
 	public RentAdvertDTO() {
 		super();
 	}
 
 
+	public Double getPriceForRent() {
+		return priceForRent;
+	}
+
+	public void setPriceForRent(Double priceForRent) {
+		this.priceForRent = priceForRent;
+	}
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Car getCar() {
-		return car;
+
+	public Long getCarId() {
+		return carId;
 	}
-	public void setCar(Car car) {
-		this.car = car;
+
+	public void setCarId(Long carId) {
+		this.carId = carId;
 	}
+
 	public Date getAdvertStartDate() {
 		return advertStartDate;
 	}
+
 	public void setAdvertStartDate(Date advertStartDate) {
 		this.advertStartDate = advertStartDate;
 	}
+
 	public Date getAdvertEndDate() {
 		return advertEndDate;
 	}
+
 	public void setAdvertEndDate(Date advertEndDate) {
 		this.advertEndDate = advertEndDate;
 	}
-	public PriceList getPriceList() {
-		return priceList;
+
+	public Long getPriceListId() {
+		return priceListId;
 	}
-	public void setPriceList(PriceList priceList) {
-		this.priceList = priceList;
+
+	public void setPriceListId(Long priceListId) {
+		this.priceListId = priceListId;
 	}
-	
-	
 }
