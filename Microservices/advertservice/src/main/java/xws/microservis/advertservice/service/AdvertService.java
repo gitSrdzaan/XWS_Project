@@ -33,6 +33,7 @@ public class AdvertService {
 		/***
 		 * TODO: GET CAR & GET PRICELIST
 		 */
+		advert.setId(advertDto.getId());
 		advert.setAdvertEndDate(advertDto.getAdvertEndDate());
 		advert.setAdvertStartDate(advertDto.getAdvertStartDate());
 		advert.setCar(carService.findById(advertDto.getCarId()));
@@ -41,9 +42,10 @@ public class AdvertService {
 			advert.setPriceForRent(advertDto.getPriceForRent());
 
 		}
+
+		advertRepository.save(advert);
 		
-		
-		return advertRepository.save(advert);
+		return advert;
 	}
 
 	public ArrayList<RentAdvert> findByUser(Long id) {

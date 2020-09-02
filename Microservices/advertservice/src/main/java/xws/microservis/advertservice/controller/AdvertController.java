@@ -3,6 +3,7 @@ package xws.microservis.advertservice.controller;
 import java.io.Console;
 import java.util.ArrayList;
 
+import com.netflix.discovery.converters.Auto;
 import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import xws.microservis.advertservice.dto.AdvertDto;
 import xws.microservis.advertservice.model.Car;
 import xws.microservis.advertservice.model.RentAdvert;
 import xws.microservis.advertservice.model.User;
+import xws.microservis.advertservice.mq.AdvertCreatedSender;
 import xws.microservis.advertservice.service.AdvertService;
 import xws.microservis.advertservice.service.UserService;
 
@@ -28,6 +30,9 @@ public class AdvertController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private AdvertCreatedSender createdSender;
 
 	/**
 	 *  REST poziv koji vraca sve reklame jednog korisnika
@@ -47,15 +52,20 @@ public class AdvertController {
 
 	}
 
-	@PostMapping(value="/create", consumes = "application/json")
+	@PostMapping(value="/create", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> createAdvert(@RequestBody AdvertDto advertDto ){
 		
 		System.out.println(advertDto.getId());
 		System.out.println(advertDto.getAdvertEndDate());
+		System.out.println(advertDto.getAdvertStartDate());
 		System.out.println(advertDto.getPriceListId());
 		System.out.println(advertDto.getCarId());
-		
-		return  ResponseEntity.ok(advertService.save(advertDto));
+
+		createdSender.send(advertService.save(advertDto));
+
+
+		RentAdvert advert = advertService.save(advertDto);
+		return  ResponseEntity.ok(advert);
 	}
 
 	@PutMapping(value = "/modify", consumes = "application/json", produces = "application/json")
