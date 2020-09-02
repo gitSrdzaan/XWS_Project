@@ -74,7 +74,6 @@ public class RentAdvertController {
 		
 		try {
 			RentAdvert ra = new RentAdvert();
-			ra.setId(raDTO.getId());
 			ra.setCar(car);
 			ra.setAdvertStartDate(raDTO.getAdvertStartDate());
 			ra.setAdvertEndDate(raDTO.getAdvertEndDate());

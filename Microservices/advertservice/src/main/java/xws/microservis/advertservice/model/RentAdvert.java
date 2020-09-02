@@ -1,5 +1,7 @@
 package xws.microservis.advertservice.model;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -33,6 +35,8 @@ public class RentAdvert {
 	@Column(nullable = true)
 	private Double priceForRent;
 
+	@Column
+	private Long monolitId;
 
 	
 	
@@ -40,9 +44,16 @@ public class RentAdvert {
 	public RentAdvert() {
 		
 	}
-	
-	
-	
+
+
+	public Long getMonolitId() {
+		return monolitId;
+	}
+
+	public void setMonolitId(Long monolitId) {
+		this.monolitId = monolitId;
+	}
+
 	public Long getId() {
 		return id;
 	}

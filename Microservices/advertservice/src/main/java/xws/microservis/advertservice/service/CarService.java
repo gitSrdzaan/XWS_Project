@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import com.baeldung.springsoap.gen.GetCarRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,6 +115,19 @@ public class CarService {
 		}
 
     }
+    public Long addNewCarSoap(GetCarRequest request){
+		Car car = new Car(request.getCar());
+
+		CarFuel carFuel = fuelRepository.findByName(request.getCar().getCarFuel());
+		Transmission transmission = transRepository.findByName(request.getCar().getTransmission());
+		car.setCarFuel(carFuel);
+		car.setTransmission(transmission);
+
+		Car newCar = carRepository.save(car);
+
+		return newCar.getId();
+
+	}
 
 
 	// * Metoda koja Car.class objekat set-uje na vrijednosti CarDTO.class objekta

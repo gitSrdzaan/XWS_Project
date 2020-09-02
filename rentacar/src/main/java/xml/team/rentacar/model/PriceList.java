@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class PriceList {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column
@@ -31,13 +32,21 @@ public class PriceList {
 	@JoinColumn(name= "firm_id")
 	private Firm firm;
 	
-	
+	@Column
+	private Long foreignId;
 
 
 	public PriceList() {
 		//this.saleIntervals = new HashMap<Integer,Integer>();
 	}
 
+	public Long getForeignId() {
+		return foreignId;
+	}
+
+	public void setForeignId(Long foreignId) {
+		this.foreignId = foreignId;
+	}
 
 	public Long getId() {
 		return id;

@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class RentAdvert {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@OneToOne
@@ -34,12 +34,20 @@ public class RentAdvert {
 	@Column(nullable = true)
 	private Double priceForRent;
 
-	
-	
-	
-	
+
+	@Column
+	private Long foreignId;
+
 	public RentAdvert() {
-		
+
+	}
+
+	public Long getForeignId() {
+		return foreignId;
+	}
+
+	public void setForeignId(Long foreignId) {
+		this.foreignId = foreignId;
 	}
 
 

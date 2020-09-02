@@ -30,27 +30,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetRentRequestRequest }
+     * Create an instance of {@link GetRentAdvertRequest }
      * 
      */
-    public GetRentRequestRequest createGetRentRequestRequest() {
-        return new GetRentRequestRequest();
+    public GetRentAdvertRequest createGetRentAdvertRequest() {
+        return new GetRentAdvertRequest();
     }
 
     /**
-     * Create an instance of {@link Rentrequest }
+     * Create an instance of {@link RentAdvert }
      * 
      */
-    public Rentrequest createRentrequest() {
-        return new Rentrequest();
+    public RentAdvert createRentAdvert() {
+        return new RentAdvert();
     }
 
     /**
-     * Create an instance of {@link GetRentRequestResponse }
+     * Create an instance of {@link GetRentAdvertResponse }
      * 
      */
-    public GetRentRequestResponse createGetRentRequestResponse() {
-        return new GetRentRequestResponse();
+    public GetRentAdvertResponse createGetRentAdvertResponse() {
+        return new GetRentAdvertResponse();
     }
 
 }
