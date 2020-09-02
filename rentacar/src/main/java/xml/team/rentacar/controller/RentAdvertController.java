@@ -1,3 +1,4 @@
+
 package xml.team.rentacar.controller;
 
 import java.util.ArrayList;
@@ -23,9 +24,7 @@ import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping(value = "/advert")
-
 @CrossOrigin(origins = "*")
-
 public class RentAdvertController {
 
 	@Autowired
