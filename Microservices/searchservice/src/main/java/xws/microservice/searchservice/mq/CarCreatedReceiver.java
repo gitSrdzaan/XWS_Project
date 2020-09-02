@@ -18,11 +18,8 @@ public class CarCreatedReceiver {
     @Autowired
     private CarService carService;
 
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "xml.queue.advert", durable = "false"),
-            exchange = @Exchange(value = "xml.exchange.car"),
-            key = "xml.routingkey.car"
-    ))
+
+    @RabbitListener(queues = "${xml.rabbitmq.queue}.car")
     public void receiveCar(CarDTO carDTO){
         System.out.println("Received car "+carDTO.getId());
         try {

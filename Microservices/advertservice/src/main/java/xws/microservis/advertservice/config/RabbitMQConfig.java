@@ -23,23 +23,48 @@ public class RabbitMQConfig {
     private String routingkey;
 
     @Bean
-    Queue queue() {
-        return new Queue(queue, false);
+    Queue advertQueue() {
+        return new Queue(queue+".advert" ,false);
     }
 
     @Bean
-    DirectExchange exchange() {
-        return new DirectExchange(exchange);
+    Queue carQueue(){
+        return new Queue(queue+".car", false);
     }
 
     @Bean
-    TopicExchange topicExchange(){
-        return new TopicExchange(exchange);
+    Queue priceListQueue(){
+        return new Queue(queue+".pricelist",false);
     }
 
     @Bean
-    Binding binding(Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(routingkey);
+    DirectExchange advertExchange() {
+        return new DirectExchange(exchange+".advert");
+    }
+
+    @Bean
+    DirectExchange carExchange(){
+        return new DirectExchange(exchange+".car");
+    }
+
+    @Bean
+    DirectExchange priceListExchange(){
+        return new DirectExchange(exchange+".pricelist");
+    }
+
+    @Bean
+    Binding binding(Queue advertQueue, DirectExchange advertExchange) {
+        return BindingBuilder.bind(advertQueue).to(advertExchange).with(routingkey+".advert");
+    }
+
+    @Bean
+    Binding binding2(Queue carQueue, DirectExchange carExchange){
+        return BindingBuilder.bind(carQueue).to(carExchange).with(routingkey+".car");
+    }
+
+    @Bean
+    Binding bindingPL(Queue priceListQueue, DirectExchange priceListExchange){
+        return BindingBuilder.bind(priceListQueue).to(priceListExchange).with(routingkey+".pricelist");
     }
 
     @Bean

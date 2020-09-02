@@ -14,13 +14,14 @@ public class AdvertCreatedRecevier {
 
     private CountDownLatch latch = new CountDownLatch(1);
 
-    @RabbitListener(bindings = @QueueBinding(
+    /*@RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "xml.queue.advert",durable = "false"),
-            exchange = @Exchange(value = "xml.exchange.advert"),
+            exchange = @Exchange(value = "xml.exchange"),
             key = "xml.routingkey.advert"
 
     )
-    )
+    )*/
+    @RabbitListener(queues = "${xml.rabbitmq.queue}.advert")
     public void reciveAdvert(RentAdvert advert){
         System.out.println("Recevied: " + advert.getId());
         latch.countDown();
