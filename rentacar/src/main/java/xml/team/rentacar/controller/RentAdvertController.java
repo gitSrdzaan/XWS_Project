@@ -41,7 +41,14 @@ public class RentAdvertController {
 	
 	
 	
-	
+	@GetMapping(value= "getAll",produces="application/json")
+	public ResponseEntity<?> getAllAds(){
+		ArrayList<RentAdvert> raList=rentService.findAll();
+		if(raList==null){
+			return new ResponseEntity<>("Greska u izlistavanju oglasa", HttpStatus.NOT_ACCEPTABLE);
+		}
+		return new ResponseEntity<>(raList,HttpStatus.OK);
+	}
 	@GetMapping(value="/all/{firmID}", produces = "application/json")
 	public ResponseEntity<?> findAllRentAdvert(@PathVariable Long firmID){
 		
