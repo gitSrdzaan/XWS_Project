@@ -6,12 +6,7 @@ import com.baeldung.soap.ws.client.generated.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import xml.team.rentacar.dto.PriceListDTO;
 import xml.team.rentacar.model.Firm;
@@ -21,6 +16,7 @@ import xml.team.rentacar.service.PriceListService;
 
 @RestController
 @RequestMapping(value = "/pricelist")
+@CrossOrigin(origins = "*")
 public class PriceListController {
 
 	@Autowired
@@ -39,6 +35,14 @@ public class PriceListController {
 		
 		return new ResponseEntity<>(listPL,HttpStatus.OK);
 		
+	}
+	@GetMapping(value = "/findAll" ,produces = "application/json")
+	public ResponseEntity<?> getAllPriceList(){
+		ArrayList<PriceList> listPl = priceListService.findAll();
+		if(listPl == null) {
+			return new ResponseEntity<>("Greska pri listanju cenovnika", HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(listPl,HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/new", consumes = "application/json", produces = "application/json")

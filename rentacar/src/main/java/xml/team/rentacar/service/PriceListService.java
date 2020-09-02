@@ -30,7 +30,14 @@ public class PriceListService {
 		// TODO Auto-generated method stub
 		return repository.findById(priceListID).orElse(null);
 	}
+	public ArrayList<PriceList> findAll(){
+		List<PriceList> listPL = repository.findAll();
+		if(listPL == null) {
+			return null;
+		}
 
+		return (ArrayList<PriceList>) listPL;
+	}
 	public ArrayList<PriceList> findAllFirmPL(Long id) {
 		// TODO Auto-generated method stub
 		Firm firm = firmRepository.findById(id).orElse(null);
