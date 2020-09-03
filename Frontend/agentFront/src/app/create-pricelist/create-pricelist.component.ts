@@ -9,8 +9,11 @@ import { RentService } from '../_services/rent.service';
 })
 export class CreatePricelistComponent implements OnInit {
   newPriceListForm: FormGroup;
-  rentService: any;
-  constructor(private formBuilder: FormBuilder, rentService: RentService) {
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private rentService: RentService
+  ) {
     this.newPriceListForm = this.formBuilder.group({
       PriceListId: [null],
       PricePerDay: [null],
@@ -20,17 +23,21 @@ export class CreatePricelistComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rentService.getAllAds().subscribe((response) => response);
+  }
 
   submitForm() {
     let priceList = this.newPriceListForm.value;
     let priceListDTO = {
-      PriceListId: priceList.PriceListId,
-      PricePerDay: priceList.PricePerDay,
-      PricePerKilometer: priceList.PricePerKilometer,
-      PriceCDW: priceList.PriceCDW,
-      Firm: priceList.Firm,
+      id: priceList.PriceListId,
+      pricePerDay: priceList.PricePerDay,
+      pricePerKilometer: priceList.PricePerKilometer,
+      priceCDW: priceList.PriceCDW,
+      firmID: priceList.Firm,
     };
+
+    console.log(this.rentService);
     this.rentService
       .addNewPriceList(priceListDTO)
       .subscribe((response) => console.log(response));

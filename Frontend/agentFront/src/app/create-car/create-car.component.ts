@@ -50,17 +50,15 @@ export class CreateCarComponent implements OnInit {
   }
 
   submitForm() {
+    //event.preventDefault();
+
     let car = this.newCarForm.value;
     let carDTO = {
       carRegistration: car.carRegistration,
       carMark: car.carMark,
       carModel: car.carModel,
-      carFuel: {
-        fuel: car.carFuel,
-      },
-      transmission: {
-        transmission: car.transmission,
-      },
+      carFuel: car.carFuel,
+      transmission: car.transmission,
       carClass: car.carClass,
       carMileage: car.carMileage,
       maxAllowedMileage: car.maxAllowedMileage,
