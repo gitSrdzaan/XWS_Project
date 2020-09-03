@@ -2,6 +2,7 @@ package xws.microservis.rentservice.dto;
 
 import java.util.Date;
 
+import com.baeldung.springsoap.gen.Rentrequest;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import xws.microservis.rentservice.model.RentRequest;
@@ -29,6 +30,13 @@ public class RentRequestDTO {
 		this.reservationEnd = rr.getReservationEnd();
 		this.rentAdvert_Id = rr.getRentAdvert().getId();
 		this.status = rr.getStatus();
+	}
+
+	public RentRequestDTO(Rentrequest rr){
+		this.id = rr.getId();
+		this.rentAdvert_Id= rr.getRentAdvertId();
+		this.status = RentRequestStatus.valueOf(rr.getStatus());
+
 	}
 
 	public Long getId() {

@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class RentRequest {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@OneToOne(fetch = FetchType.EAGER)

@@ -57,9 +57,6 @@ public class PriceListService {
 
 	public void addNewPriceList(PriceList pl) throws Exception {
 
-		System.out.println("HERE");
-
-
 		// SOAP
 		PriceListPortService service = new PriceListPortService();
 		PriceListPort priceListPort = service.getPriceListPortSoap11();

@@ -43,26 +43,32 @@ public class RentRequestService {
 
 
 	public void addRentRequest(RentRequest rr) throws Exception{
+		RentRequest savedRentRequest = new RentRequest();
+		try{
+			savedRentRequest = rentRRepository.save(rr);
+		}catch (Exception e){
+			e.printStackTrace();
+			throw new Exception("Greska pri upisu u bazu RENT REQUEST-a.") ;
+		}
+
+
 		RentRequestPortService service = new RentRequestPortService();
 		RentRequestPort rentRequestPort = service.getRentRequestPortSoap11();
 		GetRentRequestRequest getRentRequestRequest = new GetRentRequestRequest();
 
 		try{
 			com.baeldung.soap.ws.client.generated.Rentrequest rentRequest = new com.baeldung.soap.ws.client.generated.Rentrequest(rr);
+			rentRequest.setId(savedRentRequest.getId());
 			getRentRequestRequest.setRentrequest(rentRequest);
 			GetRentRequestResponse getRentRequestResponse = rentRequestPort.getRentRequest(getRentRequestRequest);
 			rr.setForeignId(getRentRequestResponse.getId());
+			rentRRepository.save(rr);
 		}catch (Exception e){
 			System.out.println("Nije moguce poslati REQUST. MIKROSERVIS NE RADI");
 			e.printStackTrace();
 		}
 
-		try{
-			rentRRepository.save(rr);
-		}catch (Exception e){
-			e.printStackTrace();
-			throw new Exception("Greska pri upisu u bazu RENT REQUEST-a.") ;
-		}
+
 	}
 
 

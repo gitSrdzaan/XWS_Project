@@ -12,9 +12,9 @@ public class RentRequestDTO {
 	private Long id;
 	private Long rentAdvert_Id;
 	private Long advertSender_Id;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'hh:mm:ss.SS")
 	private Date reservationStart;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'hh:mm:ss.SS")
 	private Date reservationEnd;
 	private RentRequestStatus status;
 
