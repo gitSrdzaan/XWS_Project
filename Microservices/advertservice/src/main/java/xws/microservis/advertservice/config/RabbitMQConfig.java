@@ -24,17 +24,17 @@ public class RabbitMQConfig {
 
     @Bean
     Queue advertQueue() {
-        return new Queue(queue+".advert" ,false);
+        return new Queue(queue+".advert" ,true);
     }
 
     @Bean
     Queue carQueue(){
-        return new Queue(queue+".car", false);
+        return new Queue(queue+".car", true);
     }
 
     @Bean
     Queue priceListQueue(){
-        return new Queue(queue+".pricelist",false);
+        return new Queue(queue+".pricelist",true);
     }
 
     @Bean

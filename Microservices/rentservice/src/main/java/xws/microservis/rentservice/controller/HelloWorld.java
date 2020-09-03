@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.*;
 public class HelloWorld {
 
 
+
 	@GetMapping
 	public ResponseEntity<String> pozdrav(){
         String ime = "Hello World rent";
         return new ResponseEntity<>(ime, HttpStatus.OK) ;
     }
+
 
 }
