@@ -120,6 +120,7 @@ public class RabbitMQConfig {
         return new Jackson2JsonMessageConverter();
     }
 
+
     public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jsonMessageConverter());

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import xws.microservis.advertservice.dto.CarDTO;
 import xws.microservis.advertservice.exception.CarNotFoundException;
 import xws.microservis.advertservice.model.*;
+import xws.microservis.advertservice.mq.CarCreatedSender;
 import xws.microservis.advertservice.repository.*;
 
 @Service
@@ -38,6 +39,9 @@ public class CarService {
 
 	@Autowired
 	private TransmissionRepository transRepository;
+
+	@Autowired
+	private CarCreatedSender createdSender;
 	
 	public Car findById(Long id){
 		
@@ -126,8 +130,29 @@ public class CarService {
 
 		Car newCar = carRepository.save(car);
 
+		/**
+		 * RabbitMQ*/
+		CarDTO carDTO = new CarDTO();
+		car2DTO(car,carDTO);
+
+		createdSender.sendCar(carDTO);
+
 		return newCar.getId();
 
+	}
+
+	private void car2DTO(Car car, CarDTO carDTO) {
+		carDTO.setCarClass(car.getCarClass());
+		carDTO.setCarFuel(car.getCarFuel().getId());
+		carDTO.setCarMark(car.getCarMark());
+		carDTO.setCarMileage(car.getCarMileage());
+		carDTO.setCarModel(car.getCarModel());
+		carDTO.setCarRegistration(car.getCarRegistration());
+		carDTO.setKidsSeats(car.getKidsSeats());
+		carDTO.setMaxAllowedMileage(car.getMaxAllowedMileage());
+		carDTO.setId(car.getId());
+		carDTO.setTransmission(car.getTransmission().getId());
+		carDTO.setOwner_id(car.getMonolitID());
 	}
 
 
