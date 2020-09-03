@@ -25,6 +25,4 @@ public interface AdvertRepository extends JpaRepository<RentAdvert, Long> {
 	@Query(value = "SELECT * FROM rent_advert ra WHERE ra.user_id = :id",nativeQuery = true)
 	ArrayList<RentAdvert> findByUserId(@Param("id") Long id);
 
-	@Query(value = "SELECT * FROM rent_advert ra WHERE ra.monolit_id = :id" ,nativeQuery = true)
-	Optional<RentAdvert> findByMonolitId(@Param("id")Long id);
 }

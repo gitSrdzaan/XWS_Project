@@ -38,7 +38,7 @@ values(20,'Mercedes','Vitto','Karavan',1,2,10,'aaa',2,500 ,10);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
 car_registration, kids_seats,max_allowed_mileage, user_id )
-values(30,'Mercedes','Ajkula','Limuzina',2,2,10,'aaa',1,500 ,10);
+values(123,'Mercedes','Ajkula','Limuzina',2,2,10,'aaa',1,500 ,10);
 
 insert into car(id,car_mark,car_model,car_class, carfuel_id,transmission_id, car_mileage,
 car_registration, kids_seats,max_allowed_mileage, user_id )
@@ -56,6 +56,6 @@ car_registration, kids_seats,max_allowed_mileage,user_id )
 values(60,'Skoda','Oktavija','Fabija',3,2,200,'aaa',1,0 ,20);
 --cjenovnici
 
-INSERT INTO price_list(id, price_per_day,price_per_kilometer,pricecdw,user_id) values(20 , 239 , 20 ,5,10) ;
+INSERT INTO price_list(id, price_per_day,price_per_kilometer,pricecdw,user_id) values(123 , 239 , 20 ,5,10) ;
 INSERT INTO price_list(id, price_per_day,price_per_kilometer,pricecdw,user_id) values(21 , 249 , 10 , 3,20) ;
 

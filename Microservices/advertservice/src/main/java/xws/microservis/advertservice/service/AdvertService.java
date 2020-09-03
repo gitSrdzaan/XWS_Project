@@ -6,10 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import xws.microservis.advertservice.dto.AdvertDto;
-
-import xws.microservis.advertservice.exception.AdvertNotFoundException;
-import xws.microservis.advertservice.model.Car;
-import xws.microservis.advertservice.model.PriceList;
 import xws.microservis.advertservice.model.RentAdvert;
 import xws.microservis.advertservice.repository.AdvertRepository;
 import xws.microservis.advertservice.repository.CarRepository;
@@ -38,28 +34,7 @@ public class AdvertService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public RentAdvert findById(Long id){
-		Optional<RentAdvert> rentAdvert = advertRepository.findById(id);
 
-		if(rentAdvert.isPresent()){
-			return rentAdvert.get();
-		}
-		else {
-			throw new AdvertNotFoundException();
-		}
-	}
-
-	public RentAdvert findByMonolitId(Long id){
-
-		Optional<RentAdvert> rentAdvert = advertRepository.findByMonolitId(id);
-
-		if(rentAdvert.isPresent()){
-			return rentAdvert.get();
-		}
-		else {
-			throw new AdvertNotFoundException();
-		}
-	}
 
 	public RentAdvert save(AdvertDto advertDto) {
 

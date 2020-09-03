@@ -1,12 +1,16 @@
 package xws.microservis.rentservice.services;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 
+import com.baeldung.soap.ws.client.generated.*;
+import com.baeldung.springsoap.gen.GetRentRequestRequest;
+import com.baeldung.springsoap.gen.GetRentRequestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -37,6 +41,8 @@ public class RentRequestService {
 	@Autowired
 	private FirmRepository firmRepository;
 
+	@Autowired
+	private RentAdvertService rentAdvertService;
 
 
 
@@ -60,10 +66,10 @@ public class RentRequestService {
 
 		try {
 			//rr.setId(rrDTO.getId());
-			rr.setAdvertSender(userRepository.findById(rrDTO.getAdvertSender_Id()).orElse(null));
+			/*rr.setAdvertSender(userRepository.findById(rrDTO.getAdvertSender_Id()).orElse(null));
 			if(rr.getAdvertSender() == null){
 				throw  new Exception("Korisnik koji salje zahtjev nije validan");
-			}
+			}*/
 			rr.setRentAdvert(rentARepository.findById(rrDTO.getRentAdvert_Id()).orElse(null));
 			if(rr.getRentAdvert() == null){
 				throw new Exception("Oglas nije izabran");
@@ -72,7 +78,7 @@ public class RentRequestService {
 			rr.setReservationEnd(rrDTO.getReservationEnd());
 			rr.setStatus(rrDTO.getStatus());
 			
-			rentRRepository.save(rr);
+			rr = rentRRepository.save(rr);
 			
 		}
 		catch(Exception e) {
@@ -80,11 +86,21 @@ public class RentRequestService {
 			throw new Exception("Neuspjesno sacuvan zahtjev");
 		}
 
-		/**
-		 * TODO : MessageQueue implementacija
-		 * */
-		RestTemplate newRentRequset = new RestTemplate();
-		ResponseEntity<Long> responseEntity = newRentRequset.getForEntity("http://localhost:8086/rentrequest/"+rr.getId(), Long.class);
+		// SOAP
+		RentRequestAnswerPortService service = new RentRequestAnswerPortService();
+		RentRequestAnswerPort port = service.getRentRequestAnswerPortSoap11();
+		GetRentRequestAnswerRequest getRentRequestAnswerRequest = new GetRentRequestAnswerRequest();
+
+		try{
+			com.baeldung.soap.ws.client.generated.RentRequestAnswer rentRequestAnswer = new RentRequestAnswer(rr);
+			getRentRequestAnswerRequest.setRentRequestAnswer(rentRequestAnswer);
+			GetRentRequestAnswerResponse response = port.getRentRequestAnswer(getRentRequestAnswerRequest);
+			rr.setMonolitId(response.getId());
+			rentRRepository.save(rr);
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println(" NIJE MOGUCE POSLATI MONOLITU!");
+		}
 	}
 	
 	/**
@@ -304,6 +320,16 @@ public class RentRequestService {
 
 
 
+	}
+
+
+
+	public Long setNewRequestStatus(GetRentRequestRequest request){
+		RentRequest rentRequest = rentRRepository.findById(request.getRentrequest().getId()).orElse(null);
+		System.out.println(" FETCHED RR");
+		rentRequest.setStatus(RentRequestStatus.valueOf(request.getRentrequest().getStatus()));
+		RentRequest savedRentRequest = rentRRepository.save(rentRequest);
+		return savedRentRequest.getId();
 	}
 
 

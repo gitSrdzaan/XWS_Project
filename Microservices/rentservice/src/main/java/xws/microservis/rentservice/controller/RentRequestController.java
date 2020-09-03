@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import com.baeldung.springsoap.gen.GetRentRequestRequest;
+import com.baeldung.springsoap.gen.GetRentRequestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import xws.microservis.rentservice.dto.FirmDTO;
 import xws.microservis.rentservice.dto.RentRequestBundleDTO;
 import xws.microservis.rentservice.dto.RentRequestDTO;
@@ -20,7 +26,11 @@ import xws.microservis.rentservice.services.RentRequestService;
 
 @RestController
 @RequestMapping(value = "/request")
+@Endpoint
+@CrossOrigin(origins = "*")
 public class RentRequestController {
+
+	private static final String NAMESPACE_URI = "http://www.baeldung.com/springsoap/gen";
 
 	@Autowired
 	private RentRequestService rentRService;
@@ -167,6 +177,23 @@ public class RentRequestController {
 	}
 
 
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getRentRequestRequest")
+	@ResponsePayload
+	public GetRentRequestResponse updateStatusRR(@RequestPayload GetRentRequestRequest request) {
+		try{
+			GetRentRequestResponse response = new GetRentRequestResponse();
+
+			response.setId(rentRService.setNewRequestStatus(request));
+
+			return response;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+
+	}
 
 	
 	

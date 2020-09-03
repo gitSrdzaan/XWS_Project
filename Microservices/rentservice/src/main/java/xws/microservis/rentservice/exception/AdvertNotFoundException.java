@@ -1,4 +1,4 @@
-package xws.microservis.advertservice.exception;
+package xws.microservis.rentservice.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
