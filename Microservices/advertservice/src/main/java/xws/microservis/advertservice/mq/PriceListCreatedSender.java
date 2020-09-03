@@ -21,9 +21,9 @@ public class PriceListCreatedSender {
     private String routingkey;
 
     public void send(PriceListDTO priceListDTO){
-        amqpTemplate.convertAndSend(exchange+".pricelist.search",routingkey+".pricelist.create",priceListDTO);
+        amqpTemplate.convertAndSend(exchange+".pricelist.search",routingkey+".pricelist",priceListDTO);
         System.out.println("Send pricelist created = " + priceListDTO.getId());
-        amqpTemplate.convertAndSend(exchange+".pricelist.rent",routingkey+".pricelist.create",priceListDTO);
+        amqpTemplate.convertAndSend(exchange+".pricelist.rent",routingkey+".pricelist",priceListDTO);
         System.out.println("Send pricelist created = " + priceListDTO.getId());
     }
 }

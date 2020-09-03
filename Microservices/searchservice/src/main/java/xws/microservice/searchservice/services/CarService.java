@@ -68,6 +68,8 @@ public class CarService {
 			User user = ownerRepository.findOwnerUser(carDTO.getOwner_id());
 			car.setOwner(user);
 		}
+
+		repository.save(car);
 	}
 
 

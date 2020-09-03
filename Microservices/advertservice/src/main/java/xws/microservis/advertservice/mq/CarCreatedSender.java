@@ -21,9 +21,9 @@ public class CarCreatedSender {
 
 
     public void sendCar(CarDTO car){
-        amqpTemplate.convertAndSend(exchange+".car.search",rountingkey+".car.create",car);
+        amqpTemplate.convertAndSend(exchange+".car.search",rountingkey+".car",car);
         System.out.println("Send car created = " + car.getId());
-        amqpTemplate.convertAndSend(exchange+".car.rent",rountingkey+".car.create",car);
+        amqpTemplate.convertAndSend(exchange+".car.rent",rountingkey+".car",car);
         System.out.println("Send car created = " + car.getId());
     }
 

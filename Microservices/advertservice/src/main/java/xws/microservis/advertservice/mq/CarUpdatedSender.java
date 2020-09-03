@@ -22,9 +22,9 @@ public class CarUpdatedSender {
 
     public void send(CarDTO carDTO) {
 
-        amqpTemplate.convertAndSend(exchange + ".car.search", routingkey + ".car.update", carDTO);
+        amqpTemplate.convertAndSend(exchange + ".car.search", routingkey + ".car", carDTO);
         System.out.println("Send car updated = " + carDTO.getId());
-        amqpTemplate.convertAndSend(exchange + ".car.rent", routingkey + ".car.update", carDTO);
+        amqpTemplate.convertAndSend(exchange + ".car.rent", routingkey + ".car", carDTO);
         System.out.println("Send car updated = " + carDTO.getId());
 
 

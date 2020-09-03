@@ -20,9 +20,9 @@ public class PriceListUpdatedSender {
     private String routingkey;
 
     public void send(PriceListDTO priceListDTO){
-        amqpTemplate.convertAndSend(exchange+".pricelist.search",routingkey+".pricelist.update",priceListDTO);
+        amqpTemplate.convertAndSend(exchange+".pricelist.search",routingkey+".pricelist",priceListDTO);
         System.out.println("Send pricelist updated = " + priceListDTO.getId());
-        amqpTemplate.convertAndSend(exchange+".pricelist.rent",routingkey+".pricelist.update",priceListDTO);
+        amqpTemplate.convertAndSend(exchange+".pricelist.rent",routingkey+".pricelist",priceListDTO);
         System.out.println("Send pricelist updated = " + priceListDTO.getId());
 
     }
