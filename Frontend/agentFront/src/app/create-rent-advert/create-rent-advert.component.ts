@@ -4,6 +4,7 @@ import Car from '../_model/car.model';
 import { CarService } from '../_services/car.service';
 import { SearchService } from '../_services/search.service';
 import { RentService } from '../_services/rent.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-create-rent-advert',
@@ -23,7 +24,7 @@ export class CreateRentAdvertComponent implements OnInit {
   ) {
     this.newRentAdvertForm = this.formBuilder.group({
       rentAdvertId: [null],
-      car: [null],
+      carID: [null],
       price: [null],
       firmName: [null],
       userName: [null],
@@ -46,17 +47,18 @@ export class CreateRentAdvertComponent implements OnInit {
   }
   submitForm() {
     let rentAdvert = this.newRentAdvertForm.value;
+    let val = this.newRentAdvertForm.get('startDate').value;
+
+    console.log('datum ' + rentAdvert.startDate);
     let rentAdvertDTO = {
       rentAdvertId: rentAdvert.rentAdvertId,
-      car: {
-        car: rentAdvert.car,
-      },
-      price: rentAdvert.price,
-      firmName: rentAdvert.firmName,
-      userName: rentAdvert.userName,
-      startDate: rentAdvert.starSSStDate,
-      endDate: rentAdvert.endDate,
-      priceList: rentAdvert.priceList,
+      carID: rentAdvert.carID,
+      priceForRent: rentAdvert.price,
+      firm: rentAdvert.firmName,
+      user: rentAdvert.userName,
+      advertStartDate: rentAdvert.startDate,
+      advertEndDate: rentAdvert.endDate,
+      priceListID: rentAdvert.priceList,
     };
     this.rentService
       .addNewRentAdvert(rentAdvertDTO)

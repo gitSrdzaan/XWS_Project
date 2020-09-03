@@ -5,8 +5,8 @@ export default class Car {
   carRegistration: string;
   carMark: string;
   carModel: string;
-  carFuel: CarFuel;
-  transmission: Transmission;
+  carFuel: string;
+  transmission: string;
   carClass: string;
   carMileage: number;
   carGrade: number;
@@ -17,8 +17,8 @@ export default class Car {
     this.carRegistration = null;
     this.carMark = null;
     this.carModel = null;
-    this.carFuel = new CarFuel();
-    this.transmission = new Transmission();
+    this.carFuel = null;
+    this.transmission = null;
     this.carClass = null;
     this.carMileage = null;
     this.carGrade = null;

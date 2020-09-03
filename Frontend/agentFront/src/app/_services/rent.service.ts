@@ -18,7 +18,11 @@ export class RentService {
   }
 
   addNewPriceList(priceList) {
-    let user = JSON.parse(localStorage.getItem('user'));
+    return this.http.post<any>(
+      `http://localhost:8080/pricelist/new`,
+      priceList
+    );
+    /*let user = JSON.parse(localStorage.getItem('user'));
     let token = localStorage.getItem('token');
     if (user === null) return;
     priceList.user = user;
@@ -28,17 +32,18 @@ export class RentService {
       {
         headers: { 'x-auth': `Bearer ${token}` },
       }
-    );
+    );*/
   }
 
   addNewRentAdvert(rentAdvert) {
-    let user = JSON.parse(localStorage.getItem('user'));
+    return this.http.post<any>(`http://localhost:8080/advert/new`, rentAdvert);
+    /*let user = JSON.parse(localStorage.getItem('user'));
     let token = localStorage.getItem('token');
     if (user === null) return;
     rentAdvert.user = user;
     return this.http.post<any>('http://localhost:8080/advert/new', rentAdvert, {
       headers: { 'x-auth': `Bearer ${token}` },
-    });
+    });*/
   }
   getAllAds() {
     return this.http.get<any>(`http://localhost:8080/advert/getAll`);
