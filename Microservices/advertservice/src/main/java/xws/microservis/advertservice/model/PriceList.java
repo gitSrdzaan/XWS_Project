@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class PriceList {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column
@@ -29,6 +29,9 @@ public class PriceList {
 	@ManyToOne
 	@JoinColumn
 	private User user;
+
+	@Column
+	private Long monolitId;
 	
 	
 	public PriceList() {
@@ -41,6 +44,13 @@ public class PriceList {
 		this.priceCDW = priceList.getPriceCDW();
 	}
 
+	public Long getMonolitId() {
+		return monolitId;
+	}
+
+	public void setMonolitId(Long monolitId) {
+		this.monolitId = monolitId;
+	}
 
 	public Long getId() {
 		return id;

@@ -18,6 +18,7 @@ import xws.microservis.advertservice.model.*;
 
 import xws.microservis.advertservice.mq.CarCreatedSender;
 
+import xws.microservis.advertservice.mq.CarUpdatedSender;
 import xws.microservis.advertservice.repository.CarFuelRepository;
 import xws.microservis.advertservice.repository.TransmissionRepository;
 
@@ -37,8 +38,10 @@ public class CarController {
     private CarService carService;
 
     @Autowired
-
     private CarCreatedSender carSender;
+
+    @Autowired
+    private CarUpdatedSender updatedSender;
 
     private CarFuelRepository carFuelRepository;
 
@@ -82,6 +85,10 @@ public class CarController {
             e.printStackTrace();
             return new ResponseEntity<>("AdvertService: Greska pri modifikaciji automobila", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+        updatedSender.send(carDTO);
+
+
 
         return new ResponseEntity<>(HttpStatus.OK);
 

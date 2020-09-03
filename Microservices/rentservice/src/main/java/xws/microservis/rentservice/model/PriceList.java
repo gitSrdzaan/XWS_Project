@@ -39,11 +39,20 @@ public class PriceList {
 	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 
+	@Column
+	private Long monolitId;
 
 	public PriceList() {
 		
 	}
 
+	public Long getMonolitId() {
+		return monolitId;
+	}
+
+	public void setMonolitId(Long monolitId) {
+		this.monolitId = monolitId;
+	}
 
 	public Long getId() {
 		return id;

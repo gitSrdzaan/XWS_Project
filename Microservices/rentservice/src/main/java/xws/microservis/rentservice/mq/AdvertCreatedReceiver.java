@@ -18,7 +18,7 @@ public class AdvertCreatedReceiver {
     private RentAdvertService advertService;
 
 
-    @RabbitListener(queues = "${xml.rabbitmq.queue}.advert")
+    @RabbitListener(queues = "${xml.rabbitmq.queue}.advert.rent")
     public void reciveAdvert(RentAdvertDTO advertDTO){
         System.out.println("Recevied: " + advertDTO.getId());
 

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import xws.microservice.searchservice.mq.AdvertCreatedRecevier;
 import xws.microservice.searchservice.mq.CarCreatedReceiver;
+import xws.microservice.searchservice.mq.PriceListCreatedRecevier;
 
 import javax.management.Query;
 
@@ -26,48 +27,92 @@ public class RabbitMQConfig {
     private String routingkey;
 
     @Bean
-    Queue advertQueue() {
-        return new Queue(queue+".advert" ,true);
+    Queue advertSearchQueue() {
+        return new Queue(queue+".advert.search" ,true);
     }
 
     @Bean
-    Queue carQueue(){
-        return new Queue(queue+".car", true);
+    Queue advertRentQueue() {
+        return new Queue(queue+".advert.rent" ,true);
     }
 
     @Bean
-    Queue priceListQueue(){
-        return new Queue(queue+".pricelist",true);
+    Queue carSearchQueue(){
+        return new Queue(queue+".car.search", true);
+    }
+    @Bean
+    Queue carRentQueue(){
+        return new Queue(queue+".car.rent", true);
     }
 
     @Bean
-    DirectExchange advertExchange() {
-        return new DirectExchange(exchange+".advert");
+    Queue priceListSearchQueue(){
+        return new Queue(queue+".pricelist.search",true);
     }
 
     @Bean
-    DirectExchange carExchange(){
-        return new DirectExchange(exchange+".car");
+    Queue priceListRentQueue(){
+        return new Queue(queue+".pricelist.rent",true);
     }
 
     @Bean
-    DirectExchange priceListExchange(){
-        return new DirectExchange(exchange+".pricelist");
+    DirectExchange advertSearchExchange() {
+        return new DirectExchange(exchange+".advert.search");
     }
 
     @Bean
-    Binding binding(Queue advertQueue, DirectExchange advertExchange) {
-        return BindingBuilder.bind(advertQueue).to(advertExchange).with(routingkey+".advert");
+    DirectExchange carSearchExchange(){
+        return new DirectExchange(exchange+".car.search");
     }
 
     @Bean
-    Binding binding2(Queue carQueue, DirectExchange carExchange){
-        return BindingBuilder.bind(carQueue).to(carExchange).with(routingkey+".car");
+    DirectExchange priceListSearchExchange(){
+        return new DirectExchange(exchange+".pricelist.search");
     }
 
     @Bean
-    Binding bindingPL(Queue priceListQueue, DirectExchange priceListExchange){
-        return BindingBuilder.bind(priceListQueue).to(priceListExchange).with(routingkey+".pricelist");
+    DirectExchange advertRentExchange() {
+        return new DirectExchange(exchange+".advert.rent");
+    }
+
+    @Bean
+    DirectExchange carRentExchange(){
+        return new DirectExchange(exchange+".car.rent");
+    }
+
+    @Bean
+    DirectExchange priceListRentExchange(){
+        return new DirectExchange(exchange+".pricelist.rent");
+    }
+
+    @Bean
+    Binding advertSearchBinding(Queue advertSearchQueue, DirectExchange advertSearchExchange) {
+        return BindingBuilder.bind(advertSearchQueue).to(advertSearchExchange).with(routingkey+".advert");
+    }
+
+    @Bean
+    Binding advertRentBinding(Queue advertRentQueue, DirectExchange advertRentExchange) {
+        return BindingBuilder.bind(advertRentQueue).to(advertRentExchange).with(routingkey+".advert");
+    }
+
+    @Bean
+    Binding carSearchBinding(Queue carSearchQueue, DirectExchange carSearchExchange){
+        return BindingBuilder.bind(carSearchQueue).to(carSearchExchange).with(routingkey+".car");
+    }
+
+    @Bean
+    Binding carRentBinding(Queue carRentQueue, DirectExchange carRentExchange){
+        return BindingBuilder.bind(carRentQueue).to(carRentExchange).with(routingkey+".car");
+    }
+
+    @Bean
+    Binding plSearchBinding(Queue priceListSearchQueue, DirectExchange priceListSearchExchange){
+        return BindingBuilder.bind(priceListSearchQueue).to(priceListSearchExchange).with(routingkey+".pricelist");
+    }
+
+    @Bean
+    Binding plRentBindingPL(Queue priceListRentQueue, DirectExchange priceListRentExchange){
+        return BindingBuilder.bind(priceListRentQueue).to(priceListRentExchange).with(routingkey+".pricelist");
     }
 
     @Bean
@@ -89,6 +134,11 @@ public class RabbitMQConfig {
     @Bean
     public CarCreatedReceiver carRecevier(){
         return new CarCreatedReceiver();
+    }
+
+    @Bean
+    public PriceListCreatedRecevier priceListRecevier(){
+        return new PriceListCreatedRecevier();
     }
 
 

@@ -75,6 +75,7 @@ public class RentAdvertService {
 		Firm firm = ownerRepository.findOwnerFirm(advertDTO.getOwner_id());
 		if(firm != null){
 			advert.setOwner(firm);
+
 		}
 		else{
 			User user = ownerRepository.findOwnerUser(advertDTO.getOwner_id());

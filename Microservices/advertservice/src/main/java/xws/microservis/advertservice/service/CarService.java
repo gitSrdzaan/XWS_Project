@@ -122,6 +122,7 @@ public class CarService {
 		Transmission transmission = transRepository.findByName(request.getCar().getTransmission());
 		car.setCarFuel(carFuel);
 		car.setTransmission(transmission);
+		car.setMonolitID(request.getCar().getId());
 
 		Car newCar = carRepository.save(car);
 
@@ -134,7 +135,7 @@ public class CarService {
 	// * @param model.CarDTO carDTO
 	// * @param model.Car car
     private void dtoToCar(CarDTO carDTO, Car car){
-		car.setId(carDTO.getId());
+		//car.setId(carDTO.getId());
 		car.setCarClass(carDTO.getCarClass());
 		car.setCarComment(carDTO.getCarComment());
 		car.setCarFuel(fuelRepository.findById(carDTO.getCarFuel()).orElse(null));

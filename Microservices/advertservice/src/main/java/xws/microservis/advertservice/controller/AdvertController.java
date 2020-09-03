@@ -25,6 +25,7 @@ import xws.microservis.advertservice.model.Car;
 import xws.microservis.advertservice.model.RentAdvert;
 import xws.microservis.advertservice.model.User;
 import xws.microservis.advertservice.mq.AdvertCreatedSender;
+import xws.microservis.advertservice.mq.AdvertUpdatedSender;
 import xws.microservis.advertservice.service.AdvertService;
 import xws.microservis.advertservice.service.UserService;
 
@@ -46,6 +47,9 @@ public class AdvertController {
 
 	@Autowired
 	private AdvertCreatedSender createdSender;
+
+	@Autowired
+	private AdvertUpdatedSender updatedSender;
 
 	/**
 	 *  REST poziv koji vraca sve reklame jednog korisnika
@@ -88,6 +92,8 @@ public class AdvertController {
 	public ResponseEntity<?> modifyAdvert(@RequestBody  AdvertDto advertDto){
 
 		advertService.save(advertDto);
+
+		updatedSender.send(advertDto);
 
 
 		return new ResponseEntity<>(HttpStatus.OK);

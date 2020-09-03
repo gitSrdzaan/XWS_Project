@@ -1,21 +1,22 @@
 package xws.microservis.advertservice.controller;
 
-import com.baeldung.springsoap.gen.GetCarRequest;
-import com.baeldung.springsoap.gen.GetCarResponse;
-import com.baeldung.springsoap.gen.GetPriceListRequest;
-import com.baeldung.springsoap.gen.GetPriceListResponse;
+import com.baeldung.springsoap.gen.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+import xws.microservis.advertservice.dto.PriceListDTO;
+import xws.microservis.advertservice.model.PriceList;
+import xws.microservis.advertservice.mq.PriceListCreatedSender;
+import xws.microservis.advertservice.mq.PriceListUpdatedSender;
 import xws.microservis.advertservice.service.PriceListService;
 
 @RestController
-@RequestMapping("/pricelist")
+@RequestMapping(value = "/pricelist")
 @CrossOrigin(origins = "*")
 @Endpoint
 public class PriceListController {
@@ -25,6 +26,33 @@ public class PriceListController {
     @Autowired
     private PriceListService priceListService;
 
+    @Autowired
+    private PriceListCreatedSender createdSender;
+
+    @Autowired
+    private PriceListUpdatedSender updatedSender;
+
+    @PostMapping(value = "/new", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> createNewPriceList(@RequestBody PriceListDTO priceListDTO){
+
+        PriceList retVal = priceListService.saveNew(priceListDTO);
+
+        createdSender.send(priceListDTO);
+
+        return new ResponseEntity<>(retVal,HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/modify", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> updatePriceList(@RequestBody PriceListDTO priceListDTO){
+
+
+        PriceList retVal = priceListService.saveNew(priceListDTO);
+
+        updatedSender.send(priceListDTO);
+
+        return new ResponseEntity<>(retVal,HttpStatus.OK);
+
+    }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPriceListRequest")
     @ResponsePayload

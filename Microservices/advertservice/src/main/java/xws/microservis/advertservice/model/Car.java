@@ -62,7 +62,9 @@ public class Car {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
+	@Column
+	private Long monolitID;
 	
 	
 	public Car() {
@@ -78,6 +80,14 @@ public class Car {
 		this.carGrade = car.getCarGrade();
 		this.kidsSeats = car.getKidsSeats();
 		this.owner = car.getOwner();
+	}
+
+	public Long getMonolitID() {
+		return monolitID;
+	}
+
+	public void setMonolitID(Long monolitID) {
+		this.monolitID = monolitID;
 	}
 
 	public String getOwner() {

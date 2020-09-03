@@ -80,6 +80,10 @@ public class RentAdvertService {
 		Firm firm = firmRepository.findById(advertDTO.getOwner_id()).orElse(null);
 		if(firm != null){
 			advert.setFirm(firm);
+			/***
+			 * Dodavanje monolitID ako je firma u pitanju
+			 */
+			advert.setMonolitId(firm.getId());
 		}
 		else{
 			User user = userRepository.findById(advertDTO.getOwner_id()).orElse(null);
