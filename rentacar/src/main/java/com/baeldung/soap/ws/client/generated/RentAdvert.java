@@ -48,7 +48,6 @@ public class RentAdvert {
     protected Long priceListId;
     protected String owner;
 
-
     public RentAdvert(){
 
     }

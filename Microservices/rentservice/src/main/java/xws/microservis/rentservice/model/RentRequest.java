@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class RentRequest {
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
@@ -32,13 +31,21 @@ public class RentRequest {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "bundle_id", nullable = true)
 	private RentRequestBundle rentRequestBundle;
-	
-	
+
+	@Column
+	private Long monolitId;
 	
 	public RentRequest() {
 		
 	}
 
+	public Long getMonolitId() {
+		return monolitId;
+	}
+
+	public void setMonolitId(Long monolitId) {
+		this.monolitId = monolitId;
+	}
 
 	public Long getId() {
 		return id;

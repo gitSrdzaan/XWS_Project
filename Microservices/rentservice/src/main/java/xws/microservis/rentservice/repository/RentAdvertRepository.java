@@ -17,4 +17,9 @@ public interface RentAdvertRepository extends JpaRepository<RentAdvert, Long> {
             "WHERE  .id = :id"
             ,nativeQuery = true)
     Firm findFirmByAdvert(@Param("id") Long id) ;
+
+
+    @Query(value = "SELECT * FROM rent_advert ra WHERE ra.monolit_id = :id" ,nativeQuery = true)
+    Optional<RentAdvert> findByMonolitId(@Param("id")Long id);
+
 }

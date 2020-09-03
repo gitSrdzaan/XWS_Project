@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.baeldung.com/springsoap/gen"
+           targetNamespace="http://www.baeldung.com/springsoap/gen" elementFormDefault="qualified">
+
+    <xs:element name="getRentRequestAnswerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rentRequestAnswer" type="tns:rentRequestAnswer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRentRequestAnswerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="rentRequestAnswer">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="rentAdvertId" type="xs:long" minOccurs="0"/>
+            <xs:element name="user" type="xs:string" minOccurs="0"/>
+            <xs:element name="reservationStart" type="xs:string" minOccurs="0"/>
+            <xs:element name="reservationEnd" type="xs:string" minOccurs="0"/>
+            <xs:element name="status" type="xs:string" minOccurs="0"/>
+            <xs:element name="bundleId" type="xs:long" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
+

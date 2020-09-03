@@ -1,11 +1,13 @@
 package xws.microservis.rentservice.services;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import xws.microservis.rentservice.dto.RentAdvertDTO;
+import xws.microservis.rentservice.exception.AdvertNotFoundException;
 import xws.microservis.rentservice.model.Firm;
 import xws.microservis.rentservice.model.PriceList;
 import xws.microservis.rentservice.model.RentAdvert;
@@ -28,7 +30,20 @@ public class RentAdvertService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
+
+
+	public RentAdvert findByMonolitId(Long id){
+
+		Optional<RentAdvert> rentAdvert = repository.findByMonolitId(id);
+
+		if(rentAdvert.isPresent()){
+			return rentAdvert.get();
+		}
+		else {
+			throw new AdvertNotFoundException();
+		}
+	}
 	
 	//pronalazenje reklame
 	public RentAdvertDTO findRentAdvertDTO(Long id) {

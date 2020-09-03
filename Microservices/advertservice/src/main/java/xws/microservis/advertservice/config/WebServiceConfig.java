@@ -58,28 +58,10 @@ public class WebServiceConfig {
         return wsdl11Definition;
     }
 
-    @Bean(name="rentrequest")
-    public DefaultWsdl11Definition defaultWsdl11DefinitionRentRequest(XsdSchema rentRequestSchema){
-
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("rentRequestPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://www.baeldung.com/springsoap/gen");
-        wsdl11Definition.setSchema(rentRequestSchema);
-        return wsdl11Definition;
-    }
-
-
     @Bean
     public XsdSchema priceListSchema(){
 
         return new SimpleXsdSchema(new ClassPathResource("pricelist.xsd"));
-    }
-
-    @Bean
-    public XsdSchema rentRequestSchema(){
-
-        return new SimpleXsdSchema(new ClassPathResource("rentrequest.xsd"));
     }
 
     @Bean
@@ -88,12 +70,10 @@ public class WebServiceConfig {
         return  new SimpleXsdSchema(new ClassPathResource("car.xsd"));
     }
 
-
     @Bean
     public XsdSchema rentAdvertSchema(){
 
         return new SimpleXsdSchema(new ClassPathResource("rentadvert.xsd"));
     }
-
 
 }

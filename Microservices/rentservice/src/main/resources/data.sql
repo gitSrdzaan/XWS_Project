@@ -113,9 +113,9 @@ values(11,15,10,20,4);
 insert into price_list(id,price_per_day, price_per_kilometer, pricecdw,user_id)
 values(12,2,1,20,4);
 --reklame
-insert into rent_advert(id,advert_start_date,advert_end_date,car_id,firm,pricelist_id )
-values(1,parsedatetime('05-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-1,1,1);
+insert into rent_advert(id,advert_start_date,advert_end_date,car_id,firm,pricelist_id,monolit_id )
+values(200,parsedatetime('05-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+1,1,1,200);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,firm,pricelist_id )
 values(2,parsedatetime('06-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('09-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),

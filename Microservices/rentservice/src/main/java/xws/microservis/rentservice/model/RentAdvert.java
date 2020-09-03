@@ -43,13 +43,21 @@ public class RentAdvert {
 	@Column(nullable = true)
 	private Double priceForRent;
 
-
+	@Column
+	private Long monolitId;
 
 
 	public RentAdvert() {
 		
 	}
 
+	public Long getMonolitId() {
+		return monolitId;
+	}
+
+	public void setMonolitId(Long monolitId) {
+		this.monolitId = monolitId;
+	}
 
 	public Car getCar() {
 		return car;

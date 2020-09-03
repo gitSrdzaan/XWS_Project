@@ -67,6 +67,23 @@
 			<version>2.3.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
 
 		<!--RabbitMQ-->
 		<dependency>
@@ -108,15 +125,40 @@
 				</executions>
 				<configuration>
 					<wsdlUrls>
-					<!--	<wsdlUrl>http://localhost:8085/ws/car.wsdl</wsdlUrl>
+				<!--		<wsdlUrl>http://localhost:8085/ws/car.wsdl</wsdlUrl>
 						<wsdlUrl>http://localhost:8085/ws/pricelist.wsdl</wsdlUrl>
 						<wsdlUrl>http://localhost:8085/ws/rentadvert.wsdl</wsdlUrl>
-						<wsdlUrl>http://localhost:8085/ws/rentrequest.wsdl</wsdlUrl> -->
+						<wsdlUrl>http://localhost:8083/ws/rentrequest.wsdl</wsdlUrl> -->
 					</wsdlUrls>
 					<keep>true</keep>
 					<packageName>com.baeldung.soap.ws.client.generated</packageName>
 					<sourceDestDir>src/main/java</sourceDestDir>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+					<clearOutputDir>false</clearOutputDir>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>javax.activation</groupId>
+						<artifactId>activation</artifactId>
+						<version>1.1.1</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
