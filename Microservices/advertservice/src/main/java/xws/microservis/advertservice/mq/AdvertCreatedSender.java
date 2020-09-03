@@ -20,9 +20,9 @@ public class AdvertCreatedSender {
     private String routingkey;
 
     public void send(AdvertDto advertDTO){
-        amqpTemplate.convertAndSend(exchange+".advert.search",routingkey+".advert",advertDTO);
+        amqpTemplate.convertAndSend(exchange+".advert.search",routingkey+".advert.create",advertDTO);
         System.out.println("Send advert created = " + advertDTO.getId());
-        amqpTemplate.convertAndSend(exchange+".advert.rent",routingkey+".advert",advertDTO);
+        amqpTemplate.convertAndSend(exchange+".advert.rent",routingkey+".advert.create",advertDTO);
         System.out.println("Send advert created = " + advertDTO.getId());
 
     }

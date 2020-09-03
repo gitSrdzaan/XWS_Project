@@ -49,6 +49,8 @@ public class PriceListService {
 
 		dto2PriceList(priceListDTO,priceList);
 
+		/**
+		 * TODO : firma cjevnovnik*/
 		User user = userRepository.findById(priceListDTO.getOwner_id()).orElse(null);
 		priceList.setUser(user);
 

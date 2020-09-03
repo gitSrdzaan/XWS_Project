@@ -135,7 +135,7 @@ public class CarService {
 	// * @param model.CarDTO carDTO
 	// * @param model.Car car
     private void dtoToCar(CarDTO carDTO, Car car){
-		car.setId(carDTO.getId());
+		//car.setId(carDTO.getId());
 		car.setCarClass(carDTO.getCarClass());
 		car.setCarComment(carDTO.getCarComment());
 		car.setCarFuel(fuelRepository.findById(carDTO.getCarFuel()).orElse(null));

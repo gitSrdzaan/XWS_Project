@@ -8,13 +8,16 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xws.microservice.searchservice.dto.CarDTO;
+
 import xws.microservice.searchservice.services.CarService;
+import xws.microservice.searchservice.services.RentAdvertService;
 
 import java.util.concurrent.CountDownLatch;
 
 @Component
-public class CarCreatedReceiver {
-    CountDownLatch latch = new CountDownLatch(1);
+public class CarUpdatedRecevier {
+
+    private CountDownLatch latch = new CountDownLatch(1);
 
     @Autowired
     private CarService carService;
@@ -23,11 +26,11 @@ public class CarCreatedReceiver {
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "${xml.rabbitmq.queue}.car.search",durable = "true"),
             exchange = @Exchange(name = "${xml.rabbitmq.exchange}.car.search",type = ExchangeTypes.DIRECT),
-            key = "${xml.rabbitmq.routingkey}.car.create"
+            key = "${xml.rabbitmq.routingkey}.car.update"
     )
     )
     public void receiveCar(CarDTO carDTO){
-        System.out.println("Received  created car "+carDTO.getId());
+        System.out.println("Received updated car "+carDTO.getId());
         try {
             carService.addCar(carDTO);
         } catch (Exception e) {
@@ -35,8 +38,6 @@ public class CarCreatedReceiver {
         }
 
         latch.countDown();
+
     }
-
-
-
 }
