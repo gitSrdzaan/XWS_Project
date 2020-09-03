@@ -26,7 +26,10 @@ public class RentAdvertDTO {
 		this.advertEndDate = ra.getAdvertEndDate();
 		this.priceListId = ra.getPriceList().getId();
 	}
-	
+
+	public RentAdvertDTO() {
+	}
+
 	public Long getId() {
 		return id;
 	}

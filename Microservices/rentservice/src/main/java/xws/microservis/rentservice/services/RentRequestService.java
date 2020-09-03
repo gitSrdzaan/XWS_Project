@@ -86,6 +86,14 @@ public class RentRequestService {
 			throw new Exception("Neuspjesno sacuvan zahtjev");
 		}
 
+
+		/**
+		 * Provjera da li treba SAOP treba pozivati
+		 * */
+		if(rr.getRentAdvert().getMonolitId() == null){
+			return;
+		}
+
 		// SOAP
 		RentRequestAnswerPortService service = new RentRequestAnswerPortService();
 		RentRequestAnswerPort port = service.getRentRequestAnswerPortSoap11();

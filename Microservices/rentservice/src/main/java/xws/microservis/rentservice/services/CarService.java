@@ -50,6 +50,7 @@ public class CarService  {
 		Firm firm = firmRepository.findById(carDTO.getOwner_id()).orElse(null);
 		if(firm != null){
 			car.setFirm(firm);
+			car.setMonolitId(firm.getId());
 		}
 		else{
 			User user = userRepository.findById(carDTO.getOwner_id()).orElse(null);

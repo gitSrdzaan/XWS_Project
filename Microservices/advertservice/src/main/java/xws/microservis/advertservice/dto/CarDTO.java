@@ -15,16 +15,7 @@ public class CarDTO {
     private Integer maxAllowedMileage;
     private List<String> carComment;
     private Integer carGrade;
-
-	/*private double longitude;
-
-	private double latitude;*/
-
     private Integer kidsSeats;
-
-
-
-
     private Long owner_id;
 
     public CarDTO(){

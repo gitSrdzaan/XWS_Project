@@ -12,8 +12,8 @@ public class CarDTO {
 	private String carRegistration;
 	private String carMark;
 	private String carModel;
-	private Long carFuel_Id;
-	private Long transmission_Id;
+	private Long carFuel;
+	private Long transmission;
 	private String carClass;
 	private Integer carMileage;//kilometraza do sada
 	private Integer maxAllowedMileage;
@@ -36,8 +36,8 @@ public class CarDTO {
 		this.carClass = car.getCarClass();
 		this.carMark = car.getCarMark();
 		this.carModel = car.getCarModel();
-		this.carFuel_Id =car.getCarFuel().getId();
-		this.transmission_Id = car.getTransmission().getId();
+		this.carFuel =car.getCarFuel().getId();
+		this.transmission = car.getTransmission().getId();
 		this.carMileage = car.getCarMileage();
 		this.carComment = car.getCarComment();
 		this.carGrade = car.getCarGrade();
@@ -45,6 +45,9 @@ public class CarDTO {
 		this.latitude = car.getLatitude();*/
 		this.kidsSeats = car.getKidsSeats();
 		
+	}
+
+	public CarDTO() {
 	}
 
 	public Long getOwner_id() {
@@ -55,20 +58,12 @@ public class CarDTO {
 		this.owner_id = owner_id;
 	}
 
-	public Long getCarFuel_Id() {
-		return carFuel_Id;
+	public void setCarFuel(Long carFuel) {
+		this.carFuel = carFuel;
 	}
 
-	public void setCarFuel_Id(Long carFuel_Id) {
-		this.carFuel_Id = carFuel_Id;
-	}
-
-	public Long getTransmission_Id() {
-		return transmission_Id;
-	}
-
-	public void setTransmission_Id(Long transmission_Id) {
-		this.transmission_Id = transmission_Id;
+	public void setTransmission(Long transmission) {
+		this.transmission = transmission;
 	}
 
 	public Integer getMaxAllowedMileage() {
@@ -111,21 +106,11 @@ public class CarDTO {
 		this.carModel = carModel;
 	}
 
-	public Long getCarFuel() {
-		return carFuel_Id;
-	}
 
-	public void setCarFuel(CarFuel carFuel) {
-		this.carFuel_Id = carFuel.getId();
-	}
 
-	public Long getTransmission() {
-		return transmission_Id;
-	}
 
-	public void setTransmission(Transmission transmission) {
-		this.transmission_Id = transmission.getId();
-	}
+
+
 
 	public String getCarClass() {
 		return carClass;
@@ -183,7 +168,12 @@ public class CarDTO {
 		this.kidsSeats = kidsSeats;
 	}
 
-	
-	
-	
+
+	public Long getCarFuel() {
+		return carFuel;
+	}
+
+	public Long getTransmission() {
+		return transmission;
+	}
 }

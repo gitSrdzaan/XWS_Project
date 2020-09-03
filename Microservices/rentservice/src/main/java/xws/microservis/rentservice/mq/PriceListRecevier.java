@@ -20,9 +20,9 @@ public class PriceListRecevier {
     private PriceListService priceListService;
 
 
-    @RabbitListener(queues = "${xml.rabbitmq.queue}.pricelist")
+    @RabbitListener(queues = "${xml.rabbitmq.queue}.pricelist.rent")
     public void reciveAdvert(PriceListDTO priceListDTO){
-        System.out.println("Recevied: " + priceListDTO.getId());
+        System.out.println("Recevied pricelist: " + priceListDTO.getId());
 
         try {
             priceListService.addNewRentAdvert(priceListDTO);

@@ -48,6 +48,7 @@ public class AdvertService {
 		advert.setAdvertEndDate(advertDto.getAdvertEndDate());
 		advert.setAdvertStartDate(advertDto.getAdvertStartDate());
 		advert.setCar(carService.findById(advertDto.getCarId()));
+		System.out.println("Proslo");
 		advert.setPriceList(priceListService.findById(advertDto.getPriceListId()));
 		if(advertDto.getPriceForRent() != 0.0 && advertDto.getPriceForRent() != null){
 			advert.setPriceForRent(advertDto.getPriceForRent());

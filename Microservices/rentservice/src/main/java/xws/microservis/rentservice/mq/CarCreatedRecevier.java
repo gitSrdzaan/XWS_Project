@@ -18,9 +18,9 @@ public class CarCreatedRecevier {
     private CarService carService;
 
 
-    @RabbitListener(queues = "${xml.rabbitmq.queue}.car")
+    @RabbitListener(queues = "${xml.rabbitmq.queue}.car.rent")
     public void receiveCar(CarDTO carDTO) {
-        System.out.println("Received car " + carDTO.getId());
+        System.out.println("Received car:  " + carDTO.getId());
         try {
             carService.addCar(carDTO);
         } catch (Exception e) {

@@ -17,7 +17,7 @@ public class PriceListCreatedRecevier {
     @Autowired
     private PriceListService service;
 
-    @RabbitListener(queues = "${xml.rabbitmq.queue}.pricelist")
+    @RabbitListener(queues = "${xml.rabbitmq.queue}.pricelist.search")
     public void receivePriceList(PriceListDTO priceListDTO){
         System.out.println("Recevied pricelist : "+priceListDTO.getId());
         try {

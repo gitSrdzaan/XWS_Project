@@ -21,9 +21,9 @@ public class AdvertCreatedRecevier {
     private RentAdvertService advertService;
 
 
-    @RabbitListener(queues = "${xml.rabbitmq.queue}.advert")
+    @RabbitListener(queues = "${xml.rabbitmq.queue}.advert.search")
     public void reciveAdvert(RentAdvertDTO advertDTO){
-        System.out.println("Recevied: " + advertDTO.getId());
+        System.out.println("Recevied advert: " + advertDTO.getId());
 
         advertService.addNewRentAdvert(advertDTO);
 

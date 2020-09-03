@@ -122,6 +122,7 @@ public class CarService {
 		Transmission transmission = transRepository.findByName(request.getCar().getTransmission());
 		car.setCarFuel(carFuel);
 		car.setTransmission(transmission);
+		car.setMonolitID(request.getCar().getId());
 
 		Car newCar = carRepository.save(car);
 

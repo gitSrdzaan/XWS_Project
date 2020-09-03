@@ -32,6 +32,7 @@ public class PriceListService {
 
         if(firm != null){
             priceList.setFirm(firm);
+            priceList.setMonolitId(firm.getId());
         }
         else{
             User user = userRepository.findById(priceListDTO.getOwner_id()).orElse(null);
