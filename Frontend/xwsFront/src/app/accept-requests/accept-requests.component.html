@@ -1,63 +1,18 @@
 <app-header-comp></app-header-comp>
-<div align="center" valign="middle" *ngIf="myRequests.length > 0">
-  <table mat-table [dataSource]="myRequests" matSort>
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.id }}
-      </td>
-    </ng-container>
 
-    <ng-container matColumnDef="carMark">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.car.carMark }}
-      </td>
-    </ng-container>
+<div *ngFor="let req of myRequests" align="center" valign="middle">
+  <mat-card class="basic-card">
+    <mat-card-title> Rent requests {{ req.id }} </mat-card-title>
+    <mat-card-content>
+      <div class="content">
+        <mat-chip-list aria-label="Request details">
+          <mat-chip color="primary" selected>
+            <div>Request id:</div>
 
-    <ng-container matColumnDef="carModel">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.car.carModel }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="request">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        <button
-          mat-raised-button
-          color="warn"
-          (click)="removeRequest(element.id)"
-        >
-          Remove Request
-        </button>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="cart">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="sendRequest(element)"
-        >
-          Accept request
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-</div>
-<br />
-<div align="center" valign="middle" *ngIf="myRequests.length > 0">
-  <button mat-raised-button color="primary" (click)="sendRequestAll()">
-    Accept all requests
-  </button>
-</div>
-<div align="center" valign="middle" *ngIf="myRequests.length === 0">
-  <h1>YOU DONT HAVE ANY REQUESTS</h1>
+            {{ req.status }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

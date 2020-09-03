@@ -46,7 +46,8 @@ export class SearchComponentComponent implements OnInit {
     if (searchObject.endDate)
       searchObject.endDate = formatDate(searchObject.endDate);
 
-    console.log(searchObject);
+    console.log('ispis ' + searchObject.country);
+    console.log(this.searchService);
     this.searchService.search(searchObject).subscribe((response) => {
       this.advertList = new MatTableDataSource<RentAdvert>(response);
     });

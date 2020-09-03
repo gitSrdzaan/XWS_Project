@@ -14,7 +14,10 @@ export class AcceptRequestsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.myRequests = JSON.parse(localStorage.getItem('myRequests'));
+    this.rentService
+      .getAllRequests()
+      .subscribe((response) => (this.myRequests = response));
+    //this.myRequests = JSON.parse(localStorage.getItem('myRequests'));
     if (this.myRequests === null) this.myRequests = [];
     console.log(this.myRequests);
   }
