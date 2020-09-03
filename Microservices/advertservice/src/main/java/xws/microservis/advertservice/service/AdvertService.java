@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import xws.microservis.advertservice.dto.AdvertDto;
 import xws.microservis.advertservice.model.RentAdvert;
+import xws.microservis.advertservice.mq.AdvertCreatedSender;
 import xws.microservis.advertservice.repository.AdvertRepository;
 import xws.microservis.advertservice.repository.CarRepository;
 import xws.microservis.advertservice.repository.UserRepository;
@@ -33,6 +34,9 @@ public class AdvertService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private AdvertCreatedSender createdSender;
 
 
 
@@ -79,7 +83,28 @@ public class AdvertService {
 
 		RentAdvert savedAdvert = advertRepository.save(rentAdvert);
 
+		/**
+		 * RabbitMQ*/
+		AdvertDto advertDto = new AdvertDto();
+		advert2DTO(rentAdvert,advertDto);
+
+		createdSender.send(advertDto);
+
+
+
+
 		return savedAdvert.getId();
+	}
+
+	private void advert2DTO(RentAdvert rentAdvert, AdvertDto advertDto) {
+
+		advertDto.setId(rentAdvert.getId());
+		advertDto.setAdvertEndDate(rentAdvert.getAdvertEndDate());
+		advertDto.setAdvertStartDate(rentAdvert.getAdvertStartDate());
+		advertDto.setCarId(rentAdvert.getCar().getId());
+		advertDto.setPriceForRent(rentAdvert.getPriceForRent());
+		advertDto.setPriceListId(rentAdvert.getPriceList().getId());
+		advertDto.setOwner_id(rentAdvert.getMonolitId());
 	}
 
 	public ArrayList<RentAdvert> findByUser(Long id) {

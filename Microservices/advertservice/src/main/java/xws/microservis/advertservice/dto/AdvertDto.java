@@ -31,6 +31,9 @@ public class AdvertDto {
 		this.priceForRent = priceForRent;
 	}
 
+	public AdvertDto() {
+	}
+
 	public Long getOwner_id() {
 		return owner_id;
 	}

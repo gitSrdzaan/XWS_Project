@@ -11,6 +11,7 @@ import xws.microservis.advertservice.dto.PriceListDTO;
 import xws.microservis.advertservice.exception.PriceListNotFoundException;
 import xws.microservis.advertservice.model.PriceList;
 import xws.microservis.advertservice.model.User;
+import xws.microservis.advertservice.mq.PriceListCreatedSender;
 import xws.microservis.advertservice.repository.PriceListRepository;
 import xws.microservis.advertservice.repository.UserRepository;
 
@@ -23,6 +24,9 @@ public class PriceListService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	private PriceListCreatedSender createdSender;
 	
 	
 	public PriceList findById(Long id) {
@@ -41,10 +45,28 @@ public class PriceListService {
 		PriceList priceList = new PriceList(request.getPriceList());
 		priceList.setMonolitId(request.getPriceList().getId());
 		PriceList savedPL = priceListRepository.save(priceList);
+
+		/**
+		 * RabbitMQ*/
+		PriceListDTO priceListDTO = new PriceListDTO();
+		priceList2DTO(priceList,priceListDTO);
+
+		createdSender.send(priceListDTO);
+
+
 		return savedPL.getId();
 	}
 
-    public PriceList saveNew(PriceListDTO priceListDTO) {
+	private void priceList2DTO(PriceList priceList, PriceListDTO priceListDTO) {
+		priceListDTO.setId(priceList.getId());
+		priceListDTO.setOwner_id(priceList.getMonolitId());
+		priceListDTO.setPriceCDW(priceList.getPriceCDW());
+		priceListDTO.setPricePerDay(priceList.getPricePerDay());
+		priceListDTO.setPricePerKilometer(priceList.getPricePerKilometer());
+
+	}
+
+	public PriceList saveNew(PriceListDTO priceListDTO) {
 		PriceList priceList = priceListRepository.findById(priceListDTO.getId()).orElse(new PriceList());
 
 		dto2PriceList(priceListDTO,priceList);
