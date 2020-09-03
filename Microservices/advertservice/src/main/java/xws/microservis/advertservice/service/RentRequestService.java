@@ -1,19 +1,14 @@
 package xws.microservis.advertservice.service;
 
-import com.baeldung.springsoap.gen.GetRentRequestRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xws.microservis.advertservice.dto.BundleDTO;
 import xws.microservis.advertservice.dto.RentRequestDTO;
-import xws.microservis.advertservice.model.RentAdvert;
 import xws.microservis.advertservice.model.RentRequest;
 import xws.microservis.advertservice.model.RentRequestBundle;
-import xws.microservis.advertservice.model.RentRequestStatus;
-import xws.microservis.advertservice.repository.AdvertRepository;
 import xws.microservis.advertservice.repository.RentRequestBundleRepository;
 import xws.microservis.advertservice.repository.RentRequestRepository;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -34,29 +29,6 @@ public class RentRequestService {
         return rentRequestRepository.findAllByUser(id);
 
 
-
-    }
-
-    public Long addNewRequestSoap(GetRentRequestRequest request){
-        RentRequest rentRequest = new RentRequest();
-        System.out.println(request.getRentrequest().getRentAdvertId());
-        rentRequest.setRentAdvert(advertService.findByMonolitId(request.getRentrequest().getRentAdvertId()));
-        rentRequest.setStatus(RentRequestStatus.PENNDING);
-        SimpleDateFormat formatter=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy");
-        try {
-            rentRequest.setReservationEnd(formatter.parse(
-                    request.getRentrequest().getReservationEnd()
-            ));
-            rentRequest.setReservationStart(formatter.parse(
-                    request.getRentrequest().getReservationStart()
-            ));
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println("NIje moguce formatirati vrijeme");
-        }
-
-        RentRequest savedRentRequest = rentRequestRepository.save(rentRequest);
-        return savedRentRequest.getId();
 
     }
 

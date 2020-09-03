@@ -1,10 +1,17 @@
 package xml.team.rentacar.controller;
 
+import com.baeldung.springsoap.gen.GetRentRequestAnswerRequest;
+import com.baeldung.springsoap.gen.GetRentRequestAnswerResponse;
 import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import xml.team.rentacar.dto.RentRequestDTO;
 import xml.team.rentacar.model.RentAdvert;
 import xml.team.rentacar.model.RentRequest;
@@ -19,8 +26,11 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping(value = "/request")
 @CrossOrigin(origins = "*")
+@Endpoint
 public class RentRequestController {
 
+
+    private static final String NAMESPACE_URI = "http://www.baeldung.com/springsoap/gen";
 
     @Autowired
     private RentRequestService rentRequestService;
@@ -73,41 +83,12 @@ public class RentRequestController {
         return new ResponseEntity<>(rentRequestArrayList,HttpStatus.OK);
     }
 
-    @PutMapping(value = "/accepted/{rrID}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> modifyRentRequestPaid(@PathVariable Long rrID){
-        RentRequest rentRequest = rentRequestService.findRentRequest(rrID);
+   @PutMapping(path = "/status" , consumes = "application/json", produces = "application/json")
+   public ResponseEntity<?> setRentRequestStatus(@RequestBody RentRequestDTO rentRequestDTO){
+        RentRequest rentRequest = rentRequestService.changeRentRequestStatus(rentRequestDTO);
 
-        rentRequest.setStatus(RentRequestStatus.PAID);
-        try{
-            rentRequestService.saveRentRequest(rentRequest);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>("Greska pri modifikaciji zahtjeva", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-
-        return  new ResponseEntity<>(HttpStatus.OK);
-
-    }
-
-    @PutMapping(value = "/denied/{rrID}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> modifyRentRequestDenied(@PathVariable Long rrID){
-        RentRequest rentRequest = rentRequestService.findRentRequest(rrID);
-
-        rentRequest.setStatus(RentRequestStatus.DENIED);
-        try{
-            rentRequestService.saveRentRequest(rentRequest);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>("Greska pri modifikaciji zahtjeva", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-
-        return  new ResponseEntity<>(HttpStatus.OK);
-
-    }
+        return new ResponseEntity<>(rentRequest, HttpStatus.OK);
+   }
 
     /**
      * TODO: odobravanje ili odbijanje budnle zahtjeva
@@ -159,6 +140,22 @@ public class RentRequestController {
         }
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PayloadRoot(namespace =  NAMESPACE_URI , localPart = "getRentRequestAnswerRequest")
+    @ResponsePayload
+    public GetRentRequestAnswerResponse addNewRequestFromMS(@RequestPayload GetRentRequestAnswerRequest request){
+
+        try{
+            GetRentRequestAnswerResponse response = new GetRentRequestAnswerResponse();
+
+            response.setId(rentRequestService.addNewRentRequestSoap(request));
+
+            return response;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
 

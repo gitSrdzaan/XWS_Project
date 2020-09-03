@@ -63,7 +63,6 @@ public class Car {
     protected Integer kidsSeats;
     protected String owner;
 
-
     public Car (){
 
     }

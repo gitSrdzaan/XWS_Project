@@ -56,7 +56,6 @@ public class PriceList {
         this.pricePerKilometer = priceList.getPricePerKilometer();
         this.owner = "AGENT_APP";
     }
-
     /**
      * Gets the value of the id property.
      * 

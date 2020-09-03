@@ -1,6 +1,9 @@
 package xml.team.rentacar.service;
 
 import com.baeldung.soap.ws.client.generated.*;
+import com.baeldung.springsoap.gen.GetRentRequestAnswerRequest;
+import com.baeldung.springsoap.gen.GetRentRequestAnswerResponse;
+import com.baeldung.springsoap.gen.RentRequestAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xml.team.rentacar.dto.RentRequestDTO;
@@ -14,6 +17,7 @@ import xml.team.rentacar.repository.UserRepository;
 
 import xml.team.rentacar.dto.RentRequestBundleDTO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +36,9 @@ public class RentRequestService {
 	private UserRepository userRepository;
 	@Autowired
 	private RentAdvertRepository rentARepository;
+
+	@Autowired
+	private RentAdvertService rentAdvertService;
 
 
 
@@ -79,6 +86,36 @@ public class RentRequestService {
 			throw new NoSuchElementException();
 		}
 		return rr;
+	}
+
+	public RentRequest changeRentRequestStatus(RentRequestDTO rentRequestDTO){
+		RentRequest rentRequest = new RentRequest();
+		rentRequest = findRentRequest(rentRequestDTO.getId());
+		rentRequest.setStatus(rentRequestDTO.getStatus());
+		rentRequest = rentRRepository.save(rentRequest);
+
+		//SOAP
+		RentRequestPortService service = new RentRequestPortService();
+		RentRequestPort port = service.getRentRequestPortSoap11();
+		GetRentRequestRequest getRentRequestRequest = new GetRentRequestRequest();
+
+		try{
+			com.baeldung.soap.ws.client.generated.Rentrequest rentrequest = new Rentrequest(rentRequest);
+			getRentRequestRequest.setRentrequest(rentrequest);
+			GetRentRequestResponse response = port.getRentRequest(getRentRequestRequest);
+			rentRequest.setForeignId(response.getId());
+			rentRRepository.save(rentRequest);
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Nije moguce updateovati status!");
+		}
+
+
+
+
+		return rentRequest;
+
+
 	}
 	
 	/**
@@ -213,5 +250,26 @@ public class RentRequestService {
 
 	public ArrayList<RentRequestBundle> getAllBundle() {
 		return (ArrayList<RentRequestBundle>) bundleRepository.findAll();
+	}
+
+	public Long addNewRentRequestSoap(GetRentRequestAnswerRequest request) {
+		RentRequest rentRequest = new RentRequest();
+		rentRequest.setRentAdvert(rentAdvertService.findAdvert(request.getRentRequestAnswer().getRentAdvertId()));
+		rentRequest.setStatus(RentRequestStatus.PENNDING);
+		rentRequest.setForeignId(request.getRentRequestAnswer().getId());
+		SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy");
+		try{
+			rentRequest.setReservationEnd(formatter.parse(
+					request.getRentRequestAnswer().getReservationEnd()
+			));
+			rentRequest.setReservationStart(formatter.parse(
+					request.getRentRequestAnswer().getReservationStart()
+			));
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Nije moguce parsirati vrijeme.");
+		}
+		RentRequest savedRentRequest = rentRRepository.save(rentRequest);
+		return savedRentRequest.getId();
 	}
 }

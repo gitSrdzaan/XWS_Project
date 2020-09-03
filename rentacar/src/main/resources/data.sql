@@ -47,69 +47,69 @@ values(40,'vozacke', 'email','mica','lavanda','Milica', 'Svonja', 'adresa_mm','g
 --automobili
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(1,'BMW','X5','SUV','1','1',20,'aaa',1,50 );
+values(1010,'BMW','X5','SUV','1','1',20,'aaa',1,50 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(2,'Mercedes','Vitto','Karavan','1','2',10,'aaa',2,500 );
+values(200,'Mercedes','Vitto','Karavan','1','2',10,'aaa',2,500 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(3,'Mercedes','Ajkula','Limuzina','2','2',10,'aaa',1,500 );
+values(300,'Mercedes','Ajkula','Limuzina','2','2',10,'aaa',1,500 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(4,'Skoda','Oktavija','Karavan','1','3',20,'aaa',1,0 );
+values(400,'Skoda','Oktavija','Karavan','1','3',20,'aaa',1,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(5,'Skoda','Oktavija','Fabija','3','2',200,'aaa',1,0 );
+values(500,'Skoda','Oktavija','Fabija','3','2',200,'aaa',1,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(6,'Skoda','Favorit','Favorit','3','2',200,'aaa',1,0 );
+values(60,'Skoda','Favorit','Favorit','3','2',200,'aaa',1,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(7,'Audi','A5','Karavan','2','1',200,'aaa',2,0 );
+values(70,'Audi','A5','Karavan','2','1',200,'aaa',2,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage )
-values(8,'Maserati','A8','Karavan','1','3',100,'aaa',0,0 );
+values(80,'Maserati','A8','Karavan','1','3',100,'aaa',0,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage )
-values(9,'Ferrari','X5','Dvosed','3','3',100,'aaa',0,0 );
+values(90,'Ferrari','X5','Dvosed','3','3',100,'aaa',0,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage )
-values(10,'Lamborghini','X2','Dvosed','3','2',100,'aaa',0,0 );
+values(100,'Lamborghini','X2','Dvosed','3','2',100,'aaa',0,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage )
-values(11,'Tesla','Elektricna','Dvosed','4','2',100,'aaa',0,0 );
+values(110,'Tesla','Elektricna','Dvosed','4','2',100,'aaa',0,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(12,'Skoda','Fobia','Dvosed','2','1',10,'aaa',2,0 );
+values(120,'Skoda','Fobia','Dvosed','2','1',10,'aaa',2,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage )
-values(13,'Renault','F1','Bolid','2','1',10,'aaa',2,0 );
+values(103,'Renault','F1','Bolid','2','1',10,'aaa',2,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage)
-values(14,'Chrysler','Cruiser','30','2','1',10,'aaa',2,0 );
+values(104,'Chrysler','Cruiser','30','2','1',10,'aaa',2,0 );
 
 insert into car(id,car_mark,car_model,car_class, car_fuel,transmission, car_mileage,
 car_registration, kids_seats,max_allowed_mileage )
-values(15,'Aaston Martin','P200','C','2','1',10,'aaa',2,1 );
+values(105,'Aaston Martin','P200','C','2','1',10,'aaa',2,1 );
 
 --cjenovnika
 insert into price_list(id,price_per_day, price_per_kilometer, pricecdw)
-values(1,2,4,60);
+values(100,2,4,60);
 insert into price_list(id,price_per_day, price_per_kilometer, pricecdw)
-values(2,4,6,80);
+values(200,4,6,80);
 insert into price_list(id,price_per_day, price_per_kilometer, pricecdw)
 values(3,6,8,100);
 insert into price_list(id,price_per_day, price_per_kilometer, pricecdw)
@@ -134,122 +134,118 @@ insert into price_list(id,price_per_day, price_per_kilometer, pricecdw)
 values(13,5,10,20);
 --reklame
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(1,parsedatetime('05-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-1,1);
+values(10,parsedatetime('05-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+1010,10);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(2,parsedatetime('06-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('09-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+values(20,parsedatetime('06-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('09-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+200,10);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(3,parsedatetime('15-07-2020 03:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('20-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-3,1);
+values(30,parsedatetime('15-07-2020 03:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('20-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+300,10);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(4,parsedatetime('11-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+values(40,parsedatetime('11-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+200,10);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(5,parsedatetime('05-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-4,1);
+values(50,parsedatetime('05-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+400,10);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(6,parsedatetime('05-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,3);
+values(60,parsedatetime('05-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+200,3);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(7,parsedatetime('05-10-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-10-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-6,2);
+60,200);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(8,parsedatetime('05-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-7,4);
+70,4);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(9,parsedatetime('02-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('29-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-8,5);
-
-insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(10,parsedatetime('05-12-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-12-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-9,6);
+80,5);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(11,parsedatetime('09-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('19-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-10,7);
+103,7);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(12,parsedatetime('22-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('05-12-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-11,8);
+110,8);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(13,parsedatetime('20-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('03-12-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-12,9);
+120,9);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(14,parsedatetime('20-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('03-10-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-13,10);
+103,10);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(15,parsedatetime('20-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('03-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-14,11);
+104,11);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(16,parsedatetime('10-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('23-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-15,12);
+105,12);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(17,parsedatetime('16-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('25-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-1,1);
+1010,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(18,parsedatetime('26-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('04-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-1,1);
+1010,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(19,parsedatetime('05-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('10-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-1,1);
+1010,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(20,parsedatetime('10-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('12-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+values(200,parsedatetime('10-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('12-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+200,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(21,parsedatetime('13-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('17-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+values(210,parsedatetime('13-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('17-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+200,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(22,parsedatetime('18-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('25-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+values(220,parsedatetime('18-07-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('25-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+200,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(23,parsedatetime('26-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('01-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,13);
+200,13);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(24,parsedatetime('06-08-2020 11:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('09-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+200,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(25,parsedatetime('21-07-2020 03:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('23-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-3,1);
+300,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(26,parsedatetime('25-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('30-07-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-3,1);
+300,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(27,parsedatetime('01-08-2020 03:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('05-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-3,1);
+300,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(28,parsedatetime('16-08-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+200,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
 values(29,parsedatetime('16-09-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-10-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+200,100);
 
 insert into rent_advert(id,advert_start_date,advert_end_date,car_id,pricelist_id )
-values(30,parsedatetime('16-10-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
-2,1);
+values(300,parsedatetime('16-10-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('15-11-2020 12:00:00.001', 'dd-MM-yyyy hh:mm:ss.SS'),
+200,100);
 

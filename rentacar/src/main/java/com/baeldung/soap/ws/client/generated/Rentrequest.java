@@ -58,15 +58,13 @@ public class Rentrequest {
     }
 
     public Rentrequest(RentRequest rr){
-        this.id = rr.getId();
+        this.id = rr.getForeignId();
         this.rentAdvertId = rr.getRentAdvert().getId();
         this.user = "USER";
         this.reservationEnd = rr.getReservationEnd().toString();
         this.reservationStart = rr.getReservationStart().toString();
         this.status = rr.getStatus().toString();
     }
-
-
     /**
      * Gets the value of the id property.
      * 
