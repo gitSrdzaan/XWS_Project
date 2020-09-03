@@ -2,15 +2,13 @@ package xws.microservis.rentservice.services;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 
 import com.baeldung.soap.ws.client.generated.*;
 import com.baeldung.springsoap.gen.GetRentRequestRequest;
 import com.baeldung.springsoap.gen.GetRentRequestResponse;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import xws.microservis.rentservice.dto.RentRequestBundleDTO;
 import xws.microservis.rentservice.dto.RentRequestDTO;
+import xws.microservis.rentservice.exception.AdvertNotFoundException;
 import xws.microservis.rentservice.model.*;
 import xws.microservis.rentservice.repository.*;
 
@@ -62,7 +61,6 @@ public class RentRequestService {
 	 * */
 	public void saveRentRequest(RentRequestDTO rrDTO) throws Exception {
 		RentRequest rr = new RentRequest();
-
 
 		try {
 			//rr.setId(rrDTO.getId());
@@ -331,13 +329,47 @@ public class RentRequestService {
 	}
 
 
-
-	public Long setNewRequestStatus(GetRentRequestRequest request){
+	public Long setNewRequestStatus(GetRentRequestRequest request) throws Exception {
 		RentRequest rentRequest = rentRRepository.findById(request.getRentrequest().getId()).orElse(null);
-		System.out.println(" FETCHED RR");
-		rentRequest.setStatus(RentRequestStatus.valueOf(request.getRentrequest().getStatus()));
-		RentRequest savedRentRequest = rentRRepository.save(rentRequest);
-		return savedRentRequest.getId();
+		System.out.println(request.getRentrequest().getId());
+		if(rentRequest == null){
+			RentRequestDTO rrDTO = new RentRequestDTO(request.getRentrequest());
+			SimpleDateFormat formatter=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yy");
+			try {
+				rrDTO.setReservationStart(formatter.parse(request.getRentrequest().getReservationStart()));
+				rrDTO.setReservationEnd(formatter.parse(request.getRentrequest().getReservationEnd()));
+			}catch (Exception e){
+				System.out.println("Datum za advert nije moguce parsirat");
+				e.printStackTrace();
+			}
+			return saveNewSoapRentRequest(rrDTO);
+		}
+		else {
+			rentRequest.setStatus(RentRequestStatus.valueOf(request.getRentrequest().getStatus()));
+			RentRequest savedRentRequest = rentRRepository.save(rentRequest);
+			return savedRentRequest.getId();
+		}
+	}
+
+	public Long saveNewSoapRentRequest(RentRequestDTO rrDTO) throws Exception {
+		RentRequest rr = new RentRequest();
+
+		try {
+			rr.setRentAdvert(rentARepository.findById(rrDTO.getRentAdvert_Id()).orElse(null));
+			if (rr.getRentAdvert() == null) {
+				throw new Exception("Oglas nije izabran");
+			}
+			rr.setReservationStart(rrDTO.getReservationStart());
+			rr.setReservationEnd(rrDTO.getReservationEnd());
+			rr.setStatus(rrDTO.getStatus());
+			rr.setMonolitId(rrDTO.getId());
+			rr = rentRRepository.save(rr);
+			return rr.getId();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Neuspjesno sacuvan zahtjev");
+		}
 	}
 
 

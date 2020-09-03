@@ -47,6 +47,16 @@ services:
     depends_on:
       - eureka-serviceregistry
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+        RABBITMQ_DEFAULT_USER: guest
+        RABBITMQ_DEFAULT_PASS: guest
+    ports:
+        - 5672:5672
+        - 15672:15672
+
   zuul:
     build: ./zuul
     ports:
