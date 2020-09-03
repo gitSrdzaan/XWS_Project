@@ -59,7 +59,7 @@ public class PriceListService {
 
 	private void priceList2DTO(PriceList priceList, PriceListDTO priceListDTO) {
 		priceListDTO.setId(priceList.getId());
-		priceListDTO.setOwner_id(priceList.getMonolitId());
+		priceListDTO.setOwner_id((long)1);
 		priceListDTO.setPriceCDW(priceList.getPriceCDW());
 		priceListDTO.setPricePerDay(priceList.getPricePerDay());
 		priceListDTO.setPricePerKilometer(priceList.getPricePerKilometer());

@@ -152,7 +152,7 @@ public class CarService {
 		carDTO.setMaxAllowedMileage(car.getMaxAllowedMileage());
 		carDTO.setId(car.getId());
 		carDTO.setTransmission(car.getTransmission().getId());
-		carDTO.setOwner_id(car.getMonolitID());
+		carDTO.setOwner_id((long)1);
 	}
 
 

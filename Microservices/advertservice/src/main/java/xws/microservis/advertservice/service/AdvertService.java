@@ -104,7 +104,7 @@ public class AdvertService {
 		advertDto.setCarId(rentAdvert.getCar().getId());
 		advertDto.setPriceForRent(rentAdvert.getPriceForRent());
 		advertDto.setPriceListId(rentAdvert.getPriceList().getId());
-		advertDto.setOwner_id(rentAdvert.getMonolitId());
+		advertDto.setOwner_id((long)1);
 	}
 
 	public ArrayList<RentAdvert> findByUser(Long id) {
