@@ -50,4 +50,7 @@ export class RentService {
   getAllPriceList() {
     return this.http.get<any>(`http://localhost:8080/pricelist/findAll`);
   }
+  getAllRequests() {
+    return this.http.get<any>(`http://localhost:8080/request/allPending`);
+  }
 }
