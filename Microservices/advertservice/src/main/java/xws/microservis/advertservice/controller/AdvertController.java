@@ -33,6 +33,7 @@ import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping(value = "/advert")
+@CrossOrigin(origins= "*")
 @Endpoint
 public class AdvertController {
 

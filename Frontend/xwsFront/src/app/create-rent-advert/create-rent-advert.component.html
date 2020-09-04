@@ -22,20 +22,21 @@
           />
         </mat-form-field>-->
         <mat-form-field class="form-field" appearance="fill">
-          <mat-label>Car </mat-label>
-          <mat-select>
-            <mat-option *ngFor="let reg of carRegs" [value]="reg">
-              {{ reg }}
-            </mat-option>
-          </mat-select>
+          <input
+            matInput
+            name="carID"
+            formControlName="carID"
+            placeholder="carID"
+          />
         </mat-form-field>
+
         <mat-form-field class="form-field" appearance="fill">
-          <mat-label>PriceList </mat-label>
-          <mat-select>
-            <mat-option *ngFor="let p of priceLists" [value]="p">
-              {{ p.id }}
-            </mat-option>
-          </mat-select>
+          <input
+            matInput
+            name="priceList"
+            formControlName="priceList"
+            placeholder="Price List"
+          />
         </mat-form-field>
 
         <mat-form-field class="form-field">
@@ -67,7 +68,12 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Choose starting date</mat-label>
-          <input matInput [matDatepicker]="pickerStart" />
+          <input
+            matInput
+            [matDatepicker]="pickerStart"
+            name="startDate"
+            formControlName="startDate"
+          />
           <mat-datepicker-toggle matSuffix [for]="pickerStart">
             <mat-icon matDatepickerToggleIcon>Select</mat-icon>
           </mat-datepicker-toggle>
@@ -76,7 +82,12 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Choose ending date</mat-label>
-          <input matInput [matDatepicker]="pickerEnd" />
+          <input
+            matInput
+            [matDatepicker]="pickerEnd"
+            name="endDate"
+            formControlName="endDate"
+          />
           <mat-datepicker-toggle matSuffix [for]="pickerEnd">
             <mat-icon matDatepickerToggleIcon>Select</mat-icon>
           </mat-datepicker-toggle>

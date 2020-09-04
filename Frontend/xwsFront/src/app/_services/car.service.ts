@@ -15,13 +15,14 @@ export class CarService {
   }
 
   addNewCar(car) {
-    let user = JSON.parse(localStorage.getItem('user'));
+    return this.http.post<any>(`http://localhost:8089/advert/car/new`, car);
+    /*let user = JSON.parse(localStorage.getItem('user'));
     let token = localStorage.getItem('token');
     if (user === null) return;
     car.user = user;
     return this.http.post<any>('http://localhost:8089/advert/car/new', car, {
       headers: { 'x-auth': `Bearer ${token}` },
-    });
+    });*/
   }
 
   getAllMarks() {
