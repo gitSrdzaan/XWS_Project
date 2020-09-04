@@ -68,6 +68,7 @@ public class Car {
     }
 
     public Car(xml.team.rentacar.model.Car car){
+        this.id = car.getId();
         this.kidsSeats = car.getKidsSeats();
         this.carGrade = car.getCarGrade();
         this.carMileage = car.getCarMileage();
