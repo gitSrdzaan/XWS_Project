@@ -92,7 +92,7 @@ public class RentAdvertService {
 	private void dto2Advert(RentAdvertDTO advertDTO, RentAdvert advert) {
 		advert.setAdvertEndDate(advertDTO.getAdvertEndDate());
 		advert.setAdvertStartDate(advertDTO.getAdvertStartDate());
-		advert.setId(advertDTO.getId());
+		//advert.setId(advertDTO.getId());
 		advert.setPriceForRent(advertDTO.getPriceForRent());
 		advert.setCar(carRepository.findById(advertDTO.getCarId()).orElse(null));
 		advert.setPriceList(priceListRepository.findById(advertDTO.getPriceListId()).orElse(null));

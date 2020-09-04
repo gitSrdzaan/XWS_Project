@@ -82,6 +82,7 @@ public class AdvertController {
 
 
 		RentAdvert advert = advertService.save(advertDto);
+		advertDto.setId(advert.getId());
 
 		createdSender.send(advertDto);
 

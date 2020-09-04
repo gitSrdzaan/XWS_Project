@@ -49,7 +49,7 @@ public class PriceListService {
     }
 
     private void dto2PriceList(PriceListDTO priceListDTO, PriceList priceList) {
-        priceList.setId(priceListDTO.getId());
+        //priceList.setId(priceListDTO.getId());
         priceList.setPriceCDW(priceListDTO.getPriceCDW());
         priceList.setPricePerDay(priceListDTO.getPricePerDay());
         priceList.setPricePerKilometer(priceListDTO.getPricePerKilometer());

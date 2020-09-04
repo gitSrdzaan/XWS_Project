@@ -73,22 +73,8 @@ public class CarService {
 	}
 
 
-
-
-
-    public void addCar(Car car) throws Exception {
-
-		try {
-			repository.save(car);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			throw new Exception("Neuspjesan pokusaj uspisivanja auta u bazu");
-		}
-    }
-
     private void dto2Car(CarDTO carDTO,Car car) {
-		car.setId(carDTO.getId());
+		//car.setId(carDTO.getId());
 		car.setCarClass(carDTO.getCarClass());
 		car.setCarComment(carDTO.getCarComment());
 		car.setCarFuel(carFuelRepository.findById(carDTO.getCarFuel()).orElse(null));

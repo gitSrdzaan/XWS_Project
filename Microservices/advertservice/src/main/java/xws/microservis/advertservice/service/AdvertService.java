@@ -48,11 +48,11 @@ public class AdvertService {
 		/***
 		 * TODO: GET CAR & GET PRICELIST
 		 */
-		advert.setId(advertDto.getId());
+		//advert.setId(advertDto.getId());
 		advert.setAdvertEndDate(advertDto.getAdvertEndDate());
 		advert.setAdvertStartDate(advertDto.getAdvertStartDate());
 		advert.setCar(carService.findById(advertDto.getCarId()));
-		System.out.println("Proslo");
+
 		advert.setPriceList(priceListService.findById(advertDto.getPriceListId()));
 		if(advertDto.getPriceForRent() != 0.0 && advertDto.getPriceForRent() != null){
 			advert.setPriceForRent(advertDto.getPriceForRent());
@@ -86,7 +86,7 @@ public class AdvertService {
 		/**
 		 * RabbitMQ*/
 		AdvertDto advertDto = new AdvertDto();
-		advert2DTO(rentAdvert,advertDto);
+		advert2DTO(savedAdvert,advertDto);
 
 		createdSender.send(advertDto);
 
@@ -98,7 +98,7 @@ public class AdvertService {
 
 	private void advert2DTO(RentAdvert rentAdvert, AdvertDto advertDto) {
 
-		advertDto.setId(rentAdvert.getId());
+		//advertDto.setId(rentAdvert.getId());
 		advertDto.setAdvertEndDate(rentAdvert.getAdvertEndDate());
 		advertDto.setAdvertStartDate(rentAdvert.getAdvertStartDate());
 		advertDto.setCarId(rentAdvert.getCar().getId());

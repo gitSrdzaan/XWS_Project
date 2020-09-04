@@ -47,9 +47,10 @@ public class PriceListService {
 		PriceList savedPL = priceListRepository.save(priceList);
 
 		/**
-		 * RabbitMQ*/
+		 * RabbitMQ
+		 * */
 		PriceListDTO priceListDTO = new PriceListDTO();
-		priceList2DTO(priceList,priceListDTO);
+		priceList2DTO(savedPL,priceListDTO);
 
 		createdSender.send(priceListDTO);
 
@@ -83,7 +84,7 @@ public class PriceListService {
     }
 
 	private void dto2PriceList(PriceListDTO priceListDTO, PriceList priceList) {
-		priceList.setId(priceListDTO.getId());
+		//priceList.setId(priceListDTO.getId());
 		priceList.setPriceCDW(priceListDTO.getPriceCDW());
 		priceList.setPricePerDay(priceListDTO.getPricePerDay());
 		priceList.setPricePerKilometer(priceListDTO.getPricePerKilometer());

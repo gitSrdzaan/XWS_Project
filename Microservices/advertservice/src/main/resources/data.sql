@@ -1,9 +1,4 @@
-CREATE SEQUENCE car_seq
-start with 1
-increment by 1
-minvalue 0
-maxvalue 100
-cycle;
+
 
 
 insert into car_fuel values(1,'benzin');

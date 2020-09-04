@@ -55,12 +55,13 @@ public class CarService {
 		}
 	}
 
-	public void saveNewCar(CarDTO carDTO) throws Exception {
+	public Car saveNewCar(CarDTO carDTO) throws Exception {
 		User user  = userRepository.findById(carDTO.getOwner_id()).orElse(null);
 		if(user == null){
 			throw new Exception("Korisnik ne postoji");
 		}
 		Car car = new Car();
+
 		dtoToCar(carDTO,car);
 		car.setUser(user);
 		try {
@@ -70,6 +71,8 @@ public class CarService {
 			e.printStackTrace();
 			throw new Exception("Greska u pokusaju uspisa automobila");
 		}
+
+		return car;
 
 	}
 
@@ -133,7 +136,7 @@ public class CarService {
 		/**
 		 * RabbitMQ*/
 		CarDTO carDTO = new CarDTO();
-		car2DTO(car,carDTO);
+		car2DTO(newCar,carDTO);
 
 		createdSender.sendCar(carDTO);
 

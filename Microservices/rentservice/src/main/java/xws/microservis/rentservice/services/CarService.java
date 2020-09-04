@@ -70,7 +70,7 @@ public class CarService  {
     }
 
 	private void dto2Car(CarDTO carDTO, Car car) {
-		car.setId(carDTO.getId());
+		//car.setId(carDTO.getId());
 		car.setCarClass(carDTO.getCarClass());
 		car.setCarComment(carDTO.getCarComment());
 		car.setCarFuel(carFuelRepository.findById(carDTO.getCarFuel()).orElse(null));
