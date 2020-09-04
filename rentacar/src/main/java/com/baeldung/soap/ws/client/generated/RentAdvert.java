@@ -55,7 +55,7 @@ public class RentAdvert {
     public RentAdvert(xml.team.rentacar.model.RentAdvert rentAdvert){
         this.carId = rentAdvert.getCar().getId();
         this.id = rentAdvert.getId();
-        this.priceListId= rentAdvert.getPriceList().getId();
+        this.priceListId= rentAdvert.getPriceList().getForeignId();
         this.owner = "AGENT_APP";
     }
     /**

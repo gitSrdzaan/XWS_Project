@@ -54,6 +54,14 @@ public class CarService {
 		/**
 		 * TODO: komunikacija sa ostalim servisima
 		 * */
+		Car savedCar = new Car();
+		try {
+			savedCar = repository.save(car);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("Neuspjesan pokusaj uspisivanja auta u bazu");
+		}
 
 		/// SOAP SENDING
 		CarPortService service = new CarPortService();
@@ -61,7 +69,7 @@ public class CarService {
 		GetCarRequest getCarRequest = new GetCarRequest();
 
 		try{
-			com.baeldung.soap.ws.client.generated.Car carSoap = new com.baeldung.soap.ws.client.generated.Car(car);
+			com.baeldung.soap.ws.client.generated.Car carSoap = new com.baeldung.soap.ws.client.generated.Car(savedCar);
 			getCarRequest.setCar(carSoap);
 			GetCarResponse getCarResponse = carsPort.getCar(getCarRequest);
 			car.setForeignId(getCarResponse.getId());
@@ -69,12 +77,7 @@ public class CarService {
 			System.out.println("Nije moguce posalti auto.Mikroservis ne radi");
 		}
 
-		try {
-			repository.save(car);
-		}
-		catch(Exception e) {
-			throw new Exception("Neuspjesan pokusaj uspisivanja auta u bazu");
-		}
+
 
 
 		return true;

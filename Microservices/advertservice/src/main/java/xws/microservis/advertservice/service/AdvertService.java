@@ -68,7 +68,6 @@ public class AdvertService {
 
 	public Long addNewAdvertSoap(GetRentAdvertRequest request){
 		RentAdvert rentAdvert = new RentAdvert();
-		System.out.println(request.getRentAdvert().getId());
 		rentAdvert.setMonolitId(request.getRentAdvert().getId());
 		rentAdvert.setCar(carService.findById(request.getRentAdvert().getCarId()));
 		rentAdvert.setPriceList(priceListService.findById(request.getRentAdvert().getPriceListId()));
@@ -98,7 +97,7 @@ public class AdvertService {
 
 	private void advert2DTO(RentAdvert rentAdvert, AdvertDto advertDto) {
 
-		//advertDto.setId(rentAdvert.getId());
+		advertDto.setId(rentAdvert.getId());
 		advertDto.setAdvertEndDate(rentAdvert.getAdvertEndDate());
 		advertDto.setAdvertStartDate(rentAdvert.getAdvertStartDate());
 		advertDto.setCarId(rentAdvert.getCar().getId());

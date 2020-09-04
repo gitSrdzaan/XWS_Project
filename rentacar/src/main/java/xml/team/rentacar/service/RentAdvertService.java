@@ -71,21 +71,23 @@ public class RentAdvertService {
 			throw new Exception("Cuvanje oglasa nije uspjelo");
 		}
 
+		System.out.println(saved.getId());
+		System.out.println(saved.getId());
+		System.out.println(saved.getId());
+		System.out.println(saved.getId());
 		// SOAP
 		RentAdvertPortService service = new RentAdvertPortService();
 		RentAdvertPort rentAdvertPort = service.getRentAdvertPortSoap11();
 		GetRentAdvertRequest getRentAdvertRequest = new GetRentAdvertRequest();
 
-		System.out.println(ra.getAdvertEndDate().toString());
-
 		try {
-			com.baeldung.soap.ws.client.generated.RentAdvert rentAdvert = new com.baeldung.soap.ws.client.generated.RentAdvert(ra);
-			rentAdvert.setId(saved.getId());
+			com.baeldung.soap.ws.client.generated.RentAdvert rentAdvert = new com.baeldung.soap.ws.client.generated.RentAdvert(saved);
 			rentAdvert.setAdvertEndDate(ra.getAdvertEndDate().toString());
 			rentAdvert.setAdvertStartDate(ra.getAdvertStartDate().toString());
 			getRentAdvertRequest.setRentAdvert(rentAdvert);
 			GetRentAdvertResponse getRentAdvertResponse = rentAdvertPort.getRentAdvert(getRentAdvertRequest);
-			ra.setForeignId(getRentAdvertResponse.getId());
+			saved.setForeignId(getRentAdvertResponse.getId());
+			rentARepository.save(saved);
 		}catch (Exception e){
 
 			System.out.println("Nije moguce poslati Advert.Mikroservis ne radi");
