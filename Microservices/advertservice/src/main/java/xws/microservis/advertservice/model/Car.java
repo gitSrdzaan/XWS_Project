@@ -2,6 +2,8 @@ package xws.microservis.advertservice.model;
 
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,7 +11,13 @@ import java.util.List;
 public class Car {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GenericGenerator(name = "car_seq",strategy = "sequence", parameters ={
+	@org.hibernate.annotations.Parameter(name = "car_seq_name", value = "sequence"),
+			@org.hibernate.annotations.Parameter(name = "allocationSize", value = "1"),
+			@org.hibernate.annotations.Parameter(name = "initial_value", value = "500"),
+			@org.hibernate.annotations.Parameter(name = "increment_size", value = "100")
+	})
+	@GeneratedValue(generator = "car_seq",strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@Column(nullable = false)

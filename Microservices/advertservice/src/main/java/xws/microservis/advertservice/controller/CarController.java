@@ -62,7 +62,7 @@ public class CarController {
             return new ResponseEntity<>("Greska pri kreiranju auta", HttpStatus.BAD_REQUEST);
         }
         try{
-            carService.saveNewCar(carDTO);
+            carDTO.setId(carService.saveNewCar(carDTO).getId());
         }
         catch(Exception e){
             e.printStackTrace();

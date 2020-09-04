@@ -36,6 +36,7 @@ public class PriceListController {
     public ResponseEntity<?> createNewPriceList(@RequestBody PriceListDTO priceListDTO){
 
         PriceList retVal = priceListService.saveNew(priceListDTO);
+        priceListDTO.setId(retVal.getId());
 
         createdSender.send(priceListDTO);
 
