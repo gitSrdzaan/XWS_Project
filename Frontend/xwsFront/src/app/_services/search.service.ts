@@ -13,14 +13,9 @@ export class SearchService {
     //something like this
     //return this.http.post<any>("ADD_URL/podaci", searchInfo);
 
-    let token = localStorage.getItem('token');
-    if (token === null) return;
     return this.http.post<Array<RentAdvert>>(
-      `http://localhost:8089/search/pretrazivanje/podaci`,
-      { searchInfo },
-      {
-        headers: { 'x-auth': `Bearer ${token}` },
-      }
+      `http://localhost:8089/search/search/findAdvert`,
+      { searchInfo }
     );
 
     const mocked: RentAdvert[] = [
